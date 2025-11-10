@@ -18,6 +18,7 @@ import {
 import { useToast } from "@/hooks/use-toast";
 import { z } from "zod";
 import { Mail } from "lucide-react";
+import { maskPhone } from "@/lib/masks";
 
 const hireServiceSchema = z.object({
   fullName: z.string().trim().min(3, "Nome deve ter pelo menos 3 caracteres").max(100),
@@ -191,8 +192,9 @@ export default function HireService() {
                     <Input
                       id="phone"
                       value={formData.phone}
-                      onChange={(e) => setFormData({...formData, phone: e.target.value})}
+                      onChange={(e) => setFormData({...formData, phone: maskPhone(e.target.value)})}
                       placeholder="+55 (11) 99999-9999"
+                      maxLength={19}
                     />
                     {errors.phone && <p className="text-sm text-destructive mt-1">{errors.phone}</p>}
                   </div>

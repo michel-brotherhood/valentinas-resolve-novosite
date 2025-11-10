@@ -12,6 +12,7 @@ import { ChevronLeft, ChevronRight, Upload, CheckCircle2 } from "lucide-react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
+import { maskPhone, maskCPF } from "@/lib/masks";
 
 const serviceCategories = [
   "Domésticos", "Beleza", "Saúde", "Jurídicos", "Educação",
@@ -248,8 +249,13 @@ const ProfessionalRegistration = () => {
                     <Label htmlFor="phone">Telefone *</Label>
                     <Input
                       id="phone"
-                      {...personalForm.register("phone")}
-                      placeholder="(00) 00000-0000"
+                      value={personalForm.watch("phone") || ""}
+                      onChange={(e) => {
+                        const masked = maskPhone(e.target.value);
+                        personalForm.setValue("phone", masked);
+                      }}
+                      placeholder="+55 (11) 99999-9999"
+                      maxLength={19}
                     />
                     {personalForm.formState.errors.phone && (
                       <p className="text-sm text-destructive mt-1">
@@ -263,8 +269,13 @@ const ProfessionalRegistration = () => {
                   <Label htmlFor="cpf">CPF *</Label>
                   <Input
                     id="cpf"
-                    {...personalForm.register("cpf")}
+                    value={personalForm.watch("cpf") || ""}
+                    onChange={(e) => {
+                      const masked = maskCPF(e.target.value);
+                      personalForm.setValue("cpf", masked);
+                    }}
                     placeholder="000.000.000-00"
+                    maxLength={14}
                   />
                   {personalForm.formState.errors.cpf && (
                     <p className="text-sm text-destructive mt-1">

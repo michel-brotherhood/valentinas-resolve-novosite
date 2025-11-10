@@ -14,6 +14,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { getCategoryIcon } from "@/lib/categoryIcons";
 
 const servicesData = [
   // Domésticos (14)
@@ -313,38 +314,42 @@ const Services = () => {
           {/* Services Grid */}
           {filteredServices.length > 0 ? (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-6">
-              {filteredServices.map((service, index) => (
-                <Card
-                  key={index}
-                  className="group overflow-hidden hover:shadow-2xl transition-all duration-300 hover:scale-105 hover:border-primary/50 cursor-pointer"
-                >
-                  {/* Image with gradient overlay */}
-                  <div className={`h-32 bg-gradient-to-br ${getCategoryGradient(service.category)} relative overflow-hidden`}>
-                    <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent" />
-                    <div className="absolute bottom-2 left-4">
-                      <Badge variant="secondary" className="text-xs">
-                        {service.category}
-                      </Badge>
+              {filteredServices.map((service, index) => {
+                const CategoryIcon = getCategoryIcon(service.category);
+                return (
+                  <Card
+                    key={index}
+                    className="group overflow-hidden hover:shadow-2xl transition-all duration-300 hover:scale-105 hover:border-primary/50 cursor-pointer"
+                  >
+                    {/* Image with gradient overlay */}
+                    <div className={`h-32 bg-gradient-to-br ${getCategoryGradient(service.category)} relative overflow-hidden flex items-center justify-center`}>
+                      <CategoryIcon className="h-16 w-16 text-foreground/20 group-hover:text-primary/30 transition-colors" />
+                      <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent" />
+                      <div className="absolute bottom-2 left-4">
+                        <Badge variant="secondary" className="text-xs">
+                          {service.category}
+                        </Badge>
+                      </div>
                     </div>
-                  </div>
-                  
-                  <div className="p-4 md:p-6">
-                    <h3 className="font-bold text-base md:text-lg text-foreground mb-2 group-hover:text-primary transition-colors">
-                      {service.name}
-                    </h3>
-                    <p className="text-sm text-muted-foreground mb-4 line-clamp-2">
-                      {service.description}
-                    </p>
-                    <Button
-                      onClick={() => handleRequestQuote(service.name)}
-                      className="w-full bg-primary hover:bg-primary/90 text-primary-foreground text-sm md:text-base"
-                      size="sm"
-                    >
-                      Solicitar Orçamento
-                    </Button>
-                  </div>
-                </Card>
-              ))}
+                    
+                    <div className="p-4 md:p-6">
+                      <h3 className="font-bold text-base md:text-lg text-foreground mb-2 group-hover:text-primary transition-colors">
+                        {service.name}
+                      </h3>
+                      <p className="text-sm text-muted-foreground mb-4 line-clamp-2">
+                        {service.description}
+                      </p>
+                      <Button
+                        onClick={() => handleRequestQuote(service.name)}
+                        className="w-full bg-primary hover:bg-primary/90 text-primary-foreground text-sm md:text-base"
+                        size="sm"
+                      >
+                        Solicitar Orçamento
+                      </Button>
+                    </div>
+                  </Card>
+                );
+              })}
             </div>
           ) : (
             <Card className="p-12 text-center">

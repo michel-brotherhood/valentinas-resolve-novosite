@@ -9,6 +9,7 @@ import { Phone, Mail, MapPin, Clock } from "lucide-react";
 import { useState } from "react";
 import { useToast } from "@/hooks/use-toast";
 import { z } from "zod";
+import { maskPhone } from "@/lib/masks";
 
 const contactSchema = z.object({
   name: z.string().trim().min(1, { message: "Nome é obrigatório" }).max(100, { message: "Nome deve ter menos de 100 caracteres" }),
@@ -137,10 +138,10 @@ export default function Contact() {
                       id="phone"
                       type="tel"
                       value={formData.phone}
-                      onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                      onChange={(e) => setFormData({ ...formData, phone: maskPhone(e.target.value) })}
                       className={errors.phone ? "border-destructive" : ""}
-                      maxLength={20}
-                      placeholder="(11) 99999-9999"
+                      maxLength={19}
+                      placeholder="+55 (11) 99999-9999"
                     />
                     {errors.phone && (
                       <p className="text-sm text-destructive mt-1">{errors.phone}</p>
