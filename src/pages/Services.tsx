@@ -232,10 +232,28 @@ const Services = () => {
   }, [searchQuery, selectedCategory]);
 
   const handleRequestQuote = (serviceName: string) => {
-    const message = encodeURIComponent(
-      `Olá! Gostaria de solicitar um orçamento para: ${serviceName}`
-    );
-    window.open(`https://wa.me/5500000000000?text=${message}`, "_blank");
+    window.location.href = `/contratar-profissional?servico=${encodeURIComponent(serviceName)}`;
+  };
+
+  const getCategoryGradient = (category: string) => {
+    const gradients: Record<string, string> = {
+      "Domésticos": "from-blue-500/20 to-blue-600/20",
+      "Beleza": "from-pink-500/20 to-purple-600/20",
+      "Saúde": "from-green-500/20 to-emerald-600/20",
+      "Jurídicos": "from-gray-500/20 to-slate-600/20",
+      "Educação": "from-amber-500/20 to-orange-600/20",
+      "Automotivos": "from-red-500/20 to-rose-600/20",
+      "Pets": "from-yellow-500/20 to-amber-600/20",
+      "Eventos": "from-purple-500/20 to-fuchsia-600/20",
+      "Criativos": "from-cyan-500/20 to-blue-600/20",
+      "Construção": "from-orange-500/20 to-red-600/20",
+      "Transporte": "from-indigo-500/20 to-blue-600/20",
+      "Agricultura": "from-lime-500/20 to-green-600/20",
+      "Personalizados": "from-teal-500/20 to-cyan-600/20",
+      "Turismo": "from-sky-500/20 to-blue-600/20",
+      "Esportes": "from-emerald-500/20 to-teal-600/20",
+    };
+    return gradients[category] || "from-gray-500/20 to-slate-600/20";
   };
 
   return (
@@ -298,26 +316,33 @@ const Services = () => {
               {filteredServices.map((service, index) => (
                 <Card
                   key={index}
-                  className="p-4 md:p-6 hover:shadow-lg transition-all hover:border-primary/50"
+                  className="group overflow-hidden hover:shadow-2xl transition-all duration-300 hover:scale-105 hover:border-primary/50 cursor-pointer"
                 >
-                  <div className="mb-3">
-                    <Badge variant="outline" className="text-xs">
-                      {service.category}
-                    </Badge>
+                  {/* Image with gradient overlay */}
+                  <div className={`h-32 bg-gradient-to-br ${getCategoryGradient(service.category)} relative overflow-hidden`}>
+                    <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent" />
+                    <div className="absolute bottom-2 left-4">
+                      <Badge variant="secondary" className="text-xs">
+                        {service.category}
+                      </Badge>
+                    </div>
                   </div>
-                  <h3 className="font-bold text-base md:text-lg text-foreground mb-2">
-                    {service.name}
-                  </h3>
-                  <p className="text-sm text-muted-foreground mb-4 line-clamp-2">
-                    {service.description}
-                  </p>
-                  <Button
-                    onClick={() => handleRequestQuote(service.name)}
-                    className="w-full bg-primary hover:bg-primary/90 text-primary-foreground text-sm md:text-base"
-                    size="sm"
-                  >
-                    Solicitar Orçamento
-                  </Button>
+                  
+                  <div className="p-4 md:p-6">
+                    <h3 className="font-bold text-base md:text-lg text-foreground mb-2 group-hover:text-primary transition-colors">
+                      {service.name}
+                    </h3>
+                    <p className="text-sm text-muted-foreground mb-4 line-clamp-2">
+                      {service.description}
+                    </p>
+                    <Button
+                      onClick={() => handleRequestQuote(service.name)}
+                      className="w-full bg-primary hover:bg-primary/90 text-primary-foreground text-sm md:text-base"
+                      size="sm"
+                    >
+                      Solicitar Orçamento
+                    </Button>
+                  </div>
                 </Card>
               ))}
             </div>

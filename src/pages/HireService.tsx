@@ -49,12 +49,17 @@ const serviceTypes = [
 
 export default function HireService() {
   const { toast } = useToast();
+  
+  // Get service from URL params
+  const urlParams = new URLSearchParams(window.location.search);
+  const preSelectedService = urlParams.get('servico') || "";
+  
   const [formData, setFormData] = useState({
     fullName: "",
     phone: "",
     email: "",
     cityNeighborhood: "",
-    serviceType: "",
+    serviceType: preSelectedService,
     description: "",
     location: "",
     urgency: "days" as "immediate" | "days" | "scheduled",

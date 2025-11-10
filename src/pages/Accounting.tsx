@@ -72,7 +72,11 @@ export default function Accounting() {
               <p className="text-xl text-white/90 mb-8">
                 Simplifique sua gestão financeira com serviços contábeis completos e personalizados
               </p>
-              <Button size="lg" className="bg-primary hover:bg-primary/90 text-black font-bold">
+              <Button 
+                size="lg" 
+                className="bg-primary hover:bg-primary/90 text-black font-bold"
+                onClick={() => window.location.href = '/formulario-contabilidade'}
+              >
                 Agende uma Consulta Gratuita
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
@@ -193,7 +197,10 @@ export default function Accounting() {
                     <p className="text-foreground">Implementação e acompanhamento contínuo</p>
                   </div>
                 </div>
-                <Button className="w-full mt-8 bg-primary hover:bg-primary/90 text-black font-bold">
+                <Button 
+                  className="w-full mt-8 bg-primary hover:bg-primary/90 text-black font-bold"
+                  onClick={() => window.location.href = '/formulario-contabilidade'}
+                >
                   Solicitar Consulta Gratuita
                 </Button>
               </div>
@@ -211,11 +218,20 @@ export default function Accounting() {
               Entre em contato conosco e descubra como podemos ajudar seu negócio a crescer
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button size="lg" className="bg-primary hover:bg-primary/90 text-black font-bold">
+              <Button 
+                size="lg" 
+                className="bg-primary hover:bg-primary/90 text-black font-bold"
+                onClick={() => window.open("https://wa.me/5500000000000?text=Olá! Tenho interesse em Contabilidade Integrada", "_blank")}
+              >
                 Falar no WhatsApp
               </Button>
-              <Button size="lg" variant="outline" className="border-primary text-primary hover:bg-primary/10">
-                Ver Todos os Serviços
+              <Button 
+                size="lg" 
+                variant="outline" 
+                className="border-primary text-primary hover:bg-primary/10"
+                onClick={() => window.location.href = '/formulario-contabilidade'}
+              >
+                Solicitar Orçamento
               </Button>
             </div>
           </div>
