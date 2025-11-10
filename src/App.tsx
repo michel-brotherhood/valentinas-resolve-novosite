@@ -7,10 +7,12 @@ import Index from "./pages/Index";
 import ProfessionalRegistration from "./pages/ProfessionalRegistration";
 import Services from "./pages/Services";
 import Accounting from "./pages/Accounting";
+import AccountingForm from "./pages/AccountingForm";
 import Contact from "./pages/Contact";
 import About from "./pages/About";
 import TeamPage from "./pages/Team";
 import WorkWithUs from "./pages/WorkWithUs";
+import HireService from "./pages/HireService";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -26,6 +28,8 @@ const App = () => (
           <Route path="/sobre" element={<About />} />
           <Route path="/servicos" element={<Services />} />
           <Route path="/contabilidade" element={<Accounting />} />
+          <Route path="/formulario-contabilidade" element={<AccountingForm />} />
+          <Route path="/contratar-profissional" element={<HireService />} />
           <Route path="/equipe" element={<TeamPage />} />
           <Route path="/trabalhe-conosco" element={<WorkWithUs />} />
           <Route path="/contato" element={<Contact />} />

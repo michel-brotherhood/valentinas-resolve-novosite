@@ -11,8 +11,8 @@ export const FloatingChat = () => {
     setIsOpen(false);
   };
 
-  const handleContract = () => {
-    window.location.href = "/servicos";
+  const handleHireService = () => {
+    window.location.href = "/contratar-profissional";
     setIsOpen(false);
   };
 
@@ -40,14 +40,14 @@ export const FloatingChat = () => {
             </Button>
 
             <Button
-              onClick={handleContract}
+              onClick={handleHireService}
               variant="outline"
               className="w-full justify-start gap-3 h-auto py-3 hover:bg-primary/10 hover:text-primary hover:border-primary transition-all"
             >
               <Briefcase className="h-5 w-5 flex-shrink-0" />
               <div className="text-left">
                 <div className="font-semibold">Quero Contratar</div>
-                <div className="text-xs text-muted-foreground">Encontre profissionais</div>
+                <div className="text-xs text-muted-foreground">Solicite orçamento</div>
               </div>
             </Button>
 
