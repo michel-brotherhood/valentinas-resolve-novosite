@@ -1,4 +1,10 @@
 import { Card } from "@/components/ui/card";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
 import andressaImg from "@/assets/team/andressa.jpg";
 import daianeImg from "@/assets/team/daiane.jpg";
 import janainaImg from "@/assets/team/janaina.jpg";
@@ -7,69 +13,116 @@ import kellenImg from "@/assets/team/kellen.jpg";
 const teamMembers = [
   {
     name: "Andressa Mello",
-    role: "Contadora",
-    description: "Contadora e especialista em contabilidade empresarial e fiscal. Responsável técnica pela Contabilidade Integrada.",
+    role: "Contadora Responsável Técnica",
+    shortDescription: "Especialista em contabilidade empresarial e fiscal",
+    fullDescription: "Contadora e especialista em contabilidade empresarial e fiscal, com vasta experiência em planejamento tributário, gestão fiscal e contabilidade integrada. Responsável técnica pela Contabilidade Integrada do Valentina's Resolve, oferecendo atendimento direto e personalizado para simplificar a gestão contábil dos clientes.",
     image: andressaImg,
+    specialties: ["Contabilidade Empresarial", "Planejamento Tributário", "Gestão Fiscal", "Assessoria Contábil"],
   },
   {
     name: "Daiane Amaral",
-    role: "Co-fundadora",
-    description: "Co-fundadora e especialista em gestão de serviços.",
+    role: "Co-fundadora e Diretora de Serviços",
+    shortDescription: "Especialista em gestão de serviços e operações",
+    fullDescription: "Co-fundadora do Valentina's Resolve com expertise em gestão de serviços, coordenação de equipes e desenvolvimento de processos operacionais. Responsável por garantir a qualidade e excelência na prestação de todos os serviços oferecidos pela plataforma.",
     image: daianeImg,
+    specialties: ["Gestão de Serviços", "Coordenação de Equipes", "Processos Operacionais", "Qualidade"],
   },
   {
     name: "Janaína",
     role: "Sócia Fundadora",
-    description: "Sócia fundadora.",
+    shortDescription: "Estratégia e desenvolvimento de negócios",
+    fullDescription: "Sócia fundadora do Valentina's Resolve, com foco em estratégia empresarial e desenvolvimento de novos negócios. Atua na expansão da plataforma e no estabelecimento de parcerias estratégicas para ampliar a oferta de serviços.",
     image: janainaImg,
+    specialties: ["Estratégia Empresarial", "Desenvolvimento de Negócios", "Parcerias Estratégicas"],
   },
   {
     name: "Kellen Cristina Amaral",
-    role: "Co-fundadora",
-    description: "Co-fundadora e especialista em operações.",
+    role: "Co-fundadora e Diretora de Operações",
+    shortDescription: "Especialista em operações e logística",
+    fullDescription: "Co-fundadora do Valentina's Resolve com especialização em operações, logística e gestão de processos. Responsável por coordenar toda a estrutura operacional da plataforma, garantindo eficiência na conexão entre profissionais e clientes.",
     image: kellenImg,
+    specialties: ["Gestão de Operações", "Logística", "Processos", "Eficiência Operacional"],
   },
 ];
 
 export const Team = () => {
   return (
-    <section className="py-16 bg-background">
+    <section className="py-16 bg-secondary/20">
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
-          <h2 className="text-3xl font-bold text-foreground mb-4">
-            Nossa Equipe
+          <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
+            Nossa Equipe Fundadora
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Conheça as fundadoras que tornaram possível essa plataforma
+            Conheça as profissionais que idealizaram e construíram a Valentina's Resolve
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {teamMembers.map((member) => (
-            <Card
-              key={member.name}
-              className="overflow-hidden hover:shadow-lg transition-shadow"
-            >
-              <div className="aspect-[3/4] overflow-hidden">
-                <img
-                  src={member.image}
-                  alt={member.name}
-                  className="w-full h-full object-cover"
-                />
-              </div>
-              <div className="p-6">
-                <h3 className="font-bold text-lg text-foreground mb-1">
-                  {member.name}
-                </h3>
-                <p className="text-primary font-semibold mb-3">
-                  {member.role}
-                </p>
-                <p className="text-sm text-muted-foreground">
-                  {member.description}
-                </p>
-              </div>
-            </Card>
-          ))}
+        <div className="max-w-5xl mx-auto">
+          <Accordion type="single" collapsible className="space-y-4">
+            {teamMembers.map((member, index) => (
+              <AccordionItem key={member.name} value={`member-${index}`} className="border-none">
+                <Card className="overflow-hidden">
+                  <AccordionTrigger className="px-6 py-4 hover:no-underline hover:bg-secondary/50 transition-colors">
+                    <div className="flex items-center gap-4 text-left w-full">
+                      <div className="w-16 h-16 rounded-full overflow-hidden flex-shrink-0 border-2 border-primary">
+                        <img
+                          src={member.image}
+                          alt={member.name}
+                          className="w-full h-full object-cover"
+                        />
+                      </div>
+                      <div className="flex-1">
+                        <h3 className="font-bold text-lg text-foreground">
+                          {member.name}
+                        </h3>
+                        <p className="text-primary font-semibold text-sm">
+                          {member.role}
+                        </p>
+                        <p className="text-sm text-muted-foreground mt-1">
+                          {member.shortDescription}
+                        </p>
+                      </div>
+                    </div>
+                  </AccordionTrigger>
+                  <AccordionContent className="px-6 pb-6">
+                    <div className="pt-4 space-y-4">
+                      <p className="text-muted-foreground leading-relaxed">
+                        {member.fullDescription}
+                      </p>
+                      <div>
+                        <h4 className="font-semibold text-foreground mb-3">
+                          Especialidades:
+                        </h4>
+                        <div className="flex flex-wrap gap-2">
+                          {member.specialties.map((specialty) => (
+                            <span
+                              key={specialty}
+                              className="px-3 py-1 bg-primary/10 text-primary text-sm font-medium rounded-full"
+                            >
+                              {specialty}
+                            </span>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+                  </AccordionContent>
+                </Card>
+              </AccordionItem>
+            ))}
+          </Accordion>
+        </div>
+
+        <div className="text-center mt-12">
+          <p className="text-muted-foreground mb-4">
+            Interessado em fazer parte da nossa equipe?
+          </p>
+          <a
+            href="/registro-profissional"
+            className="text-primary font-semibold hover:underline"
+          >
+            Cadastre-se como profissional →
+          </a>
         </div>
       </div>
     </section>

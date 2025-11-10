@@ -2,7 +2,6 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Search } from "lucide-react";
 import { useState } from "react";
-import heroBg from "@/assets/hero-bg.jpg";
 
 export const Hero = () => {
   const [searchQuery, setSearchQuery] = useState("");
@@ -10,12 +9,16 @@ export const Hero = () => {
 
   return (
     <section className="relative bg-gradient-to-b from-hero-start to-hero-end overflow-hidden">
-      <div className="absolute inset-0 opacity-10">
-        <img 
-          src={heroBg} 
-          alt="" 
+      <div className="absolute inset-0 opacity-20">
+        <video 
+          autoPlay 
+          loop 
+          muted 
+          playsInline
           className="w-full h-full object-cover"
-        />
+        >
+          <source src="/videos/hero-video.mp4" type="video/mp4" />
+        </video>
       </div>
       
       <div className="container mx-auto px-4 py-16 md:py-24 relative">

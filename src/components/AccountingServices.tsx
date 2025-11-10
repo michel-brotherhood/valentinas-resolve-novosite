@@ -44,7 +44,7 @@ const benefits = [
 
 export const AccountingServices = () => {
   return (
-    <section className="py-16 bg-gradient-to-b from-background to-secondary/30">
+    <section id="contabilidade-integrada" className="py-16 bg-gradient-to-b from-background to-secondary/30">
       <div className="container mx-auto px-4">
         {/* Header */}
         <div className="text-center mb-12">
