@@ -8,8 +8,8 @@ export const Hero = () => {
   const [activeTab, setActiveTab] = useState<"hire" | "register">("hire");
 
   return (
-    <section className="relative bg-gradient-to-b from-hero-start to-hero-end overflow-hidden">
-      <div className="absolute inset-0 opacity-20">
+    <section className="relative bg-black overflow-hidden">
+      <div className="absolute inset-0 opacity-30">
         <video 
           autoPlay 
           loop 
@@ -21,7 +21,7 @@ export const Hero = () => {
         </video>
       </div>
       
-      <div className="container mx-auto px-4 py-16 md:py-24 relative">
+      <div className="container mx-auto px-4 py-16 md:py-24 relative z-10">
         <div className="max-w-3xl">
           {/* Tabs */}
           <div className="flex gap-4 mb-8">
@@ -29,45 +29,45 @@ export const Hero = () => {
               onClick={() => setActiveTab("hire")}
               className={`pb-2 px-1 font-medium text-lg transition-colors relative ${
                 activeTab === "hire"
-                  ? "text-foreground"
-                  : "text-muted-foreground hover:text-foreground"
+                  ? "text-primary"
+                  : "text-white/80 hover:text-white"
               }`}
             >
               Contratar profissionais
               {activeTab === "hire" && (
-                <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-foreground" />
+                <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-primary" />
               )}
             </button>
             <button
               onClick={() => setActiveTab("register")}
               className={`pb-2 px-1 font-medium text-lg transition-colors relative ${
                 activeTab === "register"
-                  ? "text-foreground"
-                  : "text-muted-foreground hover:text-foreground"
+                  ? "text-primary"
+                  : "text-white/80 hover:text-white"
               }`}
             >
               Registar como profissional
               {activeTab === "register" && (
-                <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-foreground" />
+                <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-primary" />
               )}
             </button>
           </div>
 
           {activeTab === "hire" ? (
             <>
-              <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
+              <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">
                 Encontre o profissional ideal para o seu projeto
               </h1>
-              <p className="text-lg text-muted-foreground mb-8">
+              <p className="text-lg text-white/90 mb-8">
                 Negócios que conectam, resultados que transformam
               </p>
             </>
           ) : (
             <>
-              <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
+              <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">
                 Encontre novos clientes e expanda o seu negócio
               </h1>
-              <p className="text-lg text-muted-foreground mb-8">
+              <p className="text-lg text-white/90 mb-8">
                 Junte-se a centenas de profissionais e receba pedidos todos os dias
               </p>
             </>
@@ -81,13 +81,13 @@ export const Hero = () => {
                 placeholder='Procure "contabilidade", "limpeza", "consultoria"...'
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="h-14 pl-4 pr-12 text-base bg-card border-border"
+                className="h-14 pl-4 pr-12 text-base bg-white border-white/20"
               />
               <Search className="absolute right-4 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
             </div>
             <Button 
               size="lg"
-              className="h-14 px-8 bg-foreground hover:bg-foreground/90 text-background font-bold"
+              className="h-14 px-8 bg-primary hover:bg-primary/90 text-black font-bold"
               onClick={() => {
                 if (activeTab === "register") {
                   window.location.href = '/registro-profissional';
