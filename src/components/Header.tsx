@@ -24,12 +24,19 @@ export const Header = () => {
             <Button 
               variant="ghost" 
               className="text-foreground hover:text-primary"
+              onClick={() => window.location.href = '/servicos'}
+            >
+              Serviços
+            </Button>
+            <Button 
+              variant="ghost" 
+              className="text-foreground hover:text-primary"
               onClick={() => {
                 const element = document.getElementById('contabilidade-integrada');
                 element?.scrollIntoView({ behavior: 'smooth' });
               }}
             >
-              Contabilidade Integrada
+              Contabilidade
             </Button>
             <Button variant="ghost" className="text-foreground hover:text-primary">
               Registo Cliente
@@ -62,11 +69,21 @@ export const Header = () => {
               className="w-full justify-start"
               onClick={() => {
                 setMobileMenuOpen(false);
+                window.location.href = '/servicos';
+              }}
+            >
+              Serviços
+            </Button>
+            <Button 
+              variant="ghost" 
+              className="w-full justify-start"
+              onClick={() => {
+                setMobileMenuOpen(false);
                 const element = document.getElementById('contabilidade-integrada');
                 element?.scrollIntoView({ behavior: 'smooth' });
               }}
             >
-              Contabilidade Integrada
+              Contabilidade
             </Button>
             <Button variant="ghost" className="w-full justify-start">
               Registo Cliente

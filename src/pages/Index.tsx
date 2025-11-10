@@ -5,8 +5,10 @@ import { PopularServices } from "@/components/PopularServices";
 import { AccountingServices } from "@/components/AccountingServices";
 import { HowItWorks } from "@/components/HowItWorks";
 import { Testimonials } from "@/components/Testimonials";
+import { FAQ } from "@/components/FAQ";
 import { Team } from "@/components/Team";
 import { Footer } from "@/components/Footer";
+import { FloatingChat } from "@/components/FloatingChat";
 
 const Index = () => {
   return (
@@ -18,8 +20,10 @@ const Index = () => {
       <AccountingServices />
       <HowItWorks />
       <Testimonials />
+      <FAQ />
       <Team />
       <Footer />
+      <FloatingChat />
     </div>
   );
 };

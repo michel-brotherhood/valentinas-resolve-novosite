@@ -21,23 +21,18 @@ export const Footer = () => {
             <h4 className="font-semibold text-foreground mb-4">Serviços</h4>
             <ul className="space-y-2">
               <li>
-                <a href="#" className="text-sm text-muted-foreground hover:text-primary transition-colors">
+                <a href="/servicos" className="text-sm text-muted-foreground hover:text-primary transition-colors">
+                  Catálogo de Serviços
+                </a>
+              </li>
+              <li>
+                <a href="/#contabilidade-integrada" className="text-sm text-muted-foreground hover:text-primary transition-colors">
                   Contabilidade Integrada
                 </a>
               </li>
               <li>
-                <a href="#" className="text-sm text-muted-foreground hover:text-primary transition-colors">
-                  Serviços Domésticos
-                </a>
-              </li>
-              <li>
-                <a href="#" className="text-sm text-muted-foreground hover:text-primary transition-colors">
-                  Consultoria Jurídica
-                </a>
-              </li>
-              <li>
-                <a href="#" className="text-sm text-muted-foreground hover:text-primary transition-colors">
-                  Ver todos os serviços
+                <a href="/" className="text-sm text-muted-foreground hover:text-primary transition-colors">
+                  Como funciona
                 </a>
               </li>
             </ul>
