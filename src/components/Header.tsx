@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Menu } from "lucide-react";
 import { useState } from "react";
+import logo from "@/assets/valentinas-logo.webp";
 
 export const Header = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -10,8 +11,8 @@ export const Header = () => {
       <div className="container mx-auto px-4 py-4">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-8">
-            <a href="/" className="text-2xl font-bold text-primary">
-              ServiçoPro
+            <a href="/" className="flex items-center">
+              <img src={logo} alt="Valentina's Resolve" className="h-12 w-auto" />
             </a>
           </div>
 

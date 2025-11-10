@@ -7,19 +7,19 @@ import { ChevronRight } from "lucide-react";
 
 const services = [
   {
-    title: "Pintura de Interiores",
+    title: "Contabilidade Integrada",
     image: paintingImg,
   },
   {
-    title: "Canalizadores",
+    title: "Serviços Jurídicos",
     image: plumbingImg,
   },
   {
-    title: "Limpezas",
+    title: "Limpeza e Manutenção",
     image: cleaningImg,
   },
   {
-    title: "Electricistas",
+    title: "Consultoria Empresarial",
     image: electricImg,
   },
 ];

@@ -7,29 +7,37 @@ export const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
           {/* Company Info */}
           <div>
-            <h3 className="text-xl font-bold text-primary mb-4">ServiçoPro</h3>
-            <p className="text-sm text-muted-foreground">
-              Conectamos clientes a profissionais qualificados para qualquer tipo de serviço.
+            <h3 className="text-xl font-bold text-primary mb-4">Valentina's Resolve</h3>
+            <p className="text-sm text-muted-foreground mb-3">
+              Negócios que conectam, resultados que transformam.
+            </p>
+            <p className="text-xs text-muted-foreground">
+              148+ serviços especializados em 15 categorias
             </p>
           </div>
 
           {/* For Clients */}
           <div>
-            <h4 className="font-semibold text-foreground mb-4">Para Clientes</h4>
+            <h4 className="font-semibold text-foreground mb-4">Serviços</h4>
             <ul className="space-y-2">
               <li>
                 <a href="#" className="text-sm text-muted-foreground hover:text-primary transition-colors">
-                  Como funciona
+                  Contabilidade Integrada
                 </a>
               </li>
               <li>
                 <a href="#" className="text-sm text-muted-foreground hover:text-primary transition-colors">
-                  Categorias de serviços
+                  Serviços Domésticos
                 </a>
               </li>
               <li>
                 <a href="#" className="text-sm text-muted-foreground hover:text-primary transition-colors">
-                  Criar pedido
+                  Consultoria Jurídica
+                </a>
+              </li>
+              <li>
+                <a href="#" className="text-sm text-muted-foreground hover:text-primary transition-colors">
+                  Ver todos os serviços
                 </a>
               </li>
             </ul>
@@ -41,17 +49,22 @@ export const Footer = () => {
             <ul className="space-y-2">
               <li>
                 <a href="#" className="text-sm text-muted-foreground hover:text-primary transition-colors">
-                  Registar-se
+                  Trabalhe Conosco
                 </a>
               </li>
               <li>
                 <a href="#" className="text-sm text-muted-foreground hover:text-primary transition-colors">
-                  Vantagens
+                  Como funciona
                 </a>
               </li>
               <li>
                 <a href="#" className="text-sm text-muted-foreground hover:text-primary transition-colors">
-                  Preços
+                  Cadastre-se
+                </a>
+              </li>
+              <li>
+                <a href="#" className="text-sm text-muted-foreground hover:text-primary transition-colors">
+                  Contato RH
                 </a>
               </li>
             </ul>
@@ -83,7 +96,7 @@ export const Footer = () => {
         {/* Bottom Bar */}
         <div className="pt-8 border-t border-border flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="text-sm text-muted-foreground">
-            © 2025 ServiçoPro. Todos os direitos reservados.
+            © 2025 Valentina's Resolve. Todos os direitos reservados.
           </p>
           
           <div className="flex gap-4">
