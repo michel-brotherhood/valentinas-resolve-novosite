@@ -84,50 +84,6 @@ export default function Accounting() {
           </div>
         </section>
 
-        {/* Accountant Section */}
-        <section className="py-16 bg-background">
-          <div className="container mx-auto px-4">
-            <div className="max-w-5xl mx-auto">
-              <Card className="p-8 md:p-12">
-                <div className="grid md:grid-cols-2 gap-8 items-center">
-                  <div>
-                    <img
-                      src={andressa}
-                      alt="Andressa Mello - Contadora Responsável"
-                      className="rounded-lg w-full h-auto object-cover"
-                    />
-                  </div>
-                  <div>
-                    <h2 className="text-3xl font-bold text-foreground mb-4">
-                      Andressa Mello
-                    </h2>
-                    <p className="text-lg text-primary font-semibold mb-4">
-                      Contadora Responsável - CRC 12345/O
-                    </p>
-                    <p className="text-muted-foreground mb-6">
-                      Com mais de 15 anos de experiência em gestão contábil e tributária, 
-                      Andressa lidera nossa equipe de contabilidade com excelência e dedicação. 
-                      Especialista em planejamento tributário e conformidade fiscal para pequenas 
-                      e médias empresas.
-                    </p>
-                    <div className="flex flex-wrap gap-2">
-                      <span className="px-3 py-1 bg-primary/10 text-primary rounded-full text-sm">
-                        Planejamento Tributário
-                      </span>
-                      <span className="px-3 py-1 bg-primary/10 text-primary rounded-full text-sm">
-                        Consultoria Fiscal
-                      </span>
-                      <span className="px-3 py-1 bg-primary/10 text-primary rounded-full text-sm">
-                        Gestão Financeira
-                      </span>
-                    </div>
-                  </div>
-                </div>
-              </Card>
-            </div>
-          </div>
-        </section>
-
         {/* Services Grid */}
         <section className="py-16 bg-secondary/20">
           <div className="container mx-auto px-4">
@@ -152,8 +108,51 @@ export default function Accounting() {
           </div>
         </section>
 
-        {/* Benefits Section */}
+        {/* Accountant Section */}
         <section className="py-16 bg-background">
+          <div className="container mx-auto px-4">
+            <div className="max-w-4xl mx-auto">
+              <Card className="p-6 md:p-8">
+                <div className="flex flex-col md:flex-row gap-6 items-center">
+                  <div className="w-32 h-32 rounded-full overflow-hidden flex-shrink-0 border-4 border-primary">
+                    <img
+                      src={andressa}
+                      alt="Andressa Mello - Contadora Responsável"
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                  <div className="flex-1 text-center md:text-left">
+                    <h3 className="text-2xl font-bold text-foreground mb-2">
+                      Andressa Mello
+                    </h3>
+                    <p className="text-primary font-semibold mb-3">
+                      Contadora Responsável - CRC 12345/O
+                    </p>
+                    <p className="text-muted-foreground mb-4">
+                      Especialista em contabilidade empresarial e fiscal, com mais de 15 anos de experiência. 
+                      Andressa lidera nossa equipe oferecendo atendimento personalizado e soluções sob medida 
+                      para sua empresa.
+                    </p>
+                    <div className="flex flex-wrap gap-2 justify-center md:justify-start">
+                      <span className="px-3 py-1 bg-primary/10 text-primary rounded-full text-sm">
+                        Planejamento Tributário
+                      </span>
+                      <span className="px-3 py-1 bg-primary/10 text-primary rounded-full text-sm">
+                        Consultoria Fiscal
+                      </span>
+                      <span className="px-3 py-1 bg-primary/10 text-primary rounded-full text-sm">
+                        Gestão Financeira
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </Card>
+            </div>
+          </div>
+        </section>
+
+        {/* Benefits Section */}
+        <section className="py-16 bg-secondary/20">
           <div className="container mx-auto px-4">
             <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-center">
               <div>

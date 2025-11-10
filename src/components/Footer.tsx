@@ -1,38 +1,46 @@
 import { Facebook, Instagram, Linkedin, Twitter } from "lucide-react";
+import logo from "@/assets/valentinas-logo.webp";
 
 export const Footer = () => {
   return (
-    <footer className="bg-card border-t border-border py-12">
+    <footer className="bg-black text-white py-12">
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
-          {/* Company Info */}
+          {/* Company Info with Logo */}
           <div>
-            <h3 className="text-xl font-bold text-primary mb-4">Valentina's Resolve</h3>
-            <p className="text-sm text-muted-foreground mb-3">
+            <div className="mb-4">
+              <img src={logo} alt="Valentina's Resolve" className="h-12 w-auto" />
+            </div>
+            <p className="text-sm text-white/70 mb-3">
               Negócios que conectam, resultados que transformam.
             </p>
-            <p className="text-xs text-muted-foreground">
+            <p className="text-xs text-white/50">
               148+ serviços especializados em 15 categorias
             </p>
           </div>
 
           {/* For Clients */}
           <div>
-            <h4 className="font-semibold text-foreground mb-4">Serviços</h4>
+            <h4 className="font-semibold text-white mb-4">Serviços</h4>
             <ul className="space-y-2">
               <li>
-                <a href="/servicos" className="text-sm text-muted-foreground hover:text-primary transition-colors">
+                <a href="/servicos" className="text-sm text-white/70 hover:text-primary transition-colors">
                   Catálogo de Serviços
                 </a>
               </li>
               <li>
-                <a href="/#contabilidade-integrada" className="text-sm text-muted-foreground hover:text-primary transition-colors">
+                <a href="/contabilidade" className="text-sm text-white/70 hover:text-primary transition-colors">
                   Contabilidade Integrada
                 </a>
               </li>
               <li>
-                <a href="/" className="text-sm text-muted-foreground hover:text-primary transition-colors">
-                  Como funciona
+                <a href="/sobre" className="text-sm text-white/70 hover:text-primary transition-colors">
+                  Sobre Nós
+                </a>
+              </li>
+              <li>
+                <a href="/equipe" className="text-sm text-white/70 hover:text-primary transition-colors">
+                  Nossa Equipe
                 </a>
               </li>
             </ul>
@@ -40,26 +48,21 @@ export const Footer = () => {
 
           {/* For Professionals */}
           <div>
-            <h4 className="font-semibold text-foreground mb-4">Para Profissionais</h4>
+            <h4 className="font-semibold text-white mb-4">Para Profissionais</h4>
             <ul className="space-y-2">
               <li>
-                <a href="#" className="text-sm text-muted-foreground hover:text-primary transition-colors">
+                <a href="/trabalhe-conosco" className="text-sm text-white/70 hover:text-primary transition-colors">
                   Trabalhe Conosco
                 </a>
               </li>
               <li>
-                <a href="#" className="text-sm text-muted-foreground hover:text-primary transition-colors">
-                  Como funciona
-                </a>
-              </li>
-              <li>
-                <a href="#" className="text-sm text-muted-foreground hover:text-primary transition-colors">
+                <a href="/registro-profissional" className="text-sm text-white/70 hover:text-primary transition-colors">
                   Cadastre-se
                 </a>
               </li>
               <li>
-                <a href="#" className="text-sm text-muted-foreground hover:text-primary transition-colors">
-                  Contato RH
+                <a href="/contato" className="text-sm text-white/70 hover:text-primary transition-colors">
+                  Contato
                 </a>
               </li>
             </ul>
@@ -67,21 +70,21 @@ export const Footer = () => {
 
           {/* Support */}
           <div>
-            <h4 className="font-semibold text-foreground mb-4">Suporte</h4>
+            <h4 className="font-semibold text-white mb-4">Institucional</h4>
             <ul className="space-y-2">
               <li>
-                <a href="#" className="text-sm text-muted-foreground hover:text-primary transition-colors">
-                  Centro de ajuda
+                <a href="/sobre" className="text-sm text-white/70 hover:text-primary transition-colors">
+                  Sobre a Valentina's
                 </a>
               </li>
               <li>
-                <a href="#" className="text-sm text-muted-foreground hover:text-primary transition-colors">
-                  Termos e condições
+                <a href="/contato" className="text-sm text-white/70 hover:text-primary transition-colors">
+                  Contato
                 </a>
               </li>
               <li>
-                <a href="#" className="text-sm text-muted-foreground hover:text-primary transition-colors">
-                  Privacidade
+                <a href="/equipe" className="text-sm text-white/70 hover:text-primary transition-colors">
+                  Nossa Equipe
                 </a>
               </li>
             </ul>
@@ -89,22 +92,22 @@ export const Footer = () => {
         </div>
 
         {/* Bottom Bar */}
-        <div className="pt-8 border-t border-border flex flex-col md:flex-row justify-between items-center gap-4">
-          <p className="text-sm text-muted-foreground">
+        <div className="pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-4">
+          <p className="text-sm text-white/60">
             © 2025 Valentina's Resolve. Todos os direitos reservados.
           </p>
           
           <div className="flex gap-4">
-            <a href="#" className="text-muted-foreground hover:text-primary transition-colors">
+            <a href="#" className="text-white/60 hover:text-primary transition-colors">
               <Facebook className="h-5 w-5" />
             </a>
-            <a href="#" className="text-muted-foreground hover:text-primary transition-colors">
+            <a href="#" className="text-white/60 hover:text-primary transition-colors">
               <Instagram className="h-5 w-5" />
             </a>
-            <a href="#" className="text-muted-foreground hover:text-primary transition-colors">
+            <a href="#" className="text-white/60 hover:text-primary transition-colors">
               <Twitter className="h-5 w-5" />
             </a>
-            <a href="#" className="text-muted-foreground hover:text-primary transition-colors">
+            <a href="#" className="text-white/60 hover:text-primary transition-colors">
               <Linkedin className="h-5 w-5" />
             </a>
           </div>
