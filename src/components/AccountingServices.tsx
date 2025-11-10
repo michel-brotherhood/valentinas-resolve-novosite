@@ -1,6 +1,5 @@
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import andressaImg from "@/assets/team/andressa.jpg";
 import {
   FileText,
   Calculator,
@@ -55,43 +54,6 @@ export const AccountingServices = () => {
             O jeito inteligente de cuidar do seu negócio. Gestão contábil moderna, 100% digital e com suporte personalizado.
           </p>
         </div>
-
-        {/* Technical Lead */}
-        <Card className="p-6 md:p-8 mb-12 bg-card">
-          <div className="flex flex-col md:flex-row items-center gap-6">
-            <div className="w-32 h-32 rounded-full overflow-hidden flex-shrink-0 border-4 border-primary">
-              <img
-                src={andressaImg}
-                alt="Andressa Mello"
-                className="w-full h-full object-cover"
-              />
-            </div>
-            <div className="flex-1 text-center md:text-left">
-              <h3 className="text-2xl font-bold text-foreground mb-2">
-                Andressa Mello
-              </h3>
-              <p className="text-primary font-semibold mb-3">
-                Contadora Responsável Técnica
-              </p>
-              <p className="text-muted-foreground mb-4">
-                Especialista em contabilidade empresarial e fiscal, Andressa lidera a Contabilidade Integrada 
-                do Valentina's Resolve, oferecendo atendimento direto e humanizado para simplificar a gestão 
-                do seu negócio.
-              </p>
-              <div className="flex flex-wrap gap-2 justify-center md:justify-start">
-                <span className="px-3 py-1 bg-primary/10 text-primary text-sm font-medium rounded-full">
-                  Contabilidade Empresarial
-                </span>
-                <span className="px-3 py-1 bg-primary/10 text-primary text-sm font-medium rounded-full">
-                  Planejamento Tributário
-                </span>
-                <span className="px-3 py-1 bg-primary/10 text-primary text-sm font-medium rounded-full">
-                  Gestão Fiscal
-                </span>
-              </div>
-            </div>
-          </div>
-        </Card>
 
         {/* Services Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
