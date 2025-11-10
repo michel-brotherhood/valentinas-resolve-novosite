@@ -24,7 +24,10 @@ export const Header = () => {
             <Button variant="ghost" className="text-foreground hover:text-primary">
               Entrar
             </Button>
-            <Button className="bg-primary hover:bg-primary/90 text-primary-foreground">
+            <Button 
+              className="bg-primary hover:bg-primary/90 text-primary-foreground"
+              onClick={() => window.location.href = '/registro-profissional'}
+            >
               Registo Profissional
             </Button>
           </nav>
@@ -47,7 +50,10 @@ export const Header = () => {
             <Button variant="ghost" className="w-full justify-start">
               Entrar
             </Button>
-            <Button className="w-full bg-primary hover:bg-primary/90">
+            <Button 
+              className="w-full bg-primary hover:bg-primary/90"
+              onClick={() => window.location.href = '/registro-profissional'}
+            >
               Registo Profissional
             </Button>
           </nav>

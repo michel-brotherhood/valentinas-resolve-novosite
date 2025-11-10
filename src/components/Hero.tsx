@@ -85,6 +85,11 @@ export const Hero = () => {
             <Button 
               size="lg"
               className="h-14 px-8 bg-foreground hover:bg-foreground/90 text-background font-bold"
+              onClick={() => {
+                if (activeTab === "register") {
+                  window.location.href = '/registro-profissional';
+                }
+              }}
             >
               Começar
             </Button>
