@@ -20,7 +20,21 @@ export const Header = () => {
           </div>
 
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center gap-4">
+          <nav className="hidden md:flex items-center gap-1">
+            <Button 
+              variant="ghost" 
+              className="text-white hover:text-primary hover:bg-primary/10"
+              onClick={() => window.location.href = '/'}
+            >
+              Início
+            </Button>
+            <Button 
+              variant="ghost" 
+              className="text-white hover:text-primary hover:bg-primary/10"
+              onClick={() => window.location.href = '/sobre'}
+            >
+              Sobre
+            </Button>
             <Button 
               variant="ghost" 
               className="text-white hover:text-primary hover:bg-primary/10"
@@ -33,19 +47,34 @@ export const Header = () => {
               className="text-white hover:text-primary hover:bg-primary/10"
               onClick={() => window.location.href = '/contabilidade'}
             >
-              Contabilidade
-            </Button>
-            <Button variant="ghost" className="text-white hover:text-primary hover:bg-primary/10">
-              Registo Cliente
-            </Button>
-            <Button variant="ghost" className="text-white hover:text-primary hover:bg-primary/10">
-              Entrar
+              Contabilidade Integrada
             </Button>
             <Button 
-              className="bg-primary hover:bg-primary/90 text-black font-bold"
-              onClick={() => window.location.href = '/registro-profissional'}
+              variant="ghost" 
+              className="text-white hover:text-primary hover:bg-primary/10"
+              onClick={() => window.location.href = '/equipe'}
             >
-              Registo Profissional
+              Equipe
+            </Button>
+            <Button 
+              variant="ghost" 
+              className="text-white hover:text-primary hover:bg-primary/10"
+              onClick={() => window.location.href = '/trabalhe-conosco'}
+            >
+              Trabalhe Conosco
+            </Button>
+            <Button 
+              variant="ghost" 
+              className="text-white hover:text-primary hover:bg-primary/10"
+              onClick={() => window.location.href = '/contato'}
+            >
+              Contato
+            </Button>
+            <Button 
+              className="bg-primary hover:bg-primary/90 text-black font-bold ml-2"
+              onClick={() => window.location.href = '/contato'}
+            >
+              Contratar Profissional
             </Button>
           </nav>
 
@@ -66,6 +95,26 @@ export const Header = () => {
               className="w-full justify-start text-white hover:text-primary hover:bg-primary/10"
               onClick={() => {
                 setMobileMenuOpen(false);
+                window.location.href = '/';
+              }}
+            >
+              Início
+            </Button>
+            <Button 
+              variant="ghost" 
+              className="w-full justify-start text-white hover:text-primary hover:bg-primary/10"
+              onClick={() => {
+                setMobileMenuOpen(false);
+                window.location.href = '/sobre';
+              }}
+            >
+              Sobre
+            </Button>
+            <Button 
+              variant="ghost" 
+              className="w-full justify-start text-white hover:text-primary hover:bg-primary/10"
+              onClick={() => {
+                setMobileMenuOpen(false);
                 window.location.href = '/servicos';
               }}
             >
@@ -79,19 +128,46 @@ export const Header = () => {
                 window.location.href = '/contabilidade';
               }}
             >
-              Contabilidade
+              Contabilidade Integrada
             </Button>
-            <Button variant="ghost" className="w-full justify-start text-white hover:text-primary hover:bg-primary/10">
-              Registo Cliente
+            <Button 
+              variant="ghost" 
+              className="w-full justify-start text-white hover:text-primary hover:bg-primary/10"
+              onClick={() => {
+                setMobileMenuOpen(false);
+                window.location.href = '/equipe';
+              }}
+            >
+              Equipe
             </Button>
-            <Button variant="ghost" className="w-full justify-start text-white hover:text-primary hover:bg-primary/10">
-              Entrar
+            <Button 
+              variant="ghost" 
+              className="w-full justify-start text-white hover:text-primary hover:bg-primary/10"
+              onClick={() => {
+                setMobileMenuOpen(false);
+                window.location.href = '/trabalhe-conosco';
+              }}
+            >
+              Trabalhe Conosco
+            </Button>
+            <Button 
+              variant="ghost" 
+              className="w-full justify-start text-white hover:text-primary hover:bg-primary/10"
+              onClick={() => {
+                setMobileMenuOpen(false);
+                window.location.href = '/contato';
+              }}
+            >
+              Contato
             </Button>
             <Button 
               className="w-full bg-primary hover:bg-primary/90 text-black font-bold"
-              onClick={() => window.location.href = '/registro-profissional'}
+              onClick={() => {
+                setMobileMenuOpen(false);
+                window.location.href = '/contato';
+              }}
             >
-              Registo Profissional
+              Contratar Profissional
             </Button>
           </nav>
         )}
