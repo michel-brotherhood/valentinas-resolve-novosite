@@ -17,6 +17,41 @@ import {
 } from "@/components/ui/select";
 import { getCategoryIcon } from "@/lib/categoryIcons";
 
+// Importar imagens de serviços
+import imagemDomesticos from "@/assets/services/domesticos.jpg";
+import imagemBeleza from "@/assets/services/beleza.jpg";
+import imagemSaude from "@/assets/services/saude.jpg";
+import imagemJuridicos from "@/assets/services/juridicos.jpg";
+import imagemEducacao from "@/assets/services/educacao.jpg";
+import imagemAutomotivos from "@/assets/services/automotivos.jpg";
+import imagemPets from "@/assets/services/pets.jpg";
+import imagemEventos from "@/assets/services/eventos.jpg";
+import imagemCriativos from "@/assets/services/criativos.jpg";
+import imagemConstrucao from "@/assets/services/construcao.jpg";
+import imagemTransporte from "@/assets/services/transporte.jpg";
+import imagemAgricultura from "@/assets/services/agricultura.jpg";
+import imagemPersonalizados from "@/assets/services/personalizados.jpg";
+import imagemTurismo from "@/assets/services/turismo.jpg";
+import imagemEsportes from "@/assets/services/esportes.jpg";
+
+const categoryImages: Record<string, string> = {
+  "Domésticos": imagemDomesticos,
+  "Beleza": imagemBeleza,
+  "Saúde": imagemSaude,
+  "Jurídicos": imagemJuridicos,
+  "Educação": imagemEducacao,
+  "Automotivos": imagemAutomotivos,
+  "Pets": imagemPets,
+  "Eventos": imagemEventos,
+  "Criativos": imagemCriativos,
+  "Construção": imagemConstrucao,
+  "Transporte": imagemTransporte,
+  "Agricultura": imagemAgricultura,
+  "Personalizados": imagemPersonalizados,
+  "Turismo": imagemTurismo,
+  "Esportes": imagemEsportes,
+};
+
 const servicesData = [
   // Domésticos (14)
   { category: "Domésticos", name: "Faxina", description: "Limpeza completa residencial" },
@@ -245,27 +280,6 @@ const Services = () => {
     window.location.href = `/contratar-profissional?servico=${encodeURIComponent(serviceName)}`;
   };
 
-  const getCategoryGradient = (category: string) => {
-    const gradients: Record<string, string> = {
-      "Domésticos": "from-blue-500/20 to-blue-600/20",
-      "Beleza": "from-pink-500/20 to-purple-600/20",
-      "Saúde": "from-green-500/20 to-emerald-600/20",
-      "Jurídicos": "from-gray-500/20 to-slate-600/20",
-      "Educação": "from-amber-500/20 to-orange-600/20",
-      "Automotivos": "from-red-500/20 to-rose-600/20",
-      "Pets": "from-yellow-500/20 to-amber-600/20",
-      "Eventos": "from-purple-500/20 to-fuchsia-600/20",
-      "Criativos": "from-cyan-500/20 to-blue-600/20",
-      "Construção": "from-orange-500/20 to-red-600/20",
-      "Transporte": "from-indigo-500/20 to-blue-600/20",
-      "Agricultura": "from-lime-500/20 to-green-600/20",
-      "Personalizados": "from-teal-500/20 to-cyan-600/20",
-      "Turismo": "from-sky-500/20 to-blue-600/20",
-      "Esportes": "from-emerald-500/20 to-teal-600/20",
-    };
-    return gradients[category] || "from-gray-500/20 to-slate-600/20";
-  };
-
   return (
     <div className="min-h-screen bg-background flex flex-col">
       <Header />
@@ -331,9 +345,16 @@ const Services = () => {
                     className="group overflow-hidden hover:shadow-2xl transition-all duration-300 hover:scale-105 hover:border-primary/50 cursor-pointer"
                   >
                     {/* Image with gradient overlay */}
-                    <div className={`h-32 bg-gradient-to-br ${getCategoryGradient(service.category)} relative overflow-hidden flex items-center justify-center`}>
-                      <CategoryIcon className="h-16 w-16 text-foreground/20 group-hover:text-primary/30 transition-colors" />
-                      <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent" />
+                    <div className="h-48 relative overflow-hidden">
+                      <img
+                        src={categoryImages[service.category]}
+                        alt={service.category}
+                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-background via-background/50 to-transparent" />
+                      <div className="absolute top-3 right-3">
+                        <CategoryIcon className="h-8 w-8 text-white drop-shadow-lg" />
+                      </div>
                       <div className="absolute bottom-2 left-4">
                         <Badge variant="secondary" className="text-xs">
                           {service.category}

@@ -46,7 +46,7 @@ export const Categories = () => {
           {categories.map((category) => (
             <Link
               key={category.name}
-              to={`/servicos?categoria=${encodeURIComponent(category.name)}`}
+              to={`/servicos/${encodeURIComponent(category.name)}`}
               className="flex flex-col items-center gap-3 p-4 rounded-lg hover:bg-secondary transition-colors group border border-border"
             >
               <div className="p-3 rounded-full bg-primary/10 group-hover:scale-110 transition-transform">

@@ -13,6 +13,7 @@ import About from "./pages/About";
 import TeamPage from "./pages/Team";
 import WorkWithUs from "./pages/WorkWithUs";
 import HireService from "./pages/HireService";
+import CategoryPage from "./pages/CategoryPage";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -27,6 +28,7 @@ const App = () => (
           <Route path="/" element={<Index />} />
           <Route path="/sobre" element={<About />} />
           <Route path="/servicos" element={<Services />} />
+          <Route path="/servicos/:categoria" element={<CategoryPage />} />
           <Route path="/contabilidade" element={<Accounting />} />
           <Route path="/formulario-contabilidade" element={<AccountingForm />} />
           <Route path="/contratar-profissional" element={<HireService />} />
