@@ -1,4 +1,5 @@
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
+import { useSearchParams } from "react-router-dom";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { FloatingChat } from "@/components/FloatingChat";
@@ -218,8 +219,16 @@ const categories = [
 ];
 
 const Services = () => {
+  const [searchParams] = useSearchParams();
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("Todos");
+
+  useEffect(() => {
+    const categoria = searchParams.get("categoria");
+    if (categoria && categories.includes(categoria)) {
+      setSelectedCategory(categoria);
+    }
+  }, [searchParams]);
 
   const filteredServices = useMemo(() => {
     return servicesData.filter((service) => {

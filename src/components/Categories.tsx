@@ -15,6 +15,7 @@ import {
   Plane,
   Dumbbell,
 } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const categories = [
   { icon: Home, name: "Domésticos" },
@@ -43,8 +44,9 @@ export const Categories = () => {
         </h2>
         <div className="grid grid-cols-3 md:grid-cols-5 lg:grid-cols-5 gap-4">
           {categories.map((category) => (
-            <button
+            <Link
               key={category.name}
+              to={`/servicos?categoria=${encodeURIComponent(category.name)}`}
               className="flex flex-col items-center gap-3 p-4 rounded-lg hover:bg-secondary transition-colors group border border-border"
             >
               <div className="p-3 rounded-full bg-primary/10 group-hover:scale-110 transition-transform">
@@ -53,7 +55,7 @@ export const Categories = () => {
               <span className="text-sm font-medium text-foreground text-center">
                 {category.name}
               </span>
-            </button>
+            </Link>
           ))}
         </div>
       </div>
