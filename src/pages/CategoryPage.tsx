@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { getCategoryIcon } from "@/lib/categoryIcons";
 import { ArrowRight } from "lucide-react";
+import { useScrollAnimation } from "@/hooks/use-scroll-animation";
 
 // Importar imagens
 import imagemDomesticos from "@/assets/services/domesticos.jpg";
@@ -85,6 +86,11 @@ const CategoryPage = () => {
   const image = categoryImages[categoryName];
   const description = categoryDescriptions[categoryName];
   const services = featuredServices[categoryName] || [];
+  
+  const heroAnimation = useScrollAnimation();
+  const imageAnimation = useScrollAnimation();
+  const servicesAnimation = useScrollAnimation();
+  const ctaAnimation = useScrollAnimation();
 
   return (
     <div className="min-h-screen bg-background">
@@ -94,7 +100,12 @@ const CategoryPage = () => {
       {/* Hero Section */}
       <section className="relative py-20 bg-gradient-to-r from-primary/10 to-primary/5">
         <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto text-center">
+          <div 
+            ref={heroAnimation.ref}
+            className={`max-w-4xl mx-auto text-center transition-all duration-700 ${
+              heroAnimation.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+            }`}
+          >
             <div className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-primary/10 mb-6">
               <Icon className="w-10 h-10 text-primary" />
             </div>
@@ -118,7 +129,12 @@ const CategoryPage = () => {
       {image && (
         <section className="py-12 bg-card">
           <div className="container mx-auto px-4">
-            <div className="max-w-5xl mx-auto">
+            <div 
+              ref={imageAnimation.ref}
+              className={`max-w-5xl mx-auto transition-all duration-700 delay-150 ${
+                imageAnimation.isVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-95'
+              }`}
+            >
               <img
                 src={image}
                 alt={`Serviços de ${categoryName}`}
@@ -132,7 +148,12 @@ const CategoryPage = () => {
       {/* Featured Services */}
       <section className="py-16 bg-background">
         <div className="container mx-auto px-4">
-          <div className="max-w-6xl mx-auto">
+          <div 
+            ref={servicesAnimation.ref}
+            className={`max-w-6xl mx-auto transition-all duration-700 delay-300 ${
+              servicesAnimation.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+            }`}
+          >
             <h2 className="text-3xl font-bold text-foreground mb-8 text-center">
               Serviços em Destaque
             </h2>
@@ -171,7 +192,12 @@ const CategoryPage = () => {
 
       {/* CTA Section */}
       <section className="py-16 bg-gradient-to-r from-primary to-primary/80">
-        <div className="container mx-auto px-4 text-center">
+        <div 
+          ref={ctaAnimation.ref}
+          className={`container mx-auto px-4 text-center transition-all duration-700 delay-500 ${
+            ctaAnimation.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+          }`}
+        >
           <h2 className="text-3xl font-bold text-primary-foreground mb-4">
             Pronto para Contratar?
           </h2>
