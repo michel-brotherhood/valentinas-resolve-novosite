@@ -25,16 +25,18 @@ export const FloatingChat = () => {
     <div className="fixed bottom-6 right-6 z-50">
       {/* Options Menu */}
       {isOpen && (
-        <Card className="absolute bottom-20 right-0 p-4 shadow-2xl w-72 animate-in fade-in slide-in-from-bottom-2">
-          <div className="space-y-2">
+        <Card className="absolute bottom-24 right-0 p-5 shadow-2xl w-80 animate-in fade-in slide-in-from-bottom-2 border-primary/20 bg-gradient-to-br from-background via-background to-primary/5">
+          <div className="space-y-3">
             <Button
               onClick={handleWhatsApp}
               variant="outline"
-              className="w-full justify-start gap-3 h-auto py-3 hover:bg-primary/10 hover:text-primary hover:border-primary transition-all"
+              className="w-full justify-start gap-3 h-auto py-4 px-4 hover:bg-primary/10 hover:text-primary hover:border-primary transition-all duration-300 group border-muted-foreground/20 hover:shadow-lg hover:shadow-primary/20"
             >
-              <HelpCircle className="h-5 w-5 flex-shrink-0" />
-              <div className="text-left">
-                <div className="font-semibold">Tenho Dúvidas</div>
+              <div className="p-2 rounded-lg bg-primary/10 group-hover:bg-primary/20 transition-colors">
+                <HelpCircle className="h-5 w-5 flex-shrink-0 text-primary" />
+              </div>
+              <div className="text-left flex-1">
+                <div className="font-semibold text-foreground">Tenho Dúvidas</div>
                 <div className="text-xs text-muted-foreground">Fale conosco no WhatsApp</div>
               </div>
             </Button>
@@ -42,11 +44,13 @@ export const FloatingChat = () => {
             <Button
               onClick={handleHireService}
               variant="outline"
-              className="w-full justify-start gap-3 h-auto py-3 hover:bg-primary/10 hover:text-primary hover:border-primary transition-all"
+              className="w-full justify-start gap-3 h-auto py-4 px-4 hover:bg-primary/10 hover:text-primary hover:border-primary transition-all duration-300 group border-muted-foreground/20 hover:shadow-lg hover:shadow-primary/20"
             >
-              <Briefcase className="h-5 w-5 flex-shrink-0" />
-              <div className="text-left">
-                <div className="font-semibold">Quero Contratar</div>
+              <div className="p-2 rounded-lg bg-primary/10 group-hover:bg-primary/20 transition-colors">
+                <Briefcase className="h-5 w-5 flex-shrink-0 text-primary" />
+              </div>
+              <div className="text-left flex-1">
+                <div className="font-semibold text-foreground">Quero Contratar</div>
                 <div className="text-xs text-muted-foreground">Solicite orçamento</div>
               </div>
             </Button>
@@ -54,11 +58,13 @@ export const FloatingChat = () => {
             <Button
               onClick={handleRegister}
               variant="outline"
-              className="w-full justify-start gap-3 h-auto py-3 hover:bg-primary/10 hover:text-primary hover:border-primary transition-all"
+              className="w-full justify-start gap-3 h-auto py-4 px-4 hover:bg-primary/10 hover:text-primary hover:border-primary transition-all duration-300 group border-muted-foreground/20 hover:shadow-lg hover:shadow-primary/20"
             >
-              <UserPlus className="h-5 w-5 flex-shrink-0" />
-              <div className="text-left">
-                <div className="font-semibold">Quero Me Cadastrar</div>
+              <div className="p-2 rounded-lg bg-primary/10 group-hover:bg-primary/20 transition-colors">
+                <UserPlus className="h-5 w-5 flex-shrink-0 text-primary" />
+              </div>
+              <div className="text-left flex-1">
+                <div className="font-semibold text-foreground">Quero Me Cadastrar</div>
                 <div className="text-xs text-muted-foreground">Seja um profissional</div>
               </div>
             </Button>
@@ -67,21 +73,26 @@ export const FloatingChat = () => {
       )}
 
       {/* Main Button */}
-      <Button
+      <button
         onClick={() => setIsOpen(!isOpen)}
-        size="lg"
-        className={`h-14 w-14 rounded-full shadow-2xl transition-all duration-300 ${
+        className={`relative h-16 w-16 rounded-full shadow-2xl transition-all duration-500 transform hover:scale-110 active:scale-95 ${
           isOpen
-            ? "bg-destructive hover:bg-destructive/90"
-            : "bg-primary hover:bg-primary/90"
+            ? "bg-gradient-to-br from-destructive to-destructive/80 rotate-90"
+            : "bg-gradient-to-br from-primary via-primary to-primary/80 hover:shadow-primary/50"
         }`}
       >
-        {isOpen ? (
-          <X className="h-6 w-6" />
-        ) : (
-          <MessageCircle className="h-6 w-6" />
+        <div className="absolute inset-0 rounded-full bg-gradient-to-tr from-white/20 to-transparent" />
+        <div className="relative flex items-center justify-center h-full">
+          {isOpen ? (
+            <X className="h-6 w-6 text-white transition-transform duration-300" />
+          ) : (
+            <MessageCircle className="h-6 w-6 text-white transition-transform duration-300" />
+          )}
+        </div>
+        {!isOpen && (
+          <div className="absolute -top-1 -right-1 h-4 w-4 rounded-full bg-accent animate-pulse" />
         )}
-      </Button>
+      </button>
     </div>
   );
 };
