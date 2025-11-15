@@ -1,26 +1,26 @@
 import { Card } from "@/components/ui/card";
-import accountingImg from "@/assets/service-accounting.jpg";
-import legalImg from "@/assets/service-legal.jpg";
 import cleaningImg from "@/assets/service-cleaning.jpg";
-import consultingImg from "@/assets/service-consulting.jpg";
+import accountingImg from "@/assets/service-accounting.jpg";
+import gardeningImg from "@/assets/service-gardening.jpg";
+import beautyImg from "@/assets/service-beauty.jpg";
 import { ChevronRight } from "lucide-react";
 
 const services = [
-  {
-    title: "Contabilidade Integrada",
-    image: accountingImg,
-  },
-  {
-    title: "Serviços Jurídicos",
-    image: legalImg,
-  },
   {
     title: "Limpeza e Manutenção",
     image: cleaningImg,
   },
   {
-    title: "Consultoria Empresarial",
-    image: consultingImg,
+    title: "Contabilidade Integrada",
+    image: accountingImg,
+  },
+  {
+    title: "Jardinagem",
+    image: gardeningImg,
+  },
+  {
+    title: "Beleza e Estética",
+    image: beautyImg,
   },
 ];
 
@@ -36,17 +36,18 @@ export const PopularServices = () => {
           {services.map((service) => (
             <Card
               key={service.title}
-              className="group overflow-hidden cursor-pointer hover:shadow-lg transition-shadow"
+              className="group overflow-hidden cursor-pointer transition-all duration-500 hover:shadow-2xl hover:-translate-y-2 hover:border-primary/50"
             >
-              <div className="aspect-[4/3] overflow-hidden">
+              <div className="aspect-[4/3] overflow-hidden relative">
                 <img
                   src={service.image}
                   alt={service.title}
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 ease-out"
                 />
+                <div className="absolute inset-0 bg-gradient-to-t from-primary/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
               </div>
-              <div className="p-4">
-                <h3 className="font-semibold text-foreground group-hover:text-primary transition-colors">
+              <div className="p-4 bg-card group-hover:bg-accent/5 transition-colors duration-500">
+                <h3 className="font-semibold text-foreground group-hover:text-primary transition-colors duration-300">
                   {service.title}
                 </h3>
               </div>
