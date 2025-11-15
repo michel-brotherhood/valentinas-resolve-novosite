@@ -9,7 +9,7 @@ import kellen from "@/assets/team/kellen.jpg";
 const teamMembers = [
   {
     name: "Daiane Amaral",
-    role: "Co-fundadora e Especialista em Gestão da Qualidade",
+    role: "Fundadora e Diretora de Serviços",
     credential: "",
     image: daiane,
     bio: `Desde jovem, sempre busquei novas oportunidades e o aprendizado de diferentes culturas. Aos 18 anos, decidi emigrar para a Espanha, onde vivi por três anos e meio. Essa experiência foi um marco no meu crescimento pessoal e profissional.
@@ -18,12 +18,12 @@ Ao retornar ao Brasil, me formei em Sistema de Gestão da Qualidade. Durante mai
 
 Em 2018, fui para a Bélgica por dois anos e meio. Hoje, moro em Portugal, onde trabalho na área de hotelaria como Housekeeping Lead e curso Direito. Junto com minha irmã Kellen Amaral e Andressa Melo, fundamos a Valentina's Resolve, uma plataforma que conecta clientes e profissionais de maneira simples e eficiente.
 
-Com 37 anos, estou comprometida em impactar positivamente a vida das pessoas, criando soluções com excelência, resiliência e transformação. Como co-fundadora, tenho a oportunidade de unir minha paixão por ajudar as pessoas com a visão de criar uma comunidade baseada em confiança e excelência.`,
+Com 37 anos, estou comprometida em impactar positivamente a vida das pessoas, criando soluções com excelência, resiliência e transformação. Como fundadora, tenho a oportunidade de unir minha paixão por ajudar as pessoas com a visão de criar uma comunidade baseada em confiança e excelência.`,
     specialties: ["Gestão de Qualidade", "Liderança", "Processos"],
   },
   {
     name: "Andressa Ferreira Melo",
-    role: "Contadora Responsável e Co-fundadora",
+    role: "Sócia e Contadora Responsável Técnica",
     credential: "Contadora desde 2018",
     image: andressa,
     bio: `Tenho 33 anos e sou natural de Cacoal, Rondônia. Sou formada em Ciências Contábeis desde 2018 e atuo na área contábil desde 2017. Desde o início de minha trajetória profissional, sempre me identifiquei com o ramo contábil, com um interesse genuíno em entender e solucionar questões que envolvem o comércio e a gestão das empresas.
@@ -37,7 +37,7 @@ Acredito no potencial da Valentina's e no alcance dos nossos objetivos. Estamos 
   },
   {
     name: "Janaína Bessa",
-    role: "Co-fundadora",
+    role: "Sócia e Atendimento ao Cliente",
     credential: "",
     image: janaina,
     bio: `Sou uma profissional dedicada e comprometida com a excelência em tudo o que faço. Com uma trajetória marcada pela busca constante por aprendizado e desenvolvimento, trago para a Valentina's Resolve minha experiência e paixão por ajudar as pessoas.
@@ -49,7 +49,7 @@ Acredito no poder da colaboração e no potencial de transformação que uma pla
   },
   {
     name: "Kellen Amaral",
-    role: "Co-fundadora",
+    role: "Sócia e Diretora de Operações",
     credential: "",
     image: kellen,
     bio: `Como co-fundadora da Valentina's Resolve, trabalho junto com minha irmã Daiane Amaral, Andressa Melo e Janaína Bessa para criar uma plataforma que conecta profissionais qualificados a clientes que precisam de serviços de qualidade.
