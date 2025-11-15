@@ -18,6 +18,9 @@ import {
   Globe
 } from "lucide-react";
 import andressa from "@/assets/team/andressa.jpg";
+import heroBg from "@/assets/accounting-hero-bg.jpg";
+import differentialsBg from "@/assets/accounting-differentials-bg.jpg";
+import ctaBg from "@/assets/accounting-cta-bg.jpg";
 
 const professionalServices = [
   "Enquadramento fiscal adequado",
@@ -119,8 +122,11 @@ export default function Accounting() {
       
       <main className="flex-1">
         {/* Hero Section */}
-        <section className="relative bg-gradient-to-b from-black via-black to-primary/10 py-24 overflow-hidden">
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,204,0,0.1)_0%,transparent_70%)]" />
+        <section className="relative py-24 overflow-hidden">
+          <div className="absolute inset-0">
+            <img src={heroBg} alt="" className="w-full h-full object-cover" />
+            <div className="absolute inset-0 bg-black/60" />
+          </div>
           <div className="container mx-auto px-4 relative z-10">
             <div className="max-w-4xl mx-auto text-center">
               <h1 className="text-4xl md:text-6xl font-bold text-white mb-6 leading-tight">
@@ -261,8 +267,12 @@ export default function Accounting() {
         </section>
 
         {/* Bloco 3 - Diferenciais */}
-        <section className="py-20 bg-gradient-to-b from-background to-black">
-          <div className="container mx-auto px-4">
+        <section className="py-20 relative overflow-hidden">
+          <div className="absolute inset-0">
+            <img src={differentialsBg} alt="" className="w-full h-full object-cover" />
+            <div className="absolute inset-0 bg-black/75" />
+          </div>
+          <div className="container mx-auto px-4 relative z-10">
             <div className="max-w-6xl mx-auto">
               <h2 className="text-3xl md:text-5xl font-bold text-center text-foreground mb-12">
                 Diferenciais que aceleram resultados
@@ -347,8 +357,11 @@ export default function Accounting() {
         </section>
 
         {/* Bloco 5 - CTA Final */}
-        <section className="py-24 bg-gradient-to-b from-black to-primary/20 relative overflow-hidden">
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,204,0,0.15)_0%,transparent_70%)]" />
+        <section className="py-24 relative overflow-hidden">
+          <div className="absolute inset-0">
+            <img src={ctaBg} alt="" className="w-full h-full object-cover" />
+            <div className="absolute inset-0 bg-black/70" />
+          </div>
           <div className="container mx-auto px-4 relative z-10">
             <div className="max-w-3xl mx-auto text-center">
               <h2 className="text-3xl md:text-5xl font-bold text-white mb-6">
