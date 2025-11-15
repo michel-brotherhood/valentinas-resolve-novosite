@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { useState, useEffect, useRef } from "react";
+import { Link } from "react-router-dom";
 import logo from "@/assets/valentinas-logo.webp";
 
 export const Header = () => {
@@ -40,65 +41,72 @@ export const Header = () => {
         <div className="container mx-auto px-4 py-3">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-8">
-              <a href="/" className="flex items-center gap-3 group">
+              <Link to="/" className="flex items-center gap-3 group">
                 <img src={logo} alt="Valentina's Resolve" className="h-10 w-auto transition-transform group-hover:scale-105" />
                 <span className="text-xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent hidden md:block">
                   Valentina's Resolve
                 </span>
-              </a>
+              </Link>
             </div>
 
             {/* Desktop Navigation */}
             <nav className="hidden md:flex items-center gap-1">
-              <Button 
-                variant="ghost" 
-                className="text-white/90 hover:text-primary hover:bg-primary/10 transition-all duration-300 text-sm"
-                onClick={() => window.location.href = '/'}
-              >
-                Início
-              </Button>
-              <Button 
-                variant="ghost" 
-                className="text-white/90 hover:text-primary hover:bg-primary/10 transition-all duration-300 text-sm"
-                onClick={() => window.location.href = '/sobre'}
-              >
-                Sobre
-              </Button>
-              <Button 
-                variant="ghost" 
-                className="text-white/90 hover:text-primary hover:bg-primary/10 transition-all duration-300 text-sm"
-                onClick={() => window.location.href = '/servicos'}
-              >
-                Serviços
-              </Button>
-              <Button 
-                variant="ghost" 
-                className="text-white/90 hover:text-primary hover:bg-primary/10 transition-all duration-300 text-sm"
-                onClick={() => window.location.href = '/contabilidade'}
-              >
-                Contabilidade Integrada
-              </Button>
-              <Button 
-                variant="ghost" 
-                className="text-white/90 hover:text-primary hover:bg-primary/10 transition-all duration-300 text-sm"
-                onClick={() => window.location.href = '/equipe'}
-              >
-                Equipe
-              </Button>
-              <Button 
-                variant="ghost" 
-                className="text-white/90 hover:text-primary hover:bg-primary/10 transition-all duration-300 text-sm"
-                onClick={() => window.location.href = '/trabalhe-conosco'}
-              >
-                Trabalhe Conosco
-              </Button>
-              <Button 
-                variant="ghost" 
-                className="text-white/90 hover:text-primary hover:bg-primary/10 transition-all duration-300 text-sm"
-                onClick={() => window.location.href = '/contato'}
-              >
-                Contato
-              </Button>
+              <Link to="/">
+                <Button 
+                  variant="ghost" 
+                  className="text-white/90 hover:text-primary hover:bg-primary/10 transition-all duration-300 text-sm"
+                >
+                  Início
+                </Button>
+              </Link>
+              <Link to="/sobre">
+                <Button 
+                  variant="ghost" 
+                  className="text-white/90 hover:text-primary hover:bg-primary/10 transition-all duration-300 text-sm"
+                >
+                  Sobre
+                </Button>
+              </Link>
+              <Link to="/servicos">
+                <Button 
+                  variant="ghost" 
+                  className="text-white/90 hover:text-primary hover:bg-primary/10 transition-all duration-300 text-sm"
+                >
+                  Serviços
+                </Button>
+              </Link>
+              <Link to="/contabilidade">
+                <Button 
+                  variant="ghost" 
+                  className="text-white/90 hover:text-primary hover:bg-primary/10 transition-all duration-300 text-sm"
+                >
+                  Contabilidade Integrada
+                </Button>
+              </Link>
+              <Link to="/equipe">
+                <Button 
+                  variant="ghost" 
+                  className="text-white/90 hover:text-primary hover:bg-primary/10 transition-all duration-300 text-sm"
+                >
+                  Equipe
+                </Button>
+              </Link>
+              <Link to="/trabalhe-conosco">
+                <Button 
+                  variant="ghost" 
+                  className="text-white/90 hover:text-primary hover:bg-primary/10 transition-all duration-300 text-sm"
+                >
+                  Trabalhe Conosco
+                </Button>
+              </Link>
+              <Link to="/contato">
+                <Button 
+                  variant="ghost" 
+                  className="text-white/90 hover:text-primary hover:bg-primary/10 transition-all duration-300 text-sm"
+                >
+                  Contato
+                </Button>
+              </Link>
               <button 
                 className="button-3d ml-2"
                 onClick={() => window.location.href = '/contato'}
