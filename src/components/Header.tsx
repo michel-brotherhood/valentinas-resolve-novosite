@@ -134,6 +134,11 @@ export const Header = () => {
           onTouchMove={handleTouchMove}
           onTouchEnd={handleTouchEnd}
         >
+          {/* Logo */}
+          <div className="absolute top-6 left-6 z-50">
+            <img src={logo} alt="Valentina's Resolve" className="h-8 w-auto" />
+          </div>
+
           {/* Close Button */}
           <button
             className="absolute top-6 right-6 text-white z-50 w-10 h-10 flex flex-col justify-center items-center gap-1.5"
