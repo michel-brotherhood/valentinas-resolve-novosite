@@ -4,6 +4,7 @@ import accountingImg from "@/assets/service-accounting.jpg";
 import gardeningImg from "@/assets/service-gardening.jpg";
 import beautyImg from "@/assets/service-beauty.jpg";
 import { ChevronRight } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 const services = [
   {
@@ -25,6 +26,8 @@ const services = [
 ];
 
 export const PopularServices = () => {
+  const navigate = useNavigate();
+  
   return (
     <section className="py-16 bg-background">
       <div className="container mx-auto px-4">
@@ -56,7 +59,10 @@ export const PopularServices = () => {
         </div>
 
         <div className="mt-8 text-center">
-          <button className="inline-flex items-center gap-2 text-primary hover:text-primary/80 font-medium">
+          <button 
+            onClick={() => navigate('/servicos')}
+            className="inline-flex items-center gap-2 text-primary hover:text-primary/80 font-medium transition-colors duration-300"
+          >
             Ver todos os serviços
             <ChevronRight className="h-4 w-4" />
           </button>
