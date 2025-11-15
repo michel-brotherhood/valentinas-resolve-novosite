@@ -1,5 +1,6 @@
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
+import { Newsletter } from "@/components/Newsletter";
 import { Card } from "@/components/ui/card";
 import andressa from "@/assets/team/andressa.jpg";
 import daiane from "@/assets/team/daiane.jpg";
@@ -93,11 +94,13 @@ export default function TeamPage() {
                 {teamMembers.map((member, index) => (
                   <Card key={index} className="p-8 hover:shadow-lg transition-shadow">
                     <div className="flex flex-col items-center">
-                      <img
-                        src={member.image}
-                        alt={member.name}
-                        className="w-48 h-48 rounded-full object-cover mb-6"
-                      />
+                      <div className="w-48 h-48 rounded-full overflow-hidden mb-6 border-4 border-primary/20">
+                        <img
+                          src={member.image}
+                          alt={member.name}
+                          className="w-full h-full object-cover object-top"
+                        />
+                      </div>
                       <h3 className="text-2xl font-bold text-foreground mb-1 text-center">
                         {member.name}
                       </h3>
@@ -131,6 +134,8 @@ export default function TeamPage() {
         </section>
       </main>
 
+
+      <Newsletter />
       <Footer />
     </div>
   );

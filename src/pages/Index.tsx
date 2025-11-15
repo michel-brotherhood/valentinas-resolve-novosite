@@ -8,6 +8,7 @@ import { Testimonials } from "@/components/Testimonials";
 import { FAQ } from "@/components/FAQ";
 import { Team } from "@/components/Team";
 import { ProfessionalCallout } from "@/components/ProfessionalCallout";
+import { Newsletter } from "@/components/Newsletter";
 import { Footer } from "@/components/Footer";
 import { FloatingChat } from "@/components/FloatingChat";
 
@@ -24,6 +25,7 @@ const Index = () => {
       <Testimonials />
       <FAQ />
       <Team />
+      <Newsletter />
       <Footer />
       <FloatingChat />
     </div>
