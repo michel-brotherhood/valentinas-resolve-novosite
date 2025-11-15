@@ -47,7 +47,7 @@ const teamMembers = [
 
 export const Team = () => {
   return (
-    <section className="py-16 bg-secondary/20">
+    <section className="py-16 bg-secondary/20" id="equipe">
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
@@ -105,6 +105,27 @@ export const Team = () => {
                           ))}
                         </div>
                       </div>
+                      
+                      <a
+                        href={`/equipe#${member.name.toLowerCase().replace(/\s+/g, '-')}`}
+                        className="inline-flex items-center gap-2 text-primary hover:text-primary/80 transition-colors font-medium mt-4"
+                      >
+                        Ver perfil completo na página da equipe
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="16"
+                          height="16"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          strokeWidth="2"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                        >
+                          <path d="M5 12h14" />
+                          <path d="m12 5 7 7-7 7" />
+                        </svg>
+                      </a>
                     </div>
                   </AccordionContent>
                 </Card>
