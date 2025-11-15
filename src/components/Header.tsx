@@ -15,11 +15,14 @@ export const Header = () => {
   useEffect(() => {
     if (mobileMenuOpen) {
       document.body.style.overflow = 'hidden';
+      document.body.classList.add('mobile-menu-open');
     } else {
       document.body.style.overflow = 'unset';
+      document.body.classList.remove('mobile-menu-open');
     }
     return () => {
       document.body.style.overflow = 'unset';
+      document.body.classList.remove('mobile-menu-open');
     };
   }, [mobileMenuOpen]);
 

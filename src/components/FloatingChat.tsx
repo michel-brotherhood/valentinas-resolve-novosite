@@ -24,7 +24,7 @@ export const FloatingChat = () => {
   };
 
   return (
-    <div className="fixed bottom-6 right-6 z-50">
+    <div className="fixed bottom-6 right-6 z-50 transition-opacity duration-300">
       {/* Options Menu */}
       {isOpen && (
         <Card className="absolute bottom-24 right-0 p-5 shadow-2xl w-80 animate-in fade-in slide-in-from-bottom-2 border-primary/20 bg-gradient-to-br from-background via-background to-primary/5">
