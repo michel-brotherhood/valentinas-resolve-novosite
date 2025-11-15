@@ -135,7 +135,7 @@ const Services = () => {
       <main className="flex-1 py-8 md:py-12">
         <div className="container mx-auto px-4">
           {/* Header */}
-          <div className="text-center mb-8 md:mb-12">
+          <div className="text-center mb-8 md:mb-12 animate-fade-in">
             <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-4">
               Catálogo de Serviços
             </h1>
@@ -208,6 +208,7 @@ const Services = () => {
                     variant={viewMode === "hierarchy" ? "default" : "outline"}
                     size="sm"
                     onClick={() => setViewMode("hierarchy")}
+                    className="text-xs md:text-sm transition-all duration-300"
                   >
                     Hierárquico
                   </Button>
@@ -215,6 +216,7 @@ const Services = () => {
                     variant={viewMode === "list" ? "default" : "outline"}
                     size="sm"
                     onClick={() => setViewMode("list")}
+                    className="text-xs md:text-sm transition-all duration-300"
                   >
                     Lista
                   </Button>
@@ -224,178 +226,182 @@ const Services = () => {
           </Card>
 
           {/* Services Content */}
-          {viewMode === "hierarchy" ? (
-            // Hierarchical View
-            filteredCategories.length > 0 ? (
-              <div className="space-y-6">
-                {filteredCategories.map((category) => {
-                  const CategoryIcon = getCategoryIcon(category.name);
-                  return (
-                    <Card key={category.id} className="overflow-hidden">
-                      <div
-                        className="h-32 relative overflow-hidden"
-                        style={{
-                          backgroundImage: `url(${categoryImages[category.name]})`,
-                          backgroundSize: "cover",
-                          backgroundPosition: "center",
-                        }}
-                      >
-                        <div className="absolute inset-0 bg-gradient-to-r from-primary/90 to-primary/60" />
-                        <div className="absolute inset-0 flex items-center px-6">
-                          <CategoryIcon className="h-12 w-12 text-white mr-4" />
-                          <div>
-                            <h2 className="text-2xl font-bold text-white">
-                              {category.name}
-                            </h2>
-                            <p className="text-white/90 text-sm">
-                              {category.description}
-                            </p>
+          <div className="transition-all duration-500">
+            {viewMode === "hierarchy" ? (
+              // Hierarchical View
+              filteredCategories.length > 0 ? (
+                <div className="space-y-6">
+                  {filteredCategories.map((category) => {
+                    const CategoryIcon = getCategoryIcon(category.name);
+                    return (
+                      <Card key={category.id} className="overflow-hidden animate-scale-in">
+                        <div
+                          className="h-24 md:h-32 relative overflow-hidden"
+                          style={{
+                            backgroundImage: `url(${categoryImages[category.name]})`,
+                            backgroundSize: "cover",
+                            backgroundPosition: "center",
+                          }}
+                        >
+                          <div className="absolute inset-0 bg-gradient-to-r from-primary/90 to-primary/60" />
+                          <div className="absolute inset-0 flex items-center px-4 md:px-6">
+                            <CategoryIcon className="h-8 md:h-12 w-8 md:w-12 text-white mr-3 md:mr-4" />
+                            <div>
+                              <h2 className="text-xl md:text-2xl font-bold text-white">
+                                {category.name}
+                              </h2>
+                              <p className="text-white/90 text-xs md:text-sm hidden sm:block">
+                                {category.description}
+                              </p>
+                            </div>
                           </div>
                         </div>
-                      </div>
 
-                      <Accordion type="multiple" className="w-full">
-                        {category.subcategories.map((subcategory, subIndex) => (
-                          <AccordionItem
-                            key={subIndex}
-                            value={`${category.id}-${subIndex}`}
-                            className="border-b last:border-b-0"
-                          >
-                            <AccordionTrigger className="px-6 hover:bg-muted/50 transition-colors">
-                              <div className="flex items-center gap-3">
-                                <Badge variant="secondary" className="text-xs">
-                                  {subcategory.services.length}
-                                </Badge>
-                                <div className="text-left">
-                                  <div className="font-semibold text-foreground">
-                                    {subcategory.name}
-                                  </div>
-                                  <div className="text-sm text-muted-foreground font-normal">
-                                    {subcategory.description}
+                        <Accordion type="multiple" className="w-full">
+                          {category.subcategories.map((subcategory, subIndex) => (
+                            <AccordionItem
+                              key={subIndex}
+                              value={`${category.id}-${subIndex}`}
+                              className="border-b last:border-b-0"
+                            >
+                              <AccordionTrigger className="px-4 md:px-6 hover:bg-muted/50 transition-colors">
+                                <div className="flex items-center gap-2 md:gap-3 flex-wrap">
+                                  <Badge variant="secondary" className="text-xs shrink-0">
+                                    {subcategory.services.length}
+                                  </Badge>
+                                  <div className="text-left flex-1 min-w-0">
+                                    <div className="font-semibold text-foreground text-sm md:text-base">
+                                      {subcategory.name}
+                                    </div>
+                                    <div className="text-xs md:text-sm text-muted-foreground font-normal">
+                                      {subcategory.description}
+                                    </div>
                                   </div>
                                 </div>
-                              </div>
-                            </AccordionTrigger>
-                            <AccordionContent className="px-6 pb-4">
-                              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 pt-2">
-                                {subcategory.services.map((service, serviceIndex) => (
-                                  <Card
-                                    key={serviceIndex}
-                                    className="p-4 hover:shadow-lg transition-all hover:scale-105 cursor-pointer hover:border-primary/50"
-                                    onClick={() => handleRequestQuote(service.name)}
-                                  >
-                                    <h4 className="font-medium text-foreground mb-1">
-                                      {service.name}
-                                    </h4>
-                                    <p className="text-xs text-muted-foreground mb-3">
-                                      {service.description}
-                                    </p>
-                                    <Button size="sm" className="w-full">
-                                      Solicitar Orçamento
-                                    </Button>
-                                  </Card>
-                                ))}
-                              </div>
-                            </AccordionContent>
-                          </AccordionItem>
-                        ))}
-                      </Accordion>
-                    </Card>
-                  );
-                })}
-              </div>
-            ) : (
-              <Card className="p-12 text-center">
-                <div className="max-w-md mx-auto">
-                  <p className="text-lg text-muted-foreground mb-4">
-                    Nenhum serviço encontrado com os filtros selecionados
-                  </p>
-                  <Button
-                    onClick={() => {
-                      setSearchQuery("");
-                      setSelectedCategory("Todos");
-                      setSelectedSubcategory("Todas");
-                    }}
-                    variant="outline"
-                  >
-                    Limpar Filtros
-                  </Button>
+                              </AccordionTrigger>
+                              <AccordionContent className="px-4 md:px-6 pb-4">
+                                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 pt-2 animate-fade-in">
+                                  {subcategory.services.map((service, serviceIndex) => (
+                                    <Card
+                                      key={serviceIndex}
+                                      className="p-3 md:p-4 hover:shadow-lg transition-all hover:scale-105 cursor-pointer hover:border-primary/50 animate-scale-in"
+                                      style={{ animationDelay: `${serviceIndex * 50}ms` }}
+                                      onClick={() => handleRequestQuote(service.name)}
+                                    >
+                                      <h4 className="font-medium text-foreground mb-1 text-sm md:text-base">
+                                        {service.name}
+                                      </h4>
+                                      <p className="text-xs text-muted-foreground mb-3 line-clamp-2">
+                                        {service.description}
+                                      </p>
+                                      <Button size="sm" className="w-full text-xs md:text-sm">
+                                        Solicitar Orçamento
+                                      </Button>
+                                    </Card>
+                                  ))}
+                                </div>
+                              </AccordionContent>
+                            </AccordionItem>
+                          ))}
+                        </Accordion>
+                      </Card>
+                    );
+                  })}
                 </div>
-              </Card>
-            )
-          ) : (
-            // List View
-            filteredServicesList.length > 0 ? (
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-6">
-                {filteredServicesList.map((service, index) => {
-                  const CategoryIcon = getCategoryIcon(service.category);
-                  return (
-                    <Card
-                      key={index}
-                      className="group overflow-hidden hover:shadow-2xl transition-all duration-300 hover:scale-105 hover:border-primary/50 cursor-pointer"
+              ) : (
+                <Card className="p-12 text-center">
+                  <div className="max-w-md mx-auto">
+                    <p className="text-lg text-muted-foreground mb-4">
+                      Nenhum serviço encontrado com os filtros selecionados
+                    </p>
+                    <Button
+                      onClick={() => {
+                        setSearchQuery("");
+                        setSelectedCategory("Todos");
+                        setSelectedSubcategory("Todas");
+                      }}
+                      variant="outline"
                     >
-                      <div className="h-48 relative overflow-hidden">
-                        <img
-                          src={categoryImages[service.category]}
-                          alt={service.category}
-                          className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
-                        />
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-                        <Badge className="absolute top-3 right-3 bg-primary/90">
-                          {service.category}
-                        </Badge>
-                      </div>
-
-                      <div className="p-5">
-                        <div className="flex items-start gap-3 mb-3">
-                          <div className="p-2 rounded-lg bg-primary/10 shrink-0">
-                            <CategoryIcon className="h-5 w-5 text-primary" />
-                          </div>
-                          <div className="flex-1 min-w-0">
-                            <h3 className="font-semibold text-foreground mb-1 truncate">
-                              {service.name}
-                            </h3>
-                            <p className="text-xs text-muted-foreground mb-1">
-                              {service.subcategory}
-                            </p>
-                            <p className="text-sm text-muted-foreground line-clamp-2">
-                              {service.description}
-                            </p>
-                          </div>
+                      Limpar Filtros
+                    </Button>
+                  </div>
+                </Card>
+              )
+            ) : (
+              // List View
+              filteredServicesList.length > 0 ? (
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-6">
+                  {filteredServicesList.map((service, index) => {
+                    const CategoryIcon = getCategoryIcon(service.category);
+                    return (
+                      <Card
+                        key={index}
+                        className="group overflow-hidden hover:shadow-2xl transition-all duration-300 hover:scale-105 hover:border-primary/50 cursor-pointer animate-scale-in"
+                        style={{ animationDelay: `${(index % 12) * 50}ms` }}
+                      >
+                        <div className="h-48 relative overflow-hidden">
+                          <img
+                            src={categoryImages[service.category]}
+                            alt={service.category}
+                            className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+                          />
+                          <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+                          <Badge className="absolute top-3 right-3 bg-primary/90">
+                            {service.category}
+                          </Badge>
                         </div>
 
-                        <Button
-                          className="w-full group-hover:bg-primary group-hover:text-primary-foreground transition-colors"
-                          variant="outline"
-                          onClick={() => handleRequestQuote(service.name)}
-                        >
-                          Solicitar Orçamento
-                        </Button>
-                      </div>
-                    </Card>
-                  );
-                })}
-              </div>
-            ) : (
-              <Card className="p-12 text-center">
-                <div className="max-w-md mx-auto">
-                  <p className="text-lg text-muted-foreground mb-4">
-                    Nenhum serviço encontrado com os filtros selecionados
-                  </p>
-                  <Button
-                    onClick={() => {
-                      setSearchQuery("");
-                      setSelectedCategory("Todos");
-                      setSelectedSubcategory("Todas");
-                    }}
-                    variant="outline"
-                  >
-                    Limpar Filtros
-                  </Button>
+                        <div className="p-5">
+                          <div className="flex items-start gap-3 mb-3">
+                            <div className="p-2 rounded-lg bg-primary/10 shrink-0">
+                              <CategoryIcon className="h-5 w-5 text-primary" />
+                            </div>
+                            <div className="flex-1 min-w-0">
+                              <h3 className="font-semibold text-foreground mb-1 truncate">
+                                {service.name}
+                              </h3>
+                              <p className="text-xs text-muted-foreground mb-1">
+                                {service.subcategory}
+                              </p>
+                              <p className="text-sm text-muted-foreground line-clamp-2">
+                                {service.description}
+                              </p>
+                            </div>
+                          </div>
+
+                          <Button
+                            className="w-full group-hover:bg-primary group-hover:text-primary-foreground transition-colors"
+                            variant="outline"
+                            onClick={() => handleRequestQuote(service.name)}
+                          >
+                            Solicitar Orçamento
+                          </Button>
+                        </div>
+                      </Card>
+                    );
+                  })}
                 </div>
-              </Card>
-            )
-          )}
+              ) : (
+                <Card className="p-12 text-center">
+                  <div className="max-w-md mx-auto">
+                    <p className="text-lg text-muted-foreground mb-4">
+                      Nenhum serviço encontrado com os filtros selecionados
+                    </p>
+                    <Button
+                      onClick={() => {
+                        setSearchQuery("");
+                        setSelectedCategory("Todos");
+                        setSelectedSubcategory("Todas");
+                      }}
+                      variant="outline"
+                    >
+                      Limpar Filtros
+                    </Button>
+                  </div>
+                </Card>
+              )
+            )}
+          </div>
         </div>
       </main>
 
