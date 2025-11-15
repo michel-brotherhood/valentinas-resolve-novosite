@@ -1,5 +1,6 @@
 import { Facebook, Instagram, Linkedin, Twitter } from "lucide-react";
 import logo from "@/assets/valentinas-logo.webp";
+import { Link } from "react-router-dom";
 
 export const Footer = () => {
   return (
@@ -34,24 +35,24 @@ export const Footer = () => {
             <h4 className="font-semibold text-white mb-4">Serviços</h4>
             <ul className="space-y-2">
               <li>
-                <a href="/servicos" className="text-sm text-white/70 hover:text-primary transition-colors">
+                <Link to="/servicos" className="text-sm text-white/70 hover:text-primary transition-colors">
                   Catálogo de Serviços
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="/contabilidade" className="text-sm text-white/70 hover:text-primary transition-colors">
+                <Link to="/contabilidade" className="text-sm text-white/70 hover:text-primary transition-colors">
                   Contabilidade Integrada
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="/sobre" className="text-sm text-white/70 hover:text-primary transition-colors">
+                <Link to="/sobre" className="text-sm text-white/70 hover:text-primary transition-colors">
                   Sobre Nós
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="/equipe" className="text-sm text-white/70 hover:text-primary transition-colors">
+                <Link to="/equipe" className="text-sm text-white/70 hover:text-primary transition-colors">
                   Nossa Equipe
-                </a>
+                </Link>
               </li>
             </ul>
           </div>
@@ -61,19 +62,19 @@ export const Footer = () => {
             <h4 className="font-semibold text-white mb-4">Para Profissionais</h4>
             <ul className="space-y-2">
               <li>
-                <a href="/trabalhe-conosco" className="text-sm text-white/70 hover:text-primary transition-colors">
+                <Link to="/trabalhe-conosco" className="text-sm text-white/70 hover:text-primary transition-colors">
                   Trabalhe Conosco
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="/registro-profissional" className="text-sm text-white/70 hover:text-primary transition-colors">
+                <Link to="/registro-profissional" className="text-sm text-white/70 hover:text-primary transition-colors">
                   Cadastre-se
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="/contato" className="text-sm text-white/70 hover:text-primary transition-colors">
+                <Link to="/contato" className="text-sm text-white/70 hover:text-primary transition-colors">
                   Contato
-                </a>
+                </Link>
               </li>
             </ul>
           </div>
@@ -83,19 +84,19 @@ export const Footer = () => {
             <h4 className="font-semibold text-white mb-4">Institucional</h4>
             <ul className="space-y-2">
               <li>
-                <a href="/sobre" className="text-sm text-white/70 hover:text-primary transition-colors">
+                <Link to="/sobre" className="text-sm text-white/70 hover:text-primary transition-colors">
                   Sobre a Valentina's
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="/contato" className="text-sm text-white/70 hover:text-primary transition-colors">
+                <Link to="/contato" className="text-sm text-white/70 hover:text-primary transition-colors">
                   Contato
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="/equipe" className="text-sm text-white/70 hover:text-primary transition-colors">
+                <Link to="/equipe" className="text-sm text-white/70 hover:text-primary transition-colors">
                   Nossa Equipe
-                </a>
+                </Link>
               </li>
             </ul>
           </div>
