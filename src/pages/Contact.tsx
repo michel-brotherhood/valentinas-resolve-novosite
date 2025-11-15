@@ -97,19 +97,19 @@ export default function Contact() {
           <div className="container mx-auto px-4">
             <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-8 md:gap-12">
               {/* Contact Form */}
-              <Card className="p-4 md:p-8">
+              <Card className="p-4 md:p-8 overflow-hidden">
                 <h2 className="text-xl md:text-2xl font-bold text-foreground mb-4 md:mb-6">
                   Solicite um Orçamento
                 </h2>
-                <form onSubmit={handleSubmit} className="space-y-6">
-                  <div>
+                <form onSubmit={handleSubmit} className="space-y-4 md:space-y-6">
+                  <div className="min-w-0">
                     <Label htmlFor="name">Nome Completo *</Label>
                     <Input
                       id="name"
                       type="text"
                       value={formData.name}
                       onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                      className={errors.name ? "border-destructive" : ""}
+                      className={`w-full ${errors.name ? "border-destructive" : ""}`}
                       maxLength={100}
                     />
                     {errors.name && (
@@ -117,14 +117,14 @@ export default function Contact() {
                     )}
                   </div>
 
-                  <div>
+                  <div className="min-w-0">
                     <Label htmlFor="email">Email *</Label>
                     <Input
                       id="email"
                       type="email"
                       value={formData.email}
                       onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                      className={errors.email ? "border-destructive" : ""}
+                      className={`w-full ${errors.email ? "border-destructive" : ""}`}
                       maxLength={255}
                     />
                     {errors.email && (
@@ -132,14 +132,14 @@ export default function Contact() {
                     )}
                   </div>
 
-                  <div>
+                  <div className="min-w-0">
                     <Label htmlFor="phone">Telefone *</Label>
                     <Input
                       id="phone"
                       type="tel"
                       value={formData.phone}
                       onChange={(e) => setFormData({ ...formData, phone: maskPhone(e.target.value) })}
-                      className={errors.phone ? "border-destructive" : ""}
+                      className={`w-full ${errors.phone ? "border-destructive" : ""}`}
                       maxLength={19}
                       placeholder="+55 (11) 99999-9999"
                     />
@@ -148,13 +148,13 @@ export default function Contact() {
                     )}
                   </div>
 
-                  <div>
+                  <div className="min-w-0">
                     <Label htmlFor="service">Serviço de Interesse *</Label>
                     <select
                       id="service"
                       value={formData.service}
                       onChange={(e) => setFormData({ ...formData, service: e.target.value })}
-                      className={`flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 ${errors.service ? "border-destructive" : ""}`}
+                      className={`flex h-10 w-full max-w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 ${errors.service ? "border-destructive" : ""}`}
                     >
                       <option value="">Selecione um serviço</option>
                       <option value="limpeza">Limpeza</option>
@@ -168,13 +168,13 @@ export default function Contact() {
                     )}
                   </div>
 
-                  <div>
+                  <div className="min-w-0">
                     <Label htmlFor="message">Mensagem *</Label>
                     <Textarea
                       id="message"
                       value={formData.message}
                       onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                      className={errors.message ? "border-destructive" : ""}
+                      className={`w-full ${errors.message ? "border-destructive" : ""}`}
                       rows={5}
                       maxLength={1000}
                       placeholder="Conte-nos mais sobre o que você precisa..."
@@ -209,12 +209,12 @@ export default function Contact() {
                   </p>
                 </div>
 
-                <Card className="p-4 md:p-6">
+                <Card className="p-4 md:p-6 overflow-hidden">
                   <div className="flex items-start gap-3 md:gap-4 mb-4 md:mb-6">
                     <div className="h-10 w-10 md:h-12 md:w-12 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
                       <Phone className="h-5 w-5 md:h-6 md:w-6 text-primary" />
                     </div>
-                    <div>
+                    <div className="min-w-0 flex-1">
                     <h3 className="font-semibold text-foreground mb-1">Telefone</h3>
                       <p className="text-muted-foreground">(69) 99271-5000</p>
                       <p className="text-sm text-muted-foreground">WhatsApp disponível</p>
@@ -225,9 +225,9 @@ export default function Contact() {
                     <div className="h-10 w-10 md:h-12 md:w-12 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
                       <Mail className="h-5 w-5 md:h-6 md:w-6 text-primary" />
                     </div>
-                    <div>
+                    <div className="min-w-0 flex-1">
                       <h3 className="font-semibold text-foreground mb-1">Email</h3>
-                      <p className="text-muted-foreground">atendimentoaocliente@valentinasresolve.com.br</p>
+                      <p className="text-muted-foreground text-sm break-words overflow-wrap-anywhere">atendimentoaocliente@valentinasresolve.com.br</p>
                     </div>
                   </div>
 
@@ -235,9 +235,9 @@ export default function Contact() {
                     <div className="h-10 w-10 md:h-12 md:w-12 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
                       <MapPin className="h-5 w-5 md:h-6 md:w-6 text-primary" />
                     </div>
-                    <div>
+                    <div className="min-w-0 flex-1">
                       <h3 className="font-semibold text-foreground mb-1">Endereço</h3>
-                      <p className="text-muted-foreground">
+                      <p className="text-muted-foreground text-sm">
                         Rua Osvaldo Cruz, 770<br />
                         Ouro Preto do Oeste - RO, 76.920-000
                       </p>
@@ -248,9 +248,9 @@ export default function Contact() {
                     <div className="h-10 w-10 md:h-12 md:w-12 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
                       <Clock className="h-5 w-5 md:h-6 md:w-6 text-primary" />
                     </div>
-                    <div>
+                    <div className="min-w-0 flex-1">
                       <h3 className="font-semibold text-foreground mb-1">Horário</h3>
-                      <p className="text-muted-foreground">
+                      <p className="text-muted-foreground text-sm">
                         Segunda a Sexta: 8h às 18h<br />
                         Sábado: 8h às 13h
                       </p>
@@ -258,11 +258,11 @@ export default function Contact() {
                   </div>
                 </Card>
 
-                <Card className="p-4 md:p-6 bg-gradient-to-br from-primary/10 to-primary/5">
+                <Card className="p-4 md:p-6 bg-gradient-to-br from-primary/10 to-primary/5 overflow-hidden">
                   <h3 className="text-lg md:text-xl font-bold text-foreground mb-2 md:mb-3">
                     Resposta Rápida
                   </h3>
-                  <p className="text-muted-foreground mb-4">
+                  <p className="text-muted-foreground text-sm mb-4">
                     Respondemos todas as solicitações em até 24 horas úteis.
                   </p>
                   <Button
