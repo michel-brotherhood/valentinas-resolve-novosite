@@ -10,18 +10,22 @@ const services = [
   {
     title: "Limpeza e Manutenção",
     image: cleaningImg,
+    route: "/servicos",
   },
   {
     title: "Contabilidade Integrada",
     image: accountingImg,
+    route: "/contabilidade",
   },
   {
     title: "Jardinagem",
     image: gardeningImg,
+    route: "/servicos",
   },
   {
     title: "Beleza e Estética",
     image: beautyImg,
+    route: "/servicos",
   },
 ];
 
@@ -39,7 +43,7 @@ export const PopularServices = () => {
           {services.map((service) => (
             <Card
               key={service.title}
-              onClick={() => navigate('/servicos')}
+              onClick={() => navigate(service.route)}
               className="group overflow-hidden cursor-pointer transition-all duration-500 hover:shadow-2xl hover:-translate-y-2 hover:border-primary/50"
             >
               <div className="aspect-[4/3] overflow-hidden relative">
