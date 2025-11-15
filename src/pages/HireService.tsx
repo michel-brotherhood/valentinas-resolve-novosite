@@ -25,8 +25,8 @@ const hireServiceSchema = z.object({
   phone: z.string().trim().min(10, "Telefone inválido").max(20),
   email: z.string().trim().email("Email inválido").max(255),
   cityNeighborhood: z.string().trim().min(3, "Cidade/Bairro obrigatório").max(100),
-  serviceType: z.string().min(1, "Selecione o tipo de serviço"),
-  description: z.string().trim().min(10, "Descrição muito curta").max(400),
+  serviceType: z.string().min(1, "Digite o tipo de serviço"),
+  description: z.string().trim().min(20, "Descrição deve ter pelo menos 20 caracteres").max(1000),
   location: z.string().trim().min(5, "Local de execução obrigatório").max(200),
   urgency: z.enum(["immediate", "days", "scheduled"]),
   scheduledDate: z.string().optional(),
@@ -35,18 +35,6 @@ const hireServiceSchema = z.object({
   acceptTerms: z.boolean().refine(val => val === true, "Você deve aceitar os termos"),
 });
 
-const serviceTypes = [
-  "Limpeza Residencial",
-  "Encanamento",
-  "Elétrica",
-  "Pintura",
-  "Jardinagem",
-  "Mudanças",
-  "Reformas",
-  "Manutenção",
-  "Contabilidade",
-  "Outros",
-];
 
 export default function HireService() {
   const { toast } = useToast();
@@ -218,29 +206,29 @@ export default function HireService() {
                 
                 <div>
                   <Label htmlFor="serviceType">Tipo de serviço desejado *</Label>
-                  <Select value={formData.serviceType} onValueChange={(value) => setFormData({...formData, serviceType: value})}>
-                    <SelectTrigger>
-                      <SelectValue placeholder="Selecione o serviço" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      {serviceTypes.map(service => (
-                        <SelectItem key={service} value={service}>{service}</SelectItem>
-                      ))}
-                    </SelectContent>
-                  </Select>
+                  <Input
+                    id="serviceType"
+                    type="text"
+                    placeholder="Ex: Limpeza, Encanamento, Elétrica"
+                    value={formData.serviceType}
+                    onChange={(e) =>
+                      setFormData({ ...formData, serviceType: e.target.value })
+                    }
+                    className={errors.serviceType ? "border-destructive" : ""}
+                  />
                   {errors.serviceType && <p className="text-sm text-destructive mt-1">{errors.serviceType}</p>}
                 </div>
 
                 <div>
-                  <Label htmlFor="description">Descrição do que precisa ser feito *</Label>
+                  <Label htmlFor="description">Descrição do que precisa ser feito * (mínimo 20 caracteres)</Label>
                   <Textarea
                     id="description"
                     value={formData.description}
                     onChange={(e) => setFormData({...formData, description: e.target.value})}
-                    placeholder="Conte-nos mais sobre sua situação e como podemos ajudar..."
+                    placeholder="Descreva em detalhes o serviço que você precisa..."
                     rows={4}
                   />
-                  <p className="text-xs text-muted-foreground mt-1">Máximo 400 caracteres</p>
+                  <p className="text-sm text-muted-foreground">{formData.description.length} caracteres</p>
                   {errors.description && <p className="text-sm text-destructive mt-1">{errors.description}</p>}
                 </div>
 

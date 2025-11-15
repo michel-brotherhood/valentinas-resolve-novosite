@@ -7,6 +7,7 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Card } from "@/components/ui/card";
 import { Checkbox } from "@/components/ui/checkbox";
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { useToast } from "@/hooks/use-toast";
 import { ChevronLeft, ChevronRight, Upload, CheckCircle2 } from "lucide-react";
 import { useForm } from "react-hook-form";
@@ -14,45 +15,42 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { maskPhone, maskCPF } from "@/lib/masks";
 
-const serviceCategories = [
-  "Domésticos", "Beleza", "Saúde", "Jurídicos", "Educação",
-  "Automotivos", "Pets", "Eventos", "Criativos", "Construção",
-  "Transporte", "Agricultura", "Personalizados", "Turismo", "Esportes"
-];
-
-// Step 1 Schema
 const personalInfoSchema = z.object({
-  fullName: z.string().trim().min(3, "Nome deve ter pelo menos 3 caracteres").max(100, "Nome muito longo"),
-  email: z.string().trim().email("Email inválido").max(255, "Email muito longo"),
-  phone: z.string().trim().min(10, "Telefone inválido").max(20, "Telefone inválido"),
-  cpf: z.string().trim().min(11, "CPF inválido").max(14, "CPF inválido"),
-  address: z.string().trim().min(5, "Endereço muito curto").max(200, "Endereço muito longo"),
-  city: z.string().trim().min(2, "Cidade inválida").max(100, "Cidade muito longa"),
+  fullName: z.string().trim().min(3, "Nome deve ter pelo menos 3 caracteres").max(100),
+  cpf: z.string().trim().min(11, "CPF/CNPJ inválido").max(18),
+  birthDate: z.string().min(1, "Data de nascimento obrigatória"),
+  phone: z.string().trim().min(10, "Telefone inválido").max(20),
+  email: z.string().trim().email("Email inválido").max(255),
+  address: z.string().trim().min(5, "Endereço obrigatório").max(200),
 });
 
-// Step 2 Schema
 const qualificationsSchema = z.object({
-  experience: z.string().trim().min(10, "Descreva sua experiência").max(1000, "Descrição muito longa"),
-  education: z.string().trim().min(5, "Informe sua formação").max(500, "Descrição muito longa"),
-  certifications: z.string().max(500, "Descrição muito longa").optional(),
+  serviceArea: z.string().trim().min(3, "Área de atuação obrigatória").max(100),
+  experience: z.string().trim().min(1, "Tempo de experiência obrigatório").max(50),
+  education: z.string().trim().max(500).optional(),
+  availability: z.string().trim().min(3, "Disponibilidade obrigatória").max(200),
+  homeService: z.enum(["yes", "no"], { required_error: "Selecione uma opção" }),
+  description: z.string().trim().min(50, "Descrição deve ter pelo menos 50 caracteres").max(1000),
 });
 
-// Step 3 Schema
-const servicesSchema = z.object({
-  categories: z.array(z.string()).min(1, "Selecione pelo menos uma categoria"),
-  description: z.string().trim().min(20, "Descrição muito curta").max(1000, "Descrição muito longa"),
-  hourlyRate: z.string().trim().min(1, "Informe seu valor"),
+const documentsSchema = z.object({
+  idDocument: z.boolean().refine(val => val === true, "Foto do documento obrigatória"),
+  proofOfAddress: z.boolean().refine(val => val === true, "Comprovante de residência obrigatório"),
+  certificates: z.boolean().optional(),
+  truthDeclaration: z.boolean().refine(val => val === true, "Você deve aceitar a declaração"),
+  privacyConsent: z.boolean().refine(val => val === true, "Você deve aceitar a política de privacidade"),
+  signature: z.string().trim().min(3, "Assinatura obrigatória").max(100),
 });
 
 type PersonalInfo = z.infer<typeof personalInfoSchema>;
 type Qualifications = z.infer<typeof qualificationsSchema>;
-type Services = z.infer<typeof servicesSchema>;
+type Documents = z.infer<typeof documentsSchema>;
 
 const ProfessionalRegistration = () => {
   const [currentStep, setCurrentStep] = useState(1);
-  const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
-  const [portfolioFiles, setPortfolioFiles] = useState<File[]>([]);
-  const [documentFiles, setDocumentFiles] = useState<File[]>([]);
+  const [idFiles, setIdFiles] = useState<File[]>([]);
+  const [addressFiles, setAddressFiles] = useState<File[]>([]);
+  const [certificateFiles, setCertificateFiles] = useState<File[]>([]);
   const { toast } = useToast();
 
   const personalForm = useForm<PersonalInfo>({
@@ -63,524 +61,361 @@ const ProfessionalRegistration = () => {
   const qualificationsForm = useForm<Qualifications>({
     resolver: zodResolver(qualificationsSchema),
     mode: "onChange",
+    defaultValues: { homeService: "yes" },
   });
 
-  const servicesForm = useForm<Services>({
-    resolver: zodResolver(servicesSchema),
+  const documentsForm = useForm<Documents>({
+    resolver: zodResolver(documentsSchema),
     mode: "onChange",
+    defaultValues: {
+      idDocument: false,
+      proofOfAddress: false,
+      certificates: false,
+      truthDeclaration: false,
+      privacyConsent: false,
+      signature: "",
+    },
   });
 
-  const handleCategoryToggle = (category: string) => {
-    setSelectedCategories(prev =>
-      prev.includes(category)
-        ? prev.filter(c => c !== category)
-        : [...prev, category]
-    );
-  };
-
-  const handlePortfolioUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleIdUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files) {
-      const files = Array.from(e.target.files);
-      if (files.length + portfolioFiles.length > 10) {
-        toast({
-          title: "Limite excedido",
-          description: "Você pode enviar no máximo 10 arquivos",
-          variant: "destructive",
-        });
-        return;
-      }
-      setPortfolioFiles(prev => [...prev, ...files]);
+      setIdFiles(prev => [...prev, ...Array.from(e.target.files!)]);
+      documentsForm.setValue("idDocument", true);
     }
   };
 
-  const handleDocumentUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleAddressUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files) {
-      const files = Array.from(e.target.files);
-      if (files.length + documentFiles.length > 5) {
-        toast({
-          title: "Limite excedido",
-          description: "Você pode enviar no máximo 5 documentos",
-          variant: "destructive",
-        });
-        return;
-      }
-      setDocumentFiles(prev => [...prev, ...files]);
+      setAddressFiles(prev => [...prev, ...Array.from(e.target.files!)]);
+      documentsForm.setValue("proofOfAddress", true);
     }
   };
 
-  const onSubmitStep1 = personalForm.handleSubmit(() => {
-    setCurrentStep(2);
-  });
+  const handleCertificateUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files) {
+      setCertificateFiles(prev => [...prev, ...Array.from(e.target.files!)]);
+    }
+  };
 
-  const onSubmitStep2 = qualificationsForm.handleSubmit(() => {
-    setCurrentStep(3);
-  });
+  const onSubmitStep1 = (data: PersonalInfo) => setCurrentStep(2);
+  const onSubmitStep2 = (data: Qualifications) => setCurrentStep(3);
 
-  const onSubmitStep3 = servicesForm.handleSubmit(() => {
-    if (selectedCategories.length === 0) {
+  const onSubmitStep3 = async (data: Documents) => {
+    try {
+      const personalData = personalForm.getValues();
+      const qualificationsData = qualificationsForm.getValues();
+
+      const response = await fetch(`${import.meta.env.VITE_SUPABASE_URL}/functions/v1/send-professional-email`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY}`,
+        },
+        body: JSON.stringify({
+          fullName: personalData.fullName,
+          cpf: personalData.cpf,
+          birthDate: personalData.birthDate,
+          phone: personalData.phone,
+          email: personalData.email,
+          address: personalData.address,
+          serviceArea: qualificationsData.serviceArea,
+          experience: qualificationsData.experience,
+          education: qualificationsData.education || "Não informado",
+          availability: qualificationsData.availability,
+          homeService: qualificationsData.homeService === "yes" ? "Sim" : "Não",
+          description: qualificationsData.description,
+          signature: data.signature,
+          idDocumentCount: idFiles.length,
+          addressProofCount: addressFiles.length,
+          certificatesCount: certificateFiles.length,
+        }),
+      });
+
+      if (!response.ok) throw new Error('Erro ao enviar cadastro');
+
       toast({
-        title: "Erro",
-        description: "Selecione pelo menos uma categoria de serviço",
+        title: "Cadastro enviado com sucesso!",
+        description: "Analisaremos suas informações e entraremos em contato em breve.",
+      });
+
+      personalForm.reset();
+      qualificationsForm.reset();
+      documentsForm.reset();
+      setIdFiles([]);
+      setAddressFiles([]);
+      setCertificateFiles([]);
+      setCurrentStep(1);
+    } catch (error) {
+      toast({
+        title: "Erro ao enviar cadastro",
+        description: "Tente novamente mais tarde.",
         variant: "destructive",
       });
-      return;
     }
-    setCurrentStep(4);
-  });
-
-  const onSubmitFinal = () => {
-    if (documentFiles.length === 0) {
-      toast({
-        title: "Documentos obrigatórios",
-        description: "Por favor, envie pelo menos um documento de identificação",
-        variant: "destructive",
-      });
-      return;
-    }
-
-    toast({
-      title: "Cadastro enviado!",
-      description: "Seu cadastro será analisado em até 48 horas. Você receberá um email com as próximas etapas.",
-    });
-    
-    // Here you would submit to backend
-    console.log("Form submitted:", {
-      personal: personalForm.getValues(),
-      qualifications: qualificationsForm.getValues(),
-      services: servicesForm.getValues(),
-      categories: selectedCategories,
-      portfolio: portfolioFiles,
-      documents: documentFiles,
-    });
   };
 
   return (
-    <div className="min-h-screen bg-background flex flex-col">
+    <div className="min-h-screen flex flex-col bg-gradient-to-br from-background via-background to-primary/5">
       <Header />
-      
-      <main className="flex-1 py-12">
-        <div className="container mx-auto px-4 max-w-4xl">
+      <main className="flex-1 container mx-auto px-4 py-12">
+        <div className="max-w-3xl mx-auto">
           <div className="text-center mb-8">
-            <h1 className="text-4xl font-bold text-foreground mb-4">
-              Cadastro de Profissional
-            </h1>
-            <p className="text-lg text-muted-foreground">
-              Preencha as informações para começar a receber pedidos
-            </p>
+            <h1 className="text-4xl font-bold text-foreground mb-4">Cadastro de Profissional</h1>
+            <p className="text-lg text-muted-foreground">Complete seu cadastro em 3 etapas</p>
           </div>
 
-          {/* Progress Steps */}
-          <div className="flex justify-between mb-8">
-            {[
-              { num: 1, label: "Dados Pessoais" },
-              { num: 2, label: "Qualificações" },
-              { num: 3, label: "Serviços" },
-              { num: 4, label: "Documentos" },
-            ].map((step) => (
-              <div key={step.num} className="flex items-center flex-1">
-                <div className="flex flex-col items-center flex-1">
-                  <div
-                    className={`w-10 h-10 rounded-full flex items-center justify-center font-bold ${
-                      currentStep >= step.num
-                        ? "bg-primary text-primary-foreground"
-                        : "bg-secondary text-muted-foreground"
-                    }`}
-                  >
-                    {currentStep > step.num ? (
-                      <CheckCircle2 className="h-6 w-6" />
-                    ) : (
-                      step.num
-                    )}
-                  </div>
-                  <span className="text-xs mt-2 text-center hidden md:block">
-                    {step.label}
-                  </span>
-                </div>
-                {step.num < 4 && (
-                  <div
-                    className={`h-1 flex-1 ${
-                      currentStep > step.num ? "bg-primary" : "bg-secondary"
-                    }`}
-                  />
-                )}
-              </div>
-            ))}
+          <div className="mb-8">
+            <div className="flex justify-between items-center mb-2">
+              <span className={`text-sm ${currentStep >= 1 ? 'text-primary font-semibold' : 'text-muted-foreground'}`}>Dados Pessoais</span>
+              <span className={`text-sm ${currentStep >= 2 ? 'text-primary font-semibold' : 'text-muted-foreground'}`}>Info. Profissionais</span>
+              <span className={`text-sm ${currentStep >= 3 ? 'text-primary font-semibold' : 'text-muted-foreground'}`}>Documentação</span>
+            </div>
+            <div className="w-full h-2 bg-secondary rounded-full overflow-hidden">
+              <div className="h-full bg-primary transition-all duration-300" style={{ width: `${(currentStep / 3) * 100}%` }} />
+            </div>
           </div>
 
           <Card className="p-6 md:p-8">
-            {/* Step 1: Personal Info */}
             {currentStep === 1 && (
-              <form onSubmit={onSubmitStep1} className="space-y-6">
-                <h2 className="text-2xl font-bold text-foreground mb-6">
-                  Informações Pessoais
-                </h2>
+              <form onSubmit={personalForm.handleSubmit(onSubmitStep1)} className="space-y-6">
+                <h2 className="text-2xl font-semibold mb-6">Dados Pessoais e de Contato</h2>
                 
-                <div>
-                  <Label htmlFor="fullName">Nome Completo *</Label>
-                  <Input
-                    id="fullName"
-                    {...personalForm.register("fullName")}
-                    placeholder="Seu nome completo"
-                  />
+                <div className="space-y-2">
+                  <Label htmlFor="fullName">Nome completo *</Label>
+                  <Input id="fullName" placeholder="Ex: Maria Souza" {...personalForm.register("fullName")} />
                   {personalForm.formState.errors.fullName && (
-                    <p className="text-sm text-destructive mt-1">
-                      {personalForm.formState.errors.fullName.message}
-                    </p>
+                    <p className="text-sm text-destructive">{personalForm.formState.errors.fullName.message}</p>
                   )}
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <div>
-                    <Label htmlFor="email">Email *</Label>
-                    <Input
-                      id="email"
-                      type="email"
-                      {...personalForm.register("email")}
-                      placeholder="seu@email.com"
-                    />
-                    {personalForm.formState.errors.email && (
-                      <p className="text-sm text-destructive mt-1">
-                        {personalForm.formState.errors.email.message}
-                      </p>
-                    )}
-                  </div>
-
-                  <div>
-                    <Label htmlFor="phone">Telefone *</Label>
-                    <Input
-                      id="phone"
-                      value={personalForm.watch("phone") || ""}
-                      onChange={(e) => {
-                        const masked = maskPhone(e.target.value);
-                        personalForm.setValue("phone", masked);
-                      }}
-                      placeholder="+55 (11) 99999-9999"
-                      maxLength={19}
-                    />
-                    {personalForm.formState.errors.phone && (
-                      <p className="text-sm text-destructive mt-1">
-                        {personalForm.formState.errors.phone.message}
-                      </p>
-                    )}
-                  </div>
-                </div>
-
-                <div>
-                  <Label htmlFor="cpf">CPF *</Label>
+                <div className="space-y-2">
+                  <Label htmlFor="cpf">CPF/CNPJ *</Label>
                   <Input
                     id="cpf"
-                    value={personalForm.watch("cpf") || ""}
-                    onChange={(e) => {
-                      const masked = maskCPF(e.target.value);
-                      personalForm.setValue("cpf", masked);
-                    }}
-                    placeholder="000.000.000-00"
-                    maxLength={14}
+                    placeholder="Ex: 123.456.789-00"
+                    {...personalForm.register("cpf")}
+                    onChange={(e) => personalForm.setValue("cpf", maskCPF(e.target.value))}
                   />
                   {personalForm.formState.errors.cpf && (
-                    <p className="text-sm text-destructive mt-1">
-                      {personalForm.formState.errors.cpf.message}
-                    </p>
+                    <p className="text-sm text-destructive">{personalForm.formState.errors.cpf.message}</p>
                   )}
                 </div>
 
-                <div>
-                  <Label htmlFor="address">Endereço Completo *</Label>
+                <div className="space-y-2">
+                  <Label htmlFor="birthDate">Data de nascimento *</Label>
+                  <Input id="birthDate" type="date" {...personalForm.register("birthDate")} />
+                  {personalForm.formState.errors.birthDate && (
+                    <p className="text-sm text-destructive">{personalForm.formState.errors.birthDate.message}</p>
+                  )}
+                </div>
+
+                <div className="space-y-2">
+                  <Label htmlFor="phone">Telefone/WhatsApp *</Label>
                   <Input
-                    id="address"
-                    {...personalForm.register("address")}
-                    placeholder="Rua, número, complemento"
+                    id="phone"
+                    placeholder="Ex: (11) 98888-7777"
+                    {...personalForm.register("phone")}
+                    onChange={(e) => personalForm.setValue("phone", maskPhone(e.target.value))}
                   />
+                  {personalForm.formState.errors.phone && (
+                    <p className="text-sm text-destructive">{personalForm.formState.errors.phone.message}</p>
+                  )}
+                </div>
+
+                <div className="space-y-2">
+                  <Label htmlFor="email">E-mail *</Label>
+                  <Input id="email" type="email" placeholder="Ex: maria.souza@email.com" {...personalForm.register("email")} />
+                  {personalForm.formState.errors.email && (
+                    <p className="text-sm text-destructive">{personalForm.formState.errors.email.message}</p>
+                  )}
+                </div>
+
+                <div className="space-y-2">
+                  <Label htmlFor="address">Endereço (cidade/bairro) *</Label>
+                  <Input id="address" placeholder="Ex: Rio de Janeiro, Copacabana" {...personalForm.register("address")} />
                   {personalForm.formState.errors.address && (
-                    <p className="text-sm text-destructive mt-1">
-                      {personalForm.formState.errors.address.message}
-                    </p>
+                    <p className="text-sm text-destructive">{personalForm.formState.errors.address.message}</p>
                   )}
                 </div>
 
-                <div>
-                  <Label htmlFor="city">Cidade *</Label>
-                  <Input
-                    id="city"
-                    {...personalForm.register("city")}
-                    placeholder="Sua cidade"
-                  />
-                  {personalForm.formState.errors.city && (
-                    <p className="text-sm text-destructive mt-1">
-                      {personalForm.formState.errors.city.message}
-                    </p>
-                  )}
-                </div>
-
-                <div className="flex justify-end">
-                  <Button type="submit" className="bg-foreground hover:bg-foreground/90 text-background">
-                    Próximo <ChevronRight className="ml-2 h-4 w-4" />
-                  </Button>
+                <div className="flex justify-end pt-4">
+                  <Button type="submit" size="lg">Próximo <ChevronRight className="ml-2 h-4 w-4" /></Button>
                 </div>
               </form>
             )}
 
-            {/* Step 2: Qualifications */}
             {currentStep === 2 && (
-              <form onSubmit={onSubmitStep2} className="space-y-6">
-                <h2 className="text-2xl font-bold text-foreground mb-6">
-                  Qualificações
-                </h2>
+              <form onSubmit={qualificationsForm.handleSubmit(onSubmitStep2)} className="space-y-6">
+                <h2 className="text-2xl font-semibold mb-6">Informações Profissionais</h2>
 
-                <div>
-                  <Label htmlFor="experience">Experiência Profissional *</Label>
-                  <Textarea
-                    id="experience"
-                    {...qualificationsForm.register("experience")}
-                    placeholder="Descreva sua experiência profissional..."
-                    rows={5}
-                  />
+                <div className="space-y-2">
+                  <Label htmlFor="serviceArea">Área de atuação *</Label>
+                  <Input id="serviceArea" placeholder="Ex: Eletricista" {...qualificationsForm.register("serviceArea")} />
+                  {qualificationsForm.formState.errors.serviceArea && (
+                    <p className="text-sm text-destructive">{qualificationsForm.formState.errors.serviceArea.message}</p>
+                  )}
+                </div>
+
+                <div className="space-y-2">
+                  <Label htmlFor="experience">Tempo de experiência *</Label>
+                  <Input id="experience" placeholder="Ex: 5 anos" {...qualificationsForm.register("experience")} />
                   {qualificationsForm.formState.errors.experience && (
-                    <p className="text-sm text-destructive mt-1">
-                      {qualificationsForm.formState.errors.experience.message}
-                    </p>
+                    <p className="text-sm text-destructive">{qualificationsForm.formState.errors.experience.message}</p>
                   )}
                 </div>
 
-                <div>
-                  <Label htmlFor="education">Formação Acadêmica *</Label>
-                  <Textarea
-                    id="education"
-                    {...qualificationsForm.register("education")}
-                    placeholder="Informe sua formação acadêmica..."
-                    rows={3}
-                  />
-                  {qualificationsForm.formState.errors.education && (
-                    <p className="text-sm text-destructive mt-1">
-                      {qualificationsForm.formState.errors.education.message}
-                    </p>
+                <div className="space-y-2">
+                  <Label htmlFor="education">Formação/Certificações (opcional)</Label>
+                  <Textarea id="education" placeholder="Liste suas qualificações..." {...qualificationsForm.register("education")} rows={3} />
+                </div>
+
+                <div className="space-y-2">
+                  <Label htmlFor="availability">Disponibilidade *</Label>
+                  <Input id="availability" placeholder="Ex: Segunda a sexta" {...qualificationsForm.register("availability")} />
+                  {qualificationsForm.formState.errors.availability && (
+                    <p className="text-sm text-destructive">{qualificationsForm.formState.errors.availability.message}</p>
                   )}
                 </div>
 
-                <div>
-                  <Label htmlFor="certifications">Certificações e Cursos</Label>
-                  <Textarea
-                    id="certifications"
-                    {...qualificationsForm.register("certifications")}
-                    placeholder="Liste suas certificações e cursos (opcional)"
-                    rows={3}
-                  />
-                  {qualificationsForm.formState.errors.certifications && (
-                    <p className="text-sm text-destructive mt-1">
-                      {qualificationsForm.formState.errors.certifications.message}
-                    </p>
-                  )}
-                </div>
-
-                <div className="flex justify-between">
-                  <Button
-                    type="button"
-                    variant="outline"
-                    onClick={() => setCurrentStep(1)}
+                <div className="space-y-2">
+                  <Label>Atende em domicílio? *</Label>
+                  <RadioGroup
+                    value={qualificationsForm.watch("homeService")}
+                    onValueChange={(value) => qualificationsForm.setValue("homeService", value as "yes" | "no")}
                   >
-                    <ChevronLeft className="mr-2 h-4 w-4" /> Voltar
-                  </Button>
-                  <Button type="submit" className="bg-foreground hover:bg-foreground/90 text-background">
-                    Próximo <ChevronRight className="ml-2 h-4 w-4" />
-                  </Button>
+                    <div className="flex items-center space-x-2">
+                      <RadioGroupItem value="yes" id="yes" />
+                      <Label htmlFor="yes">Sim</Label>
+                    </div>
+                    <div className="flex items-center space-x-2">
+                      <RadioGroupItem value="no" id="no" />
+                      <Label htmlFor="no">Não</Label>
+                    </div>
+                  </RadioGroup>
+                </div>
+
+                <div className="space-y-2">
+                  <Label htmlFor="description">Descrição breve dos serviços * (mínimo 50 caracteres)</Label>
+                  <Textarea id="description" placeholder="Descreva os serviços..." {...qualificationsForm.register("description")} rows={4} />
+                  <p className="text-sm text-muted-foreground">{qualificationsForm.watch("description")?.length || 0} caracteres</p>
+                  {qualificationsForm.formState.errors.description && (
+                    <p className="text-sm text-destructive">{qualificationsForm.formState.errors.description.message}</p>
+                  )}
+                </div>
+
+                <div className="flex justify-between pt-4">
+                  <Button type="button" variant="outline" onClick={() => setCurrentStep(1)}><ChevronLeft className="mr-2 h-4 w-4" /> Voltar</Button>
+                  <Button type="submit" size="lg">Próximo <ChevronRight className="ml-2 h-4 w-4" /></Button>
                 </div>
               </form>
             )}
 
-            {/* Step 3: Services */}
             {currentStep === 3 && (
-              <form onSubmit={onSubmitStep3} className="space-y-6">
-                <h2 className="text-2xl font-bold text-foreground mb-6">
-                  Categorias de Serviços
-                </h2>
-
-                <div>
-                  <Label className="mb-4 block">
-                    Selecione as categorias em que você atua *
-                  </Label>
-                  <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
-                    {serviceCategories.map((category) => (
-                      <div
-                        key={category}
-                        className="flex items-center space-x-2"
-                      >
-                        <Checkbox
-                          id={category}
-                          checked={selectedCategories.includes(category)}
-                          onCheckedChange={() => handleCategoryToggle(category)}
-                        />
-                        <label
-                          htmlFor={category}
-                          className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 cursor-pointer"
-                        >
-                          {category}
-                        </label>
-                      </div>
-                    ))}
-                  </div>
-                  {selectedCategories.length === 0 && (
-                    <p className="text-sm text-muted-foreground mt-2">
-                      Selecione pelo menos uma categoria
-                    </p>
-                  )}
-                </div>
-
-                <div>
-                  <Label htmlFor="description">Descrição dos Serviços *</Label>
-                  <Textarea
-                    id="description"
-                    {...servicesForm.register("description")}
-                    placeholder="Descreva os serviços que você oferece..."
-                    rows={5}
-                  />
-                  {servicesForm.formState.errors.description && (
-                    <p className="text-sm text-destructive mt-1">
-                      {servicesForm.formState.errors.description.message}
-                    </p>
-                  )}
-                </div>
-
-                <div>
-                  <Label htmlFor="hourlyRate">Valor por Hora (R$) *</Label>
-                  <Input
-                    id="hourlyRate"
-                    {...servicesForm.register("hourlyRate")}
-                    placeholder="Ex: 80,00"
-                  />
-                  {servicesForm.formState.errors.hourlyRate && (
-                    <p className="text-sm text-destructive mt-1">
-                      {servicesForm.formState.errors.hourlyRate.message}
-                    </p>
-                  )}
-                </div>
-
-                <div className="flex justify-between">
-                  <Button
-                    type="button"
-                    variant="outline"
-                    onClick={() => setCurrentStep(2)}
-                  >
-                    <ChevronLeft className="mr-2 h-4 w-4" /> Voltar
-                  </Button>
-                  <Button type="submit" className="bg-foreground hover:bg-foreground/90 text-background">
-                    Próximo <ChevronRight className="ml-2 h-4 w-4" />
-                  </Button>
-                </div>
-              </form>
-            )}
-
-            {/* Step 4: Documents */}
-            {currentStep === 4 && (
-              <div className="space-y-6">
-                <h2 className="text-2xl font-bold text-foreground mb-6">
-                  Portfólio e Documentos
-                </h2>
+              <form onSubmit={documentsForm.handleSubmit(onSubmitStep3)} className="space-y-6">
+                <h2 className="text-2xl font-semibold mb-6">Documentação</h2>
 
                 <div className="space-y-4">
-                  <div>
-                    <Label htmlFor="portfolio">Portfólio (Opcional)</Label>
-                    <p className="text-sm text-muted-foreground mb-2">
-                      Envie fotos de trabalhos realizados (máximo 10 arquivos)
-                    </p>
-                    <div className="border-2 border-dashed border-border rounded-lg p-6 text-center">
-                      <Upload className="h-12 w-12 text-muted-foreground mx-auto mb-4" />
-                      <Input
-                        id="portfolio"
-                        type="file"
-                        multiple
-                        accept="image/*"
-                        onChange={handlePortfolioUpload}
-                        className="hidden"
-                      />
-                      <Button
-                        type="button"
-                        variant="outline"
-                        onClick={() => document.getElementById("portfolio")?.click()}
-                      >
-                        Selecionar Arquivos
-                      </Button>
-                      {portfolioFiles.length > 0 && (
-                        <div className="mt-4">
-                          <p className="text-sm text-foreground font-medium">
-                            {portfolioFiles.length} arquivo(s) selecionado(s)
-                          </p>
-                          <ul className="text-xs text-muted-foreground mt-2">
-                            {portfolioFiles.map((file, idx) => (
-                              <li key={idx}>{file.name}</li>
-                            ))}
-                          </ul>
-                        </div>
-                      )}
-                    </div>
+                  <div className="border-2 border-dashed border-border rounded-lg p-6">
+                    <Label htmlFor="idDocument" className="flex items-center justify-between cursor-pointer">
+                      <span className="font-semibold">Foto do documento de identificação *</span>
+                      <Upload className="h-5 w-5 text-muted-foreground" />
+                    </Label>
+                    <Input id="idDocument" type="file" accept=".pdf,.jpg,.jpeg,.png" onChange={handleIdUpload} className="mt-2" multiple />
+                    <p className="text-sm text-muted-foreground mt-2">Aceita PDF, JPG, PNG</p>
+                    {idFiles.length > 0 && (
+                      <div className="mt-2 flex items-center gap-2 text-sm text-primary">
+                        <CheckCircle2 className="h-4 w-4" />
+                        {idFiles.length} arquivo(s) selecionado(s)
+                      </div>
+                    )}
+                    {documentsForm.formState.errors.idDocument && (
+                      <p className="text-sm text-destructive mt-2">{documentsForm.formState.errors.idDocument.message}</p>
+                    )}
                   </div>
 
-                  <div>
-                    <Label htmlFor="documents">Documentos de Identificação *</Label>
-                    <p className="text-sm text-muted-foreground mb-2">
-                      Envie RG, CNH ou outro documento oficial com foto (máximo 5 arquivos)
-                    </p>
-                    <div className="border-2 border-dashed border-border rounded-lg p-6 text-center">
-                      <Upload className="h-12 w-12 text-muted-foreground mx-auto mb-4" />
-                      <Input
-                        id="documents"
-                        type="file"
-                        multiple
-                        accept="image/*,.pdf"
-                        onChange={handleDocumentUpload}
-                        className="hidden"
-                      />
-                      <Button
-                        type="button"
-                        variant="outline"
-                        onClick={() => document.getElementById("documents")?.click()}
-                      >
-                        Selecionar Documentos
-                      </Button>
-                      {documentFiles.length > 0 && (
-                        <div className="mt-4">
-                          <p className="text-sm text-foreground font-medium">
-                            {documentFiles.length} documento(s) selecionado(s)
-                          </p>
-                          <ul className="text-xs text-muted-foreground mt-2">
-                            {documentFiles.map((file, idx) => (
-                              <li key={idx}>{file.name}</li>
-                            ))}
-                          </ul>
-                        </div>
-                      )}
-                    </div>
+                  <div className="border-2 border-dashed border-border rounded-lg p-6">
+                    <Label htmlFor="proofOfAddress" className="flex items-center justify-between cursor-pointer">
+                      <span className="font-semibold">Comprovante de residência *</span>
+                      <Upload className="h-5 w-5 text-muted-foreground" />
+                    </Label>
+                    <Input id="proofOfAddress" type="file" accept=".pdf,.jpg,.jpeg,.png" onChange={handleAddressUpload} className="mt-2" multiple />
+                    <p className="text-sm text-muted-foreground mt-2">Aceita PDF, JPG, PNG</p>
+                    {addressFiles.length > 0 && (
+                      <div className="mt-2 flex items-center gap-2 text-sm text-primary">
+                        <CheckCircle2 className="h-4 w-4" />
+                        {addressFiles.length} arquivo(s) selecionado(s)
+                      </div>
+                    )}
+                    {documentsForm.formState.errors.proofOfAddress && (
+                      <p className="text-sm text-destructive mt-2">{documentsForm.formState.errors.proofOfAddress.message}</p>
+                    )}
+                  </div>
+
+                  <div className="border-2 border-dashed border-border rounded-lg p-6">
+                    <Label htmlFor="certificates" className="flex items-center justify-between cursor-pointer">
+                      <span className="font-semibold">Certificados (opcional)</span>
+                      <Upload className="h-5 w-5 text-muted-foreground" />
+                    </Label>
+                    <Input id="certificates" type="file" accept=".pdf,.jpg,.jpeg,.png" onChange={handleCertificateUpload} className="mt-2" multiple />
+                    <p className="text-sm text-muted-foreground mt-2">Aceita PDF, JPG, PNG</p>
+                    {certificateFiles.length > 0 && (
+                      <div className="mt-2 flex items-center gap-2 text-sm text-primary">
+                        <CheckCircle2 className="h-4 w-4" />
+                        {certificateFiles.length} arquivo(s) selecionado(s)
+                      </div>
+                    )}
                   </div>
                 </div>
 
-                <div className="bg-secondary/50 p-4 rounded-lg">
-                  <p className="text-sm text-muted-foreground">
-                    <strong>Importante:</strong> Seus documentos serão verificados pela nossa equipe. 
-                    Este processo pode levar até 48 horas. Você receberá um email quando seu cadastro for aprovado.
-                  </p>
+                <div className="bg-muted/50 p-6 rounded-lg space-y-4">
+                  <h3 className="font-semibold text-lg">Condições de Cadastro</h3>
+                  
+                  <div className="flex items-start space-x-3">
+                    <Checkbox
+                      id="truthDeclaration"
+                      checked={documentsForm.watch("truthDeclaration")}
+                      onCheckedChange={(checked) => documentsForm.setValue("truthDeclaration", checked as boolean)}
+                    />
+                    <Label htmlFor="truthDeclaration" className="cursor-pointer leading-relaxed">
+                      Declaro que as informações fornecidas são verdadeiras.
+                    </Label>
+                  </div>
+                  {documentsForm.formState.errors.truthDeclaration && (
+                    <p className="text-sm text-destructive ml-7">{documentsForm.formState.errors.truthDeclaration.message}</p>
+                  )}
+
+                  <div className="flex items-start space-x-3">
+                    <Checkbox
+                      id="privacyConsent"
+                      checked={documentsForm.watch("privacyConsent")}
+                      onCheckedChange={(checked) => documentsForm.setValue("privacyConsent", checked as boolean)}
+                    />
+                    <Label htmlFor="privacyConsent" className="cursor-pointer leading-relaxed">
+                      Autorizo o uso dos meus dados conforme a política de privacidade da plataforma.
+                    </Label>
+                  </div>
+                  {documentsForm.formState.errors.privacyConsent && (
+                    <p className="text-sm text-destructive ml-7">{documentsForm.formState.errors.privacyConsent.message}</p>
+                  )}
+
+                  <div className="space-y-2 pt-2">
+                    <Label htmlFor="signature">Assinatura (digite seu nome completo) *</Label>
+                    <Input id="signature" placeholder="Digite seu nome completo" {...documentsForm.register("signature")} />
+                    {documentsForm.formState.errors.signature && (
+                      <p className="text-sm text-destructive">{documentsForm.formState.errors.signature.message}</p>
+                    )}
+                  </div>
                 </div>
 
-                <div className="flex justify-between">
-                  <Button
-                    type="button"
-                    variant="outline"
-                    onClick={() => setCurrentStep(3)}
-                  >
-                    <ChevronLeft className="mr-2 h-4 w-4" /> Voltar
-                  </Button>
-                  <Button
-                    type="button"
-                    onClick={onSubmitFinal}
-                    className="bg-primary hover:bg-primary/90 text-primary-foreground font-bold"
-                  >
-                    Finalizar Cadastro
-                  </Button>
+                <div className="flex justify-between pt-4">
+                  <Button type="button" variant="outline" onClick={() => setCurrentStep(2)}><ChevronLeft className="mr-2 h-4 w-4" /> Voltar</Button>
+                  <Button type="submit" size="lg">Finalizar Cadastro <CheckCircle2 className="ml-2 h-4 w-4" /></Button>
                 </div>
-              </div>
+              </form>
             )}
           </Card>
         </div>
       </main>
-
       <Footer />
     </div>
   );
