@@ -8,8 +8,9 @@ export const Hero = () => {
   const [activeTab, setActiveTab] = useState<"hire" | "register">("hire");
 
   return (
-    <section className="relative bg-black overflow-hidden">
-      <div className="absolute inset-0 opacity-30">
+    <section className="relative bg-black overflow-hidden min-h-[600px] md:min-h-[700px]">
+      {/* Video Background */}
+      <div className="absolute inset-0 opacity-40">
         <video 
           autoPlay 
           loop 
@@ -21,7 +22,10 @@ export const Hero = () => {
         </video>
       </div>
       
-      <div className="container mx-auto px-4 py-16 md:py-24 relative z-10">
+      {/* Gradient Overlay */}
+      <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/50 to-black/80" />
+      
+      <div className="container mx-auto px-4 py-20 md:py-28 relative z-10">
         <div className="max-w-3xl">
           {/* Tabs */}
           <div className="flex gap-4 mb-8">
