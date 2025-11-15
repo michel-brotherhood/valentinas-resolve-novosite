@@ -2,10 +2,60 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Search } from "lucide-react";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { z } from "zod";
+import { useToast } from "@/hooks/use-toast";
+
+const searchSchema = z.object({
+  query: z.string().trim().min(2, "Digite pelo menos 2 caracteres").max(100, "Pesquisa muito longa"),
+});
 
 export const Hero = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [activeTab, setActiveTab] = useState<"hire" | "register">("hire");
+  const navigate = useNavigate();
+  const { toast } = useToast();
+
+  const handleSearch = () => {
+    const trimmedQuery = searchQuery.trim();
+    
+    // Allow empty search
+    if (trimmedQuery === "") {
+      if (activeTab === "register") {
+        navigate('/registro-profissional');
+      } else {
+        navigate('/servicos');
+      }
+      return;
+    }
+
+    // Validate search query
+    try {
+      searchSchema.parse({ query: trimmedQuery });
+      
+      const encodedQuery = encodeURIComponent(trimmedQuery);
+      
+      if (activeTab === "register") {
+        navigate(`/registro-profissional?categoria=${encodedQuery}`);
+      } else {
+        navigate(`/contratar-servico?servico=${encodedQuery}`);
+      }
+    } catch (error) {
+      if (error instanceof z.ZodError) {
+        toast({
+          title: "Erro",
+          description: error.errors[0].message,
+          variant: "destructive",
+        });
+      }
+    }
+  };
+
+  const handleKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === 'Enter') {
+      handleSearch();
+    }
+  };
 
   return (
     <section className="relative bg-black overflow-hidden min-h-[600px] md:min-h-[700px]">
@@ -82,25 +132,25 @@ export const Hero = () => {
             <div className="relative flex-1">
               <Input
                 type="text"
-                placeholder='Procure "contabilidade", "limpeza", "consultoria"...'
+                placeholder={
+                  activeTab === "hire" 
+                    ? 'Procure "contabilidade", "limpeza", "consultoria"...'
+                    : 'Procure "domésticos", "beleza", "saúde"...'
+                }
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
+                onKeyPress={handleKeyPress}
                 className="h-14 pl-4 pr-12 text-base bg-white border-white/20"
+                maxLength={100}
               />
               <Search className="absolute right-4 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
             </div>
             <Button 
               size="lg"
-              className="h-14 px-8 shadow__btn"
-              onClick={() => {
-                if (activeTab === "register") {
-                  window.location.href = '/registro-profissional';
-                } else {
-                  window.location.href = '/servicos';
-                }
-              }}
+              className="h-14 px-6 md:px-8 shadow__btn"
+              onClick={handleSearch}
             >
-              Começar
+              {activeTab === "hire" ? "Buscar" : "Começar"}
             </Button>
           </div>
         </div>
