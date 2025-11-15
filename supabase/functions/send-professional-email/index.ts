@@ -11,17 +11,21 @@ const corsHeaders = {
 
 interface ProfessionalEmailRequest {
   fullName: string;
-  email: string;
-  phone: string;
   cpf: string;
+  birthDate: string;
+  phone: string;
+  email: string;
   address: string;
-  city: string;
+  serviceArea: string;
   experience: string;
-  education: string;
-  certifications?: string;
-  categories: string[];
+  education?: string;
+  availability: string;
+  homeService: string;
   description: string;
-  hourlyRate: string;
+  signature: string;
+  idDocumentCount: number;
+  addressProofCount: number;
+  certificatesCount: number;
 }
 
 const handler = async (req: Request): Promise<Response> => {
@@ -46,30 +50,33 @@ const handler = async (req: Request): Promise<Response> => {
           </h1>
           
           <div style="background-color: #f5f5f5; padding: 20px; border-radius: 8px; margin: 20px 0;">
-            <h2 style="color: #333; margin-top: 0;">Informações Pessoais</h2>
+            <h2 style="color: #333; margin-top: 0;">Dados Pessoais e de Contato</h2>
             <p><strong>Nome Completo:</strong> ${data.fullName}</p>
-            <p><strong>Email:</strong> ${data.email}</p>
-            <p><strong>Telefone:</strong> ${data.phone}</p>
-            <p><strong>CPF:</strong> ${data.cpf}</p>
+            <p><strong>CPF/CNPJ:</strong> ${data.cpf}</p>
+            <p><strong>Data de Nascimento:</strong> ${data.birthDate}</p>
+            <p><strong>Telefone/WhatsApp:</strong> ${data.phone}</p>
+            <p><strong>E-mail:</strong> ${data.email}</p>
             <p><strong>Endereço:</strong> ${data.address}</p>
-            <p><strong>Cidade:</strong> ${data.city}</p>
           </div>
           
           <div style="background-color: #fff; padding: 20px; border: 1px solid #ddd; border-radius: 8px; margin: 20px 0;">
-            <h2 style="color: #333; margin-top: 0;">Qualificações</h2>
-            <p><strong>Experiência:</strong></p>
-            <p style="white-space: pre-wrap;">${data.experience}</p>
-            <p><strong>Formação:</strong></p>
+            <h2 style="color: #333; margin-top: 0;">Informações Profissionais</h2>
+            <p><strong>Área de Atuação:</strong> ${data.serviceArea}</p>
+            <p><strong>Tempo de Experiência:</strong> ${data.experience}</p>
+            <p><strong>Formação/Certificações:</strong></p>
             <p style="white-space: pre-wrap;">${data.education}</p>
-            ${data.certifications ? `<p><strong>Certificações:</strong></p><p style="white-space: pre-wrap;">${data.certifications}</p>` : ''}
+            <p><strong>Disponibilidade:</strong> ${data.availability}</p>
+            <p><strong>Atende em Domicílio:</strong> ${data.homeService}</p>
+            <p><strong>Descrição dos Serviços:</strong></p>
+            <p style="white-space: pre-wrap;">${data.description}</p>
           </div>
           
           <div style="background-color: #f5f5f5; padding: 20px; border-radius: 8px; margin: 20px 0;">
-            <h2 style="color: #333; margin-top: 0;">Serviços Oferecidos</h2>
-            <p><strong>Categorias:</strong> ${data.categories.join(', ')}</p>
-            <p><strong>Descrição dos Serviços:</strong></p>
-            <p style="white-space: pre-wrap;">${data.description}</p>
-            <p><strong>Valor por Hora:</strong> ${data.hourlyRate}</p>
+            <h2 style="color: #333; margin-top: 0;">Documentação</h2>
+            <p><strong>Documento de Identificação:</strong> ${data.idDocumentCount} arquivo(s)</p>
+            <p><strong>Comprovante de Residência:</strong> ${data.addressProofCount} arquivo(s)</p>
+            <p><strong>Certificados:</strong> ${data.certificatesCount} arquivo(s)</p>
+            <p><strong>Assinatura:</strong> ${data.signature}</p>
           </div>
           
           <p style="color: #666; font-size: 12px; margin-top: 30px;">

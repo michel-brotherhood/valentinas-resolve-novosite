@@ -13,12 +13,14 @@ interface HireServiceEmailRequest {
   name: string;
   email: string;
   phone: string;
-  service: string;
-  category: string;
-  date: string;
-  time: string;
-  address: string;
-  details: string;
+  cityNeighborhood: string;
+  serviceType: string;
+  description: string;
+  location: string;
+  urgency: string;
+  scheduledDate?: string;
+  contactPreference: string;
+  budgetType: string;
 }
 
 const handler = async (req: Request): Promise<Response> => {
@@ -29,42 +31,44 @@ const handler = async (req: Request): Promise<Response> => {
   try {
     const data: HireServiceEmailRequest = await req.json();
 
-    console.log("Sending hire service email:", data.service);
+    console.log("Sending hire service email:", data.serviceType);
 
     const emailResponse = await resend.emails.send({
       from: "Valentina's Resolve <onboarding@resend.dev>",
       to: ["comercial@valentinasresolve.com.br"],
       reply_to: data.email,
-      subject: `Nova Solicitação de Serviço - ${data.service}`,
+      subject: `Nova Solicitação de Orçamento - ${data.serviceType}`,
       html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
           <h1 style="color: #FF0080; border-bottom: 2px solid #FF0080; padding-bottom: 10px;">
-            Nova Solicitação de Serviço
+            Nova Solicitação de Orçamento
           </h1>
           
           <div style="background-color: #f5f5f5; padding: 20px; border-radius: 8px; margin: 20px 0;">
-            <h2 style="color: #333; margin-top: 0;">Informações do Cliente</h2>
-            <p><strong>Nome:</strong> ${data.name}</p>
-            <p><strong>Email:</strong> ${data.email}</p>
-            <p><strong>Telefone:</strong> ${data.phone}</p>
+            <h2 style="color: #333; margin-top: 0;">Dados do Cliente</h2>
+            <p><strong>Nome Completo:</strong> ${data.name}</p>
+            <p><strong>Telefone/WhatsApp:</strong> ${data.phone}</p>
+            <p><strong>E-mail:</strong> ${data.email}</p>
+            <p><strong>Cidade/Bairro:</strong> ${data.cityNeighborhood}</p>
           </div>
           
           <div style="background-color: #fff; padding: 20px; border: 1px solid #ddd; border-radius: 8px; margin: 20px 0;">
             <h2 style="color: #333; margin-top: 0;">Detalhes do Serviço</h2>
-            <p><strong>Serviço Solicitado:</strong> ${data.service}</p>
-            <p><strong>Categoria:</strong> ${data.category}</p>
-            <p><strong>Data Preferencial:</strong> ${data.date}</p>
-            <p><strong>Horário Preferencial:</strong> ${data.time}</p>
-            <p><strong>Endereço:</strong> ${data.address}</p>
+            <p><strong>Tipo de serviço desejado:</strong> ${data.serviceType}</p>
+            <p><strong>Descrição:</strong></p>
+            <p style="white-space: pre-wrap;">${data.description}</p>
+            <p><strong>Local de execução:</strong> ${data.location}</p>
+            <p><strong>Urgência:</strong> ${data.urgency}${data.scheduledDate ? ` - ${data.scheduledDate}` : ''}</p>
           </div>
           
           <div style="background-color: #f5f5f5; padding: 20px; border-radius: 8px; margin: 20px 0;">
-            <h3 style="color: #333; margin-top: 0;">Detalhes Adicionais:</h3>
-            <p style="white-space: pre-wrap;">${data.details}</p>
+            <h2 style="color: #333; margin-top: 0;">Preferências do Cliente</h2>
+            <p><strong>Deseja receber contato por:</strong> ${data.contactPreference}</p>
+            <p><strong>Orçamento desejado:</strong> ${data.budgetType}</p>
           </div>
           
           <p style="color: #666; font-size: 12px; margin-top: 30px;">
-            Solicitação enviada através do formulário de contratação de serviços do site Valentina's Resolve
+            Solicitação enviada através do formulário de orçamento do site Valentina's Resolve
           </p>
         </div>
       `,
