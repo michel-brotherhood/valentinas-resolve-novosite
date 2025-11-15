@@ -154,7 +154,7 @@ export const AccountingServices = () => {
               className="shadow__btn"
               onClick={() => navigate('/formulario-contabilidade')}
             >
-              Falar com a Contadora
+              Quero saber mais
             </Button>
             <Button 
               size="lg" 
