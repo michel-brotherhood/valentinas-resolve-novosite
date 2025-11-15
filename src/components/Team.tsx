@@ -9,6 +9,7 @@ import andressaImg from "@/assets/team/andressa.jpg";
 import daianeImg from "@/assets/team/daiane.jpg";
 import janainaImg from "@/assets/team/janaina.jpg";
 import kellenImg from "@/assets/team/kellen.jpg";
+import { Link } from "react-router-dom";
 
 const teamMembers = [
   {
@@ -138,12 +139,12 @@ export const Team = () => {
           <p className="text-muted-foreground mb-4">
             Interessado em fazer parte da nossa equipe?
           </p>
-          <a
-            href="/registro-profissional"
+          <Link
+            to="/registro-profissional"
             className="text-primary font-semibold hover:underline"
           >
             Cadastre-se como profissional →
-          </a>
+          </Link>
         </div>
       </div>
     </section>
