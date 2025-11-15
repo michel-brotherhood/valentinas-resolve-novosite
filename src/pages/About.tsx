@@ -151,7 +151,7 @@ export default function About() {
             <Button 
               size="lg" 
               className="bg-primary hover:bg-primary/90 text-black font-bold"
-              onClick={() => window.location.href = '/contato'}
+              onClick={() => window.location.href = '/contratar-servico'}
             >
               Contratar Profissional Agora
             </Button>

@@ -12,7 +12,7 @@ export const FloatingChat = () => {
   };
 
   const handleHireService = () => {
-    window.location.href = "/contratar-profissional";
+    window.location.href = "/contratar-servico";
     setIsOpen(false);
   };
 
