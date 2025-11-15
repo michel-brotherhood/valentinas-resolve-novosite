@@ -92,23 +92,20 @@ export const Footer = () => {
         </div>
 
         {/* Bottom Bar */}
-        <div className="pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-4">
+        <div className="pt-8 pb-20 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="text-sm text-white/60">
             © 2025 Valentina's Resolve. Todos os direitos reservados.
           </p>
           
           <div className="flex gap-4">
-            <a href="#" className="text-white/60 hover:text-primary transition-colors">
-              <Facebook className="h-5 w-5" />
-            </a>
-            <a href="#" className="text-white/60 hover:text-primary transition-colors">
+            <a 
+              href="https://www.instagram.com/valentinasresolve.brasil/" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="text-white/60 hover:text-primary transition-colors"
+              aria-label="Instagram Valentina's Resolve"
+            >
               <Instagram className="h-5 w-5" />
-            </a>
-            <a href="#" className="text-white/60 hover:text-primary transition-colors">
-              <Twitter className="h-5 w-5" />
-            </a>
-            <a href="#" className="text-white/60 hover:text-primary transition-colors">
-              <Linkedin className="h-5 w-5" />
             </a>
           </div>
         </div>

@@ -40,11 +40,13 @@ Acredito no potencial da Valentina's e no alcance dos nossos objetivos. Estamos 
     role: "Sócia e Atendimento ao Cliente",
     credential: "",
     image: janaina,
-    bio: `Sou uma profissional dedicada e comprometida com a excelência em tudo o que faço. Com uma trajetória marcada pela busca constante por aprendizado e desenvolvimento, trago para a Valentina's Resolve minha experiência e paixão por ajudar as pessoas.
+    bio: `Meu nome é Janaina Pimenta, tenho 32 anos e resido em Cacoal, Rondônia. Concluí o ensino médio e iniciei a graduação em Marketing, área pela qual me interesso e que contribui para ampliar minha visão estratégica e empreendedora.
 
-Como sócia da empresa, trabalho lado a lado com as demais fundadoras para garantir que a plataforma ofereça o melhor serviço possível, tanto para os profissionais quanto para os clientes. Minha dedicação e comprometimento são fundamentais para o sucesso da Valentina's Resolve.
+Minha trajetória profissional passou por diferentes experiências. Atuei como freelancer na Contável Contabilidade, o que me proporcionou aprendizado e abriu portas para novos projetos. Atualmente, sou sócia do Valentinas Resolve, empresa que administro em parceria com Andressa Mello, Daiane Amaral e Kellen Amaral, oferecendo soluções práticas e confiáveis para diferentes demandas.
 
-Acredito no poder da colaboração e no potencial de transformação que uma plataforma bem estruturada pode trazer para a vida das pessoas. Meu foco está em criar experiências positivas e duradouras para todos os envolvidos.`,
+Paralelamente, colaboro no negócio da minha família, junto ao meu pai, e também apoio as atividades de transporte rodoviário realizadas pelo meu esposo, que atua com caminhão próprio.
+
+Sou uma pessoa dedicada, organizada e comprometida, que valoriza a família e alia responsabilidade, profissionalismo e espírito empreendedor em cada etapa da vida.`,
     specialties: ["Gestão de Operações", "Atendimento ao Cliente", "Desenvolvimento"],
   },
   {
@@ -52,10 +54,14 @@ Acredito no poder da colaboração e no potencial de transformação que uma pla
     role: "Sócia e Diretora de Operações",
     credential: "",
     image: kellen,
-    bio: `Como co-fundadora da Valentina's Resolve, trabalho junto com minha irmã Daiane Amaral, Andressa Melo e Janaína Bessa para criar uma plataforma que conecta profissionais qualificados a clientes que precisam de serviços de qualidade.
+    bio: `Kellen Amaral é uma empreendedora dedicada, determinada e movida pelo propósito de transformar desafios em oportunidades. Desde os 17 anos, iniciou sua trajetória profissional ao lado da família, participando de diferentes empreendimentos e desenvolvendo, desde cedo, um forte senso de responsabilidade, gestão e liderança.
 
-Minha experiência e dedicação contribuem para construir algo que vai muito além de um negócio - estamos criando uma comunidade baseada em confiança, excelência e transformação. Nosso compromisso é fazer a diferença na vida das pessoas, oferecendo soluções práticas e eficientes.`,
-    specialties: ["Relacionamento com Cliente", "Parcerias Estratégicas", "Desenvolvimento de Negócios"],
+Motivada pelo desejo de cuidar de pessoas, formou-se como cuidadora de idosos, concluiu o curso de atendente de farmácia e iniciou sua formação em Técnico em Enfermagem. Em 2021, decidiu se mudar para Portugal, em busca de novas experiências e crescimento pessoal e profissional. No país, iniciou sua atuação na área de hotelaria e serviços de limpeza, onde se destacou pela dedicação, organização e pela capacidade de liderar equipes com empatia e excelência.
+
+Com o olhar voltado ao empreendedorismo, Kellen tornou-se sócia da irmã, Daiane Amaral, na Amaral Serviços, empresa sediada em Portugal que oferece soluções de limpeza e manutenção com foco em qualidade, confiança e atendimento humanizado. Essa parceria fortaleceu não apenas sua atuação internacional, mas também sua experiência em gestão de equipes e desenvolvimento de negócios.
+
+A partir dessa trajetória e da vivência com clientes e profissionais, Kellen identificou uma demanda crescente por serviços confiáveis e especializados em áreas essenciais, como cuidadores, babás e manicures. Unindo novamente sua visão à da irmã, passou a integrar também o Valentinas Resolve, empresa criada por Daiane Amaral com o propósito de conectar clientes e profissionais de forma segura, prática e humana. Assim, Kellen tornou-se sócia nas duas frentes — Amaral Serviços e Valentinas Resolve —, contribuindo para o crescimento e consolidação dos negócios tanto em Portugal quanto no Brasil.`,
+    specialties: ["Gestão de Operações", "Logística", "Liderança", "Empreendedorismo"],
   },
 ];
 
