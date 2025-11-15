@@ -124,7 +124,7 @@ const Services = () => {
     : filteredServicesList.length;
 
   const handleRequestQuote = (serviceName: string) => {
-    window.location.href = `/contratar-profissional?servico=${encodeURIComponent(serviceName)}`;
+    window.location.href = `/contratar-servico?servico=${encodeURIComponent(serviceName)}`;
   };
 
   return (

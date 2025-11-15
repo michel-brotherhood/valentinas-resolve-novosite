@@ -115,7 +115,7 @@ const CategoryPage = () => {
             <p className="text-lg text-muted-foreground mb-8">
               {description}
             </p>
-            <Link to="/contratar-profissional">
+            <Link to="/contratar-servico">
               <Button size="lg" className="gap-2">
                 Solicitar Orçamento
                 <ArrowRight className="w-5 h-5" />
@@ -167,7 +167,7 @@ const CategoryPage = () => {
                       </div>
                       <h3 className="font-semibold text-foreground">{service}</h3>
                     </div>
-                    <Link to="/contratar-profissional">
+                    <Link to="/contratar-servico">
                       <Button variant="outline" size="sm" className="w-full mt-2">
                         Solicitar
                       </Button>
@@ -204,7 +204,7 @@ const CategoryPage = () => {
           <p className="text-primary-foreground/90 mb-8 max-w-2xl mx-auto">
             Encontre os melhores profissionais de {categoryName} na sua região
           </p>
-          <Link to="/contratar-profissional">
+          <Link to="/contratar-servico">
             <Button size="lg" variant="secondary" className="gap-2">
               Solicitar Orçamento Grátis
               <ArrowRight className="w-5 h-5" />
