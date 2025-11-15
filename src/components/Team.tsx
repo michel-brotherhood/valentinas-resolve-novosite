@@ -29,7 +29,7 @@ const teamMembers = [
     specialties: ["Contabilidade Empresarial", "Planejamento Tributário", "Gestão Fiscal", "Assessoria Contábil"],
   },
   {
-    name: "Janaína",
+    name: "Janaína Pimenta",
     role: "Sócia e Atendimento ao Cliente",
     shortDescription: "Estratégia e desenvolvimento de negócios",
     fullDescription: "Sócia do Valentina's Resolve, com foco em atendimento ao cliente e desenvolvimento de negócios. Atua na expansão da plataforma e no estabelecimento de parcerias estratégicas para ampliar a oferta de serviços.",

@@ -38,7 +38,7 @@ Acredito no potencial da Valentina's e no alcance dos nossos objetivos. Estamos 
     specialties: ["Planejamento Tributário", "Consultoria Fiscal", "Gestão Financeira"],
   },
   {
-    name: "Janaína Bessa",
+    name: "Janaína Pimenta",
     role: "Sócia e Atendimento ao Cliente",
     credential: "",
     image: janaina,
