@@ -491,7 +491,7 @@ export default function Accounting() {
               <Button 
                 size="lg"
                 className="h-14 px-8 shadow__btn"
-                onClick={() => window.open('https://wa.me/5500000000000?text=Olá! Gostaria de falar com a contadora responsável sobre a Contabilidade Integrada Valentinas.', '_blank')}
+                onClick={() => window.open('https://wa.me/5569992715000?text=Olá! Gostaria de falar com a contadora responsável sobre a Contabilidade Integrada Valentinas.', '_blank')}
               >
                 Falar com a contadora responsável
               </Button>

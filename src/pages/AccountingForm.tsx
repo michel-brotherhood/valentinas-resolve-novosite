@@ -61,7 +61,7 @@ export default function AccountingForm() {
 Solicitação enviada através do formulário de Contabilidade Integrada Valentinas.`;
 
       const encodedMessage = encodeURIComponent(message);
-      window.open(`https://wa.me/5500000000000?text=${encodedMessage}`, "_blank");
+      window.open(`https://wa.me/5569992715000?text=${encodedMessage}`, "_blank");
 
       toast({
         title: "Solicitação enviada!",
