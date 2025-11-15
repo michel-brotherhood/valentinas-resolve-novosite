@@ -124,7 +124,15 @@ export default function Accounting() {
         {/* Hero Section */}
         <section className="relative py-24 overflow-hidden">
           <div className="absolute inset-0">
-            <img src={heroBg} alt="" className="w-full h-full object-cover" />
+            <video 
+              autoPlay 
+              loop 
+              muted 
+              playsInline
+              className="w-full h-full object-cover"
+            >
+              <source src="/videos/accounting-hero.mp4" type="video/mp4" />
+            </video>
             <div className="absolute inset-0 bg-black/60" />
           </div>
           <div className="container mx-auto px-4 relative z-10">
@@ -320,6 +328,91 @@ export default function Accounting() {
                     </div>
                   </Card>
                 ))}
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Bloco 4.5 - FAQ */}
+        <section className="py-20 bg-gradient-to-b from-secondary/20 to-background">
+          <div className="container mx-auto px-4">
+            <div className="max-w-4xl mx-auto">
+              <h2 className="text-3xl md:text-5xl font-bold text-center text-foreground mb-12">
+                Perguntas Frequentes
+              </h2>
+              
+              <div className="space-y-4">
+                <Card className="p-6 bg-card/50 backdrop-blur border-primary/10 hover:border-primary/30 transition-all">
+                  <h3 className="text-xl font-bold text-foreground mb-3 flex items-start gap-2">
+                    <CheckCircle2 className="h-5 w-5 text-primary flex-shrink-0 mt-1" />
+                    Como funciona a contabilidade para MEI?
+                  </h3>
+                  <p className="text-muted-foreground pl-7">
+                    Para MEIs, cuidamos de toda a parte fiscal: emissão de notas fiscais, guias DAS mensais, 
+                    relatórios de receitas e despesas, e a declaração anual (DASN-SIMEI). Mantemos seu 
+                    enquadramento sempre regular e enviamos alertas de vencimentos.
+                  </p>
+                </Card>
+
+                <Card className="p-6 bg-card/50 backdrop-blur border-primary/10 hover:border-primary/30 transition-all">
+                  <h3 className="text-xl font-bold text-foreground mb-3 flex items-start gap-2">
+                    <CheckCircle2 className="h-5 w-5 text-primary flex-shrink-0 mt-1" />
+                    O que está incluído na Declaração de IRPF?
+                  </h3>
+                  <p className="text-muted-foreground pl-7">
+                    Realizamos a apuração completa do Imposto de Renda Pessoa Física, incluindo rendimentos, 
+                    despesas dedutíveis, bens e direitos, dívidas e ônus reais. Identificamos oportunidades 
+                    de dedução legal e garantimos conformidade total com a Receita Federal.
+                  </p>
+                </Card>
+
+                <Card className="p-6 bg-card/50 backdrop-blur border-primary/10 hover:border-primary/30 transition-all">
+                  <h3 className="text-xl font-bold text-foreground mb-3 flex items-start gap-2">
+                    <CheckCircle2 className="h-5 w-5 text-primary flex-shrink-0 mt-1" />
+                    Como funciona a folha de pagamento e eSocial?
+                  </h3>
+                  <p className="text-muted-foreground pl-7">
+                    Processamos a folha de pagamento completa (admissões, rescisões, férias, 13º salário) 
+                    e enviamos todos os eventos ao eSocial dentro dos prazos legais. Geramos guias de FGTS, 
+                    INSS e garantimos conformidade total com a legislação trabalhista.
+                  </p>
+                </Card>
+
+                <Card className="p-6 bg-card/50 backdrop-blur border-primary/10 hover:border-primary/30 transition-all">
+                  <h3 className="text-xl font-bold text-foreground mb-3 flex items-start gap-2">
+                    <CheckCircle2 className="h-5 w-5 text-primary flex-shrink-0 mt-1" />
+                    Qual a diferença entre MEI, EI e LTDA?
+                  </h3>
+                  <p className="text-muted-foreground pl-7">
+                    MEI é para faturamento até R$ 81 mil/ano com tributação simplificada. EI (Empresário Individual) 
+                    não tem limite de faturamento mas responde com bens pessoais. LTDA tem sócios e patrimônio 
+                    separado da pessoa física. Analisamos seu caso e indicamos o melhor enquadramento.
+                  </p>
+                </Card>
+
+                <Card className="p-6 bg-card/50 backdrop-blur border-primary/10 hover:border-primary/30 transition-all">
+                  <h3 className="text-xl font-bold text-foreground mb-3 flex items-start gap-2">
+                    <CheckCircle2 className="h-5 w-5 text-primary flex-shrink-0 mt-1" />
+                    Como funciona o Carnê-Leão para autônomos?
+                  </h3>
+                  <p className="text-muted-foreground pl-7">
+                    Autônomos que recebem de pessoas físicas devem recolher o imposto mensalmente via Carnê-Leão. 
+                    Calculamos o valor devido, emitimos as DARFs, controlamos receitas e despesas profissionais, 
+                    e mantemos tudo organizado para a declaração anual.
+                  </p>
+                </Card>
+
+                <Card className="p-6 bg-card/50 backdrop-blur border-primary/10 hover:border-primary/30 transition-all">
+                  <h3 className="text-xl font-bold text-foreground mb-3 flex items-start gap-2">
+                    <CheckCircle2 className="h-5 w-5 text-primary flex-shrink-0 mt-1" />
+                    Quanto tempo leva para abrir uma empresa?
+                  </h3>
+                  <p className="text-muted-foreground pl-7">
+                    Com nosso processo otimizado, a abertura de MEI leva de 1 a 3 dias úteis. Para EI e LTDA, 
+                    o prazo médio é de 7 a 15 dias úteis, dependendo da cidade e atividade. Cuidamos de todo 
+                    o processo: registro, alvarás, inscrições e configuração fiscal.
+                  </p>
+                </Card>
               </div>
             </div>
           </div>
