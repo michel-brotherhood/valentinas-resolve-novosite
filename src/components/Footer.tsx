@@ -19,10 +19,10 @@ export const Footer = () => {
               CNPJ: 35.677.143/0001-17
             </p>
             <p className="text-xs text-white/50 mb-3 text-center md:text-left">
-              Telefone: (69) 99363-1073
+              Telefone: (69) 99271-5000
             </p>
             <p className="text-xs text-white/50 mb-4 text-center md:text-left">
-              148+ serviços especializados em 15 categorias
+              200+ serviços especializados em 15 categorias
             </p>
             <a 
               href="https://www.instagram.com/valentinasresolve.brasil/" 

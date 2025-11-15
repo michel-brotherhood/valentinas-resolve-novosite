@@ -93,12 +93,12 @@ export default function Contact() {
         </section>
 
         {/* Contact Form & Info */}
-        <section className="py-16 bg-background">
+        <section className="py-8 md:py-16 bg-background">
           <div className="container mx-auto px-4">
-            <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-12">
+            <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-8 md:gap-12">
               {/* Contact Form */}
-              <Card className="p-8">
-                <h2 className="text-2xl font-bold text-foreground mb-6">
+              <Card className="p-4 md:p-8">
+                <h2 className="text-xl md:text-2xl font-bold text-foreground mb-4 md:mb-6">
                   Solicite um Orçamento
                 </h2>
                 <form onSubmit={handleSubmit} className="space-y-6">
@@ -198,9 +198,9 @@ export default function Contact() {
               </Card>
 
               {/* Contact Info */}
-              <div className="space-y-6">
+              <div className="space-y-4 md:space-y-6">
                 <div>
-                  <h2 className="text-2xl font-bold text-foreground mb-6">
+                  <h2 className="text-xl md:text-2xl font-bold text-foreground mb-4 md:mb-6">
                     Informações de Contato
                   </h2>
                   <p className="text-muted-foreground mb-8">
@@ -209,10 +209,10 @@ export default function Contact() {
                   </p>
                 </div>
 
-                <Card className="p-6">
-                  <div className="flex items-start gap-4 mb-6">
-                    <div className="h-12 w-12 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
-                      <Phone className="h-6 w-6 text-primary" />
+                <Card className="p-4 md:p-6">
+                  <div className="flex items-start gap-3 md:gap-4 mb-4 md:mb-6">
+                    <div className="h-10 w-10 md:h-12 md:w-12 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
+                      <Phone className="h-5 w-5 md:h-6 md:w-6 text-primary" />
                     </div>
                     <div>
                     <h3 className="font-semibold text-foreground mb-1">Telefone</h3>
@@ -221,9 +221,9 @@ export default function Contact() {
                     </div>
                   </div>
 
-                  <div className="flex items-start gap-4 mb-6">
-                    <div className="h-12 w-12 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
-                      <Mail className="h-6 w-6 text-primary" />
+                  <div className="flex items-start gap-3 md:gap-4 mb-4 md:mb-6">
+                    <div className="h-10 w-10 md:h-12 md:w-12 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
+                      <Mail className="h-5 w-5 md:h-6 md:w-6 text-primary" />
                     </div>
                     <div>
                       <h3 className="font-semibold text-foreground mb-1">Email</h3>
@@ -231,9 +231,9 @@ export default function Contact() {
                     </div>
                   </div>
 
-                  <div className="flex items-start gap-4 mb-6">
-                    <div className="h-12 w-12 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
-                      <MapPin className="h-6 w-6 text-primary" />
+                  <div className="flex items-start gap-3 md:gap-4 mb-4 md:mb-6">
+                    <div className="h-10 w-10 md:h-12 md:w-12 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
+                      <MapPin className="h-5 w-5 md:h-6 md:w-6 text-primary" />
                     </div>
                     <div>
                       <h3 className="font-semibold text-foreground mb-1">Endereço</h3>
@@ -244,9 +244,9 @@ export default function Contact() {
                     </div>
                   </div>
 
-                  <div className="flex items-start gap-4">
-                    <div className="h-12 w-12 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
-                      <Clock className="h-6 w-6 text-primary" />
+                  <div className="flex items-start gap-3 md:gap-4">
+                    <div className="h-10 w-10 md:h-12 md:w-12 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
+                      <Clock className="h-5 w-5 md:h-6 md:w-6 text-primary" />
                     </div>
                     <div>
                       <h3 className="font-semibold text-foreground mb-1">Horário</h3>
@@ -258,8 +258,8 @@ export default function Contact() {
                   </div>
                 </Card>
 
-                <Card className="p-6 bg-gradient-to-br from-primary/10 to-primary/5">
-                  <h3 className="text-xl font-bold text-foreground mb-3">
+                <Card className="p-4 md:p-6 bg-gradient-to-br from-primary/10 to-primary/5">
+                  <h3 className="text-lg md:text-xl font-bold text-foreground mb-2 md:mb-3">
                     Resposta Rápida
                   </h3>
                   <p className="text-muted-foreground mb-4">
