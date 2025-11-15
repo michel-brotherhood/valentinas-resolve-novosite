@@ -94,11 +94,11 @@ export default function TeamPage() {
                 {teamMembers.map((member, index) => (
                   <Card key={index} className="p-8 hover:shadow-lg transition-shadow">
                     <div className="flex flex-col items-center">
-                      <div className="w-48 h-48 rounded-full overflow-hidden mb-6 border-4 border-primary/20">
+                      <div className="w-48 h-64 rounded-2xl overflow-hidden mb-6 border-4 border-primary/20">
                         <img
                           src={member.image}
                           alt={member.name}
-                          className="w-full h-full object-cover object-top"
+                          className="w-full h-full object-cover object-center"
                         />
                       </div>
                       <h3 className="text-2xl font-bold text-foreground mb-1 text-center">
