@@ -1,5 +1,6 @@
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import { useNavigate } from "react-router-dom";
 import {
   FileText,
   Calculator,
@@ -42,6 +43,8 @@ const benefits = [
 ];
 
 export const AccountingServices = () => {
+  const navigate = useNavigate();
+  
   return (
     <section id="contabilidade-integrada" className="py-16 bg-gradient-to-b from-background to-secondary/30">
       <div className="container mx-auto px-4">
@@ -149,14 +152,14 @@ export const AccountingServices = () => {
             <Button 
               size="lg" 
               className="shadow__btn"
-              onClick={() => window.location.href = '/contabilidade-formulario'}
+              onClick={() => navigate('/formulario-contabilidade')}
             >
               Falar com a Contadora
             </Button>
             <Button 
               size="lg" 
               variant="outline"
-              onClick={() => window.location.href = '/servicos'}
+              onClick={() => navigate('/servicos')}
             >
               Ver Todos os Serviços
             </Button>

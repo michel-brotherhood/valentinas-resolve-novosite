@@ -1,10 +1,11 @@
 import { Button } from "@/components/ui/button";
 import { useState, useEffect, useRef } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import logo from "@/assets/valentinas-logo.webp";
 
 export const Header = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const navigate = useNavigate();
   const menuRef = useRef<HTMLDivElement>(null);
   const touchStartY = useRef<number>(0);
   const touchEndY = useRef<number>(0);
@@ -109,7 +110,7 @@ export const Header = () => {
               </Link>
               <button 
                 className="button-3d ml-2"
-                onClick={() => window.location.href = '/contratar-servico'}
+                onClick={() => navigate('/contratar-servico')}
               >
                 <span className="button-3d-top text-sm">
                   Contratar Profissional
@@ -164,7 +165,7 @@ export const Header = () => {
               className="w-full justify-start text-white hover:text-primary hover:bg-primary/10 transition-all duration-300 text-lg py-7"
               onClick={() => {
                 setMobileMenuOpen(false);
-                window.location.href = '/';
+                navigate('/');
               }}
             >
               Início
@@ -174,7 +175,7 @@ export const Header = () => {
               className="w-full justify-start text-white hover:text-primary hover:bg-primary/10 transition-all duration-300 text-lg py-7"
               onClick={() => {
                 setMobileMenuOpen(false);
-                window.location.href = '/sobre';
+                navigate('/sobre');
               }}
             >
               Sobre
@@ -184,7 +185,7 @@ export const Header = () => {
               className="w-full justify-start text-white hover:text-primary hover:bg-primary/10 transition-all duration-300 text-lg py-7"
               onClick={() => {
                 setMobileMenuOpen(false);
-                window.location.href = '/servicos';
+                navigate('/servicos');
               }}
             >
               Serviços
@@ -194,7 +195,7 @@ export const Header = () => {
               className="w-full justify-start text-white hover:text-primary hover:bg-primary/10 transition-all duration-300 text-lg py-7"
               onClick={() => {
                 setMobileMenuOpen(false);
-                window.location.href = '/contabilidade';
+                navigate('/contabilidade');
               }}
             >
               Contabilidade Integrada
@@ -204,7 +205,7 @@ export const Header = () => {
               className="w-full justify-start text-white hover:text-primary hover:bg-primary/10 transition-all duration-300 text-lg py-7"
               onClick={() => {
                 setMobileMenuOpen(false);
-                window.location.href = '/equipe';
+                navigate('/equipe');
               }}
             >
               Equipe
@@ -214,7 +215,7 @@ export const Header = () => {
               className="w-full justify-start text-white hover:text-primary hover:bg-primary/10 transition-all duration-300 text-lg py-7"
               onClick={() => {
                 setMobileMenuOpen(false);
-                window.location.href = '/trabalhe-conosco';
+                navigate('/trabalhe-conosco');
               }}
             >
               Trabalhe Conosco
@@ -224,7 +225,7 @@ export const Header = () => {
               className="w-full justify-start text-white hover:text-primary hover:bg-primary/10 transition-all duration-300 text-lg py-7"
               onClick={() => {
                 setMobileMenuOpen(false);
-                window.location.href = '/contato';
+                navigate('/contato');
               }}
             >
               Contato
@@ -234,7 +235,7 @@ export const Header = () => {
                 className="button-3d w-full"
                 onClick={() => {
                   setMobileMenuOpen(false);
-                  window.location.href = '/contratar-servico';
+                  navigate('/contratar-servico');
                 }}
               >
                 <span className="button-3d-top text-base">

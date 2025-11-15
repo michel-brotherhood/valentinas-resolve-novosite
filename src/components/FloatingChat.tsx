@@ -1,10 +1,12 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
+import { useNavigate } from "react-router-dom";
 import { MessageCircle, X, HelpCircle, Briefcase, UserPlus } from "lucide-react";
 
 export const FloatingChat = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const navigate = useNavigate();
 
   const handleWhatsApp = () => {
     window.open("https://wa.me/5500000000000?text=Olá! Tenho dúvidas sobre a Valentina's Resolve", "_blank");
@@ -12,12 +14,12 @@ export const FloatingChat = () => {
   };
 
   const handleHireService = () => {
-    window.location.href = "/contratar-servico";
+    navigate("/contratar-servico");
     setIsOpen(false);
   };
 
   const handleRegister = () => {
-    window.location.href = "/registro-profissional";
+    navigate("/registro-profissional");
     setIsOpen(false);
   };
 
