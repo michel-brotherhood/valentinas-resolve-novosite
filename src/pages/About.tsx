@@ -3,21 +3,38 @@ import { Footer } from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Users, Target, Award, TrendingUp } from "lucide-react";
+import { useScrollReveal } from "@/hooks/use-scroll-reveal";
+import heroBg from "@/assets/hero-bg.jpg";
 
 export default function About() {
+  const { elementRef, isVisible } = useScrollReveal();
+
   return (
     <div className="min-h-screen flex flex-col">
       <Header />
       
       <main className="flex-1">
-        {/* Hero Section */}
-        <section className="bg-gradient-to-b from-black to-primary/20 py-20">
-          <div className="container mx-auto px-4">
+        {/* Hero Section with Parallax Background */}
+        <section className="relative bg-black overflow-hidden py-32 md:py-40">
+          {/* Parallax Background */}
+          <div 
+            className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+            style={{
+              backgroundImage: `url(${heroBg})`,
+              backgroundAttachment: 'fixed',
+              opacity: 0.3
+            }}
+          />
+          
+          {/* Gradient Overlay */}
+          <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/60 to-black/90" />
+          
+          <div className="container mx-auto px-4 relative z-10">
             <div className="max-w-4xl mx-auto text-center">
-              <h1 className="text-4xl md:text-6xl font-bold text-white mb-6">
+              <h1 className="text-4xl md:text-6xl font-bold text-white mb-6 animate-fade-in">
                 Sobre a Valentina's Resolve
               </h1>
-              <p className="text-xl text-white/90">
+              <p className="text-xl md:text-2xl text-white/90 animate-fade-in">
                 Negócios que conectam. Resultados que transformam.
               </p>
             </div>
@@ -25,10 +42,15 @@ export default function About() {
         </section>
 
         {/* Main Content */}
-        <section className="py-16 bg-background">
+        <section className="py-16 md:py-24 bg-background">
           <div className="container mx-auto px-4">
-            <div className="max-w-4xl mx-auto">
-              <Card className="p-8 md:p-12 mb-12">
+            <div 
+              ref={elementRef}
+              className={`max-w-4xl mx-auto transition-all duration-1000 ${
+                isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+              }`}
+            >
+              <Card className="p-6 md:p-12 mb-12">
                 <h2 className="text-3xl font-bold text-foreground mb-6">
                   Conheça a Valentina's Resolve
                 </h2>
