@@ -80,7 +80,7 @@ export const ProfessionalCallout = () => {
             <div className="text-center">
               <Button 
                 size="lg" 
-                className="bg-primary hover:bg-primary/90 text-black font-bold"
+                className="shadow__btn"
                 onClick={() => window.location.href = '/trabalhe-conosco'}
               >
                 Trabalhe Conosco - Cadastre-se Agora
