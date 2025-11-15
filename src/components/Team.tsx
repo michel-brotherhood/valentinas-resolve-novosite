@@ -65,11 +65,11 @@ export const Team = () => {
                 <Card className="overflow-hidden">
                   <AccordionTrigger className="px-6 py-4 hover:no-underline hover:bg-secondary/50 transition-colors">
                     <div className="flex items-center gap-4 text-left w-full">
-                      <div className="w-16 h-16 rounded-full overflow-hidden flex-shrink-0 border-2 border-primary">
+                      <div className="w-20 h-24 rounded-lg overflow-hidden flex-shrink-0 border-2 border-primary">
                         <img
                           src={member.image}
                           alt={member.name}
-                          className="w-full h-full object-cover"
+                          className="w-full h-full object-cover object-top"
                         />
                       </div>
                       <div className="flex-1">
