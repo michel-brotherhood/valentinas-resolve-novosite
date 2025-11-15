@@ -9,7 +9,7 @@ export const FloatingChat = () => {
   const navigate = useNavigate();
 
   const handleWhatsApp = () => {
-    window.open("https://wa.me/5500000000000?text=Olá! Tenho dúvidas sobre a Valentina's Resolve", "_blank");
+    window.open("https://wa.me/5569993631073?text=Olá! Tenho dúvidas sobre a Valentina's Resolve", "_blank");
     setIsOpen(false);
   };
 

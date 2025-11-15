@@ -42,7 +42,7 @@ export default function Contact() {
       // Simulate API call
       setTimeout(() => {
         const whatsappMessage = `Olá! Gostaria de solicitar um orçamento:\n\nNome: ${formData.name}\nEmail: ${formData.email}\nTelefone: ${formData.phone}\nServiço: ${formData.service}\nMensagem: ${formData.message}`;
-        const whatsappUrl = `https://wa.me/5511999999999?text=${encodeURIComponent(whatsappMessage)}`;
+        const whatsappUrl = `https://wa.me/5569993631073?text=${encodeURIComponent(whatsappMessage)}`;
         window.open(whatsappUrl, '_blank');
         
         toast({
@@ -215,8 +215,8 @@ export default function Contact() {
                       <Phone className="h-6 w-6 text-primary" />
                     </div>
                     <div>
-                      <h3 className="font-semibold text-foreground mb-1">Telefone</h3>
-                      <p className="text-muted-foreground">(11) 99999-9999</p>
+                    <h3 className="font-semibold text-foreground mb-1">Telefone</h3>
+                      <p className="text-muted-foreground">(69) 99363-1073</p>
                       <p className="text-sm text-muted-foreground">WhatsApp disponível</p>
                     </div>
                   </div>
@@ -227,7 +227,7 @@ export default function Contact() {
                     </div>
                     <div>
                       <h3 className="font-semibold text-foreground mb-1">Email</h3>
-                      <p className="text-muted-foreground">contato@valentinasresolve.com.br</p>
+                      <p className="text-muted-foreground">atendimentoaocliente@valentinasresolve.com.br</p>
                     </div>
                   </div>
 
@@ -238,8 +238,8 @@ export default function Contact() {
                     <div>
                       <h3 className="font-semibold text-foreground mb-1">Endereço</h3>
                       <p className="text-muted-foreground">
-                        São Paulo, SP<br />
-                        Atendemos toda a região metropolitana
+                        Rua Osvaldo Cruz, 770<br />
+                        Ouro Preto do Oeste - RO, 76.920-000
                       </p>
                     </div>
                   </div>
@@ -267,7 +267,7 @@ export default function Contact() {
                   </p>
                   <Button
                     className="w-full bg-primary hover:bg-primary/90 text-black font-bold"
-                    onClick={() => window.open('https://wa.me/5511999999999', '_blank')}
+                    onClick={() => window.open('https://wa.me/5569993631073', '_blank')}
                   >
                     Falar no WhatsApp Agora
                   </Button>

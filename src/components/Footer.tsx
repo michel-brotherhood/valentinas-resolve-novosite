@@ -12,8 +12,14 @@ export const Footer = () => {
             <div className="mb-4">
               <img src={logo} alt="Valentina's Resolve" className="h-12 w-auto" />
             </div>
-            <p className="text-sm text-white/70 mb-3 text-center md:text-left">
+            <p className="text-sm text-white/70 mb-2 text-center md:text-left">
               Negócios que conectam, resultados que transformam.
+            </p>
+            <p className="text-xs text-white/50 mb-2 text-center md:text-left">
+              CNPJ: 35.677.143/0001-17
+            </p>
+            <p className="text-xs text-white/50 mb-3 text-center md:text-left">
+              Telefone: (69) 99363-1073
             </p>
             <p className="text-xs text-white/50 mb-4 text-center md:text-left">
               148+ serviços especializados em 15 categorias
