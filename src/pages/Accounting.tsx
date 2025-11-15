@@ -21,6 +21,7 @@ import {
 import andressa from "@/assets/team/andressa.jpg";
 import heroBg from "@/assets/accounting-hero-bg.jpg";
 import differentialsBg from "@/assets/accounting-differentials-bg.jpg";
+import differentialsParallaxBg from "@/assets/accounting-differentials-parallax.jpg";
 import ctaBg from "@/assets/accounting-cta-bg.jpg";
 
 const professionalServices = [
@@ -192,10 +193,10 @@ export default function Accounting() {
               <div className="text-center">
                 <Button 
                   size="lg"
-                  className="bg-primary hover:bg-primary/90 text-black font-bold"
-                  onClick={() => window.location.href = '/formulario-contabilidade'}
+                  className="h-14 px-8 shadow__btn"
+                  onClick={() => window.location.href = '/contabilidade-formulario'}
                 >
-                  Assinar agora
+                  Fale com a Andressa
                 </Button>
               </div>
             </div>
@@ -273,10 +274,10 @@ export default function Accounting() {
               <div className="text-center">
                 <Button 
                   size="lg"
-                  className="bg-primary hover:bg-primary/90 text-black font-bold"
-                  onClick={() => window.location.href = '/formulario-contabilidade'}
+                  className="h-14 px-8 shadow__btn"
+                  onClick={() => window.location.href = '/contabilidade-formulario'}
                 >
-                  Contratar plano
+                  Contratar agora
                 </Button>
               </div>
             </div>
@@ -477,7 +478,7 @@ export default function Accounting() {
               </p>
               <Button 
                 size="lg"
-                className="bg-primary hover:bg-primary/90 text-black font-bold text-lg px-8 py-6 h-auto shadow-[0_0_30px_rgba(255,204,0,0.3)] hover:shadow-[0_0_40px_rgba(255,204,0,0.5)] transition-all"
+                className="h-14 px-8 shadow__btn"
                 onClick={() => window.open('https://wa.me/5500000000000?text=Olá! Gostaria de falar com a contadora responsável sobre a Contabilidade Integrada Valentinas.', '_blank')}
               >
                 Falar com a contadora responsável
