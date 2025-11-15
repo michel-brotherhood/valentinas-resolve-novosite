@@ -86,7 +86,7 @@ export const ProfessionalCallout = () => {
                 className="shadow__btn"
                 onClick={() => navigate('/trabalhe-conosco')}
               >
-                Trabalhe Conosco - Cadastre-se Agora
+                Trabalhe Conosco
               </Button>
             </div>
           </Card>
