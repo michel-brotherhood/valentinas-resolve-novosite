@@ -96,7 +96,7 @@ export const FAQ = () => {
             Não encontrou a resposta que procurava?
           </p>
           <a
-            href="https://wa.me/5500000000000"
+            href="https://wa.me/5569992715000"
             target="_blank"
             rel="noopener noreferrer"
             className="text-primary font-semibold hover:underline"

@@ -93,7 +93,7 @@ export default function HireService() {
 *Tipo de orçamento:* ${formData.budgetType === "estimate" ? "Estimativa" : "Detalhado com visita"}`;
 
       const encodedMessage = encodeURIComponent(message);
-      window.open(`https://wa.me/5500000000000?text=${encodedMessage}`, "_blank");
+      window.open(`https://wa.me/5569992715000?text=${encodedMessage}`, "_blank");
 
       toast({
         title: "Solicitação enviada!",
