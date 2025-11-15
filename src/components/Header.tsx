@@ -109,7 +109,7 @@ export const Header = () => {
               </Link>
               <button 
                 className="button-3d ml-2"
-                onClick={() => window.location.href = '/contato'}
+                onClick={() => window.location.href = '/contratar-servico'}
               >
                 <span className="button-3d-top text-sm">
                   Contratar Profissional
@@ -137,10 +137,11 @@ export const Header = () => {
       {mobileMenuOpen && (
         <div 
           ref={menuRef}
-          className="fixed inset-0 bg-gradient-to-b from-black to-black/95 backdrop-blur-md z-50 md:hidden animate-fade-in"
+          className="fixed inset-0 bg-gradient-to-b from-black to-black/95 backdrop-blur-md z-50 md:hidden animate-fade-in overflow-y-auto"
           onTouchStart={handleTouchStart}
           onTouchMove={handleTouchMove}
           onTouchEnd={handleTouchEnd}
+          style={{ width: '100vw', maxWidth: '100%', overflowX: 'hidden' }}
         >
           {/* Logo */}
           <div className="absolute top-6 left-6 z-50">
@@ -157,7 +158,7 @@ export const Header = () => {
             <span className="w-7 h-0.5 bg-white -rotate-45 -translate-y-0.5"></span>
           </button>
 
-          <nav className="flex flex-col gap-2 pt-24 px-8 pb-6 h-full overflow-y-auto">
+          <nav className="flex flex-col gap-2 pt-24 px-8 pb-6 h-full overflow-y-auto" style={{ maxWidth: '100vw' }}>
             <Button 
               variant="ghost" 
               className="w-full justify-start text-white hover:text-primary hover:bg-primary/10 transition-all duration-300 text-lg py-7"
@@ -233,7 +234,7 @@ export const Header = () => {
                 className="button-3d w-full"
                 onClick={() => {
                   setMobileMenuOpen(false);
-                  window.location.href = '/contato';
+                  window.location.href = '/contratar-servico';
                 }}
               >
                 <span className="button-3d-top text-base">
