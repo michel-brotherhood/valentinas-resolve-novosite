@@ -135,6 +135,11 @@ All colors MUST be HSL.
     overflow-x: hidden;
     width: 100%;
   }
+
+  html, body {
+    overscroll-behavior-x: none;
+    touch-action: pan-y;
+  }
 }
 
 @layer components {
