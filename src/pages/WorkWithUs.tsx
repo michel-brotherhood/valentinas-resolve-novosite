@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { useNavigate } from "react-router-dom";
 import { TrendingUp, Users, DollarSign, Clock, CheckCircle } from "lucide-react";
+import heroImage from "@/assets/work-with-us-hero.jpg";
 
 export default function WorkWithUs() {
   const navigate = useNavigate();
@@ -14,8 +15,16 @@ export default function WorkWithUs() {
       
       <main className="flex-1">
         {/* Hero Section */}
-        <section className="bg-gradient-to-b from-black to-primary/20 py-20">
-          <div className="container mx-auto px-4">
+        <section className="relative py-20 overflow-hidden">
+          {/* Background Image */}
+          <div 
+            className="absolute inset-0 bg-cover bg-center"
+            style={{ backgroundImage: `url(${heroImage})` }}
+          >
+            <div className="absolute inset-0 bg-black/60" />
+          </div>
+          
+          <div className="container mx-auto px-4 relative z-10">
             <div className="max-w-4xl mx-auto text-center">
               <h1 className="text-4xl md:text-6xl font-bold text-white mb-6">
                 Trabalhe Conosco
