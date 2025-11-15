@@ -125,113 +125,113 @@ export const Header = () => {
         </div>
       </header>
 
-      {/* Mobile Menu Overlay */}
+      {/* Mobile Menu Overlay & Drawer */}
       {mobileMenuOpen && (
-        <>
-          <div 
-            className="fixed inset-0 bg-black/60 backdrop-blur-sm z-40 md:hidden animate-fade-in"
+        <div 
+          ref={menuRef}
+          className="fixed inset-0 bg-gradient-to-b from-black to-black/95 backdrop-blur-md z-50 md:hidden animate-fade-in"
+          onTouchStart={handleTouchStart}
+          onTouchMove={handleTouchMove}
+          onTouchEnd={handleTouchEnd}
+        >
+          {/* Close Button */}
+          <button
+            className="absolute top-6 right-6 text-white z-50 w-10 h-10 flex flex-col justify-center items-center gap-1.5"
             onClick={() => setMobileMenuOpen(false)}
-          />
-          
-          {/* Mobile Menu Drawer */}
-          <div 
-            ref={menuRef}
-            className={`fixed top-0 right-0 h-full w-[280px] bg-gradient-to-b from-black to-black/95 shadow-2xl z-50 md:hidden transform transition-transform duration-300 ease-out ${
-              mobileMenuOpen ? 'translate-x-0' : 'translate-x-full'
-            }`}
-            onTouchStart={handleTouchStart}
-            onTouchMove={handleTouchMove}
-            onTouchEnd={handleTouchEnd}
+            aria-label="Fechar Menu"
           >
-            <nav className="flex flex-col gap-1 pt-20 px-4 pb-6 h-full overflow-y-auto">
-              <Button 
-                variant="ghost" 
-                className="w-full justify-start text-white hover:text-primary hover:bg-primary/10 transition-all duration-300 text-base py-6"
-                onClick={() => {
-                  setMobileMenuOpen(false);
-                  window.location.href = '/';
-                }}
-              >
-                Início
-              </Button>
-              <Button 
-                variant="ghost" 
-                className="w-full justify-start text-white hover:text-primary hover:bg-primary/10 transition-all duration-300 text-base py-6"
-                onClick={() => {
-                  setMobileMenuOpen(false);
-                  window.location.href = '/sobre';
-                }}
-              >
-                Sobre
-              </Button>
-              <Button 
-                variant="ghost" 
-                className="w-full justify-start text-white hover:text-primary hover:bg-primary/10 transition-all duration-300 text-base py-6"
-                onClick={() => {
-                  setMobileMenuOpen(false);
-                  window.location.href = '/servicos';
-                }}
-              >
-                Serviços
-              </Button>
-              <Button 
-                variant="ghost" 
-                className="w-full justify-start text-white hover:text-primary hover:bg-primary/10 transition-all duration-300 text-base py-6"
-                onClick={() => {
-                  setMobileMenuOpen(false);
-                  window.location.href = '/contabilidade';
-                }}
-              >
-                Contabilidade Integrada
-              </Button>
-              <Button 
-                variant="ghost" 
-                className="w-full justify-start text-white hover:text-primary hover:bg-primary/10 transition-all duration-300 text-base py-6"
-                onClick={() => {
-                  setMobileMenuOpen(false);
-                  window.location.href = '/equipe';
-                }}
-              >
-                Equipe
-              </Button>
-              <Button 
-                variant="ghost" 
-                className="w-full justify-start text-white hover:text-primary hover:bg-primary/10 transition-all duration-300 text-base py-6"
-                onClick={() => {
-                  setMobileMenuOpen(false);
-                  window.location.href = '/trabalhe-conosco';
-                }}
-              >
-                Trabalhe Conosco
-              </Button>
-              <Button 
-                variant="ghost" 
-                className="w-full justify-start text-white hover:text-primary hover:bg-primary/10 transition-all duration-300 text-base py-6"
+            <span className="w-7 h-0.5 bg-white rotate-45 translate-y-0.5"></span>
+            <span className="w-7 h-0.5 bg-white -rotate-45 -translate-y-0.5"></span>
+          </button>
+
+          <nav className="flex flex-col gap-2 pt-24 px-8 pb-6 h-full overflow-y-auto">
+            <Button 
+              variant="ghost" 
+              className="w-full justify-start text-white hover:text-primary hover:bg-primary/10 transition-all duration-300 text-lg py-7"
+              onClick={() => {
+                setMobileMenuOpen(false);
+                window.location.href = '/';
+              }}
+            >
+              Início
+            </Button>
+            <Button 
+              variant="ghost" 
+              className="w-full justify-start text-white hover:text-primary hover:bg-primary/10 transition-all duration-300 text-lg py-7"
+              onClick={() => {
+                setMobileMenuOpen(false);
+                window.location.href = '/sobre';
+              }}
+            >
+              Sobre
+            </Button>
+            <Button 
+              variant="ghost" 
+              className="w-full justify-start text-white hover:text-primary hover:bg-primary/10 transition-all duration-300 text-lg py-7"
+              onClick={() => {
+                setMobileMenuOpen(false);
+                window.location.href = '/servicos';
+              }}
+            >
+              Serviços
+            </Button>
+            <Button 
+              variant="ghost" 
+              className="w-full justify-start text-white hover:text-primary hover:bg-primary/10 transition-all duration-300 text-lg py-7"
+              onClick={() => {
+                setMobileMenuOpen(false);
+                window.location.href = '/contabilidade';
+              }}
+            >
+              Contabilidade Integrada
+            </Button>
+            <Button 
+              variant="ghost" 
+              className="w-full justify-start text-white hover:text-primary hover:bg-primary/10 transition-all duration-300 text-lg py-7"
+              onClick={() => {
+                setMobileMenuOpen(false);
+                window.location.href = '/equipe';
+              }}
+            >
+              Equipe
+            </Button>
+            <Button 
+              variant="ghost" 
+              className="w-full justify-start text-white hover:text-primary hover:bg-primary/10 transition-all duration-300 text-lg py-7"
+              onClick={() => {
+                setMobileMenuOpen(false);
+                window.location.href = '/trabalhe-conosco';
+              }}
+            >
+              Trabalhe Conosco
+            </Button>
+            <Button 
+              variant="ghost" 
+              className="w-full justify-start text-white hover:text-primary hover:bg-primary/10 transition-all duration-300 text-lg py-7"
+              onClick={() => {
+                setMobileMenuOpen(false);
+                window.location.href = '/contato';
+              }}
+            >
+              Contato
+            </Button>
+            <div className="mt-6">
+              <button 
+                className="button-3d w-full"
                 onClick={() => {
                   setMobileMenuOpen(false);
                   window.location.href = '/contato';
                 }}
               >
-                Contato
-              </Button>
-              <div className="mt-4 px-2">
-                <button 
-                  className="button-3d w-full"
-                  onClick={() => {
-                    setMobileMenuOpen(false);
-                    window.location.href = '/contato';
-                  }}
-                >
-                  <span className="button-3d-top text-sm">
-                    Contratar Profissional
-                  </span>
-                  <span className="button-3d-bottom"></span>
-                  <span className="button-3d-base"></span>
-                </button>
-              </div>
-            </nav>
-          </div>
-        </>
+                <span className="button-3d-top text-base">
+                  Contratar Profissional
+                </span>
+                <span className="button-3d-bottom"></span>
+                <span className="button-3d-base"></span>
+              </button>
+            </div>
+          </nav>
+        </div>
       )}
     </>
   );
