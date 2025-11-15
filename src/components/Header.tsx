@@ -7,75 +7,78 @@ export const Header = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
-    <header className="border-b border-primary bg-black sticky top-0 z-50">
-      <div className="container mx-auto px-4 py-4">
+    <header className="bg-gradient-to-b from-black to-black/95 backdrop-blur-sm sticky top-0 z-50 shadow-lg shadow-primary/5">
+      <div className="container mx-auto px-4 py-3">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-8">
-            <a href="/" className="flex items-center gap-3">
-              <img src={logo} alt="Valentina's Resolve" className="h-12 w-auto" />
-              <span className="text-xl font-bold text-primary hidden md:block">
+            <a href="/" className="flex items-center gap-3 group">
+              <img src={logo} alt="Valentina's Resolve" className="h-10 w-auto transition-transform group-hover:scale-105" />
+              <span className="text-xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent hidden md:block">
                 Valentina's Resolve
               </span>
             </a>
           </div>
 
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center gap-1">
+          <nav className="hidden md:flex items-center gap-2">
             <Button 
               variant="ghost" 
-              className="text-white hover:text-primary hover:bg-primary/10"
+              className="text-white/90 hover:text-primary hover:bg-primary/10 transition-all duration-300"
               onClick={() => window.location.href = '/'}
             >
               Início
             </Button>
             <Button 
               variant="ghost" 
-              className="text-white hover:text-primary hover:bg-primary/10"
+              className="text-white/90 hover:text-primary hover:bg-primary/10 transition-all duration-300"
               onClick={() => window.location.href = '/sobre'}
             >
               Sobre
             </Button>
             <Button 
               variant="ghost" 
-              className="text-white hover:text-primary hover:bg-primary/10"
+              className="text-white/90 hover:text-primary hover:bg-primary/10 transition-all duration-300"
               onClick={() => window.location.href = '/servicos'}
             >
               Serviços
             </Button>
             <Button 
               variant="ghost" 
-              className="text-white hover:text-primary hover:bg-primary/10"
+              className="text-white/90 hover:text-primary hover:bg-primary/10 transition-all duration-300"
               onClick={() => window.location.href = '/contabilidade'}
             >
-              Contabilidade Integrada
+              Contabilidade
             </Button>
             <Button 
               variant="ghost" 
-              className="text-white hover:text-primary hover:bg-primary/10"
+              className="text-white/90 hover:text-primary hover:bg-primary/10 transition-all duration-300"
               onClick={() => window.location.href = '/equipe'}
             >
               Equipe
             </Button>
             <Button 
               variant="ghost" 
-              className="text-white hover:text-primary hover:bg-primary/10"
+              className="text-white/90 hover:text-primary hover:bg-primary/10 transition-all duration-300"
               onClick={() => window.location.href = '/trabalhe-conosco'}
             >
               Trabalhe Conosco
             </Button>
             <Button 
               variant="ghost" 
-              className="text-white hover:text-primary hover:bg-primary/10"
+              className="text-white/90 hover:text-primary hover:bg-primary/10 transition-all duration-300"
               onClick={() => window.location.href = '/contato'}
             >
               Contato
             </Button>
-            <Button 
-              className="bg-primary hover:bg-primary/90 text-black font-bold ml-2"
+            <button 
+              className="frutiger-button ml-2"
               onClick={() => window.location.href = '/contato'}
             >
-              Contratar Profissional
-            </Button>
+              <div className="frutiger-inner">
+                <div className="frutiger-top-white"></div>
+                <span className="frutiger-text">Contratar Profissional</span>
+              </div>
+            </button>
           </nav>
 
           {/* Mobile Menu Button */}
