@@ -1,5 +1,6 @@
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
+import { AccountingNav } from "@/components/AccountingNav";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { 
@@ -119,10 +120,11 @@ export default function Accounting() {
   return (
     <div className="min-h-screen flex flex-col">
       <Header />
+      <AccountingNav />
       
       <main className="flex-1">
         {/* Hero Section */}
-        <section className="relative py-24 overflow-hidden">
+        <section id="hero" className="relative py-24 overflow-hidden parallax-section" style={{ backgroundImage: 'url(/videos/accounting-hero.mp4)' }}>
           <div className="absolute inset-0">
             <video 
               autoPlay 
@@ -154,7 +156,7 @@ export default function Accounting() {
         </section>
 
         {/* Bloco 1 - Para Profissionais */}
-        <section className="py-20 bg-gradient-to-b from-background to-secondary/20">
+        <section id="professionals" className="py-20 bg-gradient-to-b from-background to-secondary/20">
           <div className="container mx-auto px-4">
             <div className="max-w-5xl mx-auto">
               <div className="text-center mb-12">
@@ -194,7 +196,7 @@ export default function Accounting() {
         </section>
 
         {/* Bloco 2 - Para Empresas e Pessoas Físicas */}
-        <section className="py-20 bg-secondary/30">
+        <section id="business" className="py-20 bg-secondary/30">
           <div className="container mx-auto px-4">
             <div className="max-w-6xl mx-auto">
               <div className="text-center mb-12">
@@ -273,11 +275,8 @@ export default function Accounting() {
         </section>
 
         {/* Bloco 3 - Diferenciais */}
-        <section className="py-20 relative overflow-hidden">
-          <div className="absolute inset-0">
-            <img src={differentialsBg} alt="" className="w-full h-full object-cover" />
-            <div className="absolute inset-0 bg-black/75" />
-          </div>
+        <section id="differentials" className="py-20 relative overflow-hidden parallax-section" style={{ backgroundImage: `url(${differentialsBg})` }}>
+          <div className="absolute inset-0 bg-black/75" />
           <div className="container mx-auto px-4 relative z-10">
             <div className="max-w-6xl mx-auto">
               <h2 className="text-3xl md:text-5xl font-bold text-center text-foreground mb-12">
@@ -307,7 +306,7 @@ export default function Accounting() {
         </section>
 
         {/* Bloco 4 - Depoimentos */}
-        <section className="py-20 bg-secondary/20">
+        <section id="testimonials" className="py-20 bg-secondary/20">
           <div className="container mx-auto px-4">
             <div className="max-w-6xl mx-auto">
               <h2 className="text-3xl md:text-5xl font-bold text-center text-foreground mb-12">
@@ -332,7 +331,7 @@ export default function Accounting() {
         </section>
 
         {/* Bloco 4.5 - FAQ */}
-        <section className="py-20 bg-gradient-to-b from-secondary/20 to-background">
+        <section id="faq" className="py-20 bg-gradient-to-b from-secondary/20 to-background">
           <div className="container mx-auto px-4">
             <div className="max-w-4xl mx-auto">
               <h2 className="text-3xl md:text-5xl font-bold text-center text-foreground mb-12">
@@ -448,11 +447,8 @@ export default function Accounting() {
         </section>
 
         {/* Bloco 5 - CTA Final */}
-        <section className="py-24 relative overflow-hidden">
-          <div className="absolute inset-0">
-            <img src={ctaBg} alt="" className="w-full h-full object-cover" />
-            <div className="absolute inset-0 bg-black/70" />
-          </div>
+        <section id="cta" className="py-24 relative overflow-hidden parallax-section" style={{ backgroundImage: `url(${ctaBg})` }}>
+          <div className="absolute inset-0 bg-black/70" />
           <div className="container mx-auto px-4 relative z-10">
             <div className="max-w-3xl mx-auto text-center">
               <h2 className="text-3xl md:text-5xl font-bold text-white mb-6">
