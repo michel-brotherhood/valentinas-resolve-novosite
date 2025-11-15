@@ -286,21 +286,20 @@ export default function Accounting() {
         </section>
 
         {/* Bloco 3 - Diferenciais */}
-        <section id="differentials" className="py-20 relative bg-cover bg-center bg-fixed parallax-section" style={{ backgroundImage: `url(${differentialsParallaxBg})` }}>
+        <section id="differentials" className="py-16 relative bg-cover bg-center bg-fixed parallax-section" style={{ backgroundImage: `url(${differentialsParallaxBg})` }}>
           <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/75 to-black/80" />
-          <div ref={section3.elementRef} className={`scroll-reveal ${section3.isVisible ? 'is-visible' : ''}`}>
           <div className="container mx-auto px-4 relative z-10">
             <div className="max-w-6xl mx-auto">
               <h2 className="text-3xl md:text-5xl font-bold text-center text-white mb-4">
                 Diferenciais que aceleram resultados
               </h2>
-              <div className="h-1 w-24 bg-primary mx-auto mb-12 rounded-full" />
+              <div className="h-1 w-24 bg-primary mx-auto mb-10" />
               
-              <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+              <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-10">
                 {differentials.map((differential, index) => (
                   <Card 
                     key={index} 
-                    className={`p-6 bg-card/95 backdrop-blur-md border-primary/20 hover:border-primary/50 transition-all duration-500 hover:-translate-y-2 hover:shadow-lg hover:shadow-primary/20 scroll-reveal scroll-reveal-delay-${Math.min(index, 3)}`}
+                    className="p-6 bg-card/95 backdrop-blur-md border-primary/20 hover:border-primary/50 transition-all duration-500 hover:-translate-y-2 hover:shadow-lg hover:shadow-primary/20 animate-fade-in"
                     style={{ animationDelay: `${index * 0.1}s` }}
                   >
                     <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-primary/20 to-primary/10 flex items-center justify-center mb-4 transition-all">
@@ -326,7 +325,6 @@ export default function Accounting() {
                 </Button>
               </div>
             </div>
-          </div>
           </div>
         </section>
 
