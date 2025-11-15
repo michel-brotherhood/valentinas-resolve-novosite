@@ -1,18 +1,18 @@
 import { Card } from "@/components/ui/card";
-import paintingImg from "@/assets/service-painting.jpg";
-import plumbingImg from "@/assets/service-plumbing.jpg";
+import accountingImg from "@/assets/service-accounting.jpg";
+import legalImg from "@/assets/service-legal.jpg";
 import cleaningImg from "@/assets/service-cleaning.jpg";
-import electricImg from "@/assets/service-electric.jpg";
+import consultingImg from "@/assets/service-consulting.jpg";
 import { ChevronRight } from "lucide-react";
 
 const services = [
   {
     title: "Contabilidade Integrada",
-    image: paintingImg,
+    image: accountingImg,
   },
   {
     title: "Serviços Jurídicos",
-    image: plumbingImg,
+    image: legalImg,
   },
   {
     title: "Limpeza e Manutenção",
@@ -20,7 +20,7 @@ const services = [
   },
   {
     title: "Consultoria Empresarial",
-    image: electricImg,
+    image: consultingImg,
   },
 ];
 
