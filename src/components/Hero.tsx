@@ -87,10 +87,12 @@ export const Hero = () => {
             </div>
             <Button 
               size="lg"
-              className="h-14 px-8 bg-primary hover:bg-primary/90 text-black font-bold"
+              className="h-14 px-8 shadow__btn"
               onClick={() => {
                 if (activeTab === "register") {
                   window.location.href = '/registro-profissional';
+                } else {
+                  window.location.href = '/servicos';
                 }
               }}
             >

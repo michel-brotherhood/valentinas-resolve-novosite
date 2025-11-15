@@ -146,10 +146,18 @@ export const AccountingServices = () => {
             pode transformar a gestão do seu negócio.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button size="lg" className="bg-primary hover:bg-primary/90 text-primary-foreground font-bold">
+            <Button 
+              size="lg" 
+              className="shadow__btn"
+              onClick={() => window.location.href = '/contabilidade-formulario'}
+            >
               Falar com a Contadora
             </Button>
-            <Button size="lg" variant="outline">
+            <Button 
+              size="lg" 
+              variant="outline"
+              onClick={() => window.location.href = '/servicos'}
+            >
               Ver Todos os Serviços
             </Button>
           </div>

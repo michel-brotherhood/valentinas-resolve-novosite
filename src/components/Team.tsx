@@ -12,14 +12,6 @@ import kellenImg from "@/assets/team/kellen.jpg";
 
 const teamMembers = [
   {
-    name: "Andressa Mello",
-    role: "Contadora Responsável Técnica",
-    shortDescription: "Especialista em contabilidade empresarial e fiscal",
-    fullDescription: "Contadora e especialista em contabilidade empresarial e fiscal, com vasta experiência em planejamento tributário, gestão fiscal e contabilidade integrada. Responsável técnica pela Contabilidade Integrada do Valentina's Resolve, oferecendo atendimento direto e personalizado para simplificar a gestão contábil dos clientes.",
-    image: andressaImg,
-    specialties: ["Contabilidade Empresarial", "Planejamento Tributário", "Gestão Fiscal", "Assessoria Contábil"],
-  },
-  {
     name: "Daiane Amaral",
     role: "Co-fundadora e Diretora de Serviços",
     shortDescription: "Especialista em gestão de serviços e operações",
@@ -28,8 +20,16 @@ const teamMembers = [
     specialties: ["Gestão de Serviços", "Coordenação de Equipes", "Processos Operacionais", "Qualidade"],
   },
   {
+    name: "Andressa Mello",
+    role: "Contadora Responsável Técnica",
+    shortDescription: "Especialista em contabilidade empresarial e fiscal",
+    fullDescription: "Contadora e especialista em contabilidade empresarial e fiscal, com vasta experiência em planejamento tributário, gestão fiscal e contabilidade integrada. Responsável técnica pela Contabilidade Integrada do Valentina's Resolve, oferecendo atendimento direto e personalizado para simplificar a gestão contábil dos clientes.",
+    image: andressaImg,
+    specialties: ["Contabilidade Empresarial", "Planejamento Tributário", "Gestão Fiscal", "Assessoria Contábil"],
+  },
+  {
     name: "Janaína",
-    role: "Sócia Fundadora",
+    role: "Sócia",
     shortDescription: "Estratégia e desenvolvimento de negócios",
     fullDescription: "Sócia fundadora do Valentina's Resolve, com foco em estratégia empresarial e desenvolvimento de novos negócios. Atua na expansão da plataforma e no estabelecimento de parcerias estratégicas para ampliar a oferta de serviços.",
     image: janainaImg,
@@ -37,9 +37,9 @@ const teamMembers = [
   },
   {
     name: "Kellen Cristina Amaral",
-    role: "Co-fundadora e Diretora de Operações",
+    role: "Sócia e Diretora de Operações",
     shortDescription: "Especialista em operações e logística",
-    fullDescription: "Co-fundadora do Valentina's Resolve com especialização em operações, logística e gestão de processos. Responsável por coordenar toda a estrutura operacional da plataforma, garantindo eficiência na conexão entre profissionais e clientes.",
+    fullDescription: "Sócia e Diretora de Operações do Valentina's Resolve com especialização em operações, logística e gestão de processos. Responsável por coordenar toda a estrutura operacional da plataforma, garantindo eficiência na conexão entre profissionais e clientes.",
     image: kellenImg,
     specialties: ["Gestão de Operações", "Logística", "Processos", "Eficiência Operacional"],
   },
