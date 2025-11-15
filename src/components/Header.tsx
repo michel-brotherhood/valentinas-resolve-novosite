@@ -145,9 +145,6 @@ export const Header = () => {
         <div 
           ref={menuRef}
           className="fixed inset-0 bg-gradient-to-b from-black to-black/95 backdrop-blur-md z-50 md:hidden animate-fade-in overflow-y-auto"
-          onTouchStart={handleTouchStart}
-          onTouchMove={handleTouchMove}
-          onTouchEnd={handleTouchEnd}
           style={{ width: '100%', overflowX: 'hidden' }}
         >
           {/* Logo */}
@@ -166,82 +163,91 @@ export const Header = () => {
           </button>
 
           <nav className="flex flex-col gap-2 pt-24 px-8 pb-6 h-full overflow-y-auto">
-            <Button 
-              variant="ghost" 
-              className="w-full justify-start text-white hover:text-primary hover:bg-primary/10 transition-all duration-300 text-lg py-7"
-              onClick={() => {
+            <button
+              className="w-full justify-start text-white hover:text-primary hover:bg-primary/10 transition-all duration-300 text-lg py-7 text-left px-4 rounded-md"
+              onClick={(e) => {
+                e.preventDefault();
+                e.stopPropagation();
                 setMobileMenuOpen(false);
-                navigate('/');
+                setTimeout(() => navigate('/'), 100);
               }}
             >
               Início
-            </Button>
-            <Button 
-              variant="ghost" 
-              className="w-full justify-start text-white hover:text-primary hover:bg-primary/10 transition-all duration-300 text-lg py-7"
-              onClick={() => {
+            </button>
+            <button
+              className="w-full justify-start text-white hover:text-primary hover:bg-primary/10 transition-all duration-300 text-lg py-7 text-left px-4 rounded-md"
+              onClick={(e) => {
+                e.preventDefault();
+                e.stopPropagation();
                 setMobileMenuOpen(false);
-                navigate('/sobre');
+                setTimeout(() => navigate('/sobre'), 100);
               }}
             >
               Sobre
-            </Button>
-            <Button 
-              variant="ghost" 
-              className="w-full justify-start text-white hover:text-primary hover:bg-primary/10 transition-all duration-300 text-lg py-7"
-              onClick={() => {
+            </button>
+            <button
+              className="w-full justify-start text-white hover:text-primary hover:bg-primary/10 transition-all duration-300 text-lg py-7 text-left px-4 rounded-md"
+              onClick={(e) => {
+                e.preventDefault();
+                e.stopPropagation();
                 setMobileMenuOpen(false);
-                navigate('/servicos');
+                setTimeout(() => navigate('/servicos'), 100);
               }}
             >
               Serviços
-            </Button>
-            <Button 
-              variant="ghost" 
-              className="w-full justify-start text-white hover:text-primary hover:bg-primary/10 transition-all duration-300 text-lg py-7"
-              onClick={() => {
+            </button>
+            <button
+              className="w-full justify-start text-white hover:text-primary hover:bg-primary/10 transition-all duration-300 text-lg py-7 text-left px-4 rounded-md"
+              onClick={(e) => {
+                e.preventDefault();
+                e.stopPropagation();
                 setMobileMenuOpen(false);
-                navigate('/contabilidade');
+                setTimeout(() => navigate('/contabilidade'), 100);
               }}
             >
               Contabilidade Integrada
-            </Button>
-            <Button 
-              variant="ghost" 
-              className="w-full justify-start text-white hover:text-primary hover:bg-primary/10 transition-all duration-300 text-lg py-7"
-              onClick={() => {
+            </button>
+            <button
+              className="w-full justify-start text-white hover:text-primary hover:bg-primary/10 transition-all duration-300 text-lg py-7 text-left px-4 rounded-md"
+              onClick={(e) => {
+                e.preventDefault();
+                e.stopPropagation();
                 setMobileMenuOpen(false);
-                navigate('/equipe');
+                setTimeout(() => navigate('/equipe'), 100);
               }}
             >
               Equipe
-            </Button>
-            <Button 
-              variant="ghost" 
-              className="w-full justify-start text-white hover:text-primary hover:bg-primary/10 transition-all duration-300 text-lg py-7"
-              onClick={() => {
+            </button>
+            <button
+              className="w-full justify-start text-white hover:text-primary hover:bg-primary/10 transition-all duration-300 text-lg py-7 text-left px-4 rounded-md"
+              onClick={(e) => {
+                e.preventDefault();
+                e.stopPropagation();
                 setMobileMenuOpen(false);
-                navigate('/trabalhe-conosco');
+                setTimeout(() => navigate('/trabalhe-conosco'), 100);
               }}
             >
               Trabalhe Conosco
-            </Button>
-            <Button 
-              variant="ghost" 
-              className="w-full justify-start text-white hover:text-primary hover:bg-primary/10 transition-all duration-300 text-lg py-7"
-              onClick={() => {
+            </button>
+            <button
+              className="w-full justify-start text-white hover:text-primary hover:bg-primary/10 transition-all duration-300 text-lg py-7 text-left px-4 rounded-md"
+              onClick={(e) => {
+                e.preventDefault();
+                e.stopPropagation();
                 setMobileMenuOpen(false);
-                navigate('/contato');
+                setTimeout(() => navigate('/contato'), 100);
               }}
             >
               Contato
-            </Button>
+            </button>
             <div className="mt-6">
               <button 
                 className="button-3d w-full"
-                onClick={() => {
+                onClick={(e) => {
+                  e.preventDefault();
+                  e.stopPropagation();
                   setMobileMenuOpen(false);
-                  navigate('/contratar-servico');
+                  setTimeout(() => navigate('/contratar-servico'), 100);
                 }}
               >
                 <span className="button-3d-top text-base">
