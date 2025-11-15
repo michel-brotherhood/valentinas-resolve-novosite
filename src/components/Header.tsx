@@ -93,10 +93,10 @@ export const Header = () => {
 
         {/* Mobile Menu */}
         {mobileMenuOpen && (
-          <nav className="md:hidden mt-4 flex flex-col gap-2 pb-4">
+          <nav className="md:hidden mt-4 flex flex-col gap-2 pb-4 animate-in slide-in-from-top duration-300">
             <Button 
               variant="ghost" 
-              className="w-full justify-start text-white hover:text-primary hover:bg-primary/10"
+              className="w-full justify-start text-white hover:text-primary hover:bg-primary/10 transition-all duration-300"
               onClick={() => {
                 setMobileMenuOpen(false);
                 window.location.href = '/';
@@ -106,7 +106,7 @@ export const Header = () => {
             </Button>
             <Button 
               variant="ghost" 
-              className="w-full justify-start text-white hover:text-primary hover:bg-primary/10"
+              className="w-full justify-start text-white hover:text-primary hover:bg-primary/10 transition-all duration-300"
               onClick={() => {
                 setMobileMenuOpen(false);
                 window.location.href = '/sobre';
@@ -116,7 +116,7 @@ export const Header = () => {
             </Button>
             <Button 
               variant="ghost" 
-              className="w-full justify-start text-white hover:text-primary hover:bg-primary/10"
+              className="w-full justify-start text-white hover:text-primary hover:bg-primary/10 transition-all duration-300"
               onClick={() => {
                 setMobileMenuOpen(false);
                 window.location.href = '/servicos';
@@ -126,7 +126,7 @@ export const Header = () => {
             </Button>
             <Button 
               variant="ghost" 
-              className="w-full justify-start text-white hover:text-primary hover:bg-primary/10"
+              className="w-full justify-start text-white hover:text-primary hover:bg-primary/10 transition-all duration-300"
               onClick={() => {
                 setMobileMenuOpen(false);
                 window.location.href = '/contabilidade';
@@ -136,7 +136,7 @@ export const Header = () => {
             </Button>
             <Button 
               variant="ghost" 
-              className="w-full justify-start text-white hover:text-primary hover:bg-primary/10"
+              className="w-full justify-start text-white hover:text-primary hover:bg-primary/10 transition-all duration-300"
               onClick={() => {
                 setMobileMenuOpen(false);
                 window.location.href = '/equipe';
@@ -146,7 +146,7 @@ export const Header = () => {
             </Button>
             <Button 
               variant="ghost" 
-              className="w-full justify-start text-white hover:text-primary hover:bg-primary/10"
+              className="w-full justify-start text-white hover:text-primary hover:bg-primary/10 transition-all duration-300"
               onClick={() => {
                 setMobileMenuOpen(false);
                 window.location.href = '/trabalhe-conosco';
@@ -156,7 +156,7 @@ export const Header = () => {
             </Button>
             <Button 
               variant="ghost" 
-              className="w-full justify-start text-white hover:text-primary hover:bg-primary/10"
+              className="w-full justify-start text-white hover:text-primary hover:bg-primary/10 transition-all duration-300"
               onClick={() => {
                 setMobileMenuOpen(false);
                 window.location.href = '/contato';
@@ -164,15 +164,19 @@ export const Header = () => {
             >
               Contato
             </Button>
-            <Button 
-              className="w-full bg-primary hover:bg-primary/90 text-black font-bold"
+            <button 
+              className="button-3d w-full mt-2"
               onClick={() => {
                 setMobileMenuOpen(false);
                 window.location.href = '/contato';
               }}
             >
-              Contratar Profissional
-            </Button>
+              <span className="button-3d-top text-sm">
+                Contratar Profissional
+              </span>
+              <span className="button-3d-bottom"></span>
+              <span className="button-3d-base"></span>
+            </button>
           </nav>
         )}
       </div>
