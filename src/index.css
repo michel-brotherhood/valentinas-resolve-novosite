@@ -98,7 +98,28 @@ All colors MUST be HSL.
     @apply border-border;
   }
 
+  html {
+    scroll-behavior: smooth;
+  }
+
   body {
     @apply bg-background text-foreground;
+  }
+}
+
+@layer components {
+  .glow-button {
+    @apply px-5 py-3 border-none text-lg text-black rounded-lg tracking-[4px] font-bold uppercase;
+    @apply transition-all duration-500;
+    @apply bg-primary;
+    box-shadow: 0 0 25px hsl(var(--primary));
+  }
+
+  .glow-button:hover {
+    box-shadow: 
+      0 0 5px hsl(var(--primary)),
+      0 0 25px hsl(var(--primary)),
+      0 0 50px hsl(var(--primary)),
+      0 0 100px hsl(var(--primary));
   }
 }

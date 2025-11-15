@@ -143,14 +143,12 @@ export default function Accounting() {
               <p className="text-xl text-white/90 mb-8 max-w-2xl mx-auto">
                 Contabilidade Integrada Valentinas — tecnologia, estratégia e precisão para quem pensa grande.
               </p>
-              <Button 
-                size="lg" 
-                className="bg-primary hover:bg-primary/90 text-black font-bold text-lg px-8 py-6 h-auto shadow-[0_0_30px_rgba(255,204,0,0.3)] hover:shadow-[0_0_40px_rgba(255,204,0,0.5)] transition-all"
+              <button 
+                className="glow-button"
                 onClick={() => window.location.href = '/formulario-contabilidade'}
               >
                 Quero minha contabilidade integrada
-                <Sparkles className="ml-2 h-5 w-5" />
-              </Button>
+              </button>
             </div>
           </div>
         </section>
