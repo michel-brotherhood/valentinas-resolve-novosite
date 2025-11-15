@@ -42,7 +42,7 @@ Acredito no potencial da Valentina's e no alcance dos nossos objetivos. Estamos 
     role: "Sócia e Atendimento ao Cliente",
     credential: "",
     image: janaina,
-    bio: `Meu nome é Janaina Pimenta, tenho 32 anos e resido em Cacoal, Rondônia. Concluí o ensino médio e iniciei a graduação em Marketing, área pela qual me interesso e que contribui para ampliar minha visão estratégica e empreendedora.
+    bio: `Meu nome é Janaína Pimenta, tenho 32 anos e resido em Cacoal, Rondônia. Concluí o ensino médio e iniciei a graduação em Marketing, área pela qual me interesso e que contribui para ampliar minha visão estratégica e empreendedora.
 
 Minha trajetória profissional passou por diferentes experiências. Atuei como freelancer na Contável Contabilidade, o que me proporcionou aprendizado e abriu portas para novos projetos. Atualmente, sou sócia do Valentinas Resolve, empresa que administro em parceria com Andressa Mello, Daiane Amaral e Kellen Amaral, oferecendo soluções práticas e confiáveis para diferentes demandas.
 
