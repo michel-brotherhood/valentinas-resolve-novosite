@@ -71,13 +71,14 @@ export const Header = () => {
               Contato
             </Button>
             <button 
-              className="frutiger-button ml-2"
+              className="button-3d ml-2"
               onClick={() => window.location.href = '/contato'}
             >
-              <div className="frutiger-inner">
-                <div className="frutiger-top-white"></div>
-                <span className="frutiger-text text-sm">Contratar Profissional</span>
-              </div>
+              <span className="button-3d-top text-sm">
+                Contratar Profissional
+              </span>
+              <span className="button-3d-bottom"></span>
+              <span className="button-3d-base"></span>
             </button>
           </nav>
 

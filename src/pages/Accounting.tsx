@@ -222,7 +222,7 @@ export default function Accounting() {
 
               <div className="grid md:grid-cols-3 gap-6 mb-8">
                 {/* Para Empresas e MEIs */}
-                <Card className="p-6 bg-card/50 backdrop-blur hover:shadow-xl transition-all">
+                <Card className="p-6 bg-card/50 backdrop-blur card-3d border-primary/10 hover:border-primary/30">
                   <div className="flex items-center gap-2 mb-4">
                     <FileText className="h-6 w-6 text-primary" />
                     <h3 className="text-xl font-bold text-foreground">Para Empresas e MEIs</h3>
@@ -238,7 +238,7 @@ export default function Accounting() {
                 </Card>
 
                 {/* Para Autônomos */}
-                <Card className="p-6 bg-card/50 backdrop-blur hover:shadow-xl transition-all">
+                <Card className="p-6 bg-card/50 backdrop-blur card-3d border-primary/10 hover:border-primary/30">
                   <div className="flex items-center gap-2 mb-4">
                     <Calculator className="h-6 w-6 text-primary" />
                     <h3 className="text-xl font-bold text-foreground">Para Autônomos</h3>
@@ -254,7 +254,7 @@ export default function Accounting() {
                 </Card>
 
                 {/* Para Pessoas Físicas */}
-                <Card className="p-6 bg-card/50 backdrop-blur hover:shadow-xl transition-all">
+                <Card className="p-6 bg-card/50 backdrop-blur card-3d border-primary/10 hover:border-primary/30">
                   <div className="flex items-center gap-2 mb-4">
                     <UserCheck className="h-6 w-6 text-primary" />
                     <h3 className="text-xl font-bold text-foreground">Para Pessoas Físicas</h3>
@@ -298,7 +298,7 @@ export default function Accounting() {
                 {differentials.map((differential, index) => (
                   <Card 
                     key={index} 
-                    className="p-6 bg-card/30 backdrop-blur border-primary/10 hover:border-primary/30 hover:bg-card/50 transition-all group"
+                    className="p-6 bg-card/30 backdrop-blur border-primary/10 hover:border-primary/30 card-3d group"
                   >
                     <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-4 group-hover:bg-primary/20 transition-colors">
                       <differential.icon className="h-6 w-6 text-primary" />
@@ -328,7 +328,7 @@ export default function Accounting() {
               
               <div className="grid md:grid-cols-3 gap-6">
                 {testimonials.map((testimonial, index) => (
-                  <Card key={index} className="p-6 bg-card/50 backdrop-blur">
+                  <Card key={index} className="p-6 bg-card/50 backdrop-blur card-3d border-primary/10 hover:border-primary/30">
                     <p className="text-muted-foreground mb-4 italic">
                       &quot;{testimonial.text}&quot;
                     </p>
@@ -354,7 +354,7 @@ export default function Accounting() {
               </h2>
               
               <div className="space-y-4">
-                <Card className="p-6 bg-card/50 backdrop-blur border-primary/10 hover:border-primary/30 transition-all">
+                <Card className="p-6 bg-card/50 backdrop-blur border-primary/10 hover:border-primary/30 card-3d">
                   <h3 className="text-xl font-bold text-foreground mb-3 flex items-start gap-2">
                     <CheckCircle2 className="h-5 w-5 text-primary flex-shrink-0 mt-1" />
                     Como funciona a contabilidade para MEI?
@@ -366,7 +366,7 @@ export default function Accounting() {
                   </p>
                 </Card>
 
-                <Card className="p-6 bg-card/50 backdrop-blur border-primary/10 hover:border-primary/30 transition-all">
+                <Card className="p-6 bg-card/50 backdrop-blur border-primary/10 hover:border-primary/30 card-3d">
                   <h3 className="text-xl font-bold text-foreground mb-3 flex items-start gap-2">
                     <CheckCircle2 className="h-5 w-5 text-primary flex-shrink-0 mt-1" />
                     O que está incluído na Declaração de IRPF?
@@ -378,7 +378,7 @@ export default function Accounting() {
                   </p>
                 </Card>
 
-                <Card className="p-6 bg-card/50 backdrop-blur border-primary/10 hover:border-primary/30 transition-all">
+                <Card className="p-6 bg-card/50 backdrop-blur border-primary/10 hover:border-primary/30 card-3d">
                   <h3 className="text-xl font-bold text-foreground mb-3 flex items-start gap-2">
                     <CheckCircle2 className="h-5 w-5 text-primary flex-shrink-0 mt-1" />
                     Como funciona a folha de pagamento e eSocial?
@@ -390,7 +390,7 @@ export default function Accounting() {
                   </p>
                 </Card>
 
-                <Card className="p-6 bg-card/50 backdrop-blur border-primary/10 hover:border-primary/30 transition-all">
+                <Card className="p-6 bg-card/50 backdrop-blur border-primary/10 hover:border-primary/30 card-3d">
                   <h3 className="text-xl font-bold text-foreground mb-3 flex items-start gap-2">
                     <CheckCircle2 className="h-5 w-5 text-primary flex-shrink-0 mt-1" />
                     Qual a diferença entre MEI, EI e LTDA?
@@ -402,7 +402,7 @@ export default function Accounting() {
                   </p>
                 </Card>
 
-                <Card className="p-6 bg-card/50 backdrop-blur border-primary/10 hover:border-primary/30 transition-all">
+                <Card className="p-6 bg-card/50 backdrop-blur border-primary/10 hover:border-primary/30 card-3d">
                   <h3 className="text-xl font-bold text-foreground mb-3 flex items-start gap-2">
                     <CheckCircle2 className="h-5 w-5 text-primary flex-shrink-0 mt-1" />
                     Como funciona o Carnê-Leão para autônomos?
@@ -414,7 +414,7 @@ export default function Accounting() {
                   </p>
                 </Card>
 
-                <Card className="p-6 bg-card/50 backdrop-blur border-primary/10 hover:border-primary/30 transition-all">
+                <Card className="p-6 bg-card/50 backdrop-blur border-primary/10 hover:border-primary/30 card-3d">
                   <h3 className="text-xl font-bold text-foreground mb-3 flex items-start gap-2">
                     <CheckCircle2 className="h-5 w-5 text-primary flex-shrink-0 mt-1" />
                     Quanto tempo leva para abrir uma empresa?
@@ -436,7 +436,7 @@ export default function Accounting() {
           <div ref={section6.elementRef} className={`scroll-reveal ${section6.isVisible ? 'is-visible' : ''}`}>
           <div className="container mx-auto px-4">
             <div className="max-w-4xl mx-auto">
-              <Card className="p-8 bg-card/50 backdrop-blur border-primary/20">
+              <Card className="p-8 bg-card/50 backdrop-blur border-primary/20 card-3d">
                 <div className="flex flex-col md:flex-row gap-8 items-center">
                   <div className="w-48 h-48 rounded-full overflow-hidden flex-shrink-0 ring-4 ring-primary/20">
                     <img
