@@ -1,8 +1,8 @@
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
-import { AccountingNav } from "@/components/AccountingNav";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
+import { useScrollReveal } from "@/hooks/use-scroll-reveal";
 import { 
   FileText, 
   Calculator, 
@@ -117,10 +117,16 @@ const testimonials = [
 ];
 
 export default function Accounting() {
+  const section1 = useScrollReveal();
+  const section2 = useScrollReveal();
+  const section3 = useScrollReveal();
+  const section4 = useScrollReveal();
+  const section5 = useScrollReveal();
+  const section6 = useScrollReveal();
+
   return (
     <div className="min-h-screen flex flex-col">
       <Header />
-      <AccountingNav />
       
       <main className="flex-1">
         {/* Hero Section */}
@@ -157,6 +163,7 @@ export default function Accounting() {
 
         {/* Bloco 1 - Para Profissionais */}
         <section id="professionals" className="py-20 bg-gradient-to-b from-background to-secondary/20">
+          <div ref={section1.elementRef} className={`scroll-reveal ${section1.isVisible ? 'is-visible' : ''}`}>
           <div className="container mx-auto px-4">
             <div className="max-w-5xl mx-auto">
               <div className="text-center mb-12">
@@ -193,10 +200,12 @@ export default function Accounting() {
               </div>
             </div>
           </div>
+          </div>
         </section>
 
         {/* Bloco 2 - Para Empresas e Pessoas Físicas */}
         <section id="business" className="py-20 bg-secondary/30">
+          <div ref={section2.elementRef} className={`scroll-reveal ${section2.isVisible ? 'is-visible' : ''}`}>
           <div className="container mx-auto px-4">
             <div className="max-w-6xl mx-auto">
               <div className="text-center mb-12">
@@ -272,11 +281,13 @@ export default function Accounting() {
               </div>
             </div>
           </div>
+          </div>
         </section>
 
         {/* Bloco 3 - Diferenciais */}
         <section id="differentials" className="py-20 relative overflow-hidden parallax-section" style={{ backgroundImage: `url(${differentialsBg})` }}>
           <div className="absolute inset-0 bg-black/75" />
+          <div ref={section3.elementRef} className={`scroll-reveal ${section3.isVisible ? 'is-visible' : ''}`}>
           <div className="container mx-auto px-4 relative z-10">
             <div className="max-w-6xl mx-auto">
               <h2 className="text-3xl md:text-5xl font-bold text-center text-foreground mb-12">
@@ -303,10 +314,12 @@ export default function Accounting() {
               </div>
             </div>
           </div>
+          </div>
         </section>
 
         {/* Bloco 4 - Depoimentos */}
         <section id="testimonials" className="py-20 bg-secondary/20">
+          <div ref={section4.elementRef} className={`scroll-reveal ${section4.isVisible ? 'is-visible' : ''}`}>
           <div className="container mx-auto px-4">
             <div className="max-w-6xl mx-auto">
               <h2 className="text-3xl md:text-5xl font-bold text-center text-foreground mb-12">
@@ -328,10 +341,12 @@ export default function Accounting() {
               </div>
             </div>
           </div>
+          </div>
         </section>
 
         {/* Bloco 4.5 - FAQ */}
         <section id="faq" className="py-20 bg-gradient-to-b from-secondary/20 to-background">
+          <div ref={section5.elementRef} className={`scroll-reveal ${section5.isVisible ? 'is-visible' : ''}`}>
           <div className="container mx-auto px-4">
             <div className="max-w-4xl mx-auto">
               <h2 className="text-3xl md:text-5xl font-bold text-center text-foreground mb-12">
@@ -413,10 +428,12 @@ export default function Accounting() {
               </div>
             </div>
           </div>
+          </div>
         </section>
 
         {/* Contadora Responsável */}
         <section className="py-20 bg-gradient-to-b from-background to-secondary/20">
+          <div ref={section6.elementRef} className={`scroll-reveal ${section6.isVisible ? 'is-visible' : ''}`}>
           <div className="container mx-auto px-4">
             <div className="max-w-4xl mx-auto">
               <Card className="p-8 bg-card/50 backdrop-blur border-primary/20">
@@ -443,6 +460,7 @@ export default function Accounting() {
                 </div>
               </Card>
             </div>
+          </div>
           </div>
         </section>
 

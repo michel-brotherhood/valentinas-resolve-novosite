@@ -20,52 +20,52 @@ export const Header = () => {
           </div>
 
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center gap-2">
+          <nav className="hidden md:flex items-center gap-1">
             <Button 
               variant="ghost" 
-              className="text-white/90 hover:text-primary hover:bg-primary/10 transition-all duration-300"
+              className="text-white/90 hover:text-primary hover:bg-primary/10 transition-all duration-300 text-sm"
               onClick={() => window.location.href = '/'}
             >
               Início
             </Button>
             <Button 
               variant="ghost" 
-              className="text-white/90 hover:text-primary hover:bg-primary/10 transition-all duration-300"
+              className="text-white/90 hover:text-primary hover:bg-primary/10 transition-all duration-300 text-sm"
               onClick={() => window.location.href = '/sobre'}
             >
               Sobre
             </Button>
             <Button 
               variant="ghost" 
-              className="text-white/90 hover:text-primary hover:bg-primary/10 transition-all duration-300"
+              className="text-white/90 hover:text-primary hover:bg-primary/10 transition-all duration-300 text-sm"
               onClick={() => window.location.href = '/servicos'}
             >
               Serviços
             </Button>
             <Button 
               variant="ghost" 
-              className="text-white/90 hover:text-primary hover:bg-primary/10 transition-all duration-300"
+              className="text-white/90 hover:text-primary hover:bg-primary/10 transition-all duration-300 text-sm"
               onClick={() => window.location.href = '/contabilidade'}
             >
-              Contabilidade
+              Contabilidade Integrada
             </Button>
             <Button 
               variant="ghost" 
-              className="text-white/90 hover:text-primary hover:bg-primary/10 transition-all duration-300"
+              className="text-white/90 hover:text-primary hover:bg-primary/10 transition-all duration-300 text-sm"
               onClick={() => window.location.href = '/equipe'}
             >
               Equipe
             </Button>
             <Button 
               variant="ghost" 
-              className="text-white/90 hover:text-primary hover:bg-primary/10 transition-all duration-300"
+              className="text-white/90 hover:text-primary hover:bg-primary/10 transition-all duration-300 text-sm"
               onClick={() => window.location.href = '/trabalhe-conosco'}
             >
               Trabalhe Conosco
             </Button>
             <Button 
               variant="ghost" 
-              className="text-white/90 hover:text-primary hover:bg-primary/10 transition-all duration-300"
+              className="text-white/90 hover:text-primary hover:bg-primary/10 transition-all duration-300 text-sm"
               onClick={() => window.location.href = '/contato'}
             >
               Contato
@@ -76,7 +76,7 @@ export const Header = () => {
             >
               <div className="frutiger-inner">
                 <div className="frutiger-top-white"></div>
-                <span className="frutiger-text">Contratar Profissional</span>
+                <span className="frutiger-text text-sm">Contratar Profissional</span>
               </div>
             </button>
           </nav>
