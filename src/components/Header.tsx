@@ -9,6 +9,8 @@ export const Header = () => {
   const menuRef = useRef<HTMLDivElement>(null);
   const touchStartY = useRef<number>(0);
   const touchEndY = useRef<number>(0);
+  const touchStartX = useRef<number>(0);
+  const touchEndX = useRef<number>(0);
 
   useEffect(() => {
     if (mobileMenuOpen) {
@@ -23,15 +25,19 @@ export const Header = () => {
 
   const handleTouchStart = (e: React.TouchEvent) => {
     touchStartY.current = e.touches[0].clientY;
+    touchStartX.current = e.touches[0].clientX;
   };
 
   const handleTouchMove = (e: React.TouchEvent) => {
     touchEndY.current = e.touches[0].clientY;
+    touchEndX.current = e.touches[0].clientX;
   };
 
   const handleTouchEnd = () => {
-    const swipeDistance = touchStartY.current - touchEndY.current;
-    if (swipeDistance < -50) {
+    const deltaY = touchStartY.current - touchEndY.current;
+    const deltaX = touchStartX.current - touchEndX.current;
+    // Close on swipe down or any horizontal swipe
+    if (deltaY < -50 || Math.abs(deltaX) > 50) {
       setMobileMenuOpen(false);
     }
   };
@@ -142,7 +148,7 @@ export const Header = () => {
           onTouchStart={handleTouchStart}
           onTouchMove={handleTouchMove}
           onTouchEnd={handleTouchEnd}
-          style={{ width: '100vw', maxWidth: '100%', overflowX: 'hidden' }}
+          style={{ width: '100%', overflowX: 'hidden' }}
         >
           {/* Logo */}
           <div className="absolute top-6 left-6 z-50">
@@ -159,7 +165,7 @@ export const Header = () => {
             <span className="w-7 h-0.5 bg-white -rotate-45 -translate-y-0.5"></span>
           </button>
 
-          <nav className="flex flex-col gap-2 pt-24 px-8 pb-6 h-full overflow-y-auto" style={{ maxWidth: '100vw' }}>
+          <nav className="flex flex-col gap-2 pt-24 px-8 pb-6 h-full overflow-y-auto">
             <Button 
               variant="ghost" 
               className="w-full justify-start text-white hover:text-primary hover:bg-primary/10 transition-all duration-300 text-lg py-7"
