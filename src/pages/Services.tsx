@@ -1,5 +1,5 @@
 import { useState, useMemo, useEffect } from "react";
-import { useSearchParams } from "react-router-dom";
+import { useSearchParams, useNavigate } from "react-router-dom";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { FloatingChat } from "@/components/FloatingChat";
@@ -63,6 +63,7 @@ const categories = ["Todos", ...servicesData.map(cat => cat.name)];
 
 const Services = () => {
   const [searchParams] = useSearchParams();
+  const navigate = useNavigate();
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("Todos");
   const [selectedSubcategory, setSelectedSubcategory] = useState("Todas");
@@ -124,7 +125,7 @@ const Services = () => {
     : filteredServicesList.length;
 
   const handleRequestQuote = (serviceName: string) => {
-    window.location.href = `/contratar-servico?servico=${encodeURIComponent(serviceName)}`;
+    navigate(`/contratar-servico?servico=${encodeURIComponent(serviceName)}`);
   };
 
   return (

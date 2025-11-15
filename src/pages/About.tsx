@@ -2,12 +2,14 @@ import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
+import { useNavigate } from "react-router-dom";
 import { Users, Target, Award, TrendingUp } from "lucide-react";
 import { useScrollReveal } from "@/hooks/use-scroll-reveal";
 import heroBg from "@/assets/hero-bg.jpg";
 
 export default function About() {
   const { elementRef, isVisible } = useScrollReveal();
+  const navigate = useNavigate();
 
   return (
     <div className="min-h-screen flex flex-col">
@@ -151,7 +153,7 @@ export default function About() {
             <Button 
               size="lg" 
               className="bg-primary hover:bg-primary/90 text-black font-bold"
-              onClick={() => window.location.href = '/contratar-servico'}
+              onClick={() => navigate('/contratar-servico')}
             >
               Contratar Profissional Agora
             </Button>

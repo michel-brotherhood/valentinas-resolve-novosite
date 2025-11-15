@@ -1,8 +1,11 @@
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
+import { useNavigate } from "react-router-dom";
 import { TrendingUp, Users, DollarSign, Shield } from "lucide-react";
 
 export const ProfessionalCallout = () => {
+  const navigate = useNavigate();
+  
   return (
     <section className="py-16 bg-gradient-to-b from-primary/5 to-background">
       <div className="container mx-auto px-4">
@@ -81,7 +84,7 @@ export const ProfessionalCallout = () => {
               <Button 
                 size="lg" 
                 className="shadow__btn"
-                onClick={() => window.location.href = '/trabalhe-conosco'}
+                onClick={() => navigate('/trabalhe-conosco')}
               >
                 Trabalhe Conosco - Cadastre-se Agora
               </Button>

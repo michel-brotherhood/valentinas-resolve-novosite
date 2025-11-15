@@ -2,9 +2,12 @@ import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
+import { useNavigate } from "react-router-dom";
 import { TrendingUp, Users, DollarSign, Clock, CheckCircle } from "lucide-react";
 
 export default function WorkWithUs() {
+  const navigate = useNavigate();
+  
   return (
     <div className="min-h-screen flex flex-col">
       <Header />
@@ -23,7 +26,7 @@ export default function WorkWithUs() {
               <Button 
                 size="lg" 
                 className="bg-primary hover:bg-primary/90 text-black font-bold"
-                onClick={() => window.location.href = '/registro-profissional'}
+                onClick={() => navigate('/registro-profissional')}
               >
                 Cadastre-se como Profissional
               </Button>
@@ -223,7 +226,7 @@ export default function WorkWithUs() {
             <Button 
               size="lg" 
               className="bg-primary hover:bg-primary/90 text-black font-bold"
-              onClick={() => window.location.href = '/registro-profissional'}
+              onClick={() => navigate('/registro-profissional')}
             >
               Iniciar Cadastro
             </Button>

@@ -2,6 +2,7 @@ import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
+import { useNavigate } from "react-router-dom";
 import { useScrollReveal } from "@/hooks/use-scroll-reveal";
 import { 
   FileText, 
@@ -118,6 +119,7 @@ const testimonials = [
 ];
 
 export default function Accounting() {
+  const navigate = useNavigate();
   const section1 = useScrollReveal();
   const section2 = useScrollReveal();
   const section3 = useScrollReveal();
@@ -154,7 +156,7 @@ export default function Accounting() {
               </p>
               <button 
                 className="glow-button"
-                onClick={() => window.location.href = '/formulario-contabilidade'}
+                onClick={() => navigate('/formulario-contabilidade')}
               >
                 Quero minha contabilidade integrada
               </button>
@@ -194,7 +196,7 @@ export default function Accounting() {
                 <Button 
                   size="lg"
                   className="h-14 px-8 shadow__btn"
-                  onClick={() => window.location.href = '/contabilidade-formulario'}
+                  onClick={() => navigate('/formulario-contabilidade')}
                 >
                   Fale com a Andressa
                 </Button>
@@ -275,7 +277,7 @@ export default function Accounting() {
                 <Button 
                   size="lg"
                   className="h-14 px-8 shadow__btn"
-                  onClick={() => window.location.href = '/contabilidade-formulario'}
+                  onClick={() => navigate('/formulario-contabilidade')}
                 >
                   Contratar agora
                 </Button>
@@ -319,7 +321,7 @@ export default function Accounting() {
                 <Button 
                   size="lg"
                   className="h-14 px-8 shadow__btn"
-                  onClick={() => window.location.href = '/contabilidade-formulario'}
+                  onClick={() => navigate('/formulario-contabilidade')}
                 >
                   Solicitar Orçamento
                 </Button>
