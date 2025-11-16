@@ -1,10 +1,9 @@
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Search } from "lucide-react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { z } from "zod";
 import { useToast } from "@/hooks/use-toast";
+import { ServiceAutocomplete } from "@/components/ServiceAutocomplete";
 
 const searchSchema = z.object({
   query: z.string().trim().min(2, "Digite pelo menos 2 caracteres").max(100, "Pesquisa muito longa"),
@@ -39,6 +38,7 @@ export const Hero = () => {
         navigate(`/registro-profissional?categoria=${encodedQuery}`);
         setTimeout(() => window.scrollTo({ top: 0, behavior: 'smooth' }), 100);
       } else {
+        // Navega para o formulário com o serviço pré-selecionado
         navigate(`/contratar-servico?servico=${encodedQuery}`);
         setTimeout(() => window.scrollTo({ top: 0, behavior: 'smooth' }), 100);
       }
@@ -51,6 +51,17 @@ export const Hero = () => {
         });
       }
     }
+  };
+
+  const handleServiceSelect = (serviceName: string) => {
+    // Quando um serviço é selecionado, já navega direto
+    const encodedService = encodeURIComponent(serviceName);
+    if (activeTab === "register") {
+      navigate(`/registro-profissional?categoria=${encodedService}`);
+    } else {
+      navigate(`/contratar-servico?servico=${encodedService}`);
+    }
+    setTimeout(() => window.scrollTo({ top: 0, behavior: 'smooth' }), 100);
   };
 
   const handleKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
@@ -131,25 +142,20 @@ export const Hero = () => {
 
           {/* Search Bar */}
           <div className="flex gap-2">
-            <div className="relative flex-1">
-              <Input
-                type="text"
-                placeholder={
-                  activeTab === "hire" 
-                    ? 'Procure "contabilidade", "limpeza", "consultoria"...'
-                    : 'Procure "domésticos", "beleza", "saúde"...'
-                }
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                onKeyPress={handleKeyPress}
-                className="h-14 pl-4 pr-12 text-base bg-white border-white/20"
-                maxLength={100}
-              />
-              <Search className="absolute right-4 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
-            </div>
+            <ServiceAutocomplete
+              value={searchQuery}
+              onChange={setSearchQuery}
+              onSelect={handleServiceSelect}
+              onKeyPress={handleKeyPress}
+              placeholder={
+                activeTab === "hire" 
+                  ? 'Procure "contabilidade", "limpeza", "consultoria"...'
+                  : 'Procure "domésticos", "beleza", "saúde"...'
+              }
+            />
             <Button 
               size="lg"
-              className="h-14 px-6 md:px-8 shadow__btn"
+              className="h-14 px-6 md:px-8 shadow__btn flex-shrink-0"
               onClick={handleSearch}
             >
               {activeTab === "hire" ? "Buscar" : "Começar"}
