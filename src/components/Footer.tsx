@@ -10,7 +10,11 @@ export const Footer = () => {
           {/* Company Info with Logo */}
           <div className="flex flex-col items-center md:items-start">
             <div className="mb-4">
-              <img src={logo} alt="Valentina's Resolve" className="h-12 w-auto" />
+              <img 
+                src={logo} 
+                alt="Valentina's Resolve" 
+                className="h-12 w-auto animate-fade-in animate-scale-in" 
+              />
             </div>
             <p className="text-sm text-white/70 mb-2 text-center md:text-left">
               Negócios que conectam, resultados que transformam.

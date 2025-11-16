@@ -52,10 +52,11 @@ export const Header = () => {
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-8">
               <Link to="/" className="flex items-center gap-3 group">
-                <img src={logo} alt="Valentina's Resolve" className="h-10 w-auto transition-transform group-hover:scale-105" />
-                <span className="text-xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent hidden md:block">
-                  Valentina's Resolve
-                </span>
+                <img 
+                  src={logo} 
+                  alt="Valentina's Resolve" 
+                  className="h-16 w-auto transition-transform group-hover:scale-105 animate-fade-in animate-scale-in" 
+                />
               </Link>
             </div>
 
