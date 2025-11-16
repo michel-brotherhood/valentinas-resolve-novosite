@@ -50,18 +50,18 @@ export const Header = () => {
       <header className="bg-gradient-to-b from-black to-black/95 backdrop-blur-sm sticky top-0 z-50 shadow-lg shadow-primary/5">
         <div className="container mx-auto px-4 py-3">
           <div className="flex items-center justify-between">
-            <div className="flex items-center gap-8">
-              <Link to="/" className="flex items-center gap-3 group">
+            <div className="flex items-center">
+              <Link to="/" className="flex items-center group">
                 <img 
                   src={logo} 
                   alt="Valentina's Resolve" 
-                  className="h-16 w-auto transition-transform group-hover:scale-105 animate-fade-in animate-scale-in" 
+                  className="h-16 w-auto transition-all duration-300 group-hover:scale-105 group-hover:drop-shadow-[0_0_15px_rgba(251,191,36,0.5)] animate-fade-in animate-scale-in" 
                 />
               </Link>
             </div>
 
             {/* Desktop Navigation */}
-            <nav className="hidden md:flex items-center gap-1">
+            <nav className="hidden md:flex items-center gap-1 ml-8">
               <Link to="/">
                 <Button 
                   variant="ghost" 
