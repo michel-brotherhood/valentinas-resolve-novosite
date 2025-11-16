@@ -237,7 +237,7 @@ export default function Contact() {
                       <Mail className="h-5 w-5 md:h-6 md:w-6 text-primary" />
                     </div>
                     <div className="min-w-0 flex-1">
-                      <h3 className="font-semibold text-foreground mb-1">Email</h3>
+                      <h3 className="font-semibold text-foreground mb-1">E-mails</h3>
                       <p className="text-muted-foreground text-sm break-words overflow-wrap-anywhere">atendimentoaocliente@valentinasresolve.com.br</p>
                       <p className="text-muted-foreground text-sm break-words overflow-wrap-anywhere mt-1">contabilidadeintegrada@valentinasresolve.com.br</p>
                     </div>
