@@ -135,7 +135,10 @@ export const AccountingServices = () => {
             </div>
             <Button 
               className="w-full bg-foreground hover:bg-foreground/90 text-background font-bold"
-              onClick={() => navigate('/contabilidade')}
+              onClick={() => {
+                navigate('/formulario-contabilidade');
+                setTimeout(() => window.scrollTo({ top: 0, behavior: 'smooth' }), 100);
+              }}
             >
               Solicitar Orçamento <ArrowRight className="ml-2 h-4 w-4" />
             </Button>
