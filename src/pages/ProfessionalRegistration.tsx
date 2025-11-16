@@ -10,7 +10,7 @@ import { Card } from "@/components/ui/card";
 import { Checkbox } from "@/components/ui/checkbox";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { useToast } from "@/hooks/use-toast";
-import { ChevronLeft, ChevronRight, Upload, CheckCircle2, Loader2 } from "lucide-react";
+import { ChevronLeft, ChevronRight, Upload, CheckCircle2, Loader2, X } from "lucide-react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
@@ -153,6 +153,42 @@ const ProfessionalRegistration = () => {
       }
     }
     e.target.value = '';
+  };
+
+  const removeIdFile = (index: number) => {
+    setIdFiles(prev => {
+      const newFiles = prev.filter((_, i) => i !== index);
+      if (newFiles.length === 0) {
+        documentsForm.setValue("idDocument", false);
+      }
+      return newFiles;
+    });
+    toast({
+      title: "Arquivo removido",
+      description: "O arquivo foi removido com sucesso.",
+    });
+  };
+
+  const removeAddressFile = (index: number) => {
+    setAddressFiles(prev => {
+      const newFiles = prev.filter((_, i) => i !== index);
+      if (newFiles.length === 0) {
+        documentsForm.setValue("proofOfAddress", false);
+      }
+      return newFiles;
+    });
+    toast({
+      title: "Arquivo removido",
+      description: "O arquivo foi removido com sucesso.",
+    });
+  };
+
+  const removeCertificateFile = (index: number) => {
+    setCertificateFiles(prev => prev.filter((_, i) => i !== index));
+    toast({
+      title: "Arquivo removido",
+      description: "O arquivo foi removido com sucesso.",
+    });
   };
 
   const onSubmitStep1 = (data: PersonalInfo) => setCurrentStep(2);
@@ -424,9 +460,25 @@ const ProfessionalRegistration = () => {
                     <Input id="idDocument" type="file" accept=".pdf,.jpg,.jpeg,.png" onChange={handleIdUpload} className="mt-2" multiple />
                     <p className="text-sm text-muted-foreground mt-2">Aceita PDF, JPG, PNG - Máximo 5MB por arquivo</p>
                     {idFiles.length > 0 && (
-                      <div className="mt-2 flex items-center gap-2 text-sm text-primary">
-                        <CheckCircle2 className="h-4 w-4" />
-                        {idFiles.length} arquivo(s) selecionado(s)
+                      <div className="mt-3 space-y-2">
+                        {idFiles.map((file, index) => (
+                          <div key={index} className="flex items-center justify-between bg-muted/50 p-2 rounded">
+                            <div className="flex items-center gap-2 text-sm">
+                              <CheckCircle2 className="h-4 w-4 text-primary" />
+                              <span className="truncate max-w-[250px]">{file.name}</span>
+                              <span className="text-muted-foreground text-xs">({(file.size / 1024).toFixed(1)} KB)</span>
+                            </div>
+                            <Button
+                              type="button"
+                              variant="ghost"
+                              size="sm"
+                              onClick={() => removeIdFile(index)}
+                              className="h-7 w-7 p-0"
+                            >
+                              <X className="h-4 w-4" />
+                            </Button>
+                          </div>
+                        ))}
                       </div>
                     )}
                     {documentsForm.formState.errors.idDocument && (
@@ -442,9 +494,25 @@ const ProfessionalRegistration = () => {
                     <Input id="proofOfAddress" type="file" accept=".pdf,.jpg,.jpeg,.png" onChange={handleAddressUpload} className="mt-2" multiple />
                     <p className="text-sm text-muted-foreground mt-2">Aceita PDF, JPG, PNG - Máximo 5MB por arquivo</p>
                     {addressFiles.length > 0 && (
-                      <div className="mt-2 flex items-center gap-2 text-sm text-primary">
-                        <CheckCircle2 className="h-4 w-4" />
-                        {addressFiles.length} arquivo(s) selecionado(s)
+                      <div className="mt-3 space-y-2">
+                        {addressFiles.map((file, index) => (
+                          <div key={index} className="flex items-center justify-between bg-muted/50 p-2 rounded">
+                            <div className="flex items-center gap-2 text-sm">
+                              <CheckCircle2 className="h-4 w-4 text-primary" />
+                              <span className="truncate max-w-[250px]">{file.name}</span>
+                              <span className="text-muted-foreground text-xs">({(file.size / 1024).toFixed(1)} KB)</span>
+                            </div>
+                            <Button
+                              type="button"
+                              variant="ghost"
+                              size="sm"
+                              onClick={() => removeAddressFile(index)}
+                              className="h-7 w-7 p-0"
+                            >
+                              <X className="h-4 w-4" />
+                            </Button>
+                          </div>
+                        ))}
                       </div>
                     )}
                     {documentsForm.formState.errors.proofOfAddress && (
@@ -460,9 +528,25 @@ const ProfessionalRegistration = () => {
                     <Input id="certificates" type="file" accept=".pdf,.jpg,.jpeg,.png" onChange={handleCertificateUpload} className="mt-2" multiple />
                     <p className="text-sm text-muted-foreground mt-2">Aceita PDF, JPG, PNG - Máximo 5MB por arquivo</p>
                     {certificateFiles.length > 0 && (
-                      <div className="mt-2 flex items-center gap-2 text-sm text-primary">
-                        <CheckCircle2 className="h-4 w-4" />
-                        {certificateFiles.length} arquivo(s) selecionado(s)
+                      <div className="mt-3 space-y-2">
+                        {certificateFiles.map((file, index) => (
+                          <div key={index} className="flex items-center justify-between bg-muted/50 p-2 rounded">
+                            <div className="flex items-center gap-2 text-sm">
+                              <CheckCircle2 className="h-4 w-4 text-primary" />
+                              <span className="truncate max-w-[250px]">{file.name}</span>
+                              <span className="text-muted-foreground text-xs">({(file.size / 1024).toFixed(1)} KB)</span>
+                            </div>
+                            <Button
+                              type="button"
+                              variant="ghost"
+                              size="sm"
+                              onClick={() => removeCertificateFile(index)}
+                              className="h-7 w-7 p-0"
+                            >
+                              <X className="h-4 w-4" />
+                            </Button>
+                          </div>
+                        ))}
                       </div>
                     )}
                   </div>
