@@ -7,6 +7,7 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
+import logoVR from "@/assets/logo-v-3D.webp";
 
 const testimonials = [
   {
@@ -15,7 +16,7 @@ const testimonials = [
     rating: 5,
     date: "Há 2 semanas",
     comment: "A Contabilidade Integrada da Valentina's Resolve transformou a gestão do meu negócio. Atendimento impecável da Andressa e equipe. Tudo 100% digital e sem complicação!",
-    avatar: "M"
+    useImage: true
   },
   {
     name: "João Santos",
@@ -23,7 +24,7 @@ const testimonials = [
     rating: 5,
     date: "Há 1 mês",
     comment: "Serviço de limpeza excepcional! A equipe foi pontual, atenciosa e deixou minha casa impecável. Preços justos e profissionais qualificados. Super recomendo!",
-    avatar: "J"
+    useImage: true
   },
   {
     name: "Ana Costa",
@@ -31,7 +32,7 @@ const testimonials = [
     rating: 5,
     date: "Há 3 semanas",
     comment: "Excelente consultoria jurídica! Profissionais competentes que resolveram minha questão trabalhista com rapidez e eficiência. Plataforma muito prática de usar.",
-    avatar: "A"
+    useImage: true
   },
   {
     name: "Pedro Oliveira",
@@ -39,7 +40,7 @@ const testimonials = [
     rating: 5,
     date: "Há 1 semana",
     comment: "Contratei serviço de pintura e pequenos reparos. Ficou perfeito! A instalação foi rápida e muito bem feita. Equipe profissional e atenciosa.",
-    avatar: "P"
+    useImage: true
   },
   {
     name: "Carla Mendes",
@@ -47,7 +48,31 @@ const testimonials = [
     rating: 5,
     date: "Há 4 dias",
     comment: "Adorei o serviço de manicure e design de sobrancelhas! Profissional super qualificada que foi até minha casa. Comodidade e qualidade garantidas!",
-    avatar: "C"
+    useImage: true
+  },
+  {
+    name: "Roberto Lima",
+    service: "Jardinagem",
+    rating: 5,
+    date: "Há 2 dias",
+    comment: "Contratei serviço de jardinagem e fiquei impressionado com o resultado. Meu jardim nunca esteve tão bonito! Profissionais experientes e dedicados.",
+    useImage: true
+  },
+  {
+    name: "Juliana Costa",
+    service: "Eletricista",
+    rating: 5,
+    date: "Há 1 semana",
+    comment: "Precisava de um eletricista com urgência e encontrei através da plataforma. Resolveu o problema rapidamente e com preço justo. Recomendo!",
+    useImage: true
+  },
+  {
+    name: "Fernando Alves",
+    service: "Encanador",
+    rating: 5,
+    date: "Há 3 dias",
+    comment: "Excelente profissional! Vazamento resolvido em minutos. Atendimento rápido, eficiente e preço honesto. Com certeza voltarei a contratar.",
+    useImage: true
   },
 ];
 
@@ -84,10 +109,18 @@ export const Testimonials = () => {
                 <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3">
                   <Card className="p-6 h-full hover:shadow-lg transition-shadow">
                     <div className="flex items-start gap-4 mb-4">
-                      <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
-                        <span className="text-lg font-bold text-primary">
-                          {testimonial.avatar}
-                        </span>
+                      <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0 overflow-hidden">
+                        {testimonial.useImage ? (
+                          <img 
+                            src={logoVR} 
+                            alt={testimonial.name}
+                            className="w-full h-full object-cover"
+                          />
+                        ) : (
+                          <span className="text-lg font-bold text-primary">
+                            {testimonial.name[0]}
+                          </span>
+                        )}
                       </div>
                       <div className="flex-1">
                         <h3 className="font-semibold text-foreground">
