@@ -236,11 +236,11 @@ export const servicesData: Category[] = [
       },
       {
         name: "Recursos Humanos e Marketing",
-        description: "Consultoria empresarial",
+        description: "Consultoria empresarial (MEI - LTDA - EI)",
         services: [
-          { name: "Consultoria em RH", description: "Gestão de pessoas" },
-          { name: "Consultoria em marketing", description: "Estratégias comerciais" },
-          { name: "Coaching empresarial", description: "Desenvolvimento organizacional" },
+          { name: "Consultoria em RH", description: "Gestão de pessoas (MEI - LTDA - EI)" },
+          { name: "Consultoria em marketing", description: "Estratégias comerciais (MEI - LTDA - EI)" },
+          { name: "Coaching empresarial", description: "Desenvolvimento organizacional (MEI - LTDA - EI)" },
         ],
       },
       {
@@ -254,11 +254,11 @@ export const servicesData: Category[] = [
       },
       {
         name: "Abertura de Empresas",
-        description: "Constituição empresarial",
+        description: "Constituição empresarial (MEI - LTDA - EI)",
         services: [
-          { name: "Registro de empresa", description: "Formalização" },
-          { name: "Consultoria MEI", description: "Microempreendedor" },
-          { name: "Alteração contratual", description: "Mudanças societárias" },
+          { name: "Registro de empresa", description: "Formalização (MEI - LTDA - EI)" },
+          { name: "Consultoria MEI", description: "Microempreendedor (MEI - LTDA - EI)" },
+          { name: "Alteração contratual", description: "Mudanças societárias (MEI - LTDA - EI)" },
         ],
       },
     ],
