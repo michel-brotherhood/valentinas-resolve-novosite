@@ -236,11 +236,11 @@ export const servicesData: Category[] = [
       },
       {
         name: "Recursos Humanos e Marketing",
-        description: "Consultoria empresarial (MEI - LTDA - EI)",
+        description: "Consultoria empresarial",
         services: [
-          { name: "Consultoria em RH", description: "Gestão de pessoas (MEI - LTDA - EI)" },
-          { name: "Consultoria em marketing", description: "Estratégias comerciais (MEI - LTDA - EI)" },
-          { name: "Coaching empresarial", description: "Desenvolvimento organizacional (MEI - LTDA - EI)" },
+          { name: "Consultoria em RH", description: "Gestão de pessoas" },
+          { name: "Consultoria em marketing", description: "Estratégias comerciais" },
+          { name: "Coaching empresarial", description: "Desenvolvimento organizacional" },
         ],
       },
       {
