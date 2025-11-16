@@ -25,7 +25,7 @@ const faqs = [
   },
   {
     question: "Como funciona a Contabilidade Integrada?",
-    answer: "A Contabilidade Integrada é um serviço exclusivo liderado pela contadora Andressa Mello. É 100% digital e oferece abertura de CNPJ, planejamento tributário, emissão de notas fiscais, relatórios mensais e suporte personalizado. Ideal para profissionais da plataforma e empresas que buscam gestão contábil moderna."
+    answer: "A Contabilidade Integrada é um serviço exclusivo liderado pela contadora Andressa Melo. É 100% digital e oferece abertura de CNPJ, planejamento tributário, emissão de notas fiscais, relatórios mensais e suporte personalizado. Ideal para profissionais da plataforma e empresas que buscam gestão contábil moderna."
   },
   {
     question: "Como me cadastro como profissional?",
