@@ -39,7 +39,7 @@ const handler = async (req: Request): Promise<Response> => {
     console.log("Sending professional registration email:", data.fullName);
 
     const emailResponse = await resend.emails.send({
-      from: "Valentina's Resolve <onboarding@resend.dev>",
+      from: "Valentina's Resolve <noreply@valentinasresolve.com.br>",
       to: ["cadastroprofissionais@valentinasresolve.com.br"],
       reply_to: data.email,
       subject: `Novo Cadastro de Profissional - ${data.fullName}`,
