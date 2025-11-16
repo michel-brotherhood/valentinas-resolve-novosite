@@ -67,6 +67,8 @@ const Services = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("Todos");
   const [selectedSubcategory, setSelectedSubcategory] = useState("Todas");
+  const [selectedCompanyType, setSelectedCompanyType] = useState<string>("Todos");
+  const [selectedRegion, setSelectedRegion] = useState<string>("Todas");
   const [viewMode, setViewMode] = useState<"hierarchy" | "list">("hierarchy");
 
   useEffect(() => {
@@ -79,7 +81,7 @@ const Services = () => {
   const allServices = useMemo(() => getAllServices(), []);
 
   const filteredCategories = useMemo(() => {
-    if (selectedCategory === "Todos" && !searchQuery) {
+    if (selectedCategory === "Todos" && !searchQuery && selectedCompanyType === "Todos" && selectedRegion === "Todas") {
       return servicesData;
     }
 
@@ -90,15 +92,23 @@ const Services = () => {
         subcategories: category.subcategories
           .map(subcategory => ({
             ...subcategory,
-            services: subcategory.services.filter(service =>
-              service.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-              service.description.toLowerCase().includes(searchQuery.toLowerCase())
-            ),
+            services: subcategory.services.filter(service => {
+              const matchesSearch = service.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                service.description.toLowerCase().includes(searchQuery.toLowerCase());
+              const matchesCompanyType = selectedCompanyType === "Todos" || 
+                !service.companyTypes || 
+                service.companyTypes.includes("Todos") ||
+                service.companyTypes.includes(selectedCompanyType as any);
+              const matchesRegion = selectedRegion === "Todas" ||
+                !service.regions ||
+                service.regions.includes(selectedRegion);
+              return matchesSearch && matchesCompanyType && matchesRegion;
+            }),
           }))
           .filter(subcategory => subcategory.services.length > 0),
       }))
       .filter(category => category.subcategories.length > 0);
-  }, [searchQuery, selectedCategory]);
+  }, [searchQuery, selectedCategory, selectedCompanyType, selectedRegion]);
 
   const filteredServicesList = useMemo(() => {
     return allServices.filter((service) => {
@@ -109,9 +119,16 @@ const Services = () => {
         selectedCategory === "Todos" || service.category === selectedCategory;
       const matchesSubcategory =
         selectedSubcategory === "Todas" || service.subcategory === selectedSubcategory;
-      return matchesSearch && matchesCategory && matchesSubcategory;
+      const matchesCompanyType = selectedCompanyType === "Todos" || 
+        !service.companyTypes || 
+        service.companyTypes.includes("Todos") ||
+        service.companyTypes.includes(selectedCompanyType as any);
+      const matchesRegion = selectedRegion === "Todas" ||
+        !service.regions ||
+        service.regions.includes(selectedRegion);
+      return matchesSearch && matchesCategory && matchesSubcategory && matchesCompanyType && matchesRegion;
     });
-  }, [searchQuery, selectedCategory, selectedSubcategory, allServices]);
+  }, [searchQuery, selectedCategory, selectedSubcategory, selectedCompanyType, selectedRegion, allServices]);
 
   const subcategories = useMemo(() => {
     if (selectedCategory === "Todos") return ["Todas"];
@@ -196,6 +213,55 @@ const Services = () => {
                       </SelectContent>
                     </Select>
                   </div>
+                )}
+              </div>
+
+              {/* Filtros Avançados */}
+              <div className="flex flex-col lg:flex-row gap-4 pt-4 border-t border-border">
+                <div className="lg:w-64">
+                  <Select value={selectedCompanyType} onValueChange={setSelectedCompanyType}>
+                    <SelectTrigger className="h-12">
+                      <Filter className="h-4 w-4 mr-2" />
+                      <SelectValue placeholder="Tipo de Empresa" />
+                    </SelectTrigger>
+                    <SelectContent className="bg-popover z-50">
+                      <SelectItem value="Todos">Todos os tipos</SelectItem>
+                      <SelectItem value="MEI">MEI</SelectItem>
+                      <SelectItem value="LTDA">LTDA</SelectItem>
+                      <SelectItem value="EI">EI</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </div>
+
+                <div className="lg:w-64">
+                  <Select value={selectedRegion} onValueChange={setSelectedRegion}>
+                    <SelectTrigger className="h-12">
+                      <Filter className="h-4 w-4 mr-2" />
+                      <SelectValue placeholder="Região" />
+                    </SelectTrigger>
+                    <SelectContent className="bg-popover z-50">
+                      <SelectItem value="Todas">Todas as regiões</SelectItem>
+                      <SelectItem value="Nacional">Nacional</SelectItem>
+                      <SelectItem value="Norte">Norte</SelectItem>
+                      <SelectItem value="Nordeste">Nordeste</SelectItem>
+                      <SelectItem value="Centro-Oeste">Centro-Oeste</SelectItem>
+                      <SelectItem value="Sudeste">Sudeste</SelectItem>
+                      <SelectItem value="Sul">Sul</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </div>
+
+                {(selectedCompanyType !== "Todos" || selectedRegion !== "Todas") && (
+                  <Button
+                    variant="outline"
+                    onClick={() => {
+                      setSelectedCompanyType("Todos");
+                      setSelectedRegion("Todas");
+                    }}
+                    className="h-12"
+                  >
+                    Limpar Filtros Avançados
+                  </Button>
                 )}
               </div>
 
@@ -321,6 +387,8 @@ const Services = () => {
                         setSearchQuery("");
                         setSelectedCategory("Todos");
                         setSelectedSubcategory("Todas");
+                        setSelectedCompanyType("Todos");
+                        setSelectedRegion("Todas");
                       }}
                       variant="outline"
                     >
@@ -394,6 +462,8 @@ const Services = () => {
                         setSearchQuery("");
                         setSelectedCategory("Todos");
                         setSelectedSubcategory("Todas");
+                        setSelectedCompanyType("Todos");
+                        setSelectedRegion("Todas");
                       }}
                       variant="outline"
                     >

@@ -1,6 +1,8 @@
 export interface Service {
   name: string;
   description: string;
+  companyTypes?: ("MEI" | "LTDA" | "EI" | "Todos")[];
+  regions?: string[];
 }
 
 export interface Subcategory {
@@ -208,11 +210,28 @@ export const servicesData: Category[] = [
         services: [
           { 
             name: "Contabilidade Integrada", 
-            description: "DADOS QUE CONECTAM. RESULTADOS QUE TRANSFORMAM. 9 anos de experiência, CRC: RO-010414/O-5. Atende MEI, LTDA e EI" 
+            description: "DADOS QUE CONECTAM. RESULTADOS QUE TRANSFORMAM. 9 anos de experiência, CRC: RO-010414/O-5. Atende MEI, LTDA e EI",
+            companyTypes: ["MEI", "LTDA", "EI"],
+            regions: ["Nacional"]
           },
-          { name: "Consultoria contábil", description: "Gestão contábil" },
-          { name: "Consultoria tributária", description: "Planejamento fiscal" },
-          { name: "Declaração de IR", description: "Imposto de renda" },
+          { 
+            name: "Consultoria contábil", 
+            description: "Gestão contábil",
+            companyTypes: ["Todos"],
+            regions: ["Nacional"]
+          },
+          { 
+            name: "Consultoria tributária", 
+            description: "Planejamento fiscal",
+            companyTypes: ["Todos"],
+            regions: ["Nacional"]
+          },
+          { 
+            name: "Declaração de IR", 
+            description: "Imposto de renda",
+            companyTypes: ["Todos"],
+            regions: ["Nacional"]
+          },
         ],
       },
       {

@@ -83,7 +83,7 @@ const differentials = [
   {
     icon: Users,
     title: "Atendimento Humano",
-    description: "Equipe liderada por Andressa Mello"
+    description: "Equipe liderada por Andressa Melo"
   },
   {
     icon: Clock,
@@ -486,19 +486,19 @@ export default function Accounting() {
                   <div className="w-48 h-48 rounded-full overflow-hidden flex-shrink-0 ring-4 ring-primary/20">
                     <img
                       src={andressa}
-                      alt="Andressa Mello - Contadora Responsável"
+                      alt="Andressa Melo - Contadora Responsável"
                       className="w-full h-full object-cover"
                     />
                   </div>
                   <div className="flex-1 text-center md:text-left">
                     <h3 className="text-2xl font-bold text-foreground mb-2">
-                      Andressa Mello
+                      Andressa Melo
                     </h3>
                     <p className="text-primary font-semibold mb-3">
-                      Contadora Responsável - CRC 12345/O
+                      CRC RO-010414/O-5
                     </p>
                     <p className="text-muted-foreground mb-4">
-                      Especialista em contabilidade empresarial e fiscal, com mais de 15 anos de experiência. 
+                      9 anos de experiência em contabilidade empresarial e fiscal. 
                       Andressa lidera nossa equipe oferecendo atendimento personalizado e soluções sob medida.
                     </p>
                   </div>
