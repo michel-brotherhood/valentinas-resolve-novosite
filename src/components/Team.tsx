@@ -25,6 +25,7 @@ const teamMembers = [
     role: "Cofundadora & COO – Valentina's Resolve",
     shortDescription: "Gestora operacional com expertise em processos e excelência",
     fullDescription: "Cofundadora e COO da Valentina's Resolve, Kellen Amaral atua na gestão operacional da plataforma, garantindo eficiência, qualidade e excelência no atendimento. Com experiência em liderança de equipes, hotelaria e serviços, desenvolveu sólida competência em organização, processos, gestão de pessoas e execução estratégica. Iniciou sua trajetória profissional aos 17 anos em empreendimentos familiares, construindo uma base consistente em responsabilidade, gestão e tomada de decisão. Formada como cuidadora de idosos, com cursos na área da saúde e experiência internacional em Portugal, aprimorou sua capacidade de coordenar equipes com empatia, clareza e alto padrão de entrega. Além da atuação na Valentina's Resolve, é sócia da Amaral Serviços, empresa de limpeza e manutenção em Portugal, onde reforçou sua expertise em operações, supervisão de equipes e relacionamento com clientes. Na Valentina's Resolve, Kellen é responsável por alinhar processos, padronizar operações e garantir que a experiência de profissionais e clientes seja ágil, segura e eficiente, contribuindo diretamente para o crescimento e consolidação do ecossistema da plataforma.",
+    image: kellenImg,
     specialties: ["Gestão de Operações", "Liderança de Equipes", "Processos e Qualidade", "Experiência Internacional"],
   },
   {
