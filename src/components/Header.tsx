@@ -61,7 +61,7 @@ export const Header = () => {
             </div>
 
             {/* Desktop Navigation */}
-            <nav className="hidden md:flex items-center gap-1 ml-8">
+            <nav className="hidden lg:flex items-center gap-1 ml-8">
               <Link to="/">
                 <Button 
                   variant="ghost" 
@@ -135,7 +135,7 @@ export const Header = () => {
 
             {/* Mobile Menu Button */}
             <button
-              className="md:hidden text-white z-50 relative w-8 h-8 flex flex-col justify-center items-center gap-1.5"
+              className="lg:hidden text-white z-50 relative w-8 h-8 flex flex-col justify-center items-center gap-1.5"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               aria-label="Menu"
             >
@@ -151,7 +151,7 @@ export const Header = () => {
       {mobileMenuOpen && (
         <div 
           ref={menuRef}
-          className="fixed inset-0 bg-gradient-to-b from-black to-black/95 backdrop-blur-md z-50 md:hidden animate-fade-in overflow-y-auto"
+          className="fixed inset-0 bg-gradient-to-b from-black to-black/95 backdrop-blur-md z-50 lg:hidden animate-fade-in overflow-y-auto"
           style={{ width: '100%', overflowX: 'hidden' }}
         >
           {/* Logo */}
