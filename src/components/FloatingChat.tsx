@@ -4,12 +4,16 @@ import { Card } from "@/components/ui/card";
 import { useNavigate } from "react-router-dom";
 import { MessageCircle, X, HelpCircle, Briefcase, UserPlus } from "lucide-react";
 
-export const FloatingChat = () => {
+interface FloatingChatProps {
+  whatsappNumber?: string;
+}
+
+export const FloatingChat = ({ whatsappNumber = "5569992715000" }: FloatingChatProps) => {
   const [isOpen, setIsOpen] = useState(false);
   const navigate = useNavigate();
 
   const handleWhatsApp = () => {
-    window.open("https://wa.me/5569992715000?text=Olá! Tenho dúvidas sobre a Valentina's Resolve", "_blank");
+    window.open(`https://wa.me/${whatsappNumber}?text=Olá! Tenho dúvidas sobre a Valentina's Resolve`, "_blank");
     setIsOpen(false);
   };
 
