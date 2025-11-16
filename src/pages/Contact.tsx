@@ -15,7 +15,7 @@ const contactSchema = z.object({
   name: z.string().trim().min(1, { message: "Nome é obrigatório" }).max(100, { message: "Nome deve ter menos de 100 caracteres" }),
   email: z.string().trim().email({ message: "Email inválido" }).max(255, { message: "Email deve ter menos de 255 caracteres" }),
   phone: z.string().trim().min(10, { message: "Telefone inválido" }).max(20, { message: "Telefone deve ter menos de 20 caracteres" }),
-  service: z.string().trim().min(1, { message: "Selecione um serviço" }),
+  service: z.string().trim().min(1, { message: "Selecione um assunto" }),
   message: z.string().trim().min(10, { message: "Mensagem deve ter pelo menos 10 caracteres" }).max(1000, { message: "Mensagem deve ter menos de 1000 caracteres" }),
 });
 
@@ -41,7 +41,7 @@ export default function Contact() {
       
       // Simulate API call
       setTimeout(() => {
-        const whatsappMessage = `Olá! Gostaria de solicitar um orçamento:\n\nNome: ${formData.name}\nEmail: ${formData.email}\nTelefone: ${formData.phone}\nServiço: ${formData.service}\nMensagem: ${formData.message}`;
+        const whatsappMessage = `Olá! Tenho uma dúvida:\n\nNome: ${formData.name}\nEmail: ${formData.email}\nTelefone: ${formData.phone}\nAssunto: ${formData.service}\nMensagem: ${formData.message}`;
         const whatsappUrl = `https://wa.me/5569992715000?text=${encodeURIComponent(whatsappMessage)}`;
         window.open(whatsappUrl, '_blank');
         
@@ -99,7 +99,7 @@ export default function Contact() {
               {/* Contact Form */}
               <Card className="p-4 md:p-8 overflow-hidden">
                 <h2 className="text-xl md:text-2xl font-bold text-foreground mb-4 md:mb-6">
-                  Solicite um Orçamento
+                  Central de Dúvidas
                 </h2>
                 <form onSubmit={handleSubmit} className="space-y-4 md:space-y-6">
                   <div className="min-w-0">
@@ -149,19 +149,19 @@ export default function Contact() {
                   </div>
 
                   <div className="min-w-0">
-                    <Label htmlFor="service">Serviço de Interesse *</Label>
+                    <Label htmlFor="service">Assunto *</Label>
                     <select
                       id="service"
                       value={formData.service}
                       onChange={(e) => setFormData({ ...formData, service: e.target.value })}
                       className={`flex h-10 w-full max-w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 ${errors.service ? "border-destructive" : ""}`}
                     >
-                      <option value="">Selecione um serviço</option>
-                      <option value="limpeza">Limpeza</option>
-                      <option value="contabilidade">Contabilidade</option>
-                      <option value="consultoria">Consultoria</option>
-                      <option value="manutencao">Manutenção</option>
-                      <option value="outro">Outro</option>
+                      <option value="">Selecione um assunto</option>
+                      <option value="duvidas-gerais">Dúvidas Gerais</option>
+                      <option value="suporte-cliente">Suporte a Cliente</option>
+                      <option value="suporte-profissional">Suporte a Profissional</option>
+                      <option value="contabilidade-integrada">Contabilidade Integrada</option>
+                      <option value="financeiro">Financeiro</option>
                     </select>
                     {errors.service && (
                       <p className="text-sm text-destructive mt-1">{errors.service}</p>
