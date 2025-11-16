@@ -493,22 +493,23 @@ export default function Accounting() {
         </section>
 
         {/* Bloco 5 - CTA Final */}
-        <section id="cta" className="py-24 relative overflow-hidden parallax-section" style={{ backgroundImage: `url(${ctaBg})` }}>
+        <section id="cta" className="py-16 md:py-24 relative overflow-hidden parallax-section" style={{ backgroundImage: `url(${ctaBg})` }}>
           <div className="absolute inset-0 bg-black/70" />
           <div className="container mx-auto px-4 relative z-10">
             <div className="max-w-3xl mx-auto text-center">
-              <h2 className="text-3xl md:text-5xl font-bold text-white mb-6">
+              <h2 className="text-2xl md:text-4xl lg:text-5xl font-bold text-white mb-4 md:mb-6 px-4">
                 Conte com a Contabilidade Integrada Valentinas e eleve seu negócio a outro nível.
               </h2>
-              <p className="text-lg text-white/90 mb-8">
+              <p className="text-base md:text-lg text-white/90 mb-6 md:mb-8 px-4">
                 A Contabilidade Integrada Valentinas é uma marca de excelência contábil 100% brasileira, criada para gerar autonomia e crescimento real aos clientes, profissionais e empresas conectadas ao ecossistema Valentinas Resolve.
               </p>
               <Button 
                 size="lg"
-                className="h-14 px-8 shadow__btn"
-                onClick={() => window.open('https://wa.me/5569992715000?text=Olá! Gostaria de falar com a contadora responsável sobre a Contabilidade Integrada Valentinas.', '_blank')}
+                className="h-12 md:h-14 px-6 md:px-8 shadow__btn text-sm md:text-base"
+                onClick={() => navigate('/formulario-contabilidade')}
               >
-                Falar com a contadora responsável
+                <span className="hidden md:inline">Quero saber mais</span>
+                <span className="md:hidden">Quero<br />saber mais</span>
               </Button>
             </div>
           </div>
