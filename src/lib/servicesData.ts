@@ -206,6 +206,10 @@ export const servicesData: Category[] = [
         name: "Contábil e Tributário",
         description: "Serviços contábeis integrados",
         services: [
+          { 
+            name: "Contabilidade Integrada", 
+            description: "DADOS QUE CONECTAM. RESULTADOS QUE TRANSFORMAM. 9 anos de experiência, CRC: RO-010414/O-5. Atende MEI, LTDA e EI" 
+          },
           { name: "Consultoria contábil", description: "Gestão contábil" },
           { name: "Consultoria tributária", description: "Planejamento fiscal" },
           { name: "Declaração de IR", description: "Imposto de renda" },

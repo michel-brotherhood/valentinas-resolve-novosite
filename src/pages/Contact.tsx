@@ -11,6 +11,7 @@ import { useNavigate } from "react-router-dom";
 import { useToast } from "@/hooks/use-toast";
 import { z } from "zod";
 import { maskPhone } from "@/lib/masks";
+import { ServiceSelect } from "@/components/ServiceSelect";
 
 const contactSchema = z.object({
   name: z.string().trim().min(1, { message: "Nome é obrigatório" }).max(100, { message: "Nome deve ter menos de 100 caracteres" }),
@@ -167,19 +168,11 @@ export default function Contact() {
 
                   <div className="min-w-0">
                     <Label htmlFor="service">Assunto *</Label>
-                    <select
-                      id="service"
+                    <ServiceSelect
                       value={formData.service}
-                      onChange={(e) => setFormData({ ...formData, service: e.target.value })}
-                      className={`flex h-10 w-full max-w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 ${errors.service ? "border-destructive" : ""}`}
-                    >
-                      <option value="">Selecione um assunto</option>
-                      <option value="duvidas-gerais">Dúvidas Gerais</option>
-                      <option value="suporte-cliente">Suporte a Cliente</option>
-                      <option value="suporte-profissional">Suporte a Profissional</option>
-                      <option value="contabilidade-integrada">Contabilidade Integrada</option>
-                      <option value="financeiro">Financeiro</option>
-                    </select>
+                      onChange={(value) => setFormData({ ...formData, service: value })}
+                      placeholder="Selecione um serviço ou assunto"
+                    />
                     {errors.service && (
                       <p className="text-sm text-destructive mt-1">{errors.service}</p>
                     )}

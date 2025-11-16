@@ -9,13 +9,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Card } from "@/components/ui/card";
 import { Checkbox } from "@/components/ui/checkbox";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
+import { ServiceSelect } from "@/components/ServiceSelect";
 import { useToast } from "@/hooks/use-toast";
 import { z } from "zod";
 import { Mail } from "lucide-react";
@@ -216,15 +210,10 @@ export default function HireService() {
                 
                 <div>
                   <Label htmlFor="serviceType">Tipo de serviço desejado *</Label>
-                  <Input
-                    id="serviceType"
-                    type="text"
-                    placeholder="Ex: Limpeza, Encanamento, Elétrica"
+                  <ServiceSelect
                     value={formData.serviceType}
-                    onChange={(e) =>
-                      setFormData({ ...formData, serviceType: e.target.value })
-                    }
-                    className={errors.serviceType ? "border-destructive" : ""}
+                    onChange={(value) => setFormData({ ...formData, serviceType: value })}
+                    placeholder="Selecione o serviço desejado"
                   />
                   {errors.serviceType && <p className="text-sm text-destructive mt-1">{errors.serviceType}</p>}
                 </div>
