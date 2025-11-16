@@ -7,6 +7,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { Phone, Mail, MapPin, Clock } from "lucide-react";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { useToast } from "@/hooks/use-toast";
 import { z } from "zod";
 import { maskPhone } from "@/lib/masks";
@@ -21,6 +22,7 @@ const contactSchema = z.object({
 
 export default function Contact() {
   const { toast } = useToast();
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -31,7 +33,7 @@ export default function Contact() {
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setErrors({});
     
@@ -39,25 +41,40 @@ export default function Contact() {
       contactSchema.parse(formData);
       setIsSubmitting(true);
       
-      // Simulate API call
+      // Send email via edge function
+      const response = await fetch(`${import.meta.env.VITE_SUPABASE_URL}/functions/v1/send-contact-email`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY}`,
+        },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          phone: formData.phone,
+          service: formData.service,
+          message: formData.message,
+        }),
+      });
+
+      if (!response.ok) throw new Error('Erro ao enviar mensagem');
+      
+      toast({
+        title: "Mensagem enviada!",
+        description: "Redirecionando...",
+      });
+      
+      setFormData({
+        name: "",
+        email: "",
+        phone: "",
+        service: "",
+        message: "",
+      });
+      setIsSubmitting(false);
+      
       setTimeout(() => {
-        const whatsappMessage = `Olá! Tenho uma dúvida:\n\nNome: ${formData.name}\nEmail: ${formData.email}\nTelefone: ${formData.phone}\nAssunto: ${formData.service}\nMensagem: ${formData.message}`;
-        const whatsappUrl = `https://wa.me/5569992715000?text=${encodeURIComponent(whatsappMessage)}`;
-        window.open(whatsappUrl, '_blank');
-        
-        toast({
-          title: "Mensagem enviada!",
-          description: "Entraremos em contato em breve.",
-        });
-        
-        setFormData({
-          name: "",
-          email: "",
-          phone: "",
-          service: "",
-          message: "",
-        });
-        setIsSubmitting(false);
+        navigate("/confirmacao?type=contact");
       }, 1000);
     } catch (error) {
       if (error instanceof z.ZodError) {

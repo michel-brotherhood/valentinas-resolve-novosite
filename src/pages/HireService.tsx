@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { Button } from "@/components/ui/button";
@@ -38,6 +39,7 @@ const hireServiceSchema = z.object({
 
 export default function HireService() {
   const { toast } = useToast();
+  const navigate = useNavigate();
   
   // Get service from URL params
   const urlParams = new URLSearchParams(window.location.search);
@@ -68,36 +70,40 @@ export default function HireService() {
     }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
     try {
       hireServiceSchema.parse(formData);
       setErrors({});
 
-      // Prepare WhatsApp message
-      const message = `*Solicitação de Orçamento*
+      // Send email via edge function
+      const response = await fetch(`${import.meta.env.VITE_SUPABASE_URL}/functions/v1/send-hire-service-email`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY}`,
+        },
+        body: JSON.stringify({
+          name: formData.fullName,
+          email: formData.email,
+          phone: formData.phone,
+          cityNeighborhood: formData.cityNeighborhood,
+          serviceType: formData.serviceType,
+          description: formData.description,
+          location: formData.location,
+          urgency: formData.urgency === "immediate" ? "Imediato" : formData.urgency === "days" ? "Próximos dias" : "Agendado",
+          scheduledDate: formData.scheduledDate,
+          contactPreference: formData.contactPreference.join(", "),
+          budgetType: formData.budgetType === "estimate" ? "Estimativa" : "Detalhado com visita",
+        }),
+      });
 
-*Nome:* ${formData.fullName}
-*Email:* ${formData.email}
-*Telefone:* ${formData.phone}
-*Cidade/Bairro:* ${formData.cityNeighborhood}
-
-*Serviço:* ${formData.serviceType}
-*Descrição:* ${formData.description}
-*Local:* ${formData.location}
-
-*Urgência:* ${formData.urgency === "immediate" ? "Imediato" : formData.urgency === "days" ? "Próximos dias" : `Agendado para ${formData.scheduledDate}`}
-
-*Preferência de contato:* ${formData.contactPreference.join(", ")}
-*Tipo de orçamento:* ${formData.budgetType === "estimate" ? "Estimativa" : "Detalhado com visita"}`;
-
-      const encodedMessage = encodeURIComponent(message);
-      window.open(`https://wa.me/5569992715000?text=${encodedMessage}`, "_blank");
+      if (!response.ok) throw new Error('Erro ao enviar solicitação');
 
       toast({
         title: "Solicitação enviada!",
-        description: "Em breve entraremos em contato com você.",
+        description: "Redirecionando...",
       });
 
       // Reset form
@@ -115,6 +121,10 @@ export default function HireService() {
         budgetType: "estimate",
         acceptTerms: false,
       });
+      
+      setTimeout(() => {
+        navigate("/confirmacao?type=hire");
+      }, 1000);
     } catch (error) {
       if (error instanceof z.ZodError) {
         const newErrors: Record<string, string> = {};

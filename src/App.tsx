@@ -15,6 +15,7 @@ import TeamPage from "./pages/Team";
 import WorkWithUs from "./pages/WorkWithUs";
 import HireService from "./pages/HireService";
 import CategoryPage from "./pages/CategoryPage";
+import ConfirmationPage from "./pages/ConfirmationPage";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -37,6 +38,7 @@ const App = () => (
           <Route path="/trabalhe-conosco" element={<WorkWithUs />} />
           <Route path="/contato" element={<Contact />} />
           <Route path="/registro-profissional" element={<ProfessionalRegistration />} />
+          <Route path="/confirmacao" element={<ConfirmationPage />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
