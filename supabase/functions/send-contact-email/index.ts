@@ -28,8 +28,8 @@ const handler = async (req: Request): Promise<Response> => {
     console.log("Sending contact email:", { name, email, phone, service });
 
     const emailResponse = await resend.emails.send({
-      from: "Valentina's Resolve <onboarding@resend.dev>",
-      to: ["comercial@valentinasresolve.com.br"],
+      from: "Valentina's Resolve <noreply@valentinasresolve.com.br>",
+      to: ["atendimentoaocliente@valentinasresolve.com.br"],
       reply_to: email,
       subject: `Nova Solicitação de Orçamento - ${service}`,
       html: `

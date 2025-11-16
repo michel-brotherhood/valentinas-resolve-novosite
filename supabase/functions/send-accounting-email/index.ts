@@ -34,7 +34,7 @@ const handler = async (req: Request): Promise<Response> => {
     };
 
     const emailResponse = await resend.emails.send({
-      from: "Valentina's Resolve <onboarding@resend.dev>",
+      from: "Valentina's Resolve <noreply@valentinasresolve.com.br>",
       to: ["contabilidadeintegrada@valentinasresolve.com.br"],
       reply_to: email,
       subject: `Nova Solicitação - Contabilidade Integrada`,
