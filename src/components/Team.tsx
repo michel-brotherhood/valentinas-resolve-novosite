@@ -21,19 +21,10 @@ const teamMembers = [
     specialties: ["Gestão da Qualidade", "Liderança Internacional", "Eficiência Operacional", "Desenvolvimento Estratégico"],
   },
   {
-    name: "Janaína Pimenta",
-    role: "CMO – Valentina's Resolve",
-    shortDescription: "Estrategista de marketing e identidade visual",
-    fullDescription: "CMO da Valentina's Resolve, Janaína Pimenta é responsável pela estratégia de marketing, identidade visual e posicionamento da plataforma. Com formação em andamento em Marketing, desenvolve visão estratégica orientada à comunicação, experiência do usuário e fortalecimento de marca. Possui vivência profissional em atendimento ao cliente e suporte administrativo, além de atuação como freelancer na área contábil, o que ampliou sua capacidade analítica e sua compreensão sobre gestão de negócios. Sua trajetória também inclui participação em atividades empreendedoras familiares e apoio à área de transportes, reforçando habilidades em organização, relacionamento e operação prática. Na Valentina's Resolve, Janaína conduz o marketing e o design da empresa, garantindo coerência visual, comunicação clara e ações que conectam profissionais e clientes de forma eficiente, moderna e confiável. Seu foco é construir uma presença sólida de marca e fortalecer o crescimento da plataforma por meio de estratégias criativas alinhadas aos objetivos do ecossistema.",
-    image: janainaImg,
-    specialties: ["Marketing Estratégico", "Identidade Visual", "Comunicação de Marca", "Experiência do Usuário"],
-  },
-  {
     name: "Kellen Amaral",
     role: "Cofundadora & COO – Valentina's Resolve",
     shortDescription: "Gestora operacional com expertise em processos e excelência",
     fullDescription: "Cofundadora e COO da Valentina's Resolve, Kellen Amaral atua na gestão operacional da plataforma, garantindo eficiência, qualidade e excelência no atendimento. Com experiência em liderança de equipes, hotelaria e serviços, desenvolveu sólida competência em organização, processos, gestão de pessoas e execução estratégica. Iniciou sua trajetória profissional aos 17 anos em empreendimentos familiares, construindo uma base consistente em responsabilidade, gestão e tomada de decisão. Formada como cuidadora de idosos, com cursos na área da saúde e experiência internacional em Portugal, aprimorou sua capacidade de coordenar equipes com empatia, clareza e alto padrão de entrega. Além da atuação na Valentina's Resolve, é sócia da Amaral Serviços, empresa de limpeza e manutenção em Portugal, onde reforçou sua expertise em operações, supervisão de equipes e relacionamento com clientes. Na Valentina's Resolve, Kellen é responsável por alinhar processos, padronizar operações e garantir que a experiência de profissionais e clientes seja ágil, segura e eficiente, contribuindo diretamente para o crescimento e consolidação do ecossistema da plataforma.",
-    image: kellenImg,
     specialties: ["Gestão de Operações", "Liderança de Equipes", "Processos e Qualidade", "Experiência Internacional"],
   },
   {
@@ -43,6 +34,14 @@ const teamMembers = [
     fullDescription: "Cofundadora e CFO da Valentina's Resolve, Andressa Melo atua na estruturação estratégica e financeira da plataforma, unindo conhecimento contábil, visão analítica e foco em eficiência operacional. Formada em Ciências Contábeis e atuante na área desde 2017, desenvolveu expertise em gestão financeira, contabilidade empresarial, planejamento tributário e suporte a empresas de diversos portes e segmentos. Empreendedora desde 2020, fundou seu próprio escritório contábil, consolidando experiência em soluções orientadas ao crescimento sustentável e à organização financeira. Na Valentina's Resolve, além de liderar o setor financeiro, é responsável pela área de Contabilidade Integrada, conectando profissionais e empresas com processos precisos, compliance e inteligência contábil aplicada. Comprometida com transparência, eficiência e excelência, Andressa fortalece a operação e a visão de longo prazo da plataforma, contribuindo diretamente para a expansão e consolidação do ecossistema Valentina's.",
     image: andressaImg,
     specialties: ["Gestão Financeira", "Contabilidade Empresarial", "Planejamento Tributário", "Contabilidade Integrada"],
+  },
+  {
+    name: "Janaína Pimenta",
+    role: "CMO – Valentina's Resolve",
+    shortDescription: "Estrategista de marketing e identidade visual",
+    fullDescription: "CMO da Valentina's Resolve, Janaína Pimenta é responsável pela estratégia de marketing, identidade visual e posicionamento da plataforma. Com formação em andamento em Marketing, desenvolve visão estratégica orientada à comunicação, experiência do usuário e fortalecimento de marca. Possui vivência profissional em atendimento ao cliente e suporte administrativo, além de atuação como freelancer na área contábil, o que ampliou sua capacidade analítica e sua compreensão sobre gestão de negócios. Sua trajetória também inclui participação em atividades empreendedoras familiares e apoio à área de transportes, reforçando habilidades em organização, relacionamento e operação prática. Na Valentina's Resolve, Janaína conduz o marketing e o design da empresa, garantindo coerência visual, comunicação clara e ações que conectam profissionais e clientes de forma eficiente, moderna e confiável. Seu foco é construir uma presença sólida de marca e fortalecer o crescimento da plataforma por meio de estratégias criativas alinhadas aos objetivos do ecossistema.",
+    image: janainaImg,
+    specialties: ["Marketing Estratégico", "Identidade Visual", "Comunicação de Marca", "Experiência do Usuário"],
   },
 ];
 
