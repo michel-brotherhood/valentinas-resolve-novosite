@@ -126,6 +126,7 @@ const Services = () => {
 
   const handleRequestQuote = (serviceName: string) => {
     navigate(`/contratar-servico?servico=${encodeURIComponent(serviceName)}`);
+    setTimeout(() => window.scrollTo({ top: 0, behavior: 'smooth' }), 100);
   };
 
   return (

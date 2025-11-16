@@ -133,7 +133,10 @@ export const AccountingServices = () => {
                 </div>
               </div>
             </div>
-            <Button className="w-full bg-foreground hover:bg-foreground/90 text-background font-bold">
+            <Button 
+              className="w-full bg-foreground hover:bg-foreground/90 text-background font-bold"
+              onClick={() => navigate('/contabilidade')}
+            >
               Solicitar Orçamento <ArrowRight className="ml-2 h-4 w-4" />
             </Button>
           </Card>
@@ -152,7 +155,10 @@ export const AccountingServices = () => {
             <Button 
               size="lg" 
               className="shadow__btn"
-              onClick={() => navigate('/formulario-contabilidade')}
+              onClick={() => {
+                navigate('/formulario-contabilidade');
+                setTimeout(() => window.scrollTo({ top: 0, behavior: 'smooth' }), 100);
+              }}
             >
               Quero saber mais
             </Button>

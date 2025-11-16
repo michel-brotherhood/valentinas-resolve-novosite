@@ -35,7 +35,10 @@ export default function WorkWithUs() {
               <Button 
                 size="lg" 
                 className="bg-primary hover:bg-primary/90 text-black font-bold"
-                onClick={() => navigate('/registro-profissional')}
+                onClick={() => {
+                  navigate('/registro-profissional');
+                  setTimeout(() => window.scrollTo({ top: 0, behavior: 'smooth' }), 100);
+                }}
               >
                 Cadastre-se como Profissional
               </Button>
@@ -235,7 +238,10 @@ export default function WorkWithUs() {
             <Button 
               size="lg" 
               className="bg-primary hover:bg-primary/90 text-black font-bold"
-              onClick={() => navigate('/registro-profissional')}
+              onClick={() => {
+                navigate('/registro-profissional');
+                setTimeout(() => window.scrollTo({ top: 0, behavior: 'smooth' }), 100);
+              }}
             >
               Iniciar Cadastro
             </Button>

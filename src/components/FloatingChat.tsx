@@ -19,11 +19,13 @@ export const FloatingChat = ({ whatsappNumber = "5569992715000" }: FloatingChatP
 
   const handleHireService = () => {
     navigate("/contratar-servico");
+    setTimeout(() => window.scrollTo({ top: 0, behavior: 'smooth' }), 100);
     setIsOpen(false);
   };
 
   const handleRegister = () => {
     navigate("/registro-profissional");
+    setTimeout(() => window.scrollTo({ top: 0, behavior: 'smooth' }), 100);
     setIsOpen(false);
   };
 

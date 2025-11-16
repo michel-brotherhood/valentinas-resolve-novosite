@@ -1,4 +1,4 @@
-import { useParams, Link } from "react-router-dom";
+import { useParams, Link, useNavigate } from "react-router-dom";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { FloatingChat } from "@/components/FloatingChat";
@@ -81,6 +81,7 @@ const featuredServices: Record<string, string[]> = {
 
 const CategoryPage = () => {
   const { categoria } = useParams<{ categoria: string }>();
+  const navigate = useNavigate();
   const categoryName = decodeURIComponent(categoria || "");
   const Icon = getCategoryIcon(categoryName);
   const image = categoryImages[categoryName];
@@ -115,12 +116,17 @@ const CategoryPage = () => {
             <p className="text-lg text-muted-foreground mb-8">
               {description}
             </p>
-            <Link to="/contratar-servico">
-              <Button size="lg" className="gap-2">
-                Solicitar Orçamento
-                <ArrowRight className="w-5 h-5" />
-              </Button>
-            </Link>
+            <Button 
+              size="lg" 
+              className="gap-2"
+              onClick={() => {
+                navigate('/contratar-servico');
+                setTimeout(() => window.scrollTo({ top: 0, behavior: 'smooth' }), 100);
+              }}
+            >
+              Solicitar Orçamento
+              <ArrowRight className="w-5 h-5" />
+            </Button>
           </div>
         </div>
       </section>
@@ -167,11 +173,17 @@ const CategoryPage = () => {
                       </div>
                       <h3 className="font-semibold text-foreground">{service}</h3>
                     </div>
-                    <Link to="/contratar-servico">
-                      <Button variant="outline" size="sm" className="w-full mt-2">
-                        Solicitar
-                      </Button>
-                    </Link>
+                    <Button 
+                      variant="outline" 
+                      size="sm" 
+                      className="w-full mt-2"
+                      onClick={() => {
+                        navigate('/contratar-servico');
+                        setTimeout(() => window.scrollTo({ top: 0, behavior: 'smooth' }), 100);
+                      }}
+                    >
+                      Solicitar
+                    </Button>
                   </CardContent>
                 </Card>
               ))}
@@ -204,12 +216,18 @@ const CategoryPage = () => {
           <p className="text-primary-foreground/90 mb-8 max-w-2xl mx-auto">
             Encontre os melhores profissionais de {categoryName} na sua região
           </p>
-          <Link to="/contratar-servico">
-            <Button size="lg" variant="secondary" className="gap-2">
-              Solicitar Orçamento Grátis
-              <ArrowRight className="w-5 h-5" />
-            </Button>
-          </Link>
+          <Button 
+            size="lg" 
+            variant="secondary" 
+            className="gap-2"
+            onClick={() => {
+              navigate('/contratar-servico');
+              setTimeout(() => window.scrollTo({ top: 0, behavior: 'smooth' }), 100);
+            }}
+          >
+            Solicitar Orçamento Grátis
+            <ArrowRight className="w-5 h-5" />
+          </Button>
         </div>
       </section>
 

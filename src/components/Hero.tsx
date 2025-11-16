@@ -37,8 +37,10 @@ export const Hero = () => {
       
       if (activeTab === "register") {
         navigate(`/registro-profissional?categoria=${encodedQuery}`);
+        setTimeout(() => window.scrollTo({ top: 0, behavior: 'smooth' }), 100);
       } else {
         navigate(`/contratar-servico?servico=${encodedQuery}`);
+        setTimeout(() => window.scrollTo({ top: 0, behavior: 'smooth' }), 100);
       }
     } catch (error) {
       if (error instanceof z.ZodError) {

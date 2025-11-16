@@ -153,7 +153,10 @@ export default function About() {
             <Button 
               size="lg" 
               className="bg-primary hover:bg-primary/90 text-black font-bold"
-              onClick={() => navigate('/contratar-servico')}
+              onClick={() => {
+                navigate('/contratar-servico');
+                setTimeout(() => window.scrollTo({ top: 0, behavior: 'smooth' }), 100);
+              }}
             >
               Contratar Profissional Agora
             </Button>
