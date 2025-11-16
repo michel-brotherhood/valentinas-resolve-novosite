@@ -10,7 +10,7 @@ import { Card } from "@/components/ui/card";
 import { Checkbox } from "@/components/ui/checkbox";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { useToast } from "@/hooks/use-toast";
-import { ChevronLeft, ChevronRight, Upload, CheckCircle2 } from "lucide-react";
+import { ChevronLeft, ChevronRight, Upload, CheckCircle2, Loader2 } from "lucide-react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
@@ -52,8 +52,34 @@ const ProfessionalRegistration = () => {
   const [idFiles, setIdFiles] = useState<File[]>([]);
   const [addressFiles, setAddressFiles] = useState<File[]>([]);
   const [certificateFiles, setCertificateFiles] = useState<File[]>([]);
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const { toast } = useToast();
   const navigate = useNavigate();
+
+  const ALLOWED_FILE_TYPES = ['image/jpeg', 'image/jpg', 'image/png', 'application/pdf'];
+  const MAX_FILE_SIZE = 5 * 1024 * 1024; // 5MB
+
+  const validateFile = (file: File): boolean => {
+    if (!ALLOWED_FILE_TYPES.includes(file.type)) {
+      toast({
+        title: "Tipo de arquivo inválido",
+        description: `${file.name} - Apenas JPG, PNG e PDF são permitidos.`,
+        variant: "destructive",
+      });
+      return false;
+    }
+    
+    if (file.size > MAX_FILE_SIZE) {
+      toast({
+        title: "Arquivo muito grande",
+        description: `${file.name} - O tamanho máximo é 5MB.`,
+        variant: "destructive",
+      });
+      return false;
+    }
+    
+    return true;
+  };
 
   const personalForm = useForm<PersonalInfo>({
     resolver: zodResolver(personalInfoSchema),
@@ -81,22 +107,52 @@ const ProfessionalRegistration = () => {
 
   const handleIdUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files) {
-      setIdFiles(prev => [...prev, ...Array.from(e.target.files!)]);
-      documentsForm.setValue("idDocument", true);
+      const filesArray = Array.from(e.target.files);
+      const validFiles = filesArray.filter(validateFile);
+      
+      if (validFiles.length > 0) {
+        setIdFiles(prev => [...prev, ...validFiles]);
+        documentsForm.setValue("idDocument", true);
+        toast({
+          title: "Arquivo(s) adicionado(s)",
+          description: `${validFiles.length} arquivo(s) de identificação adicionado(s) com sucesso.`,
+        });
+      }
     }
+    e.target.value = '';
   };
 
   const handleAddressUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files) {
-      setAddressFiles(prev => [...prev, ...Array.from(e.target.files!)]);
-      documentsForm.setValue("proofOfAddress", true);
+      const filesArray = Array.from(e.target.files);
+      const validFiles = filesArray.filter(validateFile);
+      
+      if (validFiles.length > 0) {
+        setAddressFiles(prev => [...prev, ...validFiles]);
+        documentsForm.setValue("proofOfAddress", true);
+        toast({
+          title: "Arquivo(s) adicionado(s)",
+          description: `${validFiles.length} comprovante(s) adicionado(s) com sucesso.`,
+        });
+      }
     }
+    e.target.value = '';
   };
 
   const handleCertificateUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files) {
-      setCertificateFiles(prev => [...prev, ...Array.from(e.target.files!)]);
+      const filesArray = Array.from(e.target.files);
+      const validFiles = filesArray.filter(validateFile);
+      
+      if (validFiles.length > 0) {
+        setCertificateFiles(prev => [...prev, ...validFiles]);
+        toast({
+          title: "Arquivo(s) adicionado(s)",
+          description: `${validFiles.length} certificado(s) adicionado(s) com sucesso.`,
+        });
+      }
     }
+    e.target.value = '';
   };
 
   const onSubmitStep1 = (data: PersonalInfo) => setCurrentStep(2);
@@ -122,14 +178,26 @@ const ProfessionalRegistration = () => {
   };
 
   const onSubmitStep3 = async (data: Documents) => {
+    setIsSubmitting(true);
+    
     try {
       const personalData = personalForm.getValues();
       const qualificationsData = qualificationsForm.getValues();
+
+      toast({
+        title: "Processando arquivos...",
+        description: "Convertendo documentos, por favor aguarde.",
+      });
 
       // Convert files to base64
       const idDocuments = await convertFilesToBase64(idFiles);
       const addressProofs = await convertFilesToBase64(addressFiles);
       const certificates = await convertFilesToBase64(certificateFiles);
+
+      toast({
+        title: "Enviando cadastro...",
+        description: "Seus dados estão sendo enviados.",
+      });
 
       const response = await fetch(`${import.meta.env.VITE_SUPABASE_URL}/functions/v1/send-professional-email`, {
         method: 'POST',
@@ -176,11 +244,14 @@ const ProfessionalRegistration = () => {
         navigate("/confirmacao?type=professional");
       }, 1000);
     } catch (error) {
+      console.error('Registration error:', error);
       toast({
         title: "Erro ao enviar cadastro",
         description: "Tente novamente mais tarde.",
         variant: "destructive",
       });
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -351,7 +422,7 @@ const ProfessionalRegistration = () => {
                       <Upload className="h-5 w-5 text-muted-foreground" />
                     </Label>
                     <Input id="idDocument" type="file" accept=".pdf,.jpg,.jpeg,.png" onChange={handleIdUpload} className="mt-2" multiple />
-                    <p className="text-sm text-muted-foreground mt-2">Aceita PDF, JPG, PNG</p>
+                    <p className="text-sm text-muted-foreground mt-2">Aceita PDF, JPG, PNG - Máximo 5MB por arquivo</p>
                     {idFiles.length > 0 && (
                       <div className="mt-2 flex items-center gap-2 text-sm text-primary">
                         <CheckCircle2 className="h-4 w-4" />
@@ -369,7 +440,7 @@ const ProfessionalRegistration = () => {
                       <Upload className="h-5 w-5 text-muted-foreground" />
                     </Label>
                     <Input id="proofOfAddress" type="file" accept=".pdf,.jpg,.jpeg,.png" onChange={handleAddressUpload} className="mt-2" multiple />
-                    <p className="text-sm text-muted-foreground mt-2">Aceita PDF, JPG, PNG</p>
+                    <p className="text-sm text-muted-foreground mt-2">Aceita PDF, JPG, PNG - Máximo 5MB por arquivo</p>
                     {addressFiles.length > 0 && (
                       <div className="mt-2 flex items-center gap-2 text-sm text-primary">
                         <CheckCircle2 className="h-4 w-4" />
@@ -387,7 +458,7 @@ const ProfessionalRegistration = () => {
                       <Upload className="h-5 w-5 text-muted-foreground" />
                     </Label>
                     <Input id="certificates" type="file" accept=".pdf,.jpg,.jpeg,.png" onChange={handleCertificateUpload} className="mt-2" multiple />
-                    <p className="text-sm text-muted-foreground mt-2">Aceita PDF, JPG, PNG</p>
+                    <p className="text-sm text-muted-foreground mt-2">Aceita PDF, JPG, PNG - Máximo 5MB por arquivo</p>
                     {certificateFiles.length > 0 && (
                       <div className="mt-2 flex items-center gap-2 text-sm text-primary">
                         <CheckCircle2 className="h-4 w-4" />
@@ -438,8 +509,21 @@ const ProfessionalRegistration = () => {
                 </div>
 
                 <div className="flex justify-between pt-4">
-                  <Button type="button" variant="outline" onClick={() => setCurrentStep(2)}><ChevronLeft className="mr-2 h-4 w-4" /> Voltar</Button>
-                  <Button type="submit" size="lg">Finalizar Cadastro <CheckCircle2 className="ml-2 h-4 w-4" /></Button>
+                  <Button type="button" variant="outline" onClick={() => setCurrentStep(2)} disabled={isSubmitting}>
+                    <ChevronLeft className="mr-2 h-4 w-4" /> Voltar
+                  </Button>
+                  <Button type="submit" size="lg" disabled={isSubmitting}>
+                    {isSubmitting ? (
+                      <>
+                        <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                        Enviando...
+                      </>
+                    ) : (
+                      <>
+                        Finalizar Cadastro <CheckCircle2 className="ml-2 h-4 w-4" />
+                      </>
+                    )}
+                  </Button>
                 </div>
               </form>
             )}
