@@ -154,7 +154,12 @@ export default function Accounting() {
               {/* Contact Info - Portugal */}
               <div className="flex items-center justify-center gap-2 mb-6 text-white/90">
                 <Phone className="h-4 w-4" />
-                <a href="tel:+351961803400" className="text-sm md:text-base hover:text-primary transition-colors">
+                <a 
+                  href="https://wa.me/351961803400?text=Olá! Gostaria de falar com a contadora responsável sobre a Contabilidade Integrada Valentinas." 
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-sm md:text-base hover:text-primary transition-colors"
+                >
                   +351 961 803 400
                 </a>
               </div>
@@ -167,7 +172,10 @@ export default function Accounting() {
               </p>
               <button 
                 className="glow-button text-sm md:text-base px-6 md:px-8"
-                onClick={() => navigate('/formulario-contabilidade')}
+                onClick={() => {
+                  navigate('/formulario-contabilidade');
+                  setTimeout(() => window.scrollTo({ top: 0, behavior: 'smooth' }), 100);
+                }}
               >
                 <span className="hidden md:inline">Quero minha contabilidade integrada</span>
                 <span className="md:hidden">Quero minha<br />contabilidade integrada</span>
@@ -208,7 +216,10 @@ export default function Accounting() {
                 <Button 
                   size="lg"
                   className="h-12 md:h-14 px-6 md:px-8 shadow__btn text-sm md:text-base"
-                  onClick={() => navigate('/formulario-contabilidade')}
+                  onClick={() => {
+                    navigate('/formulario-contabilidade');
+                    setTimeout(() => window.scrollTo({ top: 0, behavior: 'smooth' }), 100);
+                  }}
                 >
                   <span className="hidden md:inline">Fale com a Andressa</span>
                   <span className="md:hidden">Fale com<br />a Andressa</span>
@@ -290,7 +301,10 @@ export default function Accounting() {
                 <Button 
                   size="lg"
                   className="h-12 md:h-14 px-6 md:px-8 shadow__btn text-sm md:text-base"
-                  onClick={() => navigate('/formulario-contabilidade')}
+                  onClick={() => {
+                    navigate('/formulario-contabilidade');
+                    setTimeout(() => window.scrollTo({ top: 0, behavior: 'smooth' }), 100);
+                  }}
                 >
                   <span className="hidden md:inline">Contratar agora</span>
                   <span className="md:hidden">Contratar<br />agora</span>
@@ -335,7 +349,10 @@ export default function Accounting() {
                 <Button 
                   size="lg"
                   className="h-12 md:h-14 px-6 md:px-8 shadow__btn text-sm md:text-base"
-                  onClick={() => navigate('/formulario-contabilidade')}
+                  onClick={() => {
+                    navigate('/formulario-contabilidade');
+                    setTimeout(() => window.scrollTo({ top: 0, behavior: 'smooth' }), 100);
+                  }}
                 >
                   <span className="hidden md:inline">Solicitar Orçamento</span>
                   <span className="md:hidden">Solicitar<br />Orçamento</span>
@@ -506,7 +523,10 @@ export default function Accounting() {
               <Button 
                 size="lg"
                 className="h-12 md:h-14 px-6 md:px-8 shadow__btn text-sm md:text-base"
-                onClick={() => navigate('/formulario-contabilidade')}
+                onClick={() => {
+                  navigate('/formulario-contabilidade');
+                  setTimeout(() => window.scrollTo({ top: 0, behavior: 'smooth' }), 100);
+                }}
               >
                 <span className="hidden md:inline">Quero saber mais</span>
                 <span className="md:hidden">Quero<br />saber mais</span>

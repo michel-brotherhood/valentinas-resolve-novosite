@@ -119,7 +119,10 @@ export const Header = () => {
               </Link>
               <button 
                 className="button-3d ml-2"
-                onClick={() => navigate('/contratar-servico')}
+                onClick={() => {
+                  navigate('/contratar-servico');
+                  setTimeout(() => window.scrollTo({ top: 0, behavior: 'smooth' }), 100);
+                }}
               >
                 <span className="button-3d-top text-sm">
                   Contratar Profissional
@@ -250,7 +253,10 @@ export const Header = () => {
                   e.preventDefault();
                   e.stopPropagation();
                   setMobileMenuOpen(false);
-                  setTimeout(() => navigate('/contratar-servico'), 100);
+                  setTimeout(() => {
+                    navigate('/contratar-servico');
+                    setTimeout(() => window.scrollTo({ top: 0, behavior: 'smooth' }), 100);
+                  }, 100);
                 }}
               >
                 <span className="button-3d-top text-base">
