@@ -9,6 +9,12 @@ const corsHeaders = {
     "authorization, x-client-info, apikey, content-type",
 };
 
+interface FileAttachment {
+  filename: string;
+  content: string;
+  type: string;
+}
+
 interface ProfessionalEmailRequest {
   fullName: string;
   cpf: string;
@@ -23,9 +29,9 @@ interface ProfessionalEmailRequest {
   homeService: string;
   description: string;
   signature: string;
-  idDocumentCount: number;
-  addressProofCount: number;
-  certificatesCount: number;
+  idDocuments: FileAttachment[];
+  addressProofs: FileAttachment[];
+  certificates: FileAttachment[];
 }
 
 const handler = async (req: Request): Promise<Response> => {
@@ -37,6 +43,21 @@ const handler = async (req: Request): Promise<Response> => {
     const data: ProfessionalEmailRequest = await req.json();
 
     console.log("Sending professional registration email:", data.fullName);
+
+    const attachments = [
+      ...data.idDocuments.map(file => ({
+        filename: file.filename,
+        content: file.content,
+      })),
+      ...data.addressProofs.map(file => ({
+        filename: file.filename,
+        content: file.content,
+      })),
+      ...data.certificates.map(file => ({
+        filename: file.filename,
+        content: file.content,
+      })),
+    ];
 
     const emailResponse = await resend.emails.send({
       from: "Valentina's Resolve <noreply@valentinasresolve.com.br>",
@@ -64,7 +85,7 @@ const handler = async (req: Request): Promise<Response> => {
             <p><strong>Área de Atuação:</strong> ${data.serviceArea}</p>
             <p><strong>Tempo de Experiência:</strong> ${data.experience}</p>
             <p><strong>Formação/Certificações:</strong></p>
-            <p style="white-space: pre-wrap;">${data.education}</p>
+            <p style="white-space: pre-wrap;">${data.education || 'Não informado'}</p>
             <p><strong>Disponibilidade:</strong> ${data.availability}</p>
             <p><strong>Atende em Domicílio:</strong> ${data.homeService}</p>
             <p><strong>Descrição dos Serviços:</strong></p>
@@ -73,9 +94,9 @@ const handler = async (req: Request): Promise<Response> => {
           
           <div style="background-color: #f5f5f5; padding: 20px; border-radius: 8px; margin: 20px 0;">
             <h2 style="color: #333; margin-top: 0;">Documentação</h2>
-            <p><strong>Documento de Identificação:</strong> ${data.idDocumentCount} arquivo(s)</p>
-            <p><strong>Comprovante de Residência:</strong> ${data.addressProofCount} arquivo(s)</p>
-            <p><strong>Certificados:</strong> ${data.certificatesCount} arquivo(s)</p>
+            <p><strong>Documento de Identificação:</strong> ${data.idDocuments.length} arquivo(s) anexado(s)</p>
+            <p><strong>Comprovante de Residência:</strong> ${data.addressProofs.length} arquivo(s) anexado(s)</p>
+            <p><strong>Certificados:</strong> ${data.certificates.length} arquivo(s) anexado(s)</p>
             <p><strong>Assinatura:</strong> ${data.signature}</p>
           </div>
           
@@ -84,6 +105,7 @@ const handler = async (req: Request): Promise<Response> => {
           </p>
         </div>
       `,
+      attachments,
     });
 
     console.log("Email sent successfully:", emailResponse);

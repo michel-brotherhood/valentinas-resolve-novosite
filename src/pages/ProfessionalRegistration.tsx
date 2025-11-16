@@ -102,10 +102,34 @@ const ProfessionalRegistration = () => {
   const onSubmitStep1 = (data: PersonalInfo) => setCurrentStep(2);
   const onSubmitStep2 = (data: Qualifications) => setCurrentStep(3);
 
+  const convertFilesToBase64 = async (files: File[]): Promise<Array<{filename: string, content: string, type: string}>> => {
+    const promises = files.map(file => {
+      return new Promise<{filename: string, content: string, type: string}>((resolve, reject) => {
+        const reader = new FileReader();
+        reader.onload = () => {
+          const base64 = (reader.result as string).split(',')[1];
+          resolve({
+            filename: file.name,
+            content: base64,
+            type: file.type
+          });
+        };
+        reader.onerror = reject;
+        reader.readAsDataURL(file);
+      });
+    });
+    return Promise.all(promises);
+  };
+
   const onSubmitStep3 = async (data: Documents) => {
     try {
       const personalData = personalForm.getValues();
       const qualificationsData = qualificationsForm.getValues();
+
+      // Convert files to base64
+      const idDocuments = await convertFilesToBase64(idFiles);
+      const addressProofs = await convertFilesToBase64(addressFiles);
+      const certificates = await convertFilesToBase64(certificateFiles);
 
       const response = await fetch(`${import.meta.env.VITE_SUPABASE_URL}/functions/v1/send-professional-email`, {
         method: 'POST',
@@ -127,9 +151,9 @@ const ProfessionalRegistration = () => {
           homeService: qualificationsData.homeService === "yes" ? "Sim" : "Não",
           description: qualificationsData.description,
           signature: data.signature,
-          idDocumentCount: idFiles.length,
-          addressProofCount: addressFiles.length,
-          certificatesCount: certificateFiles.length,
+          idDocuments,
+          addressProofs,
+          certificates,
         }),
       });
 
