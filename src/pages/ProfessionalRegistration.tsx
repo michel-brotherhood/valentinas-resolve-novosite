@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { Button } from "@/components/ui/button";
@@ -52,6 +53,7 @@ const ProfessionalRegistration = () => {
   const [addressFiles, setAddressFiles] = useState<File[]>([]);
   const [certificateFiles, setCertificateFiles] = useState<File[]>([]);
   const { toast } = useToast();
+  const navigate = useNavigate();
 
   const personalForm = useForm<PersonalInfo>({
     resolver: zodResolver(personalInfoSchema),
@@ -135,7 +137,7 @@ const ProfessionalRegistration = () => {
 
       toast({
         title: "Cadastro enviado com sucesso!",
-        description: "Analisaremos suas informações e entraremos em contato em breve.",
+        description: "Redirecionando...",
       });
 
       personalForm.reset();
@@ -145,6 +147,10 @@ const ProfessionalRegistration = () => {
       setAddressFiles([]);
       setCertificateFiles([]);
       setCurrentStep(1);
+      
+      setTimeout(() => {
+        navigate("/confirmacao?type=professional");
+      }, 1000);
     } catch (error) {
       toast({
         title: "Erro ao enviar cadastro",

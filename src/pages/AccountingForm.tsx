@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { Button } from "@/components/ui/button";
@@ -31,6 +32,7 @@ const userTypeOptions = [
 
 export default function AccountingForm() {
   const { toast } = useToast();
+  const navigate = useNavigate();
   const [formData, setFormData] = useState<FormData>({
     fullName: "",
     email: "",
@@ -61,11 +63,27 @@ export default function AccountingForm() {
 Solicitação enviada através do formulário de Contabilidade Integrada Valentinas.`;
 
       const encodedMessage = encodeURIComponent(message);
-      window.open(`https://wa.me/5569992715000?text=${encodedMessage}`, "_blank");
+      
+      // Send email via edge function
+      const response = await fetch(`${import.meta.env.VITE_SUPABASE_URL}/functions/v1/send-accounting-email`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY}`,
+        },
+        body: JSON.stringify({
+          fullName: formData.fullName,
+          email: formData.email,
+          phone: formData.phone,
+          userType: formData.userType,
+        }),
+      });
+
+      if (!response.ok) throw new Error('Erro ao enviar solicitação');
 
       toast({
         title: "Solicitação enviada!",
-        description: "Em breve nossa equipe entrará em contato com você para apresentar a proposta personalizada.",
+        description: "Redirecionando...",
       });
 
       // Reset form
@@ -75,6 +93,10 @@ Solicitação enviada através do formulário de Contabilidade Integrada Valenti
         phone: "",
         userType: "" as any,
       });
+      
+      setTimeout(() => {
+        navigate("/confirmacao?type=accounting");
+      }, 1000);
     } catch (error) {
       if (error instanceof z.ZodError) {
         const newErrors: Record<string, string> = {};
