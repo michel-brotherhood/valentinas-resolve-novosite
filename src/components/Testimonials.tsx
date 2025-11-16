@@ -8,6 +8,7 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel";
 import logoVR from "@/assets/logo-v-3D.webp";
+import Autoplay from "embla-carousel-autoplay";
 
 const testimonials = [
   {
@@ -74,6 +75,62 @@ const testimonials = [
     comment: "Excelente profissional! Vazamento resolvido em minutos. Atendimento rápido, eficiente e preço honesto. Com certeza voltarei a contratar.",
     useImage: true
   },
+  {
+    name: "Patrícia Rocha",
+    service: "Abertura de Empresas",
+    rating: 5,
+    date: "Há 5 dias",
+    comment: "Abri minha MEI com total suporte da equipe. Processo rápido e sem burocracia. Já estou operando e muito satisfeita com o atendimento!",
+    useImage: true
+  },
+  {
+    name: "Lucas Ferreira",
+    service: "Consultoria Empresarial",
+    rating: 5,
+    date: "Há 1 semana",
+    comment: "A consultoria me ajudou a organizar processos e melhorar a gestão da empresa. Resultados visíveis em pouco tempo. Investimento que valeu muito a pena!",
+    useImage: true
+  },
+  {
+    name: "Beatriz Souza",
+    service: "Arquitetura",
+    rating: 5,
+    date: "Há 2 semanas",
+    comment: "Projeto arquitetônico incrível para minha casa! A profissional entendeu exatamente o que eu queria. Ficou lindo e funcional. Recomendo muito!",
+    useImage: true
+  },
+  {
+    name: "Ricardo Martins",
+    service: "Manutenção Predial",
+    rating: 5,
+    date: "Há 6 dias",
+    comment: "Serviço completo de manutenção no meu prédio. Equipe organizada, pontual e muito eficiente. Preço justo e trabalho de qualidade!",
+    useImage: true
+  },
+  {
+    name: "Camila Rodrigues",
+    service: "Personal Trainer",
+    rating: 5,
+    date: "Há 3 dias",
+    comment: "Encontrei um personal excelente através da plataforma! Treinos personalizados e resultados incríveis. Muito profissionalismo e dedicação!",
+    useImage: true
+  },
+  {
+    name: "André Oliveira",
+    service: "Motorista Particular",
+    rating: 5,
+    date: "Há 1 dia",
+    comment: "Precisava de um motorista confiável para viagem e encontrei profissional ótimo. Pontual, educado e dirigiu com muita segurança. Excelente!",
+    useImage: true
+  },
+  {
+    name: "Gabriela Santos",
+    service: "Fotografia",
+    rating: 5,
+    date: "Há 4 dias",
+    comment: "Contratei fotógrafo para evento e as fotos ficaram maravilhosas! Profissional criativo e atencioso. Capturou cada momento perfeitamente!",
+    useImage: true
+  },
 ];
 
 export const Testimonials = () => {
@@ -102,6 +159,11 @@ export const Testimonials = () => {
               align: "start",
               loop: true,
             }}
+            plugins={[
+              Autoplay({
+                delay: 3000,
+              })
+            ]}
             className="w-full"
           >
             <CarouselContent>
