@@ -29,7 +29,7 @@ const ConfirmationPage = () => {
             "✓ Contato via WhatsApp ou email",
             "✓ Orientações sobre próximos passos"
           ],
-          whatsapp: "5569992715000",
+          whatsapp: "351961803414",
           whatsappLabel: "Falar com Suporte"
         };
       case "accounting":
@@ -55,7 +55,7 @@ const ConfirmationPage = () => {
             "✓ Contato via WhatsApp ou telefone",
             "✓ Apresentação de orçamento personalizado"
           ],
-          whatsapp: "5569992715000",
+          whatsapp: "351961803414",
           whatsappLabel: "Falar com Atendimento"
         };
       default: // contact
@@ -68,7 +68,7 @@ const ConfirmationPage = () => {
             "✓ Resposta em até 24 horas",
             "✓ Acompanhamento personalizado"
           ],
-          whatsapp: "5569992715000",
+          whatsapp: "351961803414",
           whatsappLabel: "Falar no WhatsApp"
         };
     }
