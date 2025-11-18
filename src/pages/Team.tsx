@@ -11,31 +11,29 @@ import kellen from "@/assets/team/kellen.jpg";
 const teamMembers = [
   {
     name: "Daiane Amaral",
-    role: "Fundadora e Diretora de Serviços",
+    role: "Fundadora & CEO",
     credential: "",
     image: daiane,
-    bio: `Desde jovem, sempre busquei novas oportunidades e o aprendizado de diferentes culturas. Aos 18 anos, decidi emigrar para a Espanha, onde vivi por três anos e meio. Essa experiência foi um marco no meu crescimento pessoal e profissional.
+    bio: `Fundadora e CEO da Valentina's Resolve, Daiane Amaral lidera o desenvolvimento estratégico da plataforma, unindo visão empreendedora, inovação e foco em excelência. Com experiência internacional na Espanha, Bélgica e Portugal, construiu uma trajetória sólida nas áreas de Gestão da Qualidade, liderança e eficiência operacional.
 
-Ao retornar ao Brasil, me formei em Sistema de Gestão da Qualidade. Durante mais de 10 anos, trabalhei em um grupo de inspeção veicular acreditado pelo INMETRO, iniciando como recepcionista e me apaixonando pela área de gestão da qualidade. Atuei em diferentes estados do Brasil, compreendendo profundamente como processos bem estruturados podem transformar organizações.
+Formada em Sistema de Gestão da Qualidade e atualmente cursando Direito, atuou por mais de 10 anos em uma empresa de inspeção veicular acreditada pelo INMETRO, desenvolvendo expertise em processos, conformidade, melhoria contínua e gestão de equipes.
 
-Em 2018, fui para a Bélgica por dois anos e meio. Hoje, moro em Portugal, onde trabalho na área de hotelaria como Housekeeping Lead e curso Direito. Junto com minha irmã Kellen Amaral e Andressa Melo, fundamos a Valentina's Resolve, uma plataforma que conecta clientes e profissionais de maneira simples e eficiente.
+Além da liderança na Valentina's Resolve, Daiane é também proprietária da Amaral Serviços, empresa sediada em Portugal que atua nos segmentos de limpeza, manutenção e gestão operacional, reforçando sua experiência empresarial em ambientes multiculturais e sua capacidade de coordenar equipes e processos com alta performance.
 
-Com 37 anos, estou comprometida em impactar positivamente a vida das pessoas, criando soluções com excelência, resiliência e transformação. Como fundadora, tenho a oportunidade de unir minha paixão por ajudar as pessoas com a visão de criar uma comunidade baseada em confiança e excelência.`,
-    specialties: ["Gestão de Qualidade", "Liderança", "Processos"],
+Daiane aplica sua visão estratégica, experiência multicultural e forte capacidade analítica para fortalecer a Valentina's Resolve e criar conexões eficientes entre profissionais e clientes, impulsionando o crescimento sustentável da plataforma.`,
+    specialties: ["Gestão da Qualidade", "Liderança Internacional", "Eficiência Operacional", "Desenvolvimento Estratégico"],
   },
   {
-    name: "Andressa Ferreira Melo",
-    role: "Sócia e Contadora Responsável Técnica",
-    credential: "Contadora desde 2018",
+    name: "Andressa Melo",
+    role: "Cofundadora, CFO & Líder da Contabilidade Integrada",
+    credential: "CRC: RO-010414/O-5",
     image: andressa,
-    bio: `Tenho 33 anos e sou natural de Cacoal, Rondônia. Sou formada em Ciências Contábeis desde 2018 e atuo na área contábil desde 2017. Desde o início de minha trajetória profissional, sempre me identifiquei com o ramo contábil, com um interesse genuíno em entender e solucionar questões que envolvem o comércio e a gestão das empresas.
+    bio: `Cofundadora e CFO da Valentina's Resolve, Andressa Melo atua na estruturação estratégica e financeira da plataforma, unindo conhecimento contábil, visão analítica e foco em eficiência operacional. Formada em Ciências Contábeis e atuante na área desde 2017, desenvolveu expertise sólida em gestão financeira, contabilidade empresarial, planejamento tributário e suporte a empresas de diversos portes e segmentos.
 
-Em 2020, tomei a decisão de empreender na área contábil, iniciando meu próprio escritório. Desde então, tenho dedicado minha carreira ao apoio a empresas de diversos portes e segmentos, oferecendo soluções financeiras de qualidade e sempre com foco no crescimento e na sustentabilidade dos negócios.
+Empreendedora desde 2020, fundou seu próprio escritório contábil, consolidando experiência em soluções orientadas ao crescimento sustentável e à organização financeira. Na Valentina's Resolve, além de liderar o setor financeiro, é também responsável pela área de Contabilidade Integrada, conectando profissionais e empresas com processos precisos, compliance e inteligência contábil aplicada.
 
-A oportunidade de integrar a equipe da Valentina's Resolve surgiu como uma extensão natural do meu desejo de impactar o mercado com soluções inovadoras. Juntamente com minhas sócias Kellen Amaral, Daiane Amaral e Janaína Bessa, estamos comprometidas em transformar a forma de intermediação de serviços entre profissionais e clientes.
-
-Acredito no potencial da Valentina's e no alcance dos nossos objetivos. Estamos motivadas com a jornada que estamos trilhando e com a missão de entregar aos nossos clientes um serviço de excelência, baseado na transparência, eficiência e comprometimento.`,
-    specialties: ["Planejamento Tributário", "Consultoria Fiscal", "Gestão Financeira"],
+Comprometida com transparência, eficiência e excelência, Andressa fortalece a operação e a visão de longo prazo da plataforma, contribuindo diretamente para a expansão e consolidação do ecossistema Valentina's.`,
+    specialties: ["Gestão Financeira", "Planejamento Tributário", "Contabilidade Empresarial", "Compliance"],
   },
   {
     name: "Janaína Pimenta",
@@ -53,17 +51,17 @@ Sou uma pessoa dedicada, organizada e comprometida, que valoriza a família e al
   },
   {
     name: "Kellen Amaral",
-    role: "Sócia e Diretora de Operações",
+    role: "Cofundadora & COO",
     credential: "",
     image: kellen,
-    bio: `Kellen Amaral é uma empreendedora dedicada, determinada e movida pelo propósito de transformar desafios em oportunidades. Desde os 17 anos, iniciou sua trajetória profissional ao lado da família, participando de diferentes empreendimentos e desenvolvendo, desde cedo, um forte senso de responsabilidade, gestão e liderança.
+    bio: `Cofundadora e COO da Valentina's Resolve, Kellen Amaral atua na gestão operacional da plataforma, garantindo eficiência, qualidade e excelência no atendimento. Com experiência em liderança de equipes, hotelaria e serviços, desenvolveu sólida competência em organização, processos, gestão de pessoas e execução estratégica.
 
-Motivada pelo desejo de cuidar de pessoas, formou-se como cuidadora de idosos, concluiu o curso de atendente de farmácia e iniciou sua formação em Técnico em Enfermagem. Em 2021, decidiu se mudar para Portugal, em busca de novas experiências e crescimento pessoal e profissional. No país, iniciou sua atuação na área de hotelaria e serviços de limpeza, onde se destacou pela dedicação, organização e pela capacidade de liderar equipes com empatia e excelência.
+Iniciou sua trajetória profissional aos 17 anos em empreendimentos familiares, construindo uma base consistente em responsabilidade, gestão e tomada de decisão. Formada como cuidadora de idosos, com cursos na área de saúde e experiência internacional em Portugal, aprimorou sua capacidade de coordenar equipes com empatia, clareza e alto padrão de entrega.
 
-Com o olhar voltado ao empreendedorismo, Kellen tornou-se sócia da irmã, Daiane Amaral, na Amaral Serviços, empresa sediada em Portugal que oferece soluções de limpeza e manutenção com foco em qualidade, confiança e atendimento humanizado. Essa parceria fortaleceu não apenas sua atuação internacional, mas também sua experiência em gestão de equipes e desenvolvimento de negócios.
+Além da atuação na Valentina's Resolve, é sócia da Amaral Serviços, empresa de limpeza e manutenção em Portugal, onde reforçou sua expertise em operações, supervisão de equipes e relacionamento com clientes.
 
-A partir dessa trajetória e da vivência com clientes e profissionais, Kellen identificou uma demanda crescente por serviços confiáveis e especializados em áreas essenciais, como cuidadores, babás e manicures. Unindo novamente sua visão à da irmã, passou a integrar também o Valentinas Resolve, empresa criada por Daiane Amaral com o propósito de conectar clientes e profissionais de forma segura, prática e humana. Assim, Kellen tornou-se sócia nas duas frentes — Amaral Serviços e Valentinas Resolve —, contribuindo para o crescimento e consolidação dos negócios tanto em Portugal quanto no Brasil.`,
-    specialties: ["Gestão de Operações", "Logística", "Liderança", "Empreendedorismo"],
+Na Valentina's Resolve, Kellen é responsável por alinhar processos, padronizar operações e garantir que a experiência de profissionais e clientes seja ágil, segura e eficiente, contribuindo diretamente para o crescimento e consolidação do ecossistema da plataforma.`,
+    specialties: ["Gestão de Operações", "Liderança de Equipes", "Processos e Qualidade", "Experiência Internacional"],
   },
 ];
 

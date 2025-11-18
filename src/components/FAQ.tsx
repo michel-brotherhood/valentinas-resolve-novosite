@@ -21,7 +21,7 @@ const faqs = [
   },
   {
     question: "Quanto custa usar a plataforma?",
-    answer: "Para clientes, é gratuito solicitar orçamentos e comparar propostas. Você só paga pelo serviço contratado diretamente com o profissional. Para profissionais, oferecemos diferentes planos de assinatura com acesso a solicitações de serviços e ferramentas de gestão."
+    answer: "Para clientes, é gratuito solicitar orçamentos e comparar propostas. A Valentina's Resolve intermedia todo o processo, incluindo pagamento e execução do serviço. Para profissionais, oferecemos diferentes planos de assinatura com acesso a solicitações de serviços e ferramentas de gestão."
   },
   {
     question: "Como funciona a Contabilidade Integrada?",
@@ -41,11 +41,11 @@ const faqs = [
   },
   {
     question: "Posso cancelar ou reagendar um serviço?",
-    answer: "Sim! Você pode cancelar ou reagendar diretamente com o profissional contratado. Recomendamos fazer isso com antecedência mínima de 24 horas. As políticas de cancelamento podem variar de acordo com o tipo de serviço e o profissional."
+    answer: "Sim! Entre em contato com a Valentina's Resolve para cancelar ou reagendar. Recomendamos fazer isso com antecedência mínima de 24 horas. As políticas de cancelamento podem variar de acordo com o tipo de serviço."
   },
   {
     question: "Como funciona o pagamento?",
-    answer: "O pagamento é combinado diretamente entre cliente e profissional. Aceitamos diversas formas de pagamento: dinheiro, PIX, cartão de crédito/débito e transferência bancária. A plataforma facilita a conexão, e o pagamento é feito de forma segura após a conclusão do serviço."
+    answer: "A Valentina's Resolve intermedia todo o processo de pagamento. Aceitamos diversas formas de pagamento: dinheiro, PIX, cartão de crédito/débito e transferência bancária. O pagamento é processado de forma segura pela plataforma após a conclusão do serviço. O contato entre cliente e profissional ocorre apenas para execução do serviço."
   },
   {
     question: "A plataforma atende em quais regiões?",
