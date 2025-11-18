@@ -8,7 +8,7 @@ interface FloatingChatProps {
   whatsappNumber?: string;
 }
 
-export const FloatingChat = ({ whatsappNumber = "5569992715000" }: FloatingChatProps) => {
+export const FloatingChat = ({ whatsappNumber = "351961803414" }: FloatingChatProps) => {
   const [isOpen, setIsOpen] = useState(false);
   const navigate = useNavigate();
 

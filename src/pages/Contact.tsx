@@ -226,7 +226,7 @@ export default function Contact() {
                     </div>
                     <div className="min-w-0 flex-1">
                       <h3 className="font-semibold text-foreground mb-1">Atendimento ao Cliente</h3>
-                      <p className="text-muted-foreground">(69) 99271-5000</p>
+                      <p className="text-muted-foreground">+351 961803414</p>
                       <p className="text-sm text-muted-foreground">WhatsApp disponível</p>
                     </div>
                   </div>
@@ -289,7 +289,7 @@ export default function Contact() {
                   </p>
                   <Button
                     className="w-full bg-primary hover:bg-primary/90 text-black font-bold"
-                    onClick={() => window.open('https://wa.me/5569992715000', '_blank')}
+                    onClick={() => window.open('https://wa.me/351961803414', '_blank')}
                   >
                     Falar no WhatsApp Agora
                   </Button>
