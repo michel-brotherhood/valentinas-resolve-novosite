@@ -1,8 +1,26 @@
+# Valentina's Resolve - Robots.txt
+# Plataforma de serviços profissionais
+
+User-agent: *
+Allow: /
+Disallow: /admin/
+Disallow: /api/
+
+# Crawl-delay para bots menos importantes
+User-agent: AhrefsBot
+Crawl-delay: 10
+
+User-agent: SemrushBot
+Crawl-delay: 10
+
+# Priorizar bots principais
 User-agent: Googlebot
 Allow: /
+Crawl-delay: 0
 
 User-agent: Bingbot
 Allow: /
+Crawl-delay: 0
 
 User-agent: Twitterbot
 Allow: /
@@ -10,5 +28,5 @@ Allow: /
 User-agent: facebookexternalhit
 Allow: /
 
-User-agent: *
-Allow: /
+# Sitemap
+Sitemap: https://valentinasresolve.com/sitemap.xml
