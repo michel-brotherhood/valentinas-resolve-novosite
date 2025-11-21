@@ -6,12 +6,13 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { Phone, Mail, MapPin, Clock } from "lucide-react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useToast } from "@/hooks/use-toast";
 import { z } from "zod";
 import { maskPhone } from "@/lib/masks";
-import { ServiceSelect } from "@/components/ServiceSelect";
+import { ContactTopicSelect } from "@/components/ContactTopicSelect";
+import contactHeroBg from "@/assets/contact-hero-bg.jpg";
 
 const contactSchema = z.object({
   name: z.string().trim().min(1, { message: "Nome é obrigatório" }).max(100, { message: "Nome deve ter menos de 100 caracteres" }),
@@ -33,6 +34,16 @@ export default function Contact() {
   });
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [scrollY, setScrollY] = useState(0);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrollY(window.scrollY);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -96,9 +107,17 @@ export default function Contact() {
       <Header />
       
       <main className="flex-1">
-        {/* Hero Section */}
-        <section className="bg-gradient-to-b from-black to-primary/20 py-16 md:py-24">
-          <div className="container mx-auto px-4">
+        {/* Hero Section with Parallax */}
+        <section className="relative py-16 md:py-24 overflow-hidden">
+          <div 
+            className="absolute inset-0 bg-cover bg-center"
+            style={{
+              backgroundImage: `url(${contactHeroBg})`,
+              transform: `translateY(${scrollY * 0.5}px)`,
+            }}
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-black/70 to-black/50" />
+          <div className="container mx-auto px-4 relative z-10">
             <div className="max-w-3xl mx-auto text-center">
               <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">
                 Entre em Contato
@@ -168,10 +187,10 @@ export default function Contact() {
 
                   <div className="min-w-0">
                     <Label htmlFor="service">Assunto *</Label>
-                    <ServiceSelect
+                    <ContactTopicSelect
                       value={formData.service}
                       onChange={(value) => setFormData({ ...formData, service: value })}
-                      placeholder="Selecione um serviço ou assunto"
+                      placeholder="Selecione um assunto"
                     />
                     {errors.service && (
                       <p className="text-sm text-destructive mt-1">{errors.service}</p>
