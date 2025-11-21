@@ -18,6 +18,7 @@ import HireService from "./pages/HireService";
 import CategoryPage from "./pages/CategoryPage";
 import ConfirmationPage from "./pages/ConfirmationPage";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
+import TermsOfUse from "./pages/TermsOfUse";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -42,6 +43,7 @@ const App = () => (
           <Route path="/registro-profissional" element={<ProfessionalRegistration />} />
           <Route path="/confirmacao" element={<ConfirmationPage />} />
           <Route path="/politica-privacidade" element={<PrivacyPolicy />} />
+          <Route path="/termos-de-uso" element={<TermsOfUse />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
