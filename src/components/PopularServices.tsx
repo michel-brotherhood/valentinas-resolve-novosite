@@ -41,7 +41,7 @@ const services = [
 export const PopularServices = () => {
   const navigate = useNavigate();
   const autoplayPlugin = useRef(
-    Autoplay({ delay: 3000, stopOnInteraction: false })
+    Autoplay({ delay: 5000, stopOnInteraction: false })
   );
   
   return (
