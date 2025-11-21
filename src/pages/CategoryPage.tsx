@@ -19,11 +19,14 @@ import imagemPets from "@/assets/services/pets.jpg";
 import imagemEventos from "@/assets/services/eventos.jpg";
 import imagemCriativos from "@/assets/services/criativos.jpg";
 import imagemConstrucao from "@/assets/services/construcao.jpg";
+import imagemInstalacoes from "@/assets/services/instalacoes.jpg";
 import imagemTransporte from "@/assets/services/transporte.jpg";
 import imagemAgricultura from "@/assets/services/agricultura.jpg";
 import imagemPersonalizados from "@/assets/services/personalizados.jpg";
 import imagemTurismo from "@/assets/services/turismo.jpg";
 import imagemEsportes from "@/assets/services/esportes.jpg";
+import imagemCuidadoHumano from "@/assets/services/cuidado-humano.jpg";
+import imagemArquiteturaEngenharia from "@/assets/services/arquitetura-engenharia.jpg";
 
 const categoryImages: Record<string, string> = {
   "Domésticos": imagemDomesticos,
@@ -36,11 +39,14 @@ const categoryImages: Record<string, string> = {
   "Eventos": imagemEventos,
   "Criativos": imagemCriativos,
   "Construção": imagemConstrucao,
+  "Instalações": imagemInstalacoes,
   "Transporte": imagemTransporte,
   "Agricultura": imagemAgricultura,
   "Personalizados": imagemPersonalizados,
   "Turismo": imagemTurismo,
   "Esportes": imagemEsportes,
+  "Cuidado & Acompanhamento Humano": imagemCuidadoHumano,
+  "Arquitetura, Engenharia & Design": imagemArquiteturaEngenharia,
 };
 
 const categoryDescriptions: Record<string, string> = {
@@ -54,11 +60,14 @@ const categoryDescriptions: Record<string, string> = {
   "Eventos": "Profissionais para planejar e executar eventos memoráveis.",
   "Criativos": "Serviços de design, fotografia e produção criativa.",
   "Construção": "Profissionais para reformas, construções e reparos estruturais.",
+  "Instalações": "Instalação profissional de sistemas de segurança, automação, infraestrutura e tecnologia para sua casa ou empresa.",
   "Transporte": "Serviços de transporte e mudanças com segurança.",
   "Agricultura": "Serviços especializados para o setor agrícola.",
   "Personalizados": "Serviços sob medida para necessidades específicas.",
   "Turismo": "Guias e planejamento de viagens e turismo.",
   "Esportes": "Treinadores e profissionais de educação física.",
+  "Cuidado & Acompanhamento Humano": "Profissionais dedicados ao cuidado e acompanhamento de idosos, crianças e pessoas com necessidades especiais.",
+  "Arquitetura, Engenharia & Design": "Serviços profissionais de arquitetura, engenharia civil e design de interiores para seus projetos residenciais e comerciais.",
 };
 
 const featuredServices: Record<string, string[]> = {
@@ -72,11 +81,14 @@ const featuredServices: Record<string, string[]> = {
   "Eventos": ["Decoração", "Buffet", "Fotografia", "DJ e Som"],
   "Criativos": ["Design Gráfico", "Fotografia Profissional", "Edição de Vídeo", "Marketing Digital"],
   "Construção": ["Pedreiro", "Pintura", "Elétrica", "Hidráulica"],
+  "Instalações": ["Instalação de Câmeras (CFTV)", "Instalação de Portão Eletrônico", "Instalação de Redes / Internet", "Instalação de Alarmes"],
   "Transporte": ["Mudanças", "Fretes", "Transporte Executivo", "Motoboy"],
   "Agricultura": ["Plantio", "Irrigação", "Colheita", "Consultoria Agrícola"],
   "Personalizados": ["Costura Sob Medida", "Artesanato", "Serviços Personalizados", "Consultoria"],
   "Turismo": ["Guia Turístico", "Planejamento de Viagens", "Passeios", "Transfer"],
   "Esportes": ["Personal Trainer", "Aulas de Yoga", "Treinamento Funcional", "Musculação"],
+  "Cuidado & Acompanhamento Humano": ["Cuidador de Idosos", "Babá", "Acompanhante para Consultas", "Monitor de Crianças"],
+  "Arquitetura, Engenharia & Design": ["Projeto Arquitetônico", "Engenharia Civil", "Design de Interiores Residencial", "Vistoria Técnica"],
 };
 
 const CategoryPage = () => {

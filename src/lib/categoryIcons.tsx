@@ -14,6 +14,9 @@ import {
   Star,
   Plane,
   Dumbbell,
+  Settings,
+  HeartHandshake,
+  Building2,
   LucideIcon
 } from "lucide-react";
 
@@ -28,11 +31,14 @@ export const categoryIcons: Record<string, LucideIcon> = {
   "Eventos": PartyPopper,
   "Criativos": Palette,
   "Construção": Hammer,
+  "Instalações": Settings,
   "Transporte": Truck,
   "Agricultura": Sprout,
   "Personalizados": Star,
   "Turismo": Plane,
   "Esportes": Dumbbell,
+  "Cuidado & Acompanhamento Humano": HeartHandshake,
+  "Arquitetura, Engenharia & Design": Building2,
 };
 
 export const getCategoryIcon = (category: string): LucideIcon => {
