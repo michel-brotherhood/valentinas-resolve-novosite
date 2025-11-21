@@ -126,9 +126,20 @@ export const Footer = () => {
         </div>
 
         {/* Bottom Bar */}
-        <div className="pt-8 pb-20 border-t border-white/10 text-center">
+        <div className="pt-8 pb-20 border-t border-white/10 text-center space-y-2">
           <p className="text-sm text-white/60">
             © 2025 Valentina's Resolve. Todos os direitos reservados.
+          </p>
+          <p className="text-xs text-white/40">
+            Desenvolvido por{" "}
+            <a 
+              href="https://www.instagram.com/michelbrotherhood/" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="text-primary hover:text-primary/80 transition-colors hover:underline"
+            >
+              Michel Brotherhood
+            </a>
           </p>
         </div>
       </div>
