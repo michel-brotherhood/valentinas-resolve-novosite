@@ -47,46 +47,45 @@ export const PopularServices = () => {
   return (
     <section className="py-16 bg-background">
       <div className="container mx-auto px-4">
-        <h2 className="text-3xl font-bold text-foreground mb-8 text-center">
+        <h2 className="text-3xl font-bold text-foreground mb-8">
           Serviços mais procurados
         </h2>
         
         <Carousel
           opts={{
-            align: "center",
+            align: "start",
             loop: true,
+            slidesToScroll: 1,
           }}
           plugins={[autoplayPlugin.current]}
-          className="w-full max-w-4xl mx-auto"
+          className="w-full"
         >
-          <CarouselContent>
+          <CarouselContent className="-ml-2 md:-ml-4">
             {services.map((service) => (
-              <CarouselItem key={service.title}>
-                <div className="p-1">
-                  <Card
-                    onClick={() => navigate(service.route)}
-                    className="group overflow-hidden cursor-pointer transition-all duration-500 hover:shadow-2xl hover:border-primary/50"
-                  >
-                    <div className="aspect-[16/9] overflow-hidden relative">
-                      <img
-                        src={service.image}
-                        alt={service.title}
-                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 ease-out"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-primary/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                    </div>
-                    <div className="p-6 bg-card group-hover:bg-accent/5 transition-colors duration-500 text-center">
-                      <h3 className="text-xl font-semibold text-foreground group-hover:text-primary transition-colors duration-300">
-                        {service.title}
-                      </h3>
-                    </div>
-                  </Card>
-                </div>
+              <CarouselItem key={service.title} className="pl-2 md:pl-4 basis-1/2 lg:basis-1/4">
+                <Card
+                  onClick={() => navigate(service.route)}
+                  className="group overflow-hidden cursor-pointer transition-all duration-500 hover:shadow-2xl hover:-translate-y-2 hover:border-primary/50"
+                >
+                  <div className="aspect-[4/3] overflow-hidden relative">
+                    <img
+                      src={service.image}
+                      alt={service.title}
+                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 ease-out"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-primary/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                  </div>
+                  <div className="p-4 bg-card group-hover:bg-accent/5 transition-colors duration-500">
+                    <h3 className="font-semibold text-foreground group-hover:text-primary transition-colors duration-300">
+                      {service.title}
+                    </h3>
+                  </div>
+                </Card>
               </CarouselItem>
             ))}
           </CarouselContent>
-          <CarouselPrevious className="left-2" />
-          <CarouselNext className="right-2" />
+          <CarouselPrevious className="hidden md:flex" />
+          <CarouselNext className="hidden md:flex" />
         </Carousel>
 
         <div className="mt-8 text-center">
