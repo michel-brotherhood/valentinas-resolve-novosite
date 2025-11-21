@@ -127,11 +127,11 @@ export const Footer = () => {
 
         {/* Bottom Bar */}
         <div className="pt-8 pb-20 border-t border-white/10">
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-2">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
             <p className="text-sm text-white/60 text-center md:text-left md:col-span-3">
               © 2025 Valentina's Resolve. Todos os direitos reservados.
             </p>
-            <p className="text-xs text-white/40 text-center md:text-right md:col-span-1">
+            <p className="text-xs text-white/40 text-center md:text-right md:col-span-1 md:col-start-4">
               Desenvolvido por{" "}
               <a 
                 href="https://www.instagram.com/michelbrotherhood/" 
