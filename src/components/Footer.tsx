@@ -111,6 +111,11 @@ export const Footer = () => {
                   Nossa Equipe
                 </Link>
               </li>
+              <li>
+                <Link to="/politica-privacidade" className="text-sm text-white/70 hover:text-primary transition-colors">
+                  Política de Privacidade
+                </Link>
+              </li>
             </ul>
           </div>
         </div>
