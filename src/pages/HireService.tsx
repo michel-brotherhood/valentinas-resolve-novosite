@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
@@ -12,7 +12,7 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { ServiceSelect } from "@/components/ServiceSelect";
 import { useToast } from "@/hooks/use-toast";
 import { z } from "zod";
-import { Mail } from "lucide-react";
+import { Mail, Check } from "lucide-react";
 import { maskPhone } from "@/lib/masks";
 
 const hireServiceSchema = z.object({
@@ -54,6 +54,30 @@ export default function HireService() {
     acceptTerms: false,
   });
   const [errors, setErrors] = useState<Record<string, string>>({});
+
+  // Progress tracking
+  const [completedSteps, setCompletedSteps] = useState<number[]>([]);
+
+  useEffect(() => {
+    const completed: number[] = [];
+    
+    // Step 1: Dados do Cliente
+    if (formData.fullName && formData.email && formData.phone && formData.cityNeighborhood) {
+      completed.push(1);
+    }
+    
+    // Step 2: Detalhes do Serviço
+    if (formData.serviceType && formData.description.length >= 20 && formData.location) {
+      completed.push(2);
+    }
+    
+    // Step 3: Preferências
+    if (formData.contactPreference.length > 0 && formData.acceptTerms) {
+      completed.push(3);
+    }
+    
+    setCompletedSteps(completed);
+  }, [formData]);
 
   const handleContactPreferenceToggle = (value: string) => {
     setFormData(prev => ({
@@ -145,6 +169,75 @@ export default function HireService() {
             <p className="text-base md:text-lg text-muted-foreground break-words px-2">
               Preencha o formulário e encontre o profissional ideal para você
             </p>
+          </div>
+
+          {/* Progress Indicator */}
+          <div className="mb-8">
+            <div className="flex items-center justify-between max-w-2xl mx-auto">
+              {/* Step 1 */}
+              <div className="flex flex-col items-center flex-1">
+                <div className={`w-10 h-10 md:w-12 md:h-12 rounded-full flex items-center justify-center transition-all duration-300 ${
+                  completedSteps.includes(1) 
+                    ? 'bg-primary text-black' 
+                    : 'bg-muted text-muted-foreground'
+                }`}>
+                  {completedSteps.includes(1) ? (
+                    <Check className="h-5 w-5 md:h-6 md:w-6" />
+                  ) : (
+                    <span className="font-bold">1</span>
+                  )}
+                </div>
+                <span className="text-xs md:text-sm mt-2 text-center font-medium">
+                  Dados do Cliente
+                </span>
+              </div>
+
+              {/* Connector 1-2 */}
+              <div className={`h-1 flex-1 mx-2 transition-all duration-300 ${
+                completedSteps.includes(1) ? 'bg-primary' : 'bg-muted'
+              }`} />
+
+              {/* Step 2 */}
+              <div className="flex flex-col items-center flex-1">
+                <div className={`w-10 h-10 md:w-12 md:h-12 rounded-full flex items-center justify-center transition-all duration-300 ${
+                  completedSteps.includes(2) 
+                    ? 'bg-primary text-black' 
+                    : 'bg-muted text-muted-foreground'
+                }`}>
+                  {completedSteps.includes(2) ? (
+                    <Check className="h-5 w-5 md:h-6 md:w-6" />
+                  ) : (
+                    <span className="font-bold">2</span>
+                  )}
+                </div>
+                <span className="text-xs md:text-sm mt-2 text-center font-medium">
+                  Serviço
+                </span>
+              </div>
+
+              {/* Connector 2-3 */}
+              <div className={`h-1 flex-1 mx-2 transition-all duration-300 ${
+                completedSteps.includes(2) ? 'bg-primary' : 'bg-muted'
+              }`} />
+
+              {/* Step 3 */}
+              <div className="flex flex-col items-center flex-1">
+                <div className={`w-10 h-10 md:w-12 md:h-12 rounded-full flex items-center justify-center transition-all duration-300 ${
+                  completedSteps.includes(3) 
+                    ? 'bg-primary text-black' 
+                    : 'bg-muted text-muted-foreground'
+                }`}>
+                  {completedSteps.includes(3) ? (
+                    <Check className="h-5 w-5 md:h-6 md:w-6" />
+                  ) : (
+                    <span className="font-bold">3</span>
+                  )}
+                </div>
+                <span className="text-xs md:text-sm mt-2 text-center font-medium">
+                  Preferências
+                </span>
+              </div>
+            </div>
           </div>
 
           <Card className="p-4 md:p-6 lg:p-8 w-full overflow-hidden">
