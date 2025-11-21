@@ -56,7 +56,7 @@ export const Categories = () => {
               className="flex flex-col items-center gap-2 sm:gap-3 p-3 sm:p-4 rounded-lg hover:bg-secondary transition-colors group border border-border"
             >
               <div className="p-3 rounded-full bg-primary/10 group-hover:scale-110 transition-transform">
-                <category.icon className="h-6 w-6 text-primary" />
+                <category.icon className="h-5 w-5 sm:h-6 sm:w-6 text-primary" />
               </div>
               <span className="text-xs sm:text-sm font-medium text-foreground text-center">
                 {category.name}
