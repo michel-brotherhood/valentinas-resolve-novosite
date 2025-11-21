@@ -103,7 +103,7 @@ export default function Contact() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="min-h-screen flex flex-col overflow-x-hidden">
       <Header />
       
       <main className="flex-1">
@@ -130,16 +130,16 @@ export default function Contact() {
         </section>
 
         {/* Contact Form & Info */}
-        <section className="py-8 md:py-16 bg-background">
-          <div className="container mx-auto px-4">
-            <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-8 md:gap-12">
+        <section className="py-8 md:py-16 bg-background overflow-x-hidden">
+          <div className="container mx-auto px-4 max-w-6xl">
+            <div className="grid md:grid-cols-2 gap-6 md:gap-12">
               {/* Contact Form */}
-              <Card className="p-4 md:p-8 overflow-hidden">
-                <h2 className="text-xl md:text-2xl font-bold text-foreground mb-4 md:mb-6">
+              <Card className="p-4 md:p-8 w-full overflow-hidden">
+                <h2 className="text-xl md:text-2xl font-bold text-foreground mb-4 md:mb-6 break-words">
                   Central de Dúvidas
                 </h2>
                 <form onSubmit={handleSubmit} className="space-y-4 md:space-y-6">
-                  <div className="min-w-0">
+                  <div className="w-full">
                     <Label htmlFor="name">Nome Completo *</Label>
                     <Input
                       id="name"
@@ -150,11 +150,11 @@ export default function Contact() {
                       maxLength={100}
                     />
                     {errors.name && (
-                      <p className="text-sm text-destructive mt-1">{errors.name}</p>
+                      <p className="text-sm text-destructive mt-1 break-words">{errors.name}</p>
                     )}
                   </div>
 
-                  <div className="min-w-0">
+                  <div className="w-full">
                     <Label htmlFor="email">Email *</Label>
                     <Input
                       id="email"
@@ -165,11 +165,11 @@ export default function Contact() {
                       maxLength={255}
                     />
                     {errors.email && (
-                      <p className="text-sm text-destructive mt-1">{errors.email}</p>
+                      <p className="text-sm text-destructive mt-1 break-words">{errors.email}</p>
                     )}
                   </div>
 
-                  <div className="min-w-0">
+                  <div className="w-full">
                     <Label htmlFor="phone">Telefone *</Label>
                     <Input
                       id="phone"
@@ -181,11 +181,11 @@ export default function Contact() {
                       placeholder="+55 (11) 99999-9999"
                     />
                     {errors.phone && (
-                      <p className="text-sm text-destructive mt-1">{errors.phone}</p>
+                      <p className="text-sm text-destructive mt-1 break-words">{errors.phone}</p>
                     )}
                   </div>
 
-                  <div className="min-w-0">
+                  <div className="w-full">
                     <Label htmlFor="service">Assunto *</Label>
                     <ContactTopicSelect
                       value={formData.service}
@@ -193,11 +193,11 @@ export default function Contact() {
                       placeholder="Selecione um assunto"
                     />
                     {errors.service && (
-                      <p className="text-sm text-destructive mt-1">{errors.service}</p>
+                      <p className="text-sm text-destructive mt-1 break-words">{errors.service}</p>
                     )}
                   </div>
 
-                  <div className="min-w-0">
+                  <div className="w-full">
                     <Label htmlFor="message">Mensagem *</Label>
                     <Textarea
                       id="message"
@@ -209,7 +209,7 @@ export default function Contact() {
                       placeholder="Conte-nos mais sobre o que você precisa..."
                     />
                     {errors.message && (
-                      <p className="text-sm text-destructive mt-1">{errors.message}</p>
+                      <p className="text-sm text-destructive mt-1 break-words">{errors.message}</p>
                     )}
                     <p className="text-sm text-muted-foreground mt-1">
                       {formData.message.length}/1000 caracteres
@@ -227,26 +227,26 @@ export default function Contact() {
               </Card>
 
               {/* Contact Info */}
-              <div className="space-y-4 md:space-y-6">
+              <div className="space-y-4 md:space-y-6 w-full overflow-hidden">
                 <div>
-                  <h2 className="text-xl md:text-2xl font-bold text-foreground mb-4 md:mb-6">
+                  <h2 className="text-xl md:text-2xl font-bold text-foreground mb-4 md:mb-6 break-words">
                     Informações de Contato
                   </h2>
-                  <p className="text-muted-foreground mb-8">
+                  <p className="text-muted-foreground mb-8 break-words">
                     Entre em contato conosco através dos canais abaixo ou preencha o formulário 
                     para receber um orçamento personalizado.
                   </p>
                 </div>
 
-                <Card className="p-4 md:p-6 overflow-hidden">
+                <Card className="p-4 md:p-6 w-full overflow-hidden">
                   <div className="flex items-start gap-3 md:gap-4 mb-4 md:mb-6">
                     <div className="h-10 w-10 md:h-12 md:w-12 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
                       <Phone className="h-5 w-5 md:h-6 md:w-6 text-primary" />
                     </div>
-                    <div className="min-w-0 flex-1">
-                      <h3 className="font-semibold text-foreground mb-1">Atendimento ao Cliente</h3>
-                      <p className="text-muted-foreground">+351 961803414</p>
-                      <p className="text-sm text-muted-foreground">WhatsApp disponível</p>
+                    <div className="min-w-0 flex-1 overflow-hidden">
+                      <h3 className="font-semibold text-foreground mb-1 break-words">Atendimento ao Cliente</h3>
+                      <p className="text-muted-foreground break-words">+351 961803414</p>
+                      <p className="text-sm text-muted-foreground break-words">WhatsApp disponível</p>
                     </div>
                   </div>
 
@@ -254,10 +254,10 @@ export default function Contact() {
                     <div className="h-10 w-10 md:h-12 md:w-12 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
                       <Phone className="h-5 w-5 md:h-6 md:w-6 text-primary" />
                     </div>
-                    <div className="min-w-0 flex-1">
-                      <h3 className="font-semibold text-foreground mb-1">Contabilidade Integrada</h3>
-                      <p className="text-muted-foreground">+351 961803400</p>
-                      <p className="text-sm text-muted-foreground">WhatsApp disponível</p>
+                    <div className="min-w-0 flex-1 overflow-hidden">
+                      <h3 className="font-semibold text-foreground mb-1 break-words">Contabilidade Integrada</h3>
+                      <p className="text-muted-foreground break-words">+351 961803400</p>
+                      <p className="text-sm text-muted-foreground break-words">WhatsApp disponível</p>
                     </div>
                   </div>
 
@@ -265,10 +265,14 @@ export default function Contact() {
                     <div className="h-10 w-10 md:h-12 md:w-12 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
                       <Mail className="h-5 w-5 md:h-6 md:w-6 text-primary" />
                     </div>
-                    <div className="min-w-0 flex-1">
-                      <h3 className="font-semibold text-foreground mb-1">E-mails</h3>
-                      <p className="text-muted-foreground text-sm break-words overflow-wrap-anywhere">atendimentoaocliente@valentinasresolve.com.br</p>
-                      <p className="text-muted-foreground text-sm break-words overflow-wrap-anywhere mt-1">contabilidadeintegrada@valentinasresolve.com.br</p>
+                    <div className="min-w-0 flex-1 overflow-hidden">
+                      <h3 className="font-semibold text-foreground mb-1 break-words">E-mails</h3>
+                      <p className="text-muted-foreground text-xs sm:text-sm break-all">
+                        atendimentoaocliente@valentinasresolve.com.br
+                      </p>
+                      <p className="text-muted-foreground text-xs sm:text-sm break-all mt-1">
+                        contabilidadeintegrada@valentinasresolve.com.br
+                      </p>
                     </div>
                   </div>
 
@@ -276,9 +280,9 @@ export default function Contact() {
                     <div className="h-10 w-10 md:h-12 md:w-12 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
                       <MapPin className="h-5 w-5 md:h-6 md:w-6 text-primary" />
                     </div>
-                    <div className="min-w-0 flex-1">
-                      <h3 className="font-semibold text-foreground mb-1">Endereço</h3>
-                      <p className="text-muted-foreground text-sm">
+                    <div className="min-w-0 flex-1 overflow-hidden">
+                      <h3 className="font-semibold text-foreground mb-1 break-words">Endereço</h3>
+                      <p className="text-muted-foreground text-sm break-words">
                         Rua Osvaldo Cruz, 770<br />
                         Ouro Preto do Oeste - RO, 76.920-000
                       </p>
@@ -289,9 +293,9 @@ export default function Contact() {
                     <div className="h-10 w-10 md:h-12 md:w-12 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
                       <Clock className="h-5 w-5 md:h-6 md:w-6 text-primary" />
                     </div>
-                    <div className="min-w-0 flex-1">
-                      <h3 className="font-semibold text-foreground mb-1">Horário</h3>
-                      <p className="text-muted-foreground text-sm">
+                    <div className="min-w-0 flex-1 overflow-hidden">
+                      <h3 className="font-semibold text-foreground mb-1 break-words">Horário</h3>
+                      <p className="text-muted-foreground text-sm break-words">
                         Segunda a Sexta: 8h às 18h<br />
                         Sábado: 8h às 13h
                       </p>
@@ -299,11 +303,11 @@ export default function Contact() {
                   </div>
                 </Card>
 
-                <Card className="p-4 md:p-6 bg-gradient-to-br from-primary/10 to-primary/5 overflow-hidden">
-                  <h3 className="text-lg md:text-xl font-bold text-foreground mb-2 md:mb-3">
+                <Card className="p-4 md:p-6 bg-gradient-to-br from-primary/10 to-primary/5 w-full overflow-hidden">
+                  <h3 className="text-lg md:text-xl font-bold text-foreground mb-2 md:mb-3 break-words">
                     Resposta Rápida
                   </h3>
-                  <p className="text-muted-foreground text-sm mb-4">
+                  <p className="text-muted-foreground text-sm mb-4 break-words">
                     Respondemos todas as solicitações em até 24 horas úteis.
                   </p>
                   <Button
