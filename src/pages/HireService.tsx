@@ -411,14 +411,14 @@ export default function HireService() {
 
               {/* Condições */}
               <div className="space-y-4 w-full">
-                <div className="flex items-start space-x-2">
+                <div className="flex items-center space-x-3">
                   <Checkbox
                     id="acceptTerms"
                     checked={formData.acceptTerms}
                     onCheckedChange={(checked) => setFormData({...formData, acceptTerms: checked as boolean})}
-                    className="mt-1 flex-shrink-0"
+                    className="flex-shrink-0"
                   />
-                  <Label htmlFor="acceptTerms" className="font-normal cursor-pointer break-words">
+                  <Label htmlFor="acceptTerms" className="font-normal cursor-pointer break-words leading-tight">
                     Concordo em compartilhar meus dados com profissionais parceiros da plataforma para fins de orçamento.
                   </Label>
                 </div>
