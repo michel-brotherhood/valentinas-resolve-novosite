@@ -131,7 +131,7 @@ export const Footer = () => {
             <p className="text-sm text-white/60 text-center md:text-left md:col-span-3">
               © 2025 Valentina's Resolve. Todos os direitos reservados.
             </p>
-            <p className="text-xs text-white/40 text-center md:text-right md:col-span-1 md:col-start-4">
+            <p className="text-xs text-white/40 text-center md:text-right md:col-start-4">
               Desenvolvido por{" "}
               <a 
                 href="https://www.instagram.com/michelbrotherhood/" 
