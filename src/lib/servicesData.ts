@@ -5,839 +5,474 @@ export interface Service {
   regions?: string[];
 }
 
-export interface Subcategory {
-  name: string;
-  description: string;
-  services: Service[];
-}
-
 export interface Category {
   id: string;
   name: string;
   icon: string;
   description: string;
-  subcategories: Subcategory[];
+  services: Service[];
 }
 
 export const servicesData: Category[] = [
   {
-    id: "domesticos",
-    name: "Domésticos",
-    icon: "Home",
-    description: "Serviços residenciais e de manutenção doméstica",
-    subcategories: [
-      {
-        name: "Limpeza Residencial",
-        description: "Serviços de limpeza para sua casa",
-        services: [
-          { name: "Faxina completa", description: "Limpeza profunda de toda residência" },
-          { name: "Limpeza leve", description: "Manutenção básica e organização" },
-          { name: "Limpeza de rotina", description: "Serviço regular de higienização" },
-        ],
-      },
-      {
-        name: "Limpeza Pós-Obra",
-        description: "Limpeza após reformas e construções",
-        services: [
-          { name: "Limpeza pesada", description: "Remoção de resíduos e sujeira de obra" },
-          { name: "Retirada de entulho", description: "Coleta e descarte de materiais" },
-          { name: "Finalização", description: "Acabamento e polimento final" },
-        ],
-      },
-      {
-        name: "Limpeza Comercial",
-        description: "Limpeza para ambientes corporativos",
-        services: [
-          { name: "Escritórios", description: "Limpeza de ambientes corporativos" },
-          { name: "Lojas", description: "Higienização de estabelecimentos comerciais" },
-          { name: "Consultórios", description: "Limpeza especializada para área da saúde" },
-        ],
-      },
-      {
-        name: "Limpeza Especializada",
-        description: "Serviços de limpeza específicos",
-        services: [
-          { name: "Estofados", description: "Higienização profunda de sofás e poltronas" },
-          { name: "Carpetes", description: "Limpeza profissional de carpetes" },
-          { name: "Pisos", description: "Tratamento e polimento de pisos" },
-          { name: "Vidros", description: "Limpeza de janelas e fachadas" },
-          { name: "Ar-condicionado", description: "Higienização e manutenção" },
-        ],
-      },
-      {
-        name: "Manutenção e Higiene",
-        description: "Serviços de manutenção preventiva",
-        services: [
-          { name: "Caixa d'água", description: "Limpeza e desinfecção" },
-          { name: "Piscina", description: "Tratamento e manutenção" },
-          { name: "Toldos", description: "Lavagem e conservação" },
-          { name: "Fachada", description: "Limpeza de fachadas prediais" },
-        ],
-      },
-    ],
-  },
-  {
-    id: "beleza",
-    name: "Beleza",
+    id: "limpezas",
+    name: "LIMPEZAS",
     icon: "Sparkles",
-    description: "Serviços de beleza e estética",
-    subcategories: [
-      {
-        name: "Cabelos e Barba",
-        description: "Cuidados capilares e barbearia",
-        services: [
-          { name: "Corte", description: "Cortes modernos e clássicos" },
-          { name: "Escova", description: "Escova modeladora profissional" },
-          { name: "Prancha", description: "Alisamento e modelagem" },
-          { name: "Barba", description: "Design e manutenção de barba" },
-          { name: "Tratamento capilar", description: "Hidratação e reconstrução" },
-        ],
-      },
-      {
-        name: "Unhas e Sobrancelhas",
-        description: "Cuidados com unhas e design de sobrancelhas",
-        services: [
-          { name: "Manicure", description: "Cuidados com as unhas das mãos" },
-          { name: "Pedicure", description: "Cuidados com os pés" },
-          { name: "Design de sobrancelhas", description: "Modelagem e design" },
-          { name: "Alongamento de unhas", description: "Aplicação de alongamento" },
-          { name: "Henna", description: "Aplicação de henna" },
-        ],
-      },
-      {
-        name: "Maquiagem e Penteados",
-        description: "Serviços para eventos especiais",
-        services: [
-          { name: "Maquiagem social", description: "Make para eventos" },
-          { name: "Maquiagem para eventos", description: "Maquiagem profissional" },
-          { name: "Noivas", description: "Penteado e make para casamento" },
-          { name: "Madrinhas", description: "Beleza para madrinhas" },
-        ],
-      },
-      {
-        name: "Cuidados com a Pele",
-        description: "Tratamentos faciais e corporais",
-        services: [
-          { name: "Limpeza de pele", description: "Limpeza profunda facial" },
-          { name: "Peeling", description: "Renovação celular" },
-          { name: "Estética facial", description: "Tratamentos faciais" },
-          { name: "Estética corporal", description: "Tratamentos corporais" },
-        ],
-      },
-      {
-        name: "Massagem e Spa",
-        description: "Relaxamento e bem-estar",
-        services: [
-          { name: "Massagem relaxante", description: "Relaxamento muscular" },
-          { name: "Drenagem linfática", description: "Tratamento drenante" },
-          { name: "Day spa domiciliar", description: "Spa em casa" },
-        ],
-      },
+    description: "Serviços de limpeza residencial, comercial e especializada",
+    services: [
+      { name: "Limpeza Residencial", description: "Limpeza profunda de toda residência" },
+      { name: "Limpeza Pós-Obra", description: "Remoção de resíduos e sujeira de obra" },
+      { name: "Limpeza Comercial", description: "Higienização de ambientes corporativos" },
+      { name: "Limpeza Industrial", description: "Limpeza especializada para indústrias" },
+      { name: "Limpeza de Estofados", description: "Higienização profunda de sofás e poltronas" },
+      { name: "Limpeza de Carpetes", description: "Limpeza profissional de carpetes" },
+      { name: "Limpeza de Áreas Externas", description: "Limpeza de quintais e áreas abertas" },
+      { name: "Limpeza de Vidros", description: "Limpeza de janelas e fachadas de vidro" },
+      { name: "Limpeza de Fachadas", description: "Limpeza de fachadas prediais" },
+      { name: "Limpeza de Piscinas", description: "Tratamento e limpeza de piscinas" },
+      { name: "Limpeza de Toldos", description: "Lavagem e conservação de toldos" },
     ],
   },
   {
-    id: "saude",
-    name: "Saúde",
-    icon: "Heart",
-    description: "Serviços de saúde e bem-estar",
-    subcategories: [
-      {
-        name: "Atendimento Médico Domiciliar",
-        description: "Consultas médicas em casa",
-        services: [
-          { name: "Clínico geral", description: "Consultas gerais" },
-          { name: "Pediatria", description: "Atendimento infantil" },
-          { name: "Geriatria", description: "Cuidados com idosos" },
-        ],
-      },
-      {
-        name: "Enfermagem e Cuidados",
-        description: "Serviços de enfermagem",
-        services: [
-          { name: "Aplicação de medicamentos", description: "Injeções e soros" },
-          { name: "Curativos", description: "Troca de curativos" },
-          { name: "Cuidador", description: "Cuidados especializados" },
-        ],
-      },
-      {
-        name: "Fisioterapia e Reabilitação",
-        description: "Tratamentos fisioterápicos",
-        services: [
-          { name: "Fisioterapia motora", description: "Reabilitação física" },
-          { name: "Fisioterapia respiratória", description: "Tratamento respiratório" },
-          { name: "RPG", description: "Reeducação postural" },
-        ],
-      },
-      {
-        name: "Psicologia e Terapias Alternativas",
-        description: "Saúde mental e terapias",
-        services: [
-          { name: "Psicoterapia", description: "Terapia individual" },
-          { name: "Acupuntura", description: "Medicina tradicional chinesa" },
-          { name: "Reiki", description: "Terapia energética" },
-        ],
-      },
-      {
-        name: "Nutrição e Acompanhamento",
-        description: "Consultoria nutricional",
-        services: [
-          { name: "Consulta nutricional", description: "Planejamento alimentar" },
-          { name: "Dieta personalizada", description: "Cardápio individual" },
-          { name: "Acompanhamento", description: "Monitoramento contínuo" },
-        ],
-      },
+    id: "manutencao",
+    name: "MANUTENÇÃO",
+    icon: "Wrench",
+    description: "Serviços de manutenção preventiva e corretiva",
+    services: [
+      { name: "Manutenção de Ar-Condicionado", description: "Limpeza e manutenção de ar-condicionado" },
+      { name: "Manutenção de Piscinas (técnica)", description: "Tratamento químico e manutenção técnica" },
+      { name: "Manutenção Elétrica", description: "Reparos e manutenção em sistemas elétricos" },
+      { name: "Manutenção Hidráulica", description: "Reparos em encanamentos e instalações" },
+      { name: "Manutenção de Portões", description: "Manutenção de portões eletrônicos e manuais" },
+      { name: "Manutenção de Bombas", description: "Manutenção de bombas d'água" },
+      { name: "Manutenção de Câmeras (CFTV)", description: "Manutenção de sistemas de vigilância" },
+      { name: "Manutenção de Internet / Wi-Fi", description: "Configuração e reparo de redes" },
+      { name: "Manutenção de Jardim (Corte e Poda)", description: "Cuidados com jardins e plantas" },
+      { name: "Técnico de Refrigeração", description: "Manutenção de sistemas de refrigeração" },
     ],
   },
   {
-    id: "juridicos",
-    name: "Jurídicos",
-    icon: "Scale",
-    description: "Serviços jurídicos e consultorias",
-    subcategories: [
-      {
-        name: "Jurídico",
-        description: "Orientação e documentos legais",
-        services: [
-          { name: "Advogado cível", description: "Direito civil" },
-          { name: "Advogado trabalhista", description: "Direito do trabalho" },
-          { name: "Advogado criminal", description: "Defesa criminal" },
-          { name: "Advogado de família", description: "Divórcios e inventários" },
-        ],
-      },
-      {
-        name: "Contábil e Tributário",
-        description: "Serviços contábeis integrados",
-        services: [
-          { 
-            name: "Contabilidade Integrada", 
-            description: "DADOS QUE CONECTAM. RESULTADOS QUE TRANSFORMAM. 9 anos de experiência, CRC: RO-010414/O-5. Atende MEI, LTDA e EI",
-            companyTypes: ["MEI", "LTDA", "EI"],
-            regions: ["Nacional"]
-          },
-          { 
-            name: "Consultoria contábil", 
-            description: "Gestão contábil",
-            companyTypes: ["Todos"],
-            regions: ["Nacional"]
-          },
-          { 
-            name: "Consultoria tributária", 
-            description: "Planejamento fiscal",
-            companyTypes: ["Todos"],
-            regions: ["Nacional"]
-          },
-          { 
-            name: "Declaração de IR", 
-            description: "Imposto de renda",
-            companyTypes: ["Todos"],
-            regions: ["Nacional"]
-          },
-        ],
-      },
-      {
-        name: "Recursos Humanos e Marketing",
-        description: "Consultoria empresarial",
-        services: [
-          { name: "Consultoria em RH", description: "Gestão de pessoas" },
-          { name: "Consultoria em marketing", description: "Estratégias comerciais" },
-          { name: "Coaching empresarial", description: "Desenvolvimento organizacional" },
-        ],
-      },
-      {
-        name: "Consultoria Agropecuária",
-        description: "Gestão rural e agrícola",
-        services: [
-          { name: "Gestão rural", description: "Administração de fazendas" },
-          { name: "Consultoria agrícola", description: "Produção agrícola" },
-          { name: "Consultoria pecuária", description: "Criação de animais" },
-        ],
-      },
-      {
-        name: "Abertura de Empresas",
-        description: "Constituição empresarial (MEI - LTDA - EI)",
-        services: [
-          { name: "Registro de empresa", description: "Formalização (MEI - LTDA - EI)" },
-          { name: "Consultoria MEI", description: "Microempreendedor (MEI - LTDA - EI)" },
-          { name: "Alteração contratual", description: "Mudanças societárias (MEI - LTDA - EI)" },
-        ],
-      },
-    ],
-  },
-  {
-    id: "educacao",
-    name: "Educação",
-    icon: "GraduationCap",
-    description: "Serviços educacionais",
-    subcategories: [
-      {
-        name: "Reforço Escolar",
-        description: "Aulas particulares",
-        services: [
-          { name: "Matemática", description: "Reforço em matemática" },
-          { name: "Português", description: "Gramática e redação" },
-          { name: "Ciências", description: "Biologia, física e química" },
-        ],
-      },
-      {
-        name: "Idiomas",
-        description: "Aulas de línguas estrangeiras",
-        services: [
-          { name: "Inglês", description: "Conversação e gramática" },
-          { name: "Espanhol", description: "Aulas de espanhol" },
-          { name: "Francês", description: "Língua francesa" },
-        ],
-      },
-      {
-        name: "Música e Artes",
-        description: "Educação artística",
-        services: [
-          { name: "Violão", description: "Aulas de violão" },
-          { name: "Piano", description: "Aulas de piano" },
-          { name: "Canto", description: "Técnica vocal" },
-          { name: "Desenho", description: "Artes plásticas" },
-        ],
-      },
-      {
-        name: "Informática e Programação",
-        description: "Tecnologia e computação",
-        services: [
-          { name: "Informática básica", description: "Introdução ao computador" },
-          { name: "Excel avançado", description: "Planilhas profissionais" },
-          { name: "Programação", description: "Desenvolvimento de software" },
-        ],
-      },
-      {
-        name: "Preparatórios e Treinamentos",
-        description: "Cursos profissionalizantes",
-        services: [
-          { name: "Preparatório ENEM", description: "Preparação para vestibular" },
-          { name: "Concursos", description: "Preparação para concursos" },
-          { name: "Certificações", description: "Treinamentos técnicos" },
-        ],
-      },
-    ],
-  },
-  {
-    id: "automotivos",
-    name: "Automotivos",
-    icon: "Car",
-    description: "Serviços automotivos",
-    subcategories: [
-      {
-        name: "Higienização e Estética Veicular",
-        description: "Limpeza e embelezamento",
-        services: [
-          { name: "Lavagem completa", description: "Lavagem interna e externa" },
-          { name: "Polimento", description: "Polimento de pintura" },
-          { name: "Cristalização", description: "Proteção de pintura" },
-          { name: "Higienização interna", description: "Limpeza profunda interna" },
-        ],
-      },
-      {
-        name: "Mecânica Rápida",
-        description: "Serviços mecânicos básicos",
-        services: [
-          { name: "Diagnóstico", description: "Avaliação mecânica" },
-          { name: "Freios", description: "Manutenção de freios" },
-          { name: "Suspensão", description: "Reparos de suspensão" },
-        ],
-      },
-      {
-        name: "Troca de Óleo e Revisão",
-        description: "Manutenção preventiva",
-        services: [
-          { name: "Troca de óleo", description: "Lubrificação do motor" },
-          { name: "Troca de filtros", description: "Filtros de ar, óleo e combustível" },
-          { name: "Revisão periódica", description: "Check-up completo" },
-        ],
-      },
-      {
-        name: "Chaveiro Automotivo",
-        description: "Serviços de chaveiro",
-        services: [
-          { name: "Cópia de chave", description: "Duplicação de chaves" },
-          { name: "Chave codificada", description: "Programação eletrônica" },
-          { name: "Abertura de veículo", description: "Destravamento" },
-        ],
-      },
-      {
-        name: "Guincho 24h",
-        description: "Socorro veicular",
-        services: [
-          { name: "Reboque", description: "Transporte de veículos" },
-          { name: "Socorro mecânico", description: "Atendimento emergencial" },
-        ],
-      },
-      {
-        name: "Serviços para Motos",
-        description: "Manutenção de motocicletas",
-        services: [
-          { name: "Revisão de moto", description: "Manutenção completa" },
-          { name: "Lavagem de moto", description: "Limpeza especializada" },
-        ],
-      },
-    ],
-  },
-  {
-    id: "pets",
-    name: "Pets",
-    icon: "Dog",
-    description: "Serviços para animais de estimação",
-    subcategories: [
-      {
-        name: "Banho e Tosa",
-        description: "Estética pet",
-        services: [
-          { name: "Banho", description: "Higienização completa" },
-          { name: "Tosa", description: "Corte e acabamento" },
-          { name: "Tosa higiênica", description: "Higiene específica" },
-        ],
-      },
-      {
-        name: "Veterinário Domiciliar",
-        description: "Atendimento veterinário em casa",
-        services: [
-          { name: "Consulta", description: "Avaliação clínica" },
-          { name: "Vacinas", description: "Imunização" },
-          { name: "Exames", description: "Diagnósticos" },
-        ],
-      },
-      {
-        name: "Pet Sitter e Passeio",
-        description: "Cuidados e passeios",
-        services: [
-          { name: "Dog walker", description: "Passeio profissional" },
-          { name: "Pet sitter", description: "Cuidador em casa" },
-        ],
-      },
-      {
-        name: "Adestramento",
-        description: "Treinamento canino",
-        services: [
-          { name: "Adestramento básico", description: "Comandos essenciais" },
-          { name: "Adestramento avançado", description: "Treinamento especializado" },
-        ],
-      },
-      {
-        name: "Transporte e Hospedagem",
-        description: "Locomoção e hotelaria",
-        services: [
-          { name: "Transporte pet", description: "Transporte seguro" },
-          { name: "Hotel pet", description: "Hospedagem" },
-        ],
-      },
-    ],
-  },
-  {
-    id: "eventos",
-    name: "Eventos",
-    icon: "PartyPopper",
-    description: "Serviços para festas e eventos",
-    subcategories: [
-      {
-        name: "Fotografia e Filmagem",
-        description: "Registro profissional",
-        services: [
-          { name: "Fotografia de eventos", description: "Cobertura fotográfica" },
-          { name: "Filmagem", description: "Vídeo profissional" },
-          { name: "Drone", description: "Imagens aéreas" },
-        ],
-      },
-      {
-        name: "Buffet e Bartender",
-        description: "Alimentação e bebidas",
-        services: [
-          { name: "Buffet completo", description: "Serviço de alimentação" },
-          { name: "Coffee break", description: "Eventos corporativos" },
-          { name: "Bartender", description: "Drinks profissionais" },
-        ],
-      },
-      {
-        name: "Decoração e Cerimonial",
-        description: "Ambientação e organização",
-        services: [
-          { name: "Decoração", description: "Ambientação temática" },
-          { name: "Cerimonial", description: "Organização de eventos" },
-          { name: "Assessoria", description: "Coordenação completa" },
-        ],
-      },
-      {
-        name: "Locação de Estruturas",
-        description: "Equipamentos e mobiliário",
-        services: [
-          { name: "Mesas e cadeiras", description: "Mobiliário para eventos" },
-          { name: "Tendas", description: "Cobertura" },
-          { name: "Som e iluminação", description: "Equipamentos audiovisuais" },
-        ],
-      },
-      {
-        name: "Recreação e Música",
-        description: "Animação e entretenimento",
-        services: [
-          { name: "Recreação infantil", description: "Animação para crianças" },
-          { name: "DJ", description: "Música eletrônica" },
-          { name: "Banda ao vivo", description: "Música ao vivo" },
-        ],
-      },
-    ],
-  },
-  {
-    id: "criativos",
-    name: "Criativos",
-    icon: "Palette",
-    description: "Serviços criativos e digitais",
-    subcategories: [
-      {
-        name: "Design e Identidade Visual",
-        description: "Criação de marcas",
-        services: [
-          { name: "Logo", description: "Criação de logotipo" },
-          { name: "Identidade visual", description: "Manual de marca" },
-          { name: "Design gráfico", description: "Peças gráficas" },
-        ],
-      },
-      {
-        name: "Social Media e Marketing",
-        description: "Marketing digital",
-        services: [
-          { name: "Gestão de redes sociais", description: "Social media" },
-          { name: "Anúncios online", description: "Tráfego pago" },
-          { name: "Estratégia digital", description: "Planejamento" },
-        ],
-      },
-      {
-        name: "Sites e Lojas Virtuais",
-        description: "Desenvolvimento web",
-        services: [
-          { name: "Site institucional", description: "Website empresarial" },
-          { name: "E-commerce", description: "Loja virtual" },
-          { name: "Landing page", description: "Página de vendas" },
-        ],
-      },
-      {
-        name: "Foto, Vídeo e Edição",
-        description: "Produção audiovisual",
-        services: [
-          { name: "Fotografia profissional", description: "Ensaios fotográficos" },
-          { name: "Edição de vídeo", description: "Pós-produção" },
-          { name: "Motion graphics", description: "Animações" },
-        ],
-      },
-      {
-        name: "Produção de Conteúdo e Copywriting",
-        description: "Criação de textos",
-        services: [
-          { name: "Redação publicitária", description: "Textos persuasivos" },
-          { name: "Artigos para blog", description: "Conteúdo editorial" },
-          { name: "Scripts", description: "Roteiros" },
-        ],
-      },
+    id: "reparo",
+    name: "REPARO",
+    icon: "Wrench",
+    description: "Reparos domésticos e pequenos consertos",
+    services: [
+      { name: "Reparos Domésticos", description: "Consertos gerais em residências" },
+      { name: "Pequenos Reparos", description: "Consertos rápidos e emergenciais" },
+      { name: "Troca de Peças", description: "Substituição de componentes defeituosos" },
+      { name: "Ajustes de Portas", description: "Ajustes e alinhamento de portas" },
+      { name: "Ajustes de Gavetas", description: "Correção de gavetas e móveis" },
+      { name: "Ajustes de Dobradiças", description: "Troca e ajuste de dobradiças" },
+      { name: "Consertos Elétricos Simples", description: "Reparos elétricos básicos" },
+      { name: "Consertos Hidráulicos Simples", description: "Reparos hidráulicos básicos" },
+      { name: "Correção de Pequenas Infiltrações", description: "Tratamento de vazamentos" },
+      { name: "Reparo de Pisos", description: "Conserto de pisos danificados" },
+      { name: "Reparo de Azulejos Soltos", description: "Fixação de azulejos" },
     ],
   },
   {
     id: "construcao",
-    name: "Construção",
-    icon: "Hammer",
-    description: "Serviços de construção e reforma",
-    subcategories: [
-      {
-        name: "Elétrica e Hidráulica",
-        description: "Instalações prediais",
-        services: [
-          { name: "Instalação elétrica", description: "Fiação e quadros" },
-          { name: "Manutenção elétrica", description: "Reparos elétricos" },
-          { name: "Instalação hidráulica", description: "Encanamento" },
-          { name: "Manutenção hidráulica", description: "Vazamentos e reparos" },
-        ],
-      },
-      {
-        name: "Pintura e Pequenos Reparos",
-        description: "Acabamento e manutenção",
-        services: [
-          { name: "Pintura residencial", description: "Pintura de casas" },
-          { name: "Pintura comercial", description: "Pintura de estabelecimentos" },
-          { name: "Reparos gerais", description: "Pequenos consertos" },
-        ],
-      },
-      {
-        name: "Instalações e Montagens",
-        description: "Montagem de estruturas",
-        services: [
-          { name: "Montagem de móveis", description: "Móveis planejados" },
-          { name: "Instalação de cortinas", description: "Cortinas e persianas" },
-          { name: "Instalação de luminárias", description: "Iluminação" },
-        ],
-      },
-      {
-        name: "Marcenaria e Serralheria",
-        description: "Trabalhos em madeira e metal",
-        services: [
-          { name: "Móveis sob medida", description: "Marcenaria customizada" },
-          { name: "Portas e janelas", description: "Esquadrias" },
-          { name: "Grades e portões", description: "Serralheria" },
-        ],
-      },
-      {
-        name: "Telhados, Forros e Pisos",
-        description: "Cobertura e acabamento",
-        services: [
-          { name: "Instalação de telhado", description: "Coberturas" },
-          { name: "Manutenção de telhado", description: "Reparos em telhados" },
-          { name: "Instalação de forro", description: "Forros de gesso e PVC" },
-          { name: "Instalação de piso", description: "Revestimentos" },
-        ],
-      },
+    name: "CONSTRUÇÃO",
+    icon: "HardHat",
+    description: "Serviços de construção, reforma e acabamento",
+    services: [
+      { name: "Pintura", description: "Pintura residencial e comercial" },
+      { name: "Instalação de Móveis", description: "Montagem de móveis planejados" },
+      { name: "Marcenaria", description: "Móveis sob medida em madeira" },
+      { name: "Serralheria", description: "Trabalhos em metal e ferro" },
+      { name: "Telhados", description: "Instalação e manutenção de telhados" },
+      { name: "Forros", description: "Instalação de forros de gesso e PVC" },
+      { name: "Pisos", description: "Instalação de pisos e revestimentos" },
+      { name: "Reformas Gerais", description: "Reformas completas de ambientes" },
+      { name: "Ampliações", description: "Ampliação de construções" },
+      { name: "Instalação de Drywall", description: "Paredes em drywall" },
+      { name: "Instalação de Gesso", description: "Trabalhos em gesso" },
+      { name: "Assentamento de Porcelanato", description: "Instalação de porcelanato" },
+      { name: "Construção de Fachadas", description: "Construção e reforma de fachadas" },
+    ],
+  },
+  {
+    id: "instalacoes",
+    name: "INSTALAÇÕES",
+    icon: "Settings",
+    description: "Instalações de segurança, redes e infraestrutura",
+    services: [
+      { name: "Instalação de Portão Eletrônico", description: "Instalação de portões automáticos" },
+      { name: "Instalação de Motor de Portão", description: "Motorização de portões" },
+      { name: "Instalação de Cerca Elétrica", description: "Sistema de segurança perimetral" },
+      { name: "Instalação de Interfone", description: "Sistema de comunicação residencial" },
+      { name: "Instalação de Vídeo Porteiro", description: "Vídeo porteiro digital" },
+      { name: "Instalação de Câmeras (CFTV)", description: "Sistema de vigilância" },
+      { name: "Instalação de Alarmes", description: "Sistemas de alarme" },
+      { name: "Instalação de Sensores", description: "Sensores de movimento e presença" },
+      { name: "Instalação de Fechadura Eletrônica", description: "Fechaduras inteligentes" },
+      { name: "Instalação de Redes / Internet", description: "Cabeamento e redes" },
+      { name: "Instalação de Iluminação", description: "Sistemas de iluminação" },
+      { name: "Instalação de Painel Solar", description: "Energia solar fotovoltaica" },
+      { name: "Instalação de Ventiladores / Exaustores", description: "Ventilação e exaustão" },
+      { name: "Instalação de Sistemas de Irrigação", description: "Irrigação automatizada" },
+      { name: "Instalação de Paisagismo / Cercas Vivas", description: "Paisagismo e jardinagem" },
+      { name: "Instalador de Antenas e Receptores", description: "Antenas e sistemas de TV" },
+      { name: "Chaveiro", description: "Serviços de chaveiro" },
+    ],
+  },
+  {
+    id: "beleza-estetica",
+    name: "BELEZA & ESTÉTICA",
+    icon: "Sparkles",
+    description: "Serviços de beleza, estética e cuidados pessoais",
+    services: [
+      { name: "Corte Feminino", description: "Cortes modernos e clássicos femininos" },
+      { name: "Corte Masculino", description: "Cortes masculinos" },
+      { name: "Escova", description: "Escova modeladora profissional" },
+      { name: "Penteado", description: "Penteados para eventos" },
+      { name: "Tratamento Capilar Feminino", description: "Hidratação e reconstrução capilar" },
+      { name: "Tratamento Capilar Masculino", description: "Tratamentos capilares masculinos" },
+      { name: "Barba", description: "Corte e design de barba" },
+      { name: "Design de Barba", description: "Modelagem profissional de barba" },
+      { name: "Manicure e Pedicure", description: "Cuidados com unhas" },
+      { name: "Alongamento de Unhas", description: "Aplicação de alongamento" },
+      { name: "Design de Sobrancelhas", description: "Modelagem e design feminino" },
+      { name: "Design de Sobrancelhas Masculino", description: "Design de sobrancelhas masculino" },
+      { name: "Henna", description: "Aplicação de henna" },
+      { name: "Extensão de Cílios", description: "Aplicação de cílios postiços" },
+      { name: "Lifting", description: "Lifting de cílios" },
+      { name: "Manutenção de Cílios", description: "Manutenção de extensões" },
+      { name: "Maquiagem", description: "Maquiagem profissional" },
+      { name: "Limpeza de Pele", description: "Limpeza profunda facial" },
+      { name: "Peeling", description: "Renovação celular" },
+      { name: "Massagem Relaxante Feminina", description: "Massagem relaxante" },
+      { name: "Massagem Relaxante Masculina", description: "Massagem masculina" },
+      { name: "Drenagem", description: "Drenagem linfática" },
+      { name: "Bronzeamento Artificial", description: "Bronzeamento em cabine" },
+      { name: "Depilação Feminina", description: "Depilação com cera" },
+      { name: "Depilação Masculina", description: "Depilação masculina" },
+      { name: "Micropigmentação Labial", description: "Pigmentação de lábios" },
+      { name: "Micropigmentação de Sobrancelhas", description: "Micropigmentação" },
+      { name: "Laser de CO2 fracionado", description: "Tratamento a laser" },
+      { name: "Depilação a Laser", description: "Remoção definitiva de pelos" },
+    ],
+  },
+  {
+    id: "juridico",
+    name: "JURÍDICO",
+    icon: "Scale",
+    description: "Serviços jurídicos especializados",
+    services: [
+      { name: "Advogado Criminal", description: "Defesa criminal" },
+      { name: "Advogado de Família", description: "Divórcios e inventários" },
+      { name: "Advogado Trabalhista", description: "Direito do trabalho" },
+      { name: "Advogado Cível", description: "Direito civil" },
+      { name: "Advogado Empresarial", description: "Direito empresarial" },
+      { name: "Advogado Previdenciário", description: "Direito previdenciário" },
+      { name: "Advogado Tributário", description: "Direito tributário" },
+      { name: "Advogado Imobiliário", description: "Direito imobiliário" },
+      { name: "Advogado Ambiental", description: "Direito ambiental" },
+      { name: "Advogado Consumerista", description: "Direito do consumidor" },
+    ],
+  },
+  {
+    id: "consultorias",
+    name: "CONSULTORIAS",
+    icon: "Briefcase",
+    description: "Consultorias especializadas em diversas áreas",
+    services: [
+      { name: "Consultoria de Marketing", description: "Estratégias de marketing" },
+      { name: "Consultoria de Gestão", description: "Gestão empresarial" },
+      { name: "Consultoria de Recursos Humanos", description: "Gestão de pessoas" },
+      { name: "Consultoria de Vendas", description: "Estratégias de vendas" },
+      { name: "Consultoria de Imagem & Estilo", description: "Personal styling" },
+      { name: "Consultoria de Organização", description: "Personal organizer" },
+      { name: "Consultoria de Marketing Digital", description: "Estratégias digitais" },
+      { name: "Consultoria Agropecuária", description: "Gestão rural e agrícola" },
+      { name: "Consultoria de Segurança Eletrônica", description: "Segurança patrimonial" },
+      { name: "Consultoria de Branding", description: "Gestão de marca" },
+      { name: "Consultoria de Emagrecimento", description: "Planejamento nutricional" },
+      { name: "Personal Shopper", description: "Consultoria de compras" },
+      { name: "Consultoria de Viagem", description: "Planejamento de viagens" },
+      { name: "Secretariado Virtual", description: "Assistência administrativa remota" },
+    ],
+  },
+  {
+    id: "saude-bem-estar",
+    name: "SAÚDE & BEM-ESTAR",
+    icon: "Heart",
+    description: "Serviços de saúde e bem-estar",
+    services: [
+      { name: "Médico", description: "Consultas médicas domiciliares" },
+      { name: "Enfermagem", description: "Serviços de enfermagem" },
+      { name: "Fisioterapia", description: "Tratamentos fisioterápicos" },
+      { name: "Psicológico", description: "Psicoterapia e acompanhamento" },
+      { name: "Terapias Alternativas", description: "Acupuntura, reiki e outras terapias" },
+      { name: "Nutrição", description: "Consultoria nutricional" },
+    ],
+  },
+  {
+    id: "educacao",
+    name: "EDUCAÇÃO",
+    icon: "GraduationCap",
+    description: "Serviços educacionais e cursos",
+    services: [
+      { name: "Reforço Escolar", description: "Aulas particulares" },
+      { name: "Alfabetização", description: "Alfabetização de crianças e adultos" },
+      { name: "Aulas de Inglês", description: "Conversação e gramática" },
+      { name: "Aulas de Violão", description: "Aulas de violão" },
+      { name: "Aulas de Piano / Teclado", description: "Aulas de piano e teclado" },
+      { name: "Desenho", description: "Artes plásticas e desenho" },
+      { name: "Informática Básica", description: "Introdução ao computador" },
+      { name: "Informática Avançada", description: "Programação e tecnologia" },
+      { name: "Redação", description: "Técnicas de redação" },
+      { name: "Preparatório para Concursos", description: "Preparação para concursos públicos" },
+      { name: "Preparatório para Vestibulares", description: "Preparação para ENEM e vestibulares" },
+    ],
+  },
+  {
+    id: "automotivos",
+    name: "AUTOMOTIVOS",
+    icon: "Car",
+    description: "Serviços automotivos",
+    services: [
+      { name: "Lavagem e Higienização", description: "Lavagem completa e higienização interna" },
+      { name: "Polimento", description: "Polimento de pintura" },
+      { name: "Mecânica Rápida", description: "Serviços mecânicos básicos" },
+      { name: "Troca de Óleo", description: "Troca de óleo e filtros" },
+      { name: "Guincho 24h", description: "Reboque e socorro veicular" },
+      { name: "Serviços para Motos", description: "Manutenção de motocicletas" },
+      { name: "Chaveiro Automotivo", description: "Cópias de chaves e abertura de veículos" },
+    ],
+  },
+  {
+    id: "pets",
+    name: "PETS",
+    icon: "Dog",
+    description: "Serviços para animais de estimação",
+    services: [
+      { name: "Banho e Tosa", description: "Higienização e corte" },
+      { name: "Hidratação de Pelagem", description: "Tratamento de pelos" },
+      { name: "Desembolo", description: "Remoção de nós e pelos embaraçados" },
+      { name: "Tosa Higiênica", description: "Higiene específica" },
+      { name: "Corte de Unhas", description: "Corte de unhas pet" },
+      { name: "Limpeza de Ouvidos", description: "Higienização auricular" },
+      { name: "Controle de Pulgas e Carrapatos", description: "Tratamento antiparasitário" },
+      { name: "Veterinário", description: "Consultas veterinárias" },
+      { name: "Vacinação", description: "Imunização de pets" },
+      { name: "Consultas Preventivas", description: "Check-ups veterinários" },
+      { name: "Atendimento Domiciliar", description: "Veterinário em casa" },
+      { name: "Aplicação de Medicamentos", description: "Medicação veterinária" },
+      { name: "Curativos", description: "Tratamento de ferimentos" },
+      { name: "Primeiros Socorros Pet", description: "Atendimento emergencial" },
+      { name: "Pet Sitter", description: "Cuidador de pets" },
+      { name: "Dog Walker", description: "Passeio profissional" },
+      { name: "Acompanhamento em Consultas", description: "Acompanhante para pets" },
+      { name: "Adestramento Básico", description: "Comandos essenciais" },
+      { name: "Adestramento Avançado", description: "Treinamento especializado" },
+      { name: "Correção Comportamental", description: "Modificação de comportamento" },
+      { name: "Hospedagem Pet", description: "Hotel para pets" },
+      { name: "Creche Pet", description: "Day care para pets" },
+      { name: "Transporte Pet", description: "Transporte seguro de animais" },
+      { name: "Transporte para Veterinário", description: "Transporte para consultas" },
+      { name: "Transporte para Viagens", description: "Transporte para viagens" },
+      { name: "Fotografia Pet", description: "Ensaios fotográficos de pets" },
+      { name: "Ensaio Temático", description: "Fotos temáticas de pets" },
+      { name: "Festas Pet", description: "Eventos para animais" },
+    ],
+  },
+  {
+    id: "eventos",
+    name: "EVENTOS",
+    icon: "PartyPopper",
+    description: "Serviços para festas e eventos",
+    services: [
+      { name: "Fotógrafo", description: "Cobertura fotográfica de eventos" },
+      { name: "Filmagem", description: "Vídeo profissional de eventos" },
+      { name: "Buffet", description: "Serviço de alimentação" },
+      { name: "Bartender", description: "Drinks profissionais" },
+      { name: "Decoração", description: "Ambientação temática" },
+      { name: "Cerimonial", description: "Organização e coordenação" },
+      { name: "Música", description: "DJ e música ao vivo" },
+      { name: "Recreação", description: "Animação e entretenimento" },
+    ],
+  },
+  {
+    id: "criativos-digitais",
+    name: "CRIATIVOS & DIGITAIS",
+    icon: "Palette",
+    description: "Serviços criativos e de marketing digital",
+    services: [
+      { name: "Design Gráfico", description: "Criação de peças gráficas" },
+      { name: "Identidade Visual", description: "Logo e manual de marca" },
+      { name: "Social Media", description: "Criação de conteúdo para redes" },
+      { name: "Gestão de Redes Sociais", description: "Gerenciamento de mídias sociais" },
+      { name: "Tráfego Pago", description: "Anúncios online e campanhas" },
+      { name: "Desenvolvimento de Sites", description: "Criação de websites" },
+      { name: "E-commerce", description: "Lojas virtuais" },
     ],
   },
   {
     id: "transporte",
-    name: "Transporte",
+    name: "TRANSPORTE",
     icon: "Truck",
     description: "Serviços de transporte e logística",
-    subcategories: [
-      {
-        name: "Motorista Particular",
-        description: "Transporte executivo",
-        services: [
-          { name: "Motorista executivo", description: "Transporte corporativo" },
-          { name: "Motorista de aplicativo", description: "Corridas urbanas" },
-        ],
-      },
-      {
-        name: "Frete e Carretos",
-        description: "Transporte de cargas",
-        services: [
-          { name: "Mudanças", description: "Transporte de mudanças" },
-          { name: "Carreto", description: "Fretes pequenos" },
-          { name: "Frete", description: "Transporte de cargas" },
-        ],
-      },
-      {
-        name: "Entregas Expressas",
-        description: "Delivery rápido",
-        services: [
-          { name: "Motoboy", description: "Entregas rápidas" },
-          { name: "Entrega expressa", description: "Same day delivery" },
-        ],
-      },
-      {
-        name: "Transporte Escolar",
-        description: "Transporte de estudantes",
-        services: [
-          { name: "Van escolar", description: "Transporte regular" },
-          { name: "Transporte universitário", description: "Faculdades" },
-        ],
-      },
-      {
-        name: "Guincho e Transporte de Veículos",
-        description: "Socorro e reboque",
-        services: [
-          { name: "Guincho", description: "Reboque 24h" },
-          { name: "Transporte de veículos", description: "Cegonha" },
-        ],
-      },
+    services: [
+      { name: "Motorista Particular", description: "Transporte executivo" },
+      { name: "Transporte Executivo", description: "Transporte corporativo" },
+      { name: "Viagens", description: "Transporte para viagens" },
+      { name: "Fretes", description: "Transporte de cargas" },
+      { name: "Carretos", description: "Fretes pequenos" },
+      { name: "Mudanças", description: "Transporte de mudanças" },
+      { name: "Entregas Expressas", description: "Delivery rápido" },
+      { name: "Transporte Escolar", description: "Transporte de estudantes" },
+      { name: "Guincho", description: "Reboque 24h" },
     ],
   },
   {
-    id: "agricultura",
-    name: "Agricultura",
-    icon: "Sprout",
-    description: "Serviços agrícolas e pecuários",
-    subcategories: [
-      {
-        name: "Serviços Agrícolas",
-        description: "Plantio e colheita",
-        services: [
-          { name: "Plantio", description: "Preparo e plantio" },
-          { name: "Colheita", description: "Colheita mecanizada" },
-          { name: "Tratorista", description: "Operador de trator" },
-        ],
-      },
-      {
-        name: "Consultoria e Manejo Rural",
-        description: "Gestão agrícola",
-        services: [
-          { name: "Consultoria agrícola", description: "Assessoria técnica" },
-          { name: "Manejo de solo", description: "Análise e correção" },
-          { name: "Controle de pragas", description: "Manejo fitossanitário" },
-        ],
-      },
-      {
-        name: "Irrigação e Energia Solar",
-        description: "Infraestrutura rural",
-        services: [
-          { name: "Instalação de irrigação", description: "Sistemas de irrigação" },
-          { name: "Manutenção de irrigação", description: "Reparos" },
-          { name: "Energia solar rural", description: "Painéis fotovoltaicos" },
-        ],
-      },
-      {
-        name: "Construção Rural",
-        description: "Edificações rurais",
-        services: [
-          { name: "Currais", description: "Construção de currais" },
-          { name: "Galpões", description: "Barracões rurais" },
-          { name: "Cercas", description: "Cercamento de propriedades" },
-        ],
-      },
-      {
-        name: "Manutenção de Máquinas e Cercas",
-        description: "Conservação rural",
-        services: [
-          { name: "Mecânica agrícola", description: "Manutenção de máquinas" },
-          { name: "Manutenção de cercas", description: "Reparos em cercas" },
-        ],
-      },
+    id: "agricultura-pecuaria",
+    name: "AGRICULTURA & PECUÁRIA",
+    icon: "Tractor",
+    description: "Serviços agrícolas, pecuários e tecnologia rural",
+    services: [
+      // Operações Agrícolas
+      { name: "Plantio", description: "Preparo e plantio de culturas" },
+      { name: "Colheita", description: "Colheita mecanizada" },
+      { name: "Aragem", description: "Preparo do solo com arado" },
+      { name: "Gradeação", description: "Nivelamento do solo" },
+      { name: "Aplicação de Calcário", description: "Correção de acidez do solo" },
+      { name: "Aplicação de Adubo", description: "Fertilização do solo" },
+      { name: "Aplicação de Defensivos", description: "Controle de pragas e doenças" },
+      { name: "Formação de Pastagem", description: "Implantação de pastagens" },
+      { name: "Coleta de Solo", description: "Amostragem de solo" },
+      { name: "Análise de Solo", description: "Análise laboratorial" },
+      { name: "Correção de Solo", description: "Correção nutricional" },
+      // Tecnologia Rural
+      { name: "Medição de Terra por Drone", description: "Levantamento topográfico com drone" },
+      { name: "Mapeamento Agrícola por Drone", description: "Mapeamento de áreas agrícolas" },
+      { name: "Monitoramento de Lavoura por Drone", description: "Monitoramento aéreo de plantações" },
+      { name: "Pulverização por Drone", description: "Aplicação aérea de defensivos" },
+      { name: "Contagem de Plantas por Drone / IA", description: "Contagem automatizada" },
+      { name: "Contagem de Gado por Drone", description: "Contagem de rebanho" },
+      { name: "Inspeção de Cercas por Drone", description: "Vistoria aérea de cercas" },
+      { name: "Georreferenciamento Rural (GPS/RTK)", description: "Mapeamento georreferenciado" },
+      { name: "Cadastro Ambiental Rural (CAR)", description: "Regularização ambiental" },
+      { name: "Monitoramento de Pastagens (NDVI)", description: "Análise de qualidade de pastagens" },
+      { name: "Agricultura de Precisão", description: "Tecnologia aplicada à agricultura" },
+      { name: "Sensoriamento Remoto", description: "Monitoramento via satélite" },
+      { name: "Topografia Rural com RTK", description: "Topografia de alta precisão" },
+      // Pecuária
+      { name: "Transporte de Gado", description: "Transporte de animais" },
+      { name: "Pesagem e Manejo de Gado", description: "Manejo de rebanho" },
+      { name: "Castração de Bovinos", description: "Castração técnica" },
+      { name: "Vacinação de Bovinos", description: "Imunização de rebanho" },
+      { name: "Inseminação Artificial", description: "Reprodução assistida" },
+      // Construção Rural
+      { name: "Construção Rural", description: "Construções em propriedades rurais" },
+      { name: "Construção de Galpões", description: "Barracões e galpões rurais" },
+      { name: "Construção de Currais", description: "Estruturas para manejo" },
+      // Manutenções Rurais
+      { name: "Manutenção de Máquinas Agrícolas", description: "Manutenção de tratores e implementos" },
+      { name: "Manutenção de Cercas", description: "Reparos em cercas" },
+      { name: "Manutenção de Bebedouros", description: "Manutenção de sistemas de água" },
+      { name: "Instalação de Cochos", description: "Instalação de estruturas de alimentação" },
+      { name: "Soldagem Rural", description: "Soldagem e reparos metálicos" },
+      { name: "Cercas Elétricas Rurais", description: "Instalação de cercas eletrificadas" },
+      // Máquinas Pesadas
+      { name: "Serviços com Retroescavadeira", description: "Escavação e terraplenagem" },
+      { name: "Serviços com Escavadeira Hidráulica", description: "Movimentação de terra" },
+      { name: "Serviços com Trator", description: "Operações com trator" },
+      // Ambiental Rural
+      { name: "Roçagem e Limpeza de Área", description: "Limpeza de terrenos" },
+      { name: "Limpeza de Represas e Açudes", description: "Manutenção de reservatórios" },
+      { name: "Abertura e Limpeza de Estradas Rurais", description: "Manutenção de vias rurais" },
+      { name: "Serviços com Motosserra", description: "Corte e poda com motosserra" },
+      { name: "Corte de Árvores", description: "Remoção de árvores" },
+      { name: "Desgalhamento", description: "Poda e limpeza de árvores" },
+      // Irrigação Rural
+      { name: "Instalação de Sistema de Irrigação Rural", description: "Sistemas de irrigação" },
     ],
   },
   {
-    id: "personalizados",
-    name: "Personalizados",
-    icon: "Star",
-    description: "Serviços personalizados e especializados",
-    subcategories: [
-      {
-        name: "Organização e Concierge",
-        description: "Personal organizer",
-        services: [
-          { name: "Personal organizer", description: "Organização residencial" },
-          { name: "Concierge", description: "Serviços de concierge" },
-        ],
-      },
-      {
-        name: "Personal Shopper",
-        description: "Consultoria de moda e compras",
-        services: [
-          { name: "Personal shopper", description: "Consultoria de compras" },
-          { name: "Consultoria de imagem", description: "Estilo pessoal" },
-        ],
-      },
-      {
-        name: "Assistência a Idosos e Babá",
-        description: "Cuidados especiais",
-        services: [
-          { name: "Cuidador de idosos", description: "Assistência especializada" },
-          { name: "Babá", description: "Cuidados infantis" },
-          { name: "Acompanhante", description: "Companhia" },
-        ],
-      },
-      {
-        name: "Secretariado Virtual",
-        description: "Assistência administrativa",
-        services: [
-          { name: "Secretária virtual", description: "Suporte administrativo" },
-          { name: "Gestão de agenda", description: "Organização de compromissos" },
-        ],
-      },
-      {
-        name: "Consultoria de Viagem",
-        description: "Planejamento de viagens",
-        services: [
-          { name: "Roteiros personalizados", description: "Planejamento de viagens" },
-          { name: "Reservas", description: "Hotéis e passagens" },
-        ],
-      },
-    ],
-  },
-  {
-    id: "turismo",
-    name: "Turismo",
+    id: "lazer-turismo",
+    name: "LAZER & TURISMO",
     icon: "Plane",
-    description: "Serviços de lazer e turismo",
-    subcategories: [
-      {
-        name: "Passeios e Trilhas",
-        description: "Ecoturismo",
-        services: [
-          { name: "Trilhas ecológicas", description: "Caminhadas na natureza" },
-          { name: "Passeios guiados", description: "City tour" },
-        ],
-      },
-      {
-        name: "Turismo Rural e de Pesca",
-        description: "Experiências rurais",
-        services: [
-          { name: "Turismo rural", description: "Fazendas e sítios" },
-          { name: "Pesca esportiva", description: "Pescarias guiadas" },
-        ],
-      },
-      {
-        name: "Locação de Equipamentos",
-        description: "Equipamentos para aventura",
-        services: [
-          { name: "Bicicletas", description: "Aluguel de bikes" },
-          { name: "Equipamentos de camping", description: "Barracas e acessórios" },
-        ],
-      },
-      {
-        name: "Turismo de Aventura",
-        description: "Esportes radicais",
-        services: [
-          { name: "Rapel", description: "Descida em cordas" },
-          { name: "Tirolesa", description: "Voo de tirolesa" },
-          { name: "Rafting", description: "Descida de rio" },
-        ],
-      },
-      {
-        name: "Roteiros Culturais",
-        description: "Turismo cultural",
-        services: [
-          { name: "Museus", description: "Visitas guiadas" },
-          { name: "Centros históricos", description: "Tours culturais" },
-        ],
-      },
+    description: "Serviços de turismo e lazer",
+    services: [
+      { name: "Passeios Urbanos", description: "City tours e passeios guiados" },
+      { name: "Passeios Ecológicos", description: "Trilhas e ecoturismo" },
+      { name: "Turismo Rural", description: "Experiências em fazendas" },
+      { name: "Turismo de Pesca", description: "Pescarias guiadas" },
+      { name: "Locação de Equipamentos", description: "Aluguel de equipamentos de lazer" },
+      { name: "Turismo de Aventura", description: "Esportes radicais e aventura" },
+      { name: "Roteiros Culturais", description: "Tours culturais e históricos" },
     ],
   },
   {
-    id: "esportes",
-    name: "Esportes",
+    id: "esportivos",
+    name: "ESPORTIVOS",
     icon: "Dumbbell",
     description: "Serviços esportivos e fitness",
-    subcategories: [
-      {
-        name: "Personal Trainer e Treinamento Funcional",
-        description: "Treinamento personalizado",
-        services: [
-          { name: "Personal trainer", description: "Treino individual" },
-          { name: "Treinamento funcional", description: "Exercícios funcionais" },
-          { name: "Musculação", description: "Treino de força" },
-        ],
-      },
-      {
-        name: "Aulas de Esportes e Dança",
-        description: "Modalidades esportivas",
-        services: [
-          { name: "Futebol", description: "Aulas de futebol" },
-          { name: "Natação", description: "Aulas de natação" },
-          { name: "Dança", description: "Aulas de dança" },
-        ],
-      },
-      {
-        name: "Yoga e Meditação",
-        description: "Práticas de bem-estar",
-        services: [
-          { name: "Yoga", description: "Aulas de yoga" },
-          { name: "Pilates", description: "Método pilates" },
-          { name: "Meditação", description: "Práticas meditativas" },
-        ],
-      },
-      {
-        name: "Reabilitação e Avaliação Física",
-        description: "Saúde e performance",
-        services: [
-          { name: "Avaliação física", description: "Análise corporal" },
-          { name: "Reabilitação", description: "Recuperação física" },
-        ],
-      },
-      {
-        name: "Treinos em Grupo",
-        description: "Atividades coletivas",
-        services: [
-          { name: "Crossfit", description: "Treino intensivo" },
-          { name: "Spinning", description: "Ciclismo indoor" },
-          { name: "Circuito funcional", description: "Treino em grupo" },
-        ],
-      },
+    services: [
+      { name: "Treinamento Funcional", description: "Exercícios funcionais" },
+      { name: "Aulas de Dança", description: "Aulas de diversos estilos de dança" },
+      { name: "Yoga & Meditação", description: "Práticas de bem-estar" },
+      { name: "Reabilitação Física", description: "Recuperação física" },
+      { name: "Treinos em Grupo", description: "Atividades coletivas" },
+      { name: "Treinador de Goleiro", description: "Treinamento especializado de goleiros" },
+      { name: "Pilates", description: "Método pilates" },
+      { name: "Artes marciais", description: "Aulas de artes marciais" },
+      { name: "Escolinha de futebol", description: "Iniciação ao futebol" },
+      { name: "Beach Tennis", description: "Aulas de beach tennis" },
+      { name: "Padel", description: "Aulas de padel" },
+      { name: "Hidroginástica", description: "Ginástica aquática" },
+      { name: "Cross Training", description: "Treino intensivo" },
+      { name: "Natação", description: "Aulas de natação" },
+    ],
+  },
+  {
+    id: "cuidado-acompanhamento",
+    name: "CUIDADO & ACOMPANHAMENTO HUMANO",
+    icon: "HeartHandshake",
+    description: "Cuidados e acompanhamento de pessoas",
+    services: [
+      { name: "Babá", description: "Cuidados infantis" },
+      { name: "Cuidador de Idosos", description: "Assistência especializada a idosos" },
+      { name: "Cuidador de Idosos Acamados", description: "Cuidados para idosos acamados" },
+      { name: "Cuidador de Pessoas com Deficiência", description: "Assistência especializada" },
+      { name: "Acompanhante de Idosos", description: "Companhia para idosos" },
+      { name: "Acompanhante para Consultas / Exames", description: "Acompanhamento em consultas" },
+      { name: "Auxílio na Rotina", description: "Ajuda nas atividades diárias" },
+      { name: "Monitor de Crianças", description: "Supervisão de crianças" },
+      { name: "Acompanhante Escolar", description: "Acompanhamento no transporte escolar" },
+    ],
+  },
+  {
+    id: "arquitetura-engenharia",
+    name: "ARQUITETURA, ENGENHARIA & DESIGN",
+    icon: "Building2",
+    description: "Projetos arquitetônicos, engenharia e design de interiores",
+    services: [
+      { name: "Projeto Arquitetônico", description: "Projetos arquitetônicos completos" },
+      { name: "Projeto de Fachada", description: "Design de fachadas" },
+      { name: "Projeto de Reforma", description: "Projetos de reforma e adequação" },
+      { name: "Projeto de Ampliação", description: "Projetos de ampliação" },
+      { name: "Memorial Descritivo", description: "Documentação técnica" },
+      { name: "Aprovação de Projeto na Prefeitura", description: "Regularização de projetos" },
+      { name: "Regularização de Imóvel", description: "Regularização documental" },
+      { name: "Laudo Técnico", description: "Laudos técnicos diversos" },
+      { name: "Engenharia Civil", description: "Projetos de engenharia civil" },
+      { name: "Engenharia Elétrica", description: "Projetos elétricos" },
+      { name: "Engenharia Hidráulica", description: "Projetos hidráulicos" },
+      { name: "Laudo de Engenharia", description: "Laudos técnicos de engenharia" },
+      { name: "ART (Anotação de Responsabilidade Técnica)", description: "Registro profissional" },
+      { name: "Cálculo Estrutural", description: "Dimensionamento estrutural" },
+      { name: "Vistoria Técnica", description: "Inspeções técnicas" },
+      { name: "Inspeção Predial", description: "Vistoria de edificações" },
+      { name: "Gerenciamento de Obras", description: "Gestão de construções" },
+      { name: "Design de Interiores Residencial", description: "Projetos residenciais" },
+      { name: "Design de Interiores Comercial", description: "Projetos comerciais" },
+      { name: "Consultoria de Ambientes", description: "Consultoria de decoração" },
+      { name: "Projeto de Mobiliário", description: "Design de móveis" },
+      { name: "Projeto de Iluminação", description: "Iluminação técnica e decorativa" },
+      { name: "Planejamento Funcional de Espaços", description: "Otimização de espaços" },
+      { name: "Ambientação & Decoração", description: "Decoração de ambientes" },
     ],
   },
 ];
@@ -848,13 +483,10 @@ export const getCategoryById = (id: string): Category | undefined => {
 
 export const getAllServices = () => {
   return servicesData.flatMap(category =>
-    category.subcategories.flatMap(subcategory =>
-      subcategory.services.map(service => ({
-        ...service,
-        category: category.name,
-        categoryId: category.id,
-        subcategory: subcategory.name,
-      }))
-    )
+    category.services.map(service => ({
+      ...service,
+      category: category.name,
+      categoryId: category.id,
+    }))
   );
 };

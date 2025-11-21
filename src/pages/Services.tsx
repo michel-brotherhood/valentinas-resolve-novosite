@@ -7,7 +7,7 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Search, Filter, ChevronDown, ChevronRight } from "lucide-react";
+import { Search, Filter } from "lucide-react";
 import {
   Select,
   SelectContent,
@@ -15,12 +15,6 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion";
 import { getCategoryIcon } from "@/lib/categoryIcons";
 import { servicesData, getAllServices } from "@/lib/servicesData";
 
@@ -40,23 +34,31 @@ import imagemAgricultura from "@/assets/services/agricultura.jpg";
 import imagemPersonalizados from "@/assets/services/personalizados.jpg";
 import imagemTurismo from "@/assets/services/turismo.jpg";
 import imagemEsportes from "@/assets/services/esportes.jpg";
+import imagemInstalacoes from "@/assets/services/instalacoes.jpg";
+import imagemCuidadoHumano from "@/assets/services/cuidado-humano.jpg";
+import imagemArquitetura from "@/assets/services/arquitetura-engenharia.jpg";
 
 const categoryImages: Record<string, string> = {
-  "Domésticos": imagemDomesticos,
-  "Beleza": imagemBeleza,
-  "Saúde": imagemSaude,
-  "Jurídicos": imagemJuridicos,
-  "Educação": imagemEducacao,
-  "Automotivos": imagemAutomotivos,
-  "Pets": imagemPets,
-  "Eventos": imagemEventos,
-  "Criativos": imagemCriativos,
-  "Construção": imagemConstrucao,
-  "Transporte": imagemTransporte,
-  "Agricultura": imagemAgricultura,
-  "Personalizados": imagemPersonalizados,
-  "Turismo": imagemTurismo,
-  "Esportes": imagemEsportes,
+  "LIMPEZAS": imagemDomesticos,
+  "MANUTENÇÃO": imagemDomesticos,
+  "REPARO": imagemDomesticos,
+  "CONSTRUÇÃO": imagemConstrucao,
+  "INSTALAÇÕES": imagemInstalacoes,
+  "BELEZA & ESTÉTICA": imagemBeleza,
+  "JURÍDICO": imagemJuridicos,
+  "CONSULTORIAS": imagemJuridicos,
+  "SAÚDE & BEM-ESTAR": imagemSaude,
+  "EDUCAÇÃO": imagemEducacao,
+  "AUTOMOTIVOS": imagemAutomotivos,
+  "PETS": imagemPets,
+  "EVENTOS": imagemEventos,
+  "CRIATIVOS & DIGITAIS": imagemCriativos,
+  "TRANSPORTE": imagemTransporte,
+  "AGRICULTURA & PECUÁRIA": imagemAgricultura,
+  "LAZER & TURISMO": imagemTurismo,
+  "ESPORTIVOS": imagemEsportes,
+  "CUIDADO & ACOMPANHAMENTO HUMANO": imagemCuidadoHumano,
+  "ARQUITETURA, ENGENHARIA & DESIGN": imagemArquitetura,
 };
 
 const categories = ["Todos", ...servicesData.map(cat => cat.name)];
@@ -66,7 +68,6 @@ const Services = () => {
   const navigate = useNavigate();
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("Todos");
-  const [selectedSubcategory, setSelectedSubcategory] = useState("Todas");
   const [selectedCompanyType, setSelectedCompanyType] = useState<string>("Todos");
   const [selectedRegion, setSelectedRegion] = useState<string>("Todas");
   const [viewMode, setViewMode] = useState<"hierarchy" | "list">("hierarchy");
@@ -89,25 +90,20 @@ const Services = () => {
       .filter(cat => selectedCategory === "Todos" || cat.name === selectedCategory)
       .map(category => ({
         ...category,
-        subcategories: category.subcategories
-          .map(subcategory => ({
-            ...subcategory,
-            services: subcategory.services.filter(service => {
-              const matchesSearch = service.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                service.description.toLowerCase().includes(searchQuery.toLowerCase());
-              const matchesCompanyType = selectedCompanyType === "Todos" || 
-                !service.companyTypes || 
-                service.companyTypes.includes("Todos") ||
-                service.companyTypes.includes(selectedCompanyType as any);
-              const matchesRegion = selectedRegion === "Todas" ||
-                !service.regions ||
-                service.regions.includes(selectedRegion);
-              return matchesSearch && matchesCompanyType && matchesRegion;
-            }),
-          }))
-          .filter(subcategory => subcategory.services.length > 0),
+        services: category.services.filter(service => {
+          const matchesSearch = service.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+            service.description.toLowerCase().includes(searchQuery.toLowerCase());
+          const matchesCompanyType = selectedCompanyType === "Todos" || 
+            !service.companyTypes || 
+            service.companyTypes.includes("Todos") ||
+            service.companyTypes.includes(selectedCompanyType as any);
+          const matchesRegion = selectedRegion === "Todas" ||
+            !service.regions ||
+            service.regions.includes(selectedRegion);
+          return matchesSearch && matchesCompanyType && matchesRegion;
+        }),
       }))
-      .filter(category => category.subcategories.length > 0);
+      .filter(category => category.services.length > 0);
   }, [searchQuery, selectedCategory, selectedCompanyType, selectedRegion]);
 
   const filteredServicesList = useMemo(() => {
@@ -117,8 +113,6 @@ const Services = () => {
         service.description.toLowerCase().includes(searchQuery.toLowerCase());
       const matchesCategory =
         selectedCategory === "Todos" || service.category === selectedCategory;
-      const matchesSubcategory =
-        selectedSubcategory === "Todas" || service.subcategory === selectedSubcategory;
       const matchesCompanyType = selectedCompanyType === "Todos" || 
         !service.companyTypes || 
         service.companyTypes.includes("Todos") ||
@@ -126,19 +120,12 @@ const Services = () => {
       const matchesRegion = selectedRegion === "Todas" ||
         !service.regions ||
         service.regions.includes(selectedRegion);
-      return matchesSearch && matchesCategory && matchesSubcategory && matchesCompanyType && matchesRegion;
+      return matchesSearch && matchesCategory && matchesCompanyType && matchesRegion;
     });
-  }, [searchQuery, selectedCategory, selectedSubcategory, selectedCompanyType, selectedRegion, allServices]);
-
-  const subcategories = useMemo(() => {
-    if (selectedCategory === "Todos") return ["Todas"];
-    const category = servicesData.find(cat => cat.name === selectedCategory);
-    return ["Todas", ...(category?.subcategories.map(sub => sub.name) || [])];
-  }, [selectedCategory]);
+  }, [searchQuery, selectedCategory, selectedCompanyType, selectedRegion, allServices]);
 
   const totalServices = viewMode === "hierarchy" 
-    ? filteredCategories.reduce((total, cat) => 
-        total + cat.subcategories.reduce((subTotal, sub) => subTotal + sub.services.length, 0), 0)
+    ? filteredCategories.reduce((total, cat) => total + cat.services.length, 0)
     : filteredServicesList.length;
 
   const handleRequestQuote = (serviceName: string) => {
@@ -159,7 +146,7 @@ const Services = () => {
               Catálogo de Serviços
             </h1>
             <p className="text-base md:text-lg text-muted-foreground max-w-2xl mx-auto">
-              Navegue por categorias e subcategorias organizadas
+              Explore nossos {servicesData.length} nichos de serviços organizados
             </p>
           </div>
 
@@ -179,13 +166,10 @@ const Services = () => {
                 </div>
 
                 <div className="lg:w-64">
-                  <Select value={selectedCategory} onValueChange={(val) => {
-                    setSelectedCategory(val);
-                    setSelectedSubcategory("Todas");
-                  }}>
+                  <Select value={selectedCategory} onValueChange={setSelectedCategory}>
                     <SelectTrigger className="h-12">
                       <Filter className="h-4 w-4 mr-2" />
-                      <SelectValue placeholder="Categoria" />
+                      <SelectValue placeholder="Nicho" />
                     </SelectTrigger>
                     <SelectContent className="bg-popover z-50">
                       {categories.map((category) => (
@@ -196,24 +180,6 @@ const Services = () => {
                     </SelectContent>
                   </Select>
                 </div>
-
-                {selectedCategory !== "Todos" && (
-                  <div className="lg:w-64">
-                    <Select value={selectedSubcategory} onValueChange={setSelectedSubcategory}>
-                      <SelectTrigger className="h-12">
-                        <Filter className="h-4 w-4 mr-2" />
-                        <SelectValue placeholder="Subcategoria" />
-                      </SelectTrigger>
-                      <SelectContent className="bg-popover z-50">
-                        {subcategories.map((subcategory) => (
-                          <SelectItem key={subcategory} value={subcategory}>
-                            {subcategory}
-                          </SelectItem>
-                        ))}
-                      </SelectContent>
-                    </Select>
-                  </div>
-                )}
               </div>
 
               {/* Filtros Avançados */}
@@ -278,7 +244,7 @@ const Services = () => {
                     onClick={() => setViewMode("hierarchy")}
                     className="text-xs md:text-sm transition-all duration-300"
                   >
-                    Hierárquico
+                    Por Nicho
                   </Button>
                   <Button
                     variant={viewMode === "list" ? "default" : "outline"}
@@ -296,7 +262,7 @@ const Services = () => {
           {/* Services Content */}
           <div className="transition-all duration-500">
             {viewMode === "hierarchy" ? (
-              // Hierarchical View
+              // Hierarchical View (Nichos)
               filteredCategories.length > 0 ? (
                 <div className="space-y-6">
                   {filteredCategories.map((category) => {
@@ -325,53 +291,39 @@ const Services = () => {
                           </div>
                         </div>
 
-                        <Accordion type="multiple" className="w-full">
-                          {category.subcategories.map((subcategory, subIndex) => (
-                            <AccordionItem
-                              key={subIndex}
-                              value={`${category.id}-${subIndex}`}
-                              className="border-b last:border-b-0"
+                        <div className="p-4 md:p-6">
+                          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 mb-4">
+                            {category.services.map((service, serviceIndex) => (
+                              <Card
+                                key={serviceIndex}
+                                className="p-3 md:p-4 hover:shadow-lg transition-all hover:scale-105 cursor-pointer hover:border-primary/50 animate-scale-in"
+                                style={{ animationDelay: `${serviceIndex * 30}ms` }}
+                                onClick={() => handleRequestQuote(service.name)}
+                              >
+                                <h4 className="font-medium text-foreground mb-1 text-sm md:text-base">
+                                  {service.name}
+                                </h4>
+                                <p className="text-xs text-muted-foreground mb-3 line-clamp-2">
+                                  {service.description}
+                                </p>
+                                <Button size="sm" className="w-full text-xs md:text-sm">
+                                  Solicitar Orçamento
+                                </Button>
+                              </Card>
+                            ))}
+                          </div>
+                          
+                          {/* CTA no final de cada nicho */}
+                          <div className="pt-4 border-t border-border">
+                            <Button 
+                              onClick={() => navigate('/contratar-servico')}
+                              className="w-full md:w-auto"
+                              size="lg"
                             >
-                              <AccordionTrigger className="px-4 md:px-6 hover:bg-muted/50 transition-colors">
-                                <div className="flex items-center gap-2 md:gap-3 flex-wrap">
-                                  <Badge variant="secondary" className="text-xs shrink-0">
-                                    {subcategory.services.length}
-                                  </Badge>
-                                  <div className="text-left flex-1 min-w-0">
-                                    <div className="font-semibold text-foreground text-sm md:text-base">
-                                      {subcategory.name}
-                                    </div>
-                                    <div className="text-xs md:text-sm text-muted-foreground font-normal">
-                                      {subcategory.description}
-                                    </div>
-                                  </div>
-                                </div>
-                              </AccordionTrigger>
-                              <AccordionContent className="px-4 md:px-6 pb-4">
-                                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 pt-2 animate-fade-in">
-                                  {subcategory.services.map((service, serviceIndex) => (
-                                    <Card
-                                      key={serviceIndex}
-                                      className="p-3 md:p-4 hover:shadow-lg transition-all hover:scale-105 cursor-pointer hover:border-primary/50 animate-scale-in"
-                                      style={{ animationDelay: `${serviceIndex * 50}ms` }}
-                                      onClick={() => handleRequestQuote(service.name)}
-                                    >
-                                      <h4 className="font-medium text-foreground mb-1 text-sm md:text-base">
-                                        {service.name}
-                                      </h4>
-                                      <p className="text-xs text-muted-foreground mb-3 line-clamp-2">
-                                        {service.description}
-                                      </p>
-                                      <Button size="sm" className="w-full text-xs md:text-sm">
-                                        Solicitar Orçamento
-                                      </Button>
-                                    </Card>
-                                  ))}
-                                </div>
-                              </AccordionContent>
-                            </AccordionItem>
-                          ))}
-                        </Accordion>
+                              Solicitar Orçamento para {category.name}
+                            </Button>
+                          </div>
+                        </div>
                       </Card>
                     );
                   })}
@@ -380,17 +332,15 @@ const Services = () => {
                 <Card className="p-12 text-center">
                   <div className="max-w-md mx-auto">
                     <p className="text-lg text-muted-foreground mb-4">
-                      Nenhum serviço encontrado com os filtros selecionados
+                      Nenhum serviço encontrado com os filtros selecionados.
                     </p>
                     <Button
                       onClick={() => {
                         setSearchQuery("");
                         setSelectedCategory("Todos");
-                        setSelectedSubcategory("Todas");
                         setSelectedCompanyType("Todos");
                         setSelectedRegion("Todas");
                       }}
-                      variant="outline"
                     >
                       Limpar Filtros
                     </Button>
@@ -400,53 +350,35 @@ const Services = () => {
             ) : (
               // List View
               filteredServicesList.length > 0 ? (
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-6">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
                   {filteredServicesList.map((service, index) => {
                     const CategoryIcon = getCategoryIcon(service.category);
                     return (
                       <Card
                         key={index}
-                        className="group overflow-hidden hover:shadow-2xl transition-all duration-300 hover:scale-105 hover:border-primary/50 cursor-pointer animate-scale-in"
-                        style={{ animationDelay: `${(index % 12) * 50}ms` }}
+                        className="p-4 hover:shadow-lg transition-all hover:scale-105 cursor-pointer hover:border-primary/50 animate-scale-in"
+                        style={{ animationDelay: `${index * 30}ms` }}
+                        onClick={() => handleRequestQuote(service.name)}
                       >
-                        <div className="h-48 relative overflow-hidden">
-                          <img
-                            src={categoryImages[service.category]}
-                            alt={service.category}
-                            className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
-                          />
-                          <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-                          <Badge className="absolute top-3 right-3 bg-primary/90">
-                            {service.category}
-                          </Badge>
-                        </div>
-
-                        <div className="p-5">
-                          <div className="flex items-start gap-3 mb-3">
-                            <div className="p-2 rounded-lg bg-primary/10 shrink-0">
-                              <CategoryIcon className="h-5 w-5 text-primary" />
-                            </div>
-                            <div className="flex-1 min-w-0">
-                              <h3 className="font-semibold text-foreground mb-1 truncate">
-                                {service.name}
-                              </h3>
-                              <p className="text-xs text-muted-foreground mb-1">
-                                {service.subcategory}
-                              </p>
-                              <p className="text-sm text-muted-foreground line-clamp-2">
-                                {service.description}
-                              </p>
-                            </div>
+                        <div className="flex items-start gap-3 mb-3">
+                          <div className="p-2 rounded-lg bg-primary/10 shrink-0">
+                            <CategoryIcon className="h-5 w-5 text-primary" />
                           </div>
-
-                          <Button
-                            className="w-full group-hover:bg-primary group-hover:text-primary-foreground transition-colors"
-                            variant="outline"
-                            onClick={() => handleRequestQuote(service.name)}
-                          >
-                            Solicitar Orçamento
-                          </Button>
+                          <div className="flex-1 min-w-0">
+                            <Badge variant="secondary" className="text-xs mb-1">
+                              {service.category}
+                            </Badge>
+                            <h4 className="font-medium text-foreground text-sm md:text-base">
+                              {service.name}
+                            </h4>
+                          </div>
                         </div>
+                        <p className="text-xs text-muted-foreground mb-3 line-clamp-2">
+                          {service.description}
+                        </p>
+                        <Button size="sm" className="w-full text-xs md:text-sm">
+                          Solicitar Orçamento
+                        </Button>
                       </Card>
                     );
                   })}
@@ -455,17 +387,15 @@ const Services = () => {
                 <Card className="p-12 text-center">
                   <div className="max-w-md mx-auto">
                     <p className="text-lg text-muted-foreground mb-4">
-                      Nenhum serviço encontrado com os filtros selecionados
+                      Nenhum serviço encontrado com os filtros selecionados.
                     </p>
                     <Button
                       onClick={() => {
                         setSearchQuery("");
                         setSelectedCategory("Todos");
-                        setSelectedSubcategory("Todas");
                         setSelectedCompanyType("Todos");
                         setSelectedRegion("Todas");
                       }}
-                      variant="outline"
                     >
                       Limpar Filtros
                     </Button>
