@@ -47,7 +47,7 @@ export const PopularServices = () => {
   return (
     <section className="py-16 bg-background">
       <div className="container mx-auto px-4">
-        <h2 className="text-3xl font-bold text-foreground mb-8">
+        <h2 className="text-3xl font-bold text-foreground mb-8 text-center">
           Serviços mais procurados
         </h2>
         
