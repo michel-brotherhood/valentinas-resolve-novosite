@@ -14,6 +14,9 @@ import {
   UserCog,
   Plane,
   Dumbbell,
+  Settings,
+  HeartHandshake,
+  Building2,
 } from "lucide-react";
 import { Link } from "react-router-dom";
 
@@ -28,11 +31,14 @@ const categories = [
   { icon: PartyPopper, name: "Eventos" },
   { icon: Palette, name: "Criativos" },
   { icon: Construction, name: "Construção" },
+  { icon: Settings, name: "Instalações" },
   { icon: Truck, name: "Transporte" },
   { icon: Wheat, name: "Agricultura" },
   { icon: UserCog, name: "Personalizados" },
   { icon: Plane, name: "Turismo" },
   { icon: Dumbbell, name: "Esportes" },
+  { icon: HeartHandshake, name: "Cuidado & Acompanhamento Humano" },
+  { icon: Building2, name: "Arquitetura, Engenharia & Design" },
 ];
 
 export const Categories = () => {
