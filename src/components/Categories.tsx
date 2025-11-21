@@ -48,17 +48,17 @@ export const Categories = () => {
         <h2 className="text-2xl font-bold text-foreground mb-6 text-center">
           Categorias de Serviços
         </h2>
-        <div className="grid grid-cols-3 md:grid-cols-5 lg:grid-cols-5 gap-4">
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3 sm:gap-4">
           {categories.map((category) => (
             <Link
               key={category.name}
               to={`/servicos/${encodeURIComponent(category.name)}`}
-              className="flex flex-col items-center gap-3 p-4 rounded-lg hover:bg-secondary transition-colors group border border-border"
+              className="flex flex-col items-center gap-2 sm:gap-3 p-3 sm:p-4 rounded-lg hover:bg-secondary transition-colors group border border-border"
             >
               <div className="p-3 rounded-full bg-primary/10 group-hover:scale-110 transition-transform">
                 <category.icon className="h-6 w-6 text-primary" />
               </div>
-              <span className="text-sm font-medium text-foreground text-center">
+              <span className="text-xs sm:text-sm font-medium text-foreground text-center">
                 {category.name}
               </span>
             </Link>
