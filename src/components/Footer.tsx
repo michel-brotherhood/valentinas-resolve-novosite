@@ -13,7 +13,7 @@ export const Footer = () => {
               <img 
                 src={logo} 
                 alt="Valentina's Resolve" 
-                className="h-12 w-auto animate-fade-in animate-scale-in" 
+                className="h-20 w-auto animate-fade-in animate-scale-in" 
               />
             </div>
             <p className="text-sm text-white/70 mb-2 text-center md:text-left">
