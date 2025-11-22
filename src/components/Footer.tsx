@@ -44,9 +44,9 @@ export const Footer = () => {
           </div>
 
           {/* For Clients */}
-          <div>
+          <div className="text-center md:text-left">
             <h4 className="font-semibold text-white mb-4">Serviços</h4>
-            <ul className="space-y-2">
+            <ul className="space-y-2 flex flex-col items-center md:items-start">
               <li>
                 <Link to="/servicos" className="text-sm text-white/70 hover:text-primary transition-colors">
                   Catálogo de Serviços
@@ -71,9 +71,9 @@ export const Footer = () => {
           </div>
 
           {/* For Professionals */}
-          <div>
+          <div className="text-center md:text-left">
             <h4 className="font-semibold text-white mb-4">Para Profissionais</h4>
-            <ul className="space-y-2">
+            <ul className="space-y-2 flex flex-col items-center md:items-start">
               <li>
                 <Link to="/trabalhe-conosco" className="text-sm text-white/70 hover:text-primary transition-colors">
                   Trabalhe Conosco
@@ -93,9 +93,9 @@ export const Footer = () => {
           </div>
 
           {/* Support */}
-          <div>
+          <div className="text-center md:text-left">
             <h4 className="font-semibold text-white mb-4">Institucional</h4>
-            <ul className="space-y-2">
+            <ul className="space-y-2 flex flex-col items-center md:items-start">
               <li>
                 <Link to="/sobre" className="text-sm text-white/70 hover:text-primary transition-colors">
                   Sobre a Valentina's
