@@ -55,7 +55,7 @@ export const Header = () => {
                 <img 
                   src={logo} 
                   alt="Valentina's Resolve" 
-                  className="h-16 w-auto transition-all duration-300 group-hover:scale-105 group-hover:drop-shadow-[0_0_15px_rgba(251,191,36,0.5)] animate-fade-in animate-scale-in" 
+                  className="h-16 w-auto transition-all duration-500 group-hover:scale-110 group-hover:brightness-110 group-hover:drop-shadow-[0_0_20px_rgba(251,191,36,0.6)] animate-fade-in animate-scale-in" 
                 />
               </Link>
             </div>
