@@ -29,7 +29,7 @@ export const Footer = () => {
               Contabilidade: +351 961803400
             </p>
             <p className="text-xs text-white/50 mb-4 text-center md:text-left">
-              200+ serviços especializados em 15 categorias
+              Mais de 200 serviços especializados em 20 nichos
             </p>
             <a 
               href="https://www.instagram.com/valentinasresolve.brasil/" 

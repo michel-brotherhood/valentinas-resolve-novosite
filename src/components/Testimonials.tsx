@@ -7,7 +7,7 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
-import logoVR from "@/assets/logo-v-3D.webp";
+import logoVR from "@/assets/logo-renovado.svg";
 import Autoplay from "embla-carousel-autoplay";
 
 const testimonials = [

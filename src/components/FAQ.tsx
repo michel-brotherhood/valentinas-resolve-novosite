@@ -9,11 +9,11 @@ import { Card } from "@/components/ui/card";
 const faqs = [
   {
     question: "Como funciona a plataforma Valentina's Resolve?",
-    answer: "A Valentina's Resolve conecta clientes a profissionais qualificados em mais de 148 serviços diferentes. Você descreve o que precisa, recebe orçamentos de profissionais verificados, compara propostas e escolhe o melhor para você. Tudo de forma digital, segura e transparente."
+    answer: "A Valentina's Resolve conecta clientes a profissionais qualificados em mais de 200 serviços em 20 nichos diferentes. Você descreve o que precisa, a equipe receberá a solicitação e enviará o profissional mais qualificado. Tudo de forma digital, segura e transparente."
   },
   {
     question: "Quais serviços estão disponíveis na plataforma?",
-    answer: "Oferecemos 148+ serviços em 15 categorias: Domésticos, Beleza, Saúde, Jurídicos, Educação, Automotivos, Pets, Eventos, Criativos, Construção, Transporte, Agricultura, Personalizados, Turismo e Esportes. Desde limpeza residencial até consultoria jurídica e contabilidade integrada."
+    answer: "Oferecemos mais de 200 serviços em 20 nichos: Domésticos, Beleza, Saúde, Jurídicos, Educação, Automotivos, Pets, Eventos, Criativos, Construção, Instalações, Transporte, Agricultura, Personalizados, Turismo, Esportes, Cuidados Humanos, Arquitetura e Engenharia. Desde limpeza residencial até consultoria jurídica e contabilidade integrada."
   },
   {
     question: "Como os profissionais são verificados?",
@@ -33,7 +33,7 @@ const faqs = [
   },
   {
     question: "Como solicito um orçamento?",
-    answer: "Acesse a plataforma, descreva o serviço que você precisa, informe sua localização e preferências. Os profissionais qualificados receberão sua solicitação e enviarão orçamentos. Você pode comparar propostas, ver avaliações e escolher o melhor profissional para você."
+    answer: "Acesse a plataforma, descreva o serviço que você precisa, informe sua localização e preferências. A equipe receberá a solicitação e enviará o profissional mais qualificado para atender sua demanda com excelência."
   },
   {
     question: "Qual a garantia de qualidade dos serviços?",
@@ -45,15 +45,15 @@ const faqs = [
   },
   {
     question: "Como funciona o pagamento?",
-    answer: "A Valentina's Resolve intermedia todo o processo de pagamento. Aceitamos diversas formas de pagamento: dinheiro, PIX, cartão de crédito/débito e transferência bancária. O pagamento é processado de forma segura pela plataforma após a conclusão do serviço. O contato entre cliente e profissional ocorre apenas para execução do serviço."
+    answer: "A Valentina's Resolve intermedia todo o processo de pagamento. Aceitamos apenas meios eletrônicos de pagamento: PIX, cartão de crédito/débito e transferência bancária. Não trabalhamos com pagamento em dinheiro. O pagamento é processado de forma segura pela plataforma após a conclusão do serviço."
   },
   {
     question: "A plataforma atende em quais regiões?",
-    answer: "Atendemos em todo o Brasil, com foco especial em áreas urbanas, rurais e regiões com acesso fluvial. A disponibilidade de profissionais pode variar por região. Ao fazer sua solicitação, você verá os profissionais disponíveis na sua área."
+    answer: "Atualmente atendemos somente em Rondônia. A plataforma faz todo o filtro e encaminhamento dos profissionais - o cliente não tem acesso direto aos profissionais. Nossa equipe seleciona e envia o profissional mais qualificado para cada demanda."
   },
   {
     question: "Como entro em contato com o suporte?",
-    answer: "Você pode entrar em contato conosco através do WhatsApp, email (contato@valentinasresolve.com.br), formulário no site ou pelo chat flutuante disponível em todas as páginas. Nossa equipe está pronta para ajudar de segunda a sexta, das 8h às 18h."
+    answer: "Você pode entrar em contato conosco através do WhatsApp, email (contato@valentinasresolve.com.br), formulário no site ou pelo chat flutuante disponível em todas as páginas. Nossa equipe está pronta para ajudar de segunda a sexta, das 8h às 18h, e aos sábados, das 8h às 12h."
   },
 ];
 
