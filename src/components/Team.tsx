@@ -7,7 +7,6 @@ import {
 } from "@/components/ui/accordion";
 import andressaImg from "@/assets/team/andressa.jpg";
 import daianeImg from "@/assets/team/daiane.jpg";
-import janainaImg from "@/assets/team/janaina.jpg";
 import kellenImg from "@/assets/team/kellen.jpg";
 import { Link } from "react-router-dom";
 
@@ -35,14 +34,6 @@ const teamMembers = [
     fullDescription: "Cofundadora e CFO da Valentina's Resolve, Andressa Melo atua na estruturação estratégica e financeira da plataforma, unindo conhecimento contábil, visão analítica e foco em eficiência operacional. Formada em Ciências Contábeis e atuante na área desde 2017, desenvolveu expertise sólida em gestão financeira, contabilidade empresarial, planejamento tributário e suporte a empresas de diversos portes e segmentos. Empreendedora desde 2020, fundou seu próprio escritório contábil, consolidando experiência em soluções orientadas ao crescimento sustentável e à organização financeira. Na Valentina's Resolve, além de liderar o setor financeiro, é também responsável pela área de Contabilidade Integrada, conectando profissionais e empresas com processos precisos, compliance e inteligência contábil aplicada. Comprometida com transparência, eficiência e excelência, Andressa fortalece a operação e a visão de longo prazo da plataforma, contribuindo diretamente para a expansão e consolidação do ecossistema Valentina's.",
     image: andressaImg,
     specialties: ["Gestão Financeira", "Planejamento Tributário", "Contabilidade Empresarial", "Compliance"],
-  },
-  {
-    name: "Janaína Pimenta",
-    role: "CMO – Valentina's Resolve",
-    shortDescription: "Estrategista de marketing e comunicação",
-    fullDescription: "CMO da Valentina's Resolve, Janaína Pimenta é responsável pela estratégia de marketing, identidade visual e posicionamento da plataforma. Com formação em andamento em Marketing, desenvolve visão estratégica orientada à comunicação, experiência do usuário e fortalecimento de marca. Possui vivência profissional em atendimento ao cliente e suporte administrativo, além de atuação como freelancer na área contábil, o que ampliou sua capacidade analítica e sua compreensão sobre gestão de negócios. Sua trajetória também inclui participação em atividades empreendedoras familiares e apoio à área de transportes, reforçando habilidades em organização, relacionamento e operação prática. Na Valentina's Resolve, Janaína conduz o marketing e o design da empresa, garantindo coerência visual, comunicação clara e ações que conectam profissionais e clientes de forma eficiente, moderna e confiável. Seu foco é construir uma presença sólida de marca e fortalecer o crescimento da plataforma por meio de estratégias criativas e alinhadas aos objetivos do ecossistema.",
-    image: janainaImg,
-    specialties: ["Marketing Estratégico", "Identidade Visual", "Comunicação", "Gestão de Marca"],
   },
 ];
 

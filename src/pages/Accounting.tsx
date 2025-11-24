@@ -151,16 +151,16 @@ export default function Accounting() {
           </div>
           <div className="container mx-auto px-4 relative z-10">
             <div className="max-w-4xl mx-auto text-center">
-              {/* Contact Info - Portugal */}
+              {/* Contact Info - Phone Icon Only */}
               <div className="flex items-center justify-center gap-2 mb-6 text-white/90">
-                <Phone className="h-4 w-4" />
                 <a 
                   href="https://wa.me/351961803400?text=Olá! Gostaria de falar com a contadora responsável sobre a Contabilidade Integrada Valentinas." 
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-sm md:text-base hover:text-primary transition-colors"
+                  className="flex items-center gap-2 hover:text-primary transition-colors"
+                  aria-label="Entrar em contato via WhatsApp"
                 >
-                  +351 961 803 400
+                  <Phone className="h-5 w-5" />
                 </a>
               </div>
               

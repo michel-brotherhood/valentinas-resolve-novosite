@@ -5,7 +5,6 @@ import { Card } from "@/components/ui/card";
 import { useScrollReveal } from "@/hooks/use-scroll-reveal";
 import andressa from "@/assets/team/andressa.jpg";
 import daiane from "@/assets/team/daiane.jpg";
-import janaina from "@/assets/team/janaina.jpg";
 import kellen from "@/assets/team/kellen.jpg";
 
 const teamMembers = [
@@ -34,20 +33,6 @@ Empreendedora desde 2020, fundou seu próprio escritório contábil, consolidand
 
 Comprometida com transparência, eficiência e excelência, Andressa fortalece a operação e a visão de longo prazo da plataforma, contribuindo diretamente para a expansão e consolidação do ecossistema Valentina's.`,
     specialties: ["Gestão Financeira", "Planejamento Tributário", "Contabilidade Empresarial", "Compliance"],
-  },
-  {
-    name: "Janaína Pimenta",
-    role: "Sócia e Atendimento ao Cliente",
-    credential: "",
-    image: janaina,
-    bio: `Meu nome é Janaína Pimenta, tenho 32 anos e resido em Cacoal, Rondônia. Concluí o ensino médio e iniciei a graduação em Marketing, área pela qual me interesso e que contribui para ampliar minha visão estratégica e empreendedora.
-
-Minha trajetória profissional passou por diferentes experiências. Atuei como freelancer na Contável Contabilidade, o que me proporcionou aprendizado e abriu portas para novos projetos. Atualmente, sou sócia do Valentinas Resolve, empresa que administro em parceria com Andressa Melo, Daiane Amaral e Kellen Amaral, oferecendo soluções práticas e confiáveis para diferentes demandas.
-
-Paralelamente, colaboro no negócio da minha família, junto ao meu pai, e também apoio as atividades de transporte rodoviário realizadas pelo meu esposo, que atua com caminhão próprio.
-
-Sou uma pessoa dedicada, organizada e comprometida, que valoriza a família e alia responsabilidade, profissionalismo e espírito empreendedor em cada etapa da vida.`,
-    specialties: ["Gestão de Operações", "Atendimento ao Cliente", "Desenvolvimento"],
   },
   {
     name: "Kellen Amaral",
