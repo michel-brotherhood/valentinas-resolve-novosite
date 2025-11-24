@@ -297,7 +297,7 @@ export default function Contact() {
                       <h3 className="font-semibold text-foreground mb-1 break-words">Horário</h3>
                       <p className="text-muted-foreground text-sm break-words">
                         Segunda a Sexta: 8h às 18h<br />
-                        Sábado: 8h às 13h
+                        Sábado: 8h às 12h
                       </p>
                     </div>
                   </div>
