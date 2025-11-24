@@ -53,7 +53,7 @@ const faqs = [
   },
   {
     question: "Como entro em contato com o suporte?",
-    answer: "Você pode entrar em contato conosco através do WhatsApp, email (contato@valentinasresolve.com.br), formulário no site ou pelo chat flutuante disponível em todas as páginas. Nossa equipe está pronta para ajudar de segunda a sexta, das 8h às 18h, e aos sábados, das 8h às 12h."
+    answer: "Você pode entrar em contato conosco através do WhatsApp, email (atendimento@valentinasresolve.com.br), formulário no site ou pelo chat flutuante disponível em todas as páginas. Nossa equipe está pronta para ajudar de segunda a sexta, das 8h às 18h, e aos sábados, das 8h às 12h."
   },
 ];
 
