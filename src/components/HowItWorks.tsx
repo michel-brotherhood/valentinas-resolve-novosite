@@ -1,43 +1,47 @@
 import { Card } from "@/components/ui/card";
-import { Search, FileText, UserCheck, Star } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { UserPlus, FileCheck, Briefcase, TrendingUp } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 const steps = [
   {
-    icon: Search,
-    title: "1. Descreva o seu pedido",
-    description: "Diga-nos que tipo de serviço precisa e onde.",
+    icon: UserPlus,
+    title: "1. Cadastre-se",
+    description: "Complete seu perfil profissional e envie seus documentos.",
   },
   {
-    icon: FileText,
-    title: "2. Compare propostas",
-    description: "Receba orçamentos de profissionais qualificados.",
+    icon: FileCheck,
+    title: "2. Seja aprovado",
+    description: "Nossa equipe verifica e aprova seu cadastro em até 48h.",
   },
   {
-    icon: UserCheck,
-    title: "3. Escolha o profissional",
-    description: "Veja avaliações e escolha o melhor para si.",
+    icon: Briefcase,
+    title: "3. Receba solicitações",
+    description: "Conecte-se com clientes que precisam do seu serviço.",
   },
   {
-    icon: Star,
-    title: "4. Avalie o serviço",
-    description: "Partilhe a sua experiência com a comunidade.",
+    icon: TrendingUp,
+    title: "4. Cresça seu negócio",
+    description: "Aumente sua renda com clientes qualificados.",
   },
 ];
 
 export const HowItWorks = () => {
+  const navigate = useNavigate();
+
   return (
     <section className="py-16 bg-secondary/30">
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
           <h2 className="text-3xl font-bold text-foreground mb-4">
-            Como funciona?
+            Como funciona para profissionais?
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Encontrar o profissional certo nunca foi tão fácil
+            Junte-se a centenas de profissionais e expanda seu negócio
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
           {steps.map((step, index) => (
             <Card
               key={index}
@@ -54,6 +58,19 @@ export const HowItWorks = () => {
               </p>
             </Card>
           ))}
+        </div>
+
+        <div className="text-center">
+          <Button 
+            size="lg"
+            className="bg-primary hover:bg-primary/90 text-black font-bold px-8"
+            onClick={() => {
+              navigate('/registro-profissional');
+              setTimeout(() => window.scrollTo({ top: 0, behavior: 'smooth' }), 100);
+            }}
+          >
+            Cadastrar-me como Profissional
+          </Button>
         </div>
       </div>
     </section>

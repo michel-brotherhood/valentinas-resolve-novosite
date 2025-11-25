@@ -129,7 +129,7 @@ const Services = () => {
     : filteredServicesList.length;
 
   const handleRequestQuote = (serviceName: string) => {
-    navigate(`/contratar-servico?servico=${encodeURIComponent(serviceName)}`);
+    navigate(`/registro-profissional?categoria=${encodeURIComponent(serviceName)}`);
     setTimeout(() => window.scrollTo({ top: 0, behavior: 'smooth' }), 100);
   };
 
@@ -143,10 +143,10 @@ const Services = () => {
           {/* Header */}
           <div className="text-center mb-8 md:mb-12 animate-fade-in">
             <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-4">
-              Catálogo de Serviços
+              Áreas de Atuação
             </h1>
             <p className="text-base md:text-lg text-muted-foreground max-w-2xl mx-auto">
-              Explore nossos {servicesData.length} nichos de serviços organizados
+              Explore as áreas disponíveis e cadastre-se como profissional
             </p>
           </div>
 
@@ -307,7 +307,7 @@ const Services = () => {
                                   {service.description}
                                 </p>
                                 <Button size="sm" className="w-full text-xs md:text-sm">
-                                  Solicitar Orçamento
+                                  Cadastrar-me
                                 </Button>
                               </Card>
                             ))}
@@ -316,11 +316,11 @@ const Services = () => {
                           {/* CTA no final de cada nicho */}
                           <div className="pt-4 border-t border-border">
                             <Button 
-                              onClick={() => navigate('/contratar-servico')}
+                              onClick={() => navigate('/registro-profissional')}
                               className="w-full md:w-auto"
                               size="lg"
                             >
-                              Solicitar Orçamento para {category.name}
+                              Cadastrar-me em {category.name}
                             </Button>
                           </div>
                         </div>
@@ -377,7 +377,7 @@ const Services = () => {
                           {service.description}
                         </p>
                         <Button size="sm" className="w-full text-xs md:text-sm">
-                          Solicitar Orçamento
+                          Cadastrar-me
                         </Button>
                       </Card>
                     );

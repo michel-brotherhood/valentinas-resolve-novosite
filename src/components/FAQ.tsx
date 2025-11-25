@@ -9,7 +9,7 @@ import { Card } from "@/components/ui/card";
 const faqs = [
   {
     question: "Como funciona a plataforma Valentina's Resolve?",
-    answer: "A Valentina's Resolve conecta clientes a profissionais qualificados em mais de 200 serviços em 20 nichos diferentes. Você descreve o que precisa, a equipe receberá a solicitação e enviará o profissional mais qualificado. Tudo de forma digital, segura e transparente."
+    answer: "A Valentina's Resolve conecta profissionais qualificados a clientes que precisam de serviços em mais de 200 áreas em 20 nichos diferentes. Nossa plataforma intermedia todo o processo, desde o cadastro até a execução do serviço, de forma digital, segura e transparente."
   },
   {
     question: "Quais serviços estão disponíveis na plataforma?",
@@ -20,8 +20,8 @@ const faqs = [
     answer: "Todos os profissionais passam por um processo rigoroso de verificação que inclui: análise de documentos, verificação de qualificações, checagem de referências e avaliação de experiência. Também monitoramos as avaliações dos clientes para garantir a qualidade contínua dos serviços."
   },
   {
-    question: "Quanto custa usar a plataforma?",
-    answer: "Para clientes, é gratuito solicitar orçamentos e comparar propostas. A Valentina's Resolve intermedia todo o processo, incluindo pagamento e execução do serviço. Para profissionais, oferecemos diferentes planos de assinatura com acesso a solicitações de serviços e ferramentas de gestão."
+    question: "Quanto custa para profissionais?",
+    answer: "Para profissionais, oferecemos diferentes planos de assinatura com acesso a solicitações de serviços e ferramentas de gestão. Entre em contato para conhecer os planos disponíveis e escolher o melhor para seu negócio."
   },
   {
     question: "Como funciona a Contabilidade Integrada?",
@@ -32,8 +32,8 @@ const faqs = [
     answer: "O cadastro é simples e feito em 4 etapas: (1) Preencha seus dados pessoais, (2) Informe suas qualificações e experiência, (3) Selecione as categorias de serviços que você oferece, (4) Envie documentos e portfólio. Após análise (até 48h), você receberá um email confirmando a aprovação."
   },
   {
-    question: "Como solicito um orçamento?",
-    answer: "Acesse a plataforma, descreva o serviço que você precisa, informe sua localização e preferências. A equipe receberá a solicitação e enviará o profissional mais qualificado para atender sua demanda com excelência."
+    question: "Como recebo solicitações de serviço?",
+    answer: "Após aprovado, você receberá solicitações de clientes através da plataforma. Nossa equipe analisa cada demanda e encaminha para os profissionais mais qualificados. Você será notificado e poderá aceitar as solicitações que se encaixam no seu perfil."
   },
   {
     question: "Qual a garantia de qualidade dos serviços?",
@@ -49,7 +49,7 @@ const faqs = [
   },
   {
     question: "A plataforma atende em quais regiões?",
-    answer: "Atualmente atendemos somente em Rondônia. A plataforma faz todo o filtro e encaminhamento dos profissionais - o cliente não tem acesso direto aos profissionais. Nossa equipe seleciona e envia o profissional mais qualificado para cada demanda."
+    answer: "Atualmente atendemos somente em Rondônia. A plataforma faz todo o filtro e encaminhamento dos profissionais. Nossa equipe seleciona e envia o profissional mais qualificado para cada demanda."
   },
   {
     question: "Como entro em contato com o suporte?",
