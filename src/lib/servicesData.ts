@@ -287,6 +287,7 @@ export const servicesData: Category[] = [
       { name: "Filmagem", description: "Vídeo profissional de eventos" },
       { name: "Buffet", description: "Serviço de alimentação" },
       { name: "Bartender", description: "Drinks profissionais" },
+      { name: "Churrasqueiro", description: "Serviço especializado de churrasco" },
       { name: "Decoração", description: "Ambientação temática" },
       { name: "Cerimonial", description: "Organização e coordenação" },
       { name: "Música", description: "DJ e música ao vivo" },
