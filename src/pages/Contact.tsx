@@ -135,9 +135,12 @@ export default function Contact() {
             <div className="grid md:grid-cols-2 gap-6 md:gap-12">
               {/* Contact Form */}
               <Card className="p-4 md:p-8 w-full overflow-hidden">
-                <h2 className="text-xl md:text-2xl font-bold text-foreground mb-4 md:mb-6 break-words">
+                <h2 className="text-xl md:text-2xl font-bold text-foreground mb-2 break-words">
                   Central de Dúvidas
                 </h2>
+                <p className="text-sm text-muted-foreground mb-4 md:mb-6">
+                  Profissional, em caso de dúvidas preencha abaixo.
+                </p>
                 <form onSubmit={handleSubmit} className="space-y-4 md:space-y-6">
                   <div className="w-full">
                     <Label htmlFor="name">Nome Completo *</Label>

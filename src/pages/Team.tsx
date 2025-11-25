@@ -59,7 +59,7 @@ export default function TeamPage() {
       
       <main className="flex-1">
         {/* Hero Section with Video Background */}
-        <section className="relative bg-black overflow-hidden min-h-[500px] md:min-h-[600px] flex items-center">
+        <section className="relative bg-black overflow-hidden min-h-[400px] md:min-h-[450px] flex items-center">
           {/* Video Background */}
           <div className="absolute inset-0 opacity-40">
             <video 
