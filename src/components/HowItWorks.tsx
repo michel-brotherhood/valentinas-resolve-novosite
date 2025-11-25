@@ -21,7 +21,7 @@ const steps = [
   },
   {
     icon: TrendingUp,
-    title: "4. Cresça seu negócio",
+    title: "4. Cresça suas oportunidades",
     description: "Aumente sua renda com clientes qualificados.",
   },
 ];
@@ -37,7 +37,7 @@ export const HowItWorks = () => {
             Como funciona para profissionais?
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Junte-se a centenas de profissionais e expanda seu negócio
+            Junte-se a centenas de profissionais e expanda suas oportunidades
           </p>
         </div>
 
