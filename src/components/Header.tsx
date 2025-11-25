@@ -102,14 +102,6 @@ export const Header = () => {
                   Equipe
                 </Button>
               </Link>
-              <Link to="/trabalhe-conosco">
-                <Button 
-                  variant="ghost" 
-                  className="text-white/90 hover:text-primary hover:bg-primary/10 transition-all duration-300 text-sm"
-                >
-                  Trabalhe Conosco
-                </Button>
-              </Link>
               <Link to="/contato">
                 <Button 
                   variant="ghost" 
@@ -224,17 +216,6 @@ export const Header = () => {
               }}
             >
               Equipe
-            </button>
-            <button
-              className="w-full justify-start text-white hover:text-primary hover:bg-primary/10 transition-all duration-300 text-lg py-7 text-left px-4 rounded-md"
-              onClick={(e) => {
-                e.preventDefault();
-                e.stopPropagation();
-                setMobileMenuOpen(false);
-                setTimeout(() => navigate('/trabalhe-conosco'), 100);
-              }}
-            >
-              Trabalhe Conosco
             </button>
             <button
               className="w-full justify-start text-white hover:text-primary hover:bg-primary/10 transition-all duration-300 text-lg py-7 text-left px-4 rounded-md"
