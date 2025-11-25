@@ -121,12 +121,12 @@ export const Header = () => {
               <button 
                 className="button-3d ml-2"
                 onClick={() => {
-                  navigate('/contratar-servico');
+                  navigate('/trabalhe-conosco');
                   setTimeout(() => window.scrollTo({ top: 0, behavior: 'smooth' }), 100);
                 }}
               >
                 <span className="button-3d-top text-sm">
-                  Contratar Profissional
+                  Trabalhe Conosco
                 </span>
                 <span className="button-3d-bottom"></span>
                 <span className="button-3d-base"></span>
@@ -255,13 +255,13 @@ export const Header = () => {
                   e.stopPropagation();
                   setMobileMenuOpen(false);
                   setTimeout(() => {
-                    navigate('/contratar-servico');
+                    navigate('/trabalhe-conosco');
                     setTimeout(() => window.scrollTo({ top: 0, behavior: 'smooth' }), 100);
                   }, 100);
                 }}
               >
                 <span className="button-3d-top text-base">
-                  Contratar Profissional
+                  Trabalhe Conosco
                 </span>
                 <span className="button-3d-bottom"></span>
                 <span className="button-3d-base"></span>

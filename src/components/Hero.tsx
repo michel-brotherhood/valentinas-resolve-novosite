@@ -11,7 +11,6 @@ const searchSchema = z.object({
 
 export const Hero = () => {
   const [searchQuery, setSearchQuery] = useState("");
-  const [activeTab, setActiveTab] = useState<"hire" | "register">("hire");
   const navigate = useNavigate();
   const { toast } = useToast();
 
@@ -20,11 +19,7 @@ export const Hero = () => {
     
     // Allow empty search
     if (trimmedQuery === "") {
-      if (activeTab === "register") {
-        navigate('/registro-profissional');
-      } else {
-        navigate('/servicos');
-      }
+      navigate('/registro-profissional');
       return;
     }
 
@@ -33,15 +28,8 @@ export const Hero = () => {
       searchSchema.parse({ query: trimmedQuery });
       
       const encodedQuery = encodeURIComponent(trimmedQuery);
-      
-      if (activeTab === "register") {
-        navigate(`/registro-profissional?categoria=${encodedQuery}`);
-        setTimeout(() => window.scrollTo({ top: 0, behavior: 'smooth' }), 100);
-      } else {
-        // Navega para o formulário com o serviço pré-selecionado
-        navigate(`/contratar-servico?servico=${encodedQuery}`);
-        setTimeout(() => window.scrollTo({ top: 0, behavior: 'smooth' }), 100);
-      }
+      navigate(`/registro-profissional?categoria=${encodedQuery}`);
+      setTimeout(() => window.scrollTo({ top: 0, behavior: 'smooth' }), 100);
     } catch (error) {
       if (error instanceof z.ZodError) {
         toast({
@@ -56,11 +44,7 @@ export const Hero = () => {
   const handleServiceSelect = (serviceName: string) => {
     // Quando um serviço é selecionado, já navega direto
     const encodedService = encodeURIComponent(serviceName);
-    if (activeTab === "register") {
-      navigate(`/registro-profissional?categoria=${encodedService}`);
-    } else {
-      navigate(`/contratar-servico?servico=${encodedService}`);
-    }
+    navigate(`/registro-profissional?categoria=${encodedService}`);
     setTimeout(() => window.scrollTo({ top: 0, behavior: 'smooth' }), 100);
   };
 
@@ -90,55 +74,12 @@ export const Hero = () => {
       
       <div className="container mx-auto px-4 py-20 md:py-28 relative z-10">
         <div className="max-w-3xl">
-          {/* Tabs */}
-          <div className="flex gap-4 mb-8">
-            <button
-              onClick={() => setActiveTab("hire")}
-              className={`pb-2 px-1 font-medium text-lg transition-colors relative ${
-                activeTab === "hire"
-                  ? "text-primary"
-                  : "text-white/80 hover:text-white"
-              }`}
-            >
-              Contratar profissionais
-              {activeTab === "hire" && (
-                <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-primary" />
-              )}
-            </button>
-            <button
-              onClick={() => setActiveTab("register")}
-              className={`pb-2 px-1 font-medium text-lg transition-colors relative ${
-                activeTab === "register"
-                  ? "text-primary"
-                  : "text-white/80 hover:text-white"
-              }`}
-            >
-              Registar como profissional
-              {activeTab === "register" && (
-                <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-primary" />
-              )}
-            </button>
-          </div>
-
-          {activeTab === "hire" ? (
-            <>
-              <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">
-                Encontre o profissional ideal para o seu projeto
-              </h1>
-              <p className="text-lg text-white/90 mb-8">
-                Negócios que conectam, resultados que transformam
-              </p>
-            </>
-          ) : (
-            <>
-              <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">
-                Encontre novos clientes e expanda o seu negócio
-              </h1>
-              <p className="text-lg text-white/90 mb-8">
-                Junte-se a centenas de profissionais e receba pedidos todos os dias
-              </p>
-            </>
-          )}
+          <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">
+            Encontre novos clientes e expanda o seu negócio
+          </h1>
+          <p className="text-lg text-white/90 mb-8">
+            Junte-se a centenas de profissionais e receba pedidos todos os dias
+          </p>
 
           {/* Search Bar */}
           <div className="flex gap-2">
@@ -147,18 +88,14 @@ export const Hero = () => {
               onChange={setSearchQuery}
               onSelect={handleServiceSelect}
               onKeyPress={handleKeyPress}
-              placeholder={
-                activeTab === "hire" 
-                  ? 'Procure "contabilidade", "limpeza", "consultoria"...'
-                  : 'Procure "domésticos", "beleza", "saúde"...'
-              }
+              placeholder='Procure "domésticos", "beleza", "saúde"...'
             />
             <Button 
               size="lg"
               className="h-14 px-6 md:px-8 shadow__btn flex-shrink-0"
               onClick={handleSearch}
             >
-              {activeTab === "hire" ? "Buscar" : "Começar"}
+              Começar
             </Button>
           </div>
         </div>
