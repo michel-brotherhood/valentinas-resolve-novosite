@@ -80,11 +80,6 @@ export const Footer = () => {
                 </Link>
               </li>
               <li>
-                <Link to="/registro-profissional" className="text-sm text-white/70 hover:text-primary transition-colors">
-                  Cadastre-se
-                </Link>
-              </li>
-              <li>
                 <Link to="/contato" className="text-sm text-white/70 hover:text-primary transition-colors">
                   Contato
                 </Link>

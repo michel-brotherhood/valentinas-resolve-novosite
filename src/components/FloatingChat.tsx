@@ -23,12 +23,6 @@ export const FloatingChat = ({ whatsappNumber = "351961803414" }: FloatingChatPr
     setIsOpen(false);
   };
 
-  const handleRegister = () => {
-    navigate("/registro-profissional");
-    setTimeout(() => window.scrollTo({ top: 0, behavior: 'smooth' }), 100);
-    setIsOpen(false);
-  };
-
   return (
     <div className="fixed bottom-6 right-6 z-50 transition-opacity duration-300">
       {/* Options Menu */}
@@ -60,20 +54,6 @@ export const FloatingChat = ({ whatsappNumber = "351961803414" }: FloatingChatPr
               <div className="text-left flex-1">
                 <div className="font-semibold text-foreground">Trabalhe Conosco</div>
                 <div className="text-xs text-muted-foreground">Cadastre-se como profissional</div>
-              </div>
-            </Button>
-
-            <Button
-              onClick={handleRegister}
-              variant="outline"
-              className="w-full justify-start gap-3 h-auto py-4 px-4 hover:bg-primary/10 hover:text-primary hover:border-primary transition-all duration-300 group border-muted-foreground/20 hover:shadow-lg hover:shadow-primary/20"
-            >
-              <div className="p-2 rounded-lg bg-primary/10 group-hover:bg-primary/20 transition-colors">
-                <UserPlus className="h-5 w-5 flex-shrink-0 text-primary" />
-              </div>
-              <div className="text-left flex-1">
-                <div className="font-semibold text-foreground">Quero Me Cadastrar</div>
-                <div className="text-xs text-muted-foreground">Seja um profissional</div>
               </div>
             </Button>
           </div>
