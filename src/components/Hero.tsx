@@ -75,7 +75,7 @@ export const Hero = () => {
       <div className="container mx-auto px-4 py-20 md:py-28 relative z-10">
         <div className="max-w-3xl">
           <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">
-            Encontre novos clientes e expanda o seu negócio
+            Encontre novos clientes e expanda suas oportunidades
           </h1>
           <p className="text-lg text-white/90 mb-8">
             Junte-se a centenas de profissionais e receba pedidos todos os dias
