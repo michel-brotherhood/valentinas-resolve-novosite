@@ -1,7 +1,12 @@
 import { serve } from "https://deno.land/std@0.190.0/http/server.ts";
 import { Resend } from "https://esm.sh/resend@2.0.0";
+import { createClient } from "https://esm.sh/@supabase/supabase-js@2.7.1";
 
 const resend = new Resend(Deno.env.get("RESEND_API_KEY"));
+const supabase = createClient(
+  Deno.env.get("SUPABASE_URL") ?? "",
+  Deno.env.get("SUPABASE_SERVICE_ROLE_KEY") ?? ""
+);
 
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
@@ -41,6 +46,35 @@ const handler = async (req: Request): Promise<Response> => {
     const { name, email, phone, service, message }: ContactEmailRequest = await req.json();
 
     console.log("Sending contact email:", { name, email, phone, service });
+
+    // Rate limiting check - max 3 attempts per email in 15 minutes
+    const fifteenMinutesAgo = new Date(Date.now() - 15 * 60 * 1000).toISOString();
+    const { data: attempts, error: rateLimitError } = await supabase
+      .from('rate_limit_attempts')
+      .select('id')
+      .eq('identifier', email)
+      .eq('attempt_type', 'contact')
+      .gte('created_at', fifteenMinutesAgo);
+
+    if (rateLimitError) {
+      console.error("Rate limit check error:", rateLimitError);
+    }
+
+    if (attempts && attempts.length >= 3) {
+      console.warn("Rate limit exceeded for email:", email);
+      return new Response(
+        JSON.stringify({ error: "Muitas tentativas. Por favor, aguarde 15 minutos antes de tentar novamente." }),
+        {
+          status: 429,
+          headers: { "Content-Type": "application/json", ...corsHeaders },
+        }
+      );
+    }
+
+    // Record this attempt
+    await supabase
+      .from('rate_limit_attempts')
+      .insert({ identifier: email, attempt_type: 'contact' });
 
     const emailResponse = await resend.emails.send({
       from: "Valentina's Resolve <noreply@valentinasresolve.com.br>",

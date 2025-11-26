@@ -109,6 +109,27 @@ export type Database = {
         }
         Relationships: []
       }
+      rate_limit_attempts: {
+        Row: {
+          attempt_type: string
+          created_at: string | null
+          id: string
+          identifier: string
+        }
+        Insert: {
+          attempt_type: string
+          created_at?: string | null
+          id?: string
+          identifier: string
+        }
+        Update: {
+          attempt_type?: string
+          created_at?: string | null
+          id?: string
+          identifier?: string
+        }
+        Relationships: []
+      }
       service_requests: {
         Row: {
           budget_type: Database["public"]["Enums"]["budget_type"]
@@ -189,6 +210,7 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
+      cleanup_rate_limit_attempts: { Args: never; Returns: undefined }
       has_role: {
         Args: {
           _role: Database["public"]["Enums"]["app_role"]
