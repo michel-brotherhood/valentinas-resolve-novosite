@@ -9,6 +9,21 @@ const corsHeaders = {
     "authorization, x-client-info, apikey, content-type",
 };
 
+// HTML escape function to prevent HTML injection
+const escapeHtml = (str: string): string => {
+  if (!str) return '';
+  return str.replace(/[&<>"']/g, (char) => {
+    const escapeMap: Record<string, string> = {
+      '&': '&amp;',
+      '<': '&lt;',
+      '>': '&gt;',
+      '"': '&quot;',
+      "'": '&#39;'
+    };
+    return escapeMap[char] || char;
+  });
+};
+
 interface HireServiceEmailRequest {
   name: string;
   email: string;
@@ -46,25 +61,25 @@ const handler = async (req: Request): Promise<Response> => {
           
           <div style="background-color: #f5f5f5; padding: 20px; border-radius: 8px; margin: 20px 0;">
             <h2 style="color: #333; margin-top: 0;">Dados do Cliente</h2>
-            <p><strong>Nome Completo:</strong> ${data.name}</p>
-            <p><strong>Telefone/WhatsApp:</strong> ${data.phone}</p>
-            <p><strong>E-mail:</strong> ${data.email}</p>
-            <p><strong>Cidade/Bairro:</strong> ${data.cityNeighborhood}</p>
+            <p><strong>Nome Completo:</strong> ${escapeHtml(data.name)}</p>
+            <p><strong>Telefone/WhatsApp:</strong> ${escapeHtml(data.phone)}</p>
+            <p><strong>E-mail:</strong> ${escapeHtml(data.email)}</p>
+            <p><strong>Cidade/Bairro:</strong> ${escapeHtml(data.cityNeighborhood)}</p>
           </div>
           
           <div style="background-color: #fff; padding: 20px; border: 1px solid #ddd; border-radius: 8px; margin: 20px 0;">
             <h2 style="color: #333; margin-top: 0;">Detalhes do Serviço</h2>
-            <p><strong>Tipo de serviço desejado:</strong> ${data.serviceType}</p>
+            <p><strong>Tipo de serviço desejado:</strong> ${escapeHtml(data.serviceType)}</p>
             <p><strong>Descrição:</strong></p>
-            <p style="white-space: pre-wrap;">${data.description}</p>
-            <p><strong>Local de execução:</strong> ${data.location}</p>
-            <p><strong>Urgência:</strong> ${data.urgency}${data.scheduledDate ? ` - ${data.scheduledDate}` : ''}</p>
+            <p style="white-space: pre-wrap;">${escapeHtml(data.description)}</p>
+            <p><strong>Local de execução:</strong> ${escapeHtml(data.location)}</p>
+            <p><strong>Urgência:</strong> ${escapeHtml(data.urgency)}${data.scheduledDate ? ` - ${escapeHtml(data.scheduledDate)}` : ''}</p>
           </div>
           
           <div style="background-color: #f5f5f5; padding: 20px; border-radius: 8px; margin: 20px 0;">
             <h2 style="color: #333; margin-top: 0;">Preferências do Cliente</h2>
-            <p><strong>Deseja receber contato por:</strong> ${data.contactPreference}</p>
-            <p><strong>Orçamento desejado:</strong> ${data.budgetType}</p>
+            <p><strong>Deseja receber contato por:</strong> ${escapeHtml(data.contactPreference)}</p>
+            <p><strong>Orçamento desejado:</strong> ${escapeHtml(data.budgetType)}</p>
           </div>
           
           <p style="color: #666; font-size: 12px; margin-top: 30px;">
