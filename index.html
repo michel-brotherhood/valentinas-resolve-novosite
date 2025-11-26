@@ -43,174 +43,423 @@
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@graph": [
+      "@type": "Organization",
+      "name": "Valentina's Resolve",
+      "alternateName": "Valentinas Resolve",
+      "url": "https://valentinasresolve.com",
+      "logo": "https://valentinasresolve.com/logo-renovado.svg",
+      "description": "Plataforma digital que conecta profissionais qualificados a clientes em mais de 200 serviços em 20 nichos. Atuamos em Rondônia oferecendo soluções completas para sua empresa e sua casa.",
+      "slogan": "Negócios que conectam, resultados que transformam.",
+      "address": {
+        "@type": "PostalAddress",
+        "addressRegion": "RO",
+        "addressCountry": "BR"
+      },
+      "contactPoint": [
         {
-          "@type": "Organization",
-          "@id": "https://valentinasresolve.com/#organization",
-          "name": "Valentina's Resolve",
-          "url": "https://valentinasresolve.com",
-          "logo": {
-            "@type": "ImageObject",
-            "url": "https://valentinasresolve.com/favicon.webp",
-            "width": 512,
-            "height": 512
-          },
-          "image": "https://valentinasresolve.com/favicon.webp",
-          "description": "Plataforma completa de serviços profissionais em Rondônia. Conectamos pessoas e empresas através de soluções inteligentes, seguras e certificadas.",
-          "slogan": "Negócios que conectam, resultados que transformam",
-          "email": "atendimentoaocliente@valentinasresolve.com.br",
+          "@type": "ContactPoint",
           "telephone": "+351961803414",
-          "address": {
-            "@type": "PostalAddress",
-            "addressRegion": "RO",
-            "addressCountry": "BR"
-          },
-          "areaServed": {
-            "@type": "State",
-            "name": "Rondônia"
-          },
-          "founder": [
-            {
-              "@type": "Person",
-              "name": "Daiane Amaral",
-              "jobTitle": "Fundadora & CEO",
-              "description": "Fundadora e CEO com experiência internacional em Gestão da Qualidade e liderança estratégica."
-            },
-            {
-              "@type": "Person",
-              "name": "Kellen Amaral",
-              "jobTitle": "Cofundadora & COO",
-              "description": "Cofundadora e COO responsável pela gestão operacional e excelência no atendimento."
-            },
-            {
-              "@type": "Person",
-              "name": "Andressa Melo",
-              "jobTitle": "Cofundadora, CFO & Líder da Contabilidade Integrada",
-              "description": "Cofundadora, CFO e líder da Contabilidade Integrada. Contadora certificada CRC RO-010414/O-5."
-            }
-          ],
-          "employee": [
-            {
-              "@type": "Person",
-              "name": "Janaína Pimenta",
-              "jobTitle": "CMO",
-              "description": "Chief Marketing Officer responsável pela estratégia de marketing e identidade visual."
-            }
-          ],
-          "sameAs": [
-            "https://www.instagram.com/valentinasresolve",
-            "https://www.facebook.com/valentinasresolve"
-          ]
+          "contactType": "customer service",
+          "areaServed": "BR",
+          "availableLanguage": "Portuguese"
         },
         {
-          "@type": "WebSite",
-          "@id": "https://valentinasresolve.com/#website",
-          "url": "https://valentinasresolve.com",
-          "name": "Valentina's Resolve",
-          "description": "Plataforma de serviços profissionais em Rondônia",
-          "publisher": {
-            "@id": "https://valentinasresolve.com/#organization"
-          },
-          "potentialAction": {
-            "@type": "SearchAction",
-            "target": "https://valentinasresolve.com/servicos?busca={search_term_string}",
-            "query-input": "required name=search_term_string"
-          }
-        },
-        {
-          "@type": "Service",
-          "@id": "https://valentinasresolve.com/#service",
-          "serviceType": "Plataforma de Intermediação de Serviços Profissionais",
-          "provider": {
-            "@id": "https://valentinasresolve.com/#organization"
-          },
-          "areaServed": {
-            "@type": "State",
-            "name": "Rondônia"
-          },
-          "hasOfferCatalog": {
-            "@type": "OfferCatalog",
-            "name": "Catálogo de Serviços Profissionais",
-            "itemListElement": [
-              {
-                "@type": "Offer",
-                "itemOffered": {
-                  "@type": "Service",
-                  "name": "Contabilidade Integrada",
-                  "description": "Serviços contábeis certificados CRC RO-010414/O-5 para MEI, LTDA e EI. 9 anos de experiência.",
-                  "provider": {
-                    "@type": "Person",
-                    "name": "Andressa Melo",
-                    "jobTitle": "CFO & Contadora Certificada"
-                  }
-                }
-              },
-              {
-                "@type": "Offer",
-                "itemOffered": {
-                  "@type": "Service",
-                  "name": "Serviços Domésticos",
-                  "description": "Limpeza, manutenção, jardinagem, reformas e serviços gerais para residências."
-                }
-              },
-              {
-                "@type": "Offer",
-                "itemOffered": {
-                  "@type": "Service",
-                  "name": "Serviços de Beleza",
-                  "description": "Cabeleireiros, manicures, esteticistas e profissionais de beleza."
-                }
-              },
-              {
-                "@type": "Offer",
-                "itemOffered": {
-                  "@type": "Service",
-                  "name": "Serviços de Saúde",
-                  "description": "Enfermagem, fisioterapia, nutrição e cuidadores profissionais."
-                }
-              },
-              {
-                "@type": "Offer",
-                "itemOffered": {
-                  "@type": "Service",
-                  "name": "Serviços Jurídicos",
-                  "description": "Consultoria jurídica, advocacia e serviços legais especializados."
-                }
-              },
-              {
-                "@type": "Offer",
-                "itemOffered": {
-                  "@type": "Service",
-                  "name": "Abertura de Empresas",
-                  "description": "Abertura e regularização de MEI, LTDA e EI em Rondônia."
-                }
-              },
-              {
-                "@type": "Offer",
-                "itemOffered": {
-                  "@type": "Service",
-                  "name": "Consultoria Empresarial",
-                  "description": "Consultoria estratégica para crescimento e gestão empresarial."
-                }
-              }
-            ]
-          }
-        },
-        {
-          "@type": "ProfessionalService",
-          "@id": "https://valentinasresolve.com/contabilidade#service",
-          "name": "Contabilidade Integrada Valentina's Resolve",
-          "description": "Serviço de contabilidade certificado com 9 anos de experiência, CRC RO-010414/O-5. Atendimento especializado para MEI, LTDA e Empresário Individual.",
-          "provider": {
-            "@id": "https://valentinasresolve.com/#organization"
-          },
-          "areaServed": {
-            "@type": "State",
-            "name": "Rondônia"
-          },
-          "slogan": "Dados que conectam. Resultados que transformam.",
+          "@type": "ContactPoint",
           "telephone": "+351961803400",
-          "email": "contabilidadeintegrada@valentinasresolve.com.br"
+          "contactType": "accounting services",
+          "areaServed": "BR",
+          "availableLanguage": "Portuguese"
+        }
+      ],
+      "email": "atendimento@valentinasresolve.com.br",
+      "founder": [
+        {
+          "@type": "Person",
+          "name": "Daiane Amaral",
+          "jobTitle": "CEO & Fundadora",
+          "description": "Fundadora e CEO da Valentina's Resolve, empreendedora visionária com experiência em gestão e inovação."
+        },
+        {
+          "@type": "Person",
+          "name": "Kellen Amaral",
+          "jobTitle": "COO & Cofundadora",
+          "description": "Cofundadora e COO, especialista em operações e gestão estratégica de negócios."
+        },
+        {
+          "@type": "Person",
+          "name": "Andressa Melo",
+          "jobTitle": "CFO & Líder da Contabilidade Integrada",
+          "description": "Cofundadora, CFO e contadora responsável (CRC RO-010414/O-5). Formada em Ciências Contábeis desde 2017, lidera o serviço de Contabilidade Integrada."
+        }
+      ],
+      "employee": [
+        {
+          "@type": "Person",
+          "name": "Daiane Amaral",
+          "jobTitle": "CEO & Fundadora"
+        },
+        {
+          "@type": "Person",
+          "name": "Kellen Amaral",
+          "jobTitle": "COO & Cofundadora"
+        },
+        {
+          "@type": "Person",
+          "name": "Andressa Melo",
+          "jobTitle": "CFO & Líder da Contabilidade Integrada"
+        }
+      ],
+      "sameAs": [
+        "https://www.instagram.com/valentinasresolve",
+        "https://www.facebook.com/valentinasresolve"
+      ],
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Catálogo de Serviços",
+        "description": "Mais de 200 serviços em 20 nichos diferentes",
+        "itemListElement": [
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Serviços de Limpeza",
+              "category": "Limpezas",
+              "description": "Limpeza residencial, comercial, pós-obra e outros serviços de limpeza profissional."
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Serviços de Manutenção",
+              "category": "Manutenção",
+              "description": "Manutenção preventiva e corretiva de equipamentos, imóveis e sistemas."
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Serviços de Reparo",
+              "category": "Reparo",
+              "description": "Reparos gerais em residências, comércios e equipamentos diversos."
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Serviços de Construção",
+              "category": "Construção",
+              "description": "Construção civil, reformas, alvenaria e acabamentos."
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Serviços de Instalações",
+              "category": "Instalações",
+              "description": "Instalações elétricas, hidráulicas, gás e outras instalações técnicas."
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Serviços de Beleza & Estética",
+              "category": "Beleza & Estética",
+              "description": "Cabelo, maquiagem, manicure, tratamentos estéticos e cuidados pessoais."
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Serviços Jurídicos",
+              "category": "Jurídico",
+              "description": "Consultoria jurídica, advocacia, contratos e assessoria legal."
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Consultorias",
+              "category": "Consultorias",
+              "description": "Consultoria empresarial, financeira, marketing e gestão de negócios."
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Serviços de Saúde & Bem-Estar",
+              "category": "Saúde & Bem-Estar",
+              "description": "Fisioterapia, nutrição, psicologia, massoterapia e cuidados com a saúde."
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Serviços Educacionais",
+              "category": "Educação",
+              "description": "Aulas particulares, cursos, treinamentos e capacitação profissional."
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Serviços Automotivos",
+              "category": "Automotivos",
+              "description": "Mecânica, elétrica automotiva, funilaria, pintura e manutenção de veículos."
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Serviços para Pets",
+              "category": "Pets",
+              "description": "Banho e tosa, veterinária, adestramento e cuidados com animais."
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Serviços de Eventos",
+              "category": "Eventos",
+              "description": "Organização de festas, buffet, decoração e produção de eventos."
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Serviços Criativos & Digitais",
+              "category": "Criativos & Digitais",
+              "description": "Design, marketing digital, fotografia, vídeo e produção de conteúdo."
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Serviços de Transporte",
+              "category": "Transporte",
+              "description": "Transporte de pessoas, mudanças, fretes e logística."
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Serviços de Agricultura & Pecuária",
+              "category": "Agricultura & Pecuária",
+              "description": "Serviços agrícolas, manejo de gado, jardinagem e paisagismo."
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Serviços de Lazer & Turismo",
+              "category": "Lazer & Turismo",
+              "description": "Guias turísticos, passeios, recreação e atividades de lazer."
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Serviços Esportivos",
+              "category": "Esportivos",
+              "description": "Personal trainer, preparação física, aulas de esportes e treinamentos."
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Serviços de Cuidado & Acompanhamento Humano",
+              "category": "Cuidado & Acompanhamento Humano",
+              "description": "Cuidadores, enfermagem domiciliar, acompanhamento de idosos e crianças."
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Serviços de Arquitetura, Engenharia & Design",
+              "category": "Arquitetura, Engenharia & Design",
+              "description": "Projetos arquitetônicos, engenharia civil, design de interiores e planejamento."
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Contabilidade Integrada",
+              "category": "Contabilidade",
+              "description": "Serviço completo de contabilidade digital: abertura de CNPJ, planejamento tributário, emissão de notas fiscais e gestão contábil moderna. Liderado pela contadora Andressa Melo (CRC RO-010414/O-5).",
+              "provider": {
+                "@type": "Person",
+                "name": "Andressa Melo",
+                "jobTitle": "Contadora Responsável",
+                "hasCredential": "CRC RO-010414/O-5"
+              }
+            }
+          }
+        ]
+      }
+    }
+    </script>
+    
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "LocalBusiness",
+      "name": "Valentina's Resolve",
+      "image": "https://valentinasresolve.com/logo-renovado.svg",
+      "description": "Plataforma digital que conecta profissionais qualificados a clientes em mais de 200 serviços em 20 nichos. Atuamos em Rondônia.",
+      "address": {
+        "@type": "PostalAddress",
+        "addressRegion": "Rondônia",
+        "addressCountry": "BR"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": -8.7619,
+        "longitude": -63.9039
+      },
+      "url": "https://valentinasresolve.com",
+      "telephone": "+351961803414",
+      "email": "atendimento@valentinasresolve.com.br",
+      "priceRange": "$$",
+      "openingHoursSpecification": [
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+          "opens": "08:00",
+          "closes": "18:00"
+        },
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": "Saturday",
+          "opens": "08:00",
+          "closes": "12:00"
+        }
+      ],
+      "areaServed": {
+        "@type": "State",
+        "name": "Rondônia"
+      }
+    }
+    </script>
+    
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Como funciona a plataforma Valentina's Resolve?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "A Valentina's Resolve conecta profissionais qualificados a clientes que precisam de serviços em mais de 200 áreas em 20 nichos diferentes. Nossa plataforma intermedia todo o processo, desde o cadastro até a execução do serviço, de forma digital, segura e transparente."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Quais serviços estão disponíveis na plataforma?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Oferecemos mais de 200 serviços em 20 nichos: Domésticos, Beleza, Saúde, Jurídicos, Educação, Automotivos, Pets, Eventos, Criativos, Construção, Instalações, Transporte, Agricultura, Personalizados, Turismo, Esportes, Cuidados Humanos, Arquitetura e Engenharia. Desde limpeza residencial até consultoria jurídica e contabilidade integrada."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Como os profissionais são verificados?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Todos os profissionais passam por um processo rigoroso de verificação que inclui: análise de documentos, verificação de qualificações, checagem de referências e avaliação de experiência. Também monitoramos as avaliações dos clientes para garantir a qualidade contínua dos serviços."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Quanto custa para profissionais?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Para profissionais, oferecemos diferentes planos de assinatura com acesso a solicitações de serviços e ferramentas de gestão. Entre em contato para conhecer os planos disponíveis e escolher o melhor para seu negócio."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Como funciona a Contabilidade Integrada?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "A Contabilidade Integrada é um serviço exclusivo liderado pela contadora Andressa Melo. É 100% digital e oferece abertura de CNPJ, planejamento tributário, emissão de notas fiscais, relatórios mensais e suporte personalizado. Ideal para profissionais da plataforma e empresas que buscam gestão contábil moderna."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Como me cadastro como profissional?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "O cadastro é simples e feito em 4 etapas: (1) Preencha seus dados pessoais, (2) Informe suas qualificações e experiência, (3) Selecione as categorias de serviços que você oferece, (4) Envie documentos e portfólio. Após análise (até 48h), você receberá um email confirmando a aprovação."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Como recebo solicitações de serviço?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Após aprovado, você receberá solicitações de clientes através da plataforma. Nossa equipe analisa cada demanda e encaminha para os profissionais mais qualificados. Você será notificado e poderá aceitar as solicitações que se encaixam no seu perfil."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Qual a garantia de qualidade dos serviços?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Trabalhamos apenas com profissionais verificados e monitoramos constantemente as avaliações. Se você não ficar satisfeito com o serviço, oferecemos suporte para resolução de problemas. Nossa equipe está sempre disponível para garantir a melhor experiência."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Posso cancelar ou reagendar um serviço?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Sim! Entre em contato com a Valentina's Resolve para cancelar ou reagendar. Recomendamos fazer isso com antecedência mínima de 24 horas. As políticas de cancelamento podem variar de acordo com o tipo de serviço."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Como funciona o pagamento?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "A Valentina's Resolve intermedia todo o processo de pagamento. Aceitamos apenas meios eletrônicos de pagamento: PIX, cartão de crédito/débito e transferência bancária. Não trabalhamos com pagamento em dinheiro. O pagamento é processado de forma segura pela plataforma após a conclusão do serviço."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "A plataforma atende em quais regiões?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Atualmente atendemos somente em Rondônia. A plataforma faz todo o filtro e encaminhamento dos profissionais. Nossa equipe seleciona e envia o profissional mais qualificado para cada demanda."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Como entro em contato com o suporte?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Você pode entrar em contato conosco através do WhatsApp, email (atendimento@valentinasresolve.com.br), formulário no site ou pelo chat flutuante disponível em todas as páginas. Nossa equipe está pronta para ajudar de segunda a sexta, das 8h às 18h, e aos sábados, das 8h às 12h."
+          }
         }
       ]
     }
