@@ -29,4 +29,4 @@ User-agent: facebookexternalhit
 Allow: /
 
 # Sitemap
-Sitemap: https://valentinasresolve.com/sitemap.xml
+Sitemap: https://valentinasresolve.com.br/sitemap.xml
