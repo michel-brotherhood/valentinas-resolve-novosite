@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { useNavigate } from "react-router-dom";
 import { TrendingUp, Users, DollarSign, Clock, CheckCircle } from "lucide-react";
-import heroImage from "@/assets/work-with-us-hero.jpg";
+import heroImage from "@/assets/work-with-us-hero.webp";
 
 export default function WorkWithUs() {
   const navigate = useNavigate();

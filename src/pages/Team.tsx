@@ -3,9 +3,9 @@ import { Footer } from "@/components/Footer";
 import { Newsletter } from "@/components/Newsletter";
 import { Card } from "@/components/ui/card";
 import { useScrollReveal } from "@/hooks/use-scroll-reveal";
-import andressa from "@/assets/team/andressa.jpg";
-import daiane from "@/assets/team/daiane.jpg";
-import kellen from "@/assets/team/kellen.jpg";
+import andressa from "@/assets/team/andressa.webp";
+import daiane from "@/assets/team/daiane.webp";
+import kellen from "@/assets/team/kellen.webp";
 
 const teamMembers = [
   {

@@ -7,10 +7,10 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel";
 import Autoplay from "embla-carousel-autoplay";
-import cleaningImg from "@/assets/service-cleaning.jpg";
-import accountingImg from "@/assets/service-accounting.jpg";
-import gardeningImg from "@/assets/service-gardening.jpg";
-import beautyImg from "@/assets/service-beauty.jpg";
+import cleaningImg from "@/assets/service-cleaning.webp";
+import accountingImg from "@/assets/service-accounting.webp";
+import gardeningImg from "@/assets/service-gardening.webp";
+import beautyImg from "@/assets/service-beauty.webp";
 import { ChevronRight } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { useRef } from "react";
