@@ -12,7 +12,7 @@ import { useToast } from "@/hooks/use-toast";
 import { z } from "zod";
 import { maskPhone } from "@/lib/masks";
 import { ContactTopicSelect } from "@/components/ContactTopicSelect";
-import contactHeroBg from "@/assets/contact-hero-bg.jpg";
+import contactHeroBg from "@/assets/contact-hero-bg.webp";
 
 const contactSchema = z.object({
   name: z.string().trim().min(1, { message: "Nome é obrigatório" }).max(100, { message: "Nome deve ter menos de 100 caracteres" }),

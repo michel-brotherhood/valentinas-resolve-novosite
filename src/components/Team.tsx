@@ -5,9 +5,9 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import andressaImg from "@/assets/team/andressa.jpg";
-import daianeImg from "@/assets/team/daiane.jpg";
-import kellenImg from "@/assets/team/kellen.jpg";
+import andressaImg from "@/assets/team/andressa.webp";
+import daianeImg from "@/assets/team/daiane.webp";
+import kellenImg from "@/assets/team/kellen.webp";
 import { Link } from "react-router-dom";
 
 const teamMembers = [

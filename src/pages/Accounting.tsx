@@ -21,11 +21,11 @@ import {
   Globe,
   Phone
 } from "lucide-react";
-import andressa from "@/assets/team/andressa.jpg";
-import heroBg from "@/assets/accounting-hero-bg.jpg";
-import differentialsBg from "@/assets/accounting-differentials-bg.jpg";
-import differentialsParallaxBg from "@/assets/accounting-differentials-parallax.jpg";
-import ctaBg from "@/assets/accounting-cta-bg.jpg";
+import andressa from "@/assets/team/andressa.webp";
+import heroBg from "@/assets/accounting-hero-bg.webp";
+import differentialsBg from "@/assets/accounting-differentials-bg.webp";
+import differentialsParallaxBg from "@/assets/accounting-differentials-parallax.webp";
+import ctaBg from "@/assets/accounting-cta-bg.webp";
 
 const professionalServices = [
   "Enquadramento fiscal adequado",

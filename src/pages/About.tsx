@@ -5,7 +5,7 @@ import { Card } from "@/components/ui/card";
 import { useNavigate } from "react-router-dom";
 import { Users, Target, Award, TrendingUp } from "lucide-react";
 import { useScrollReveal } from "@/hooks/use-scroll-reveal";
-import heroBg from "@/assets/hero-bg.jpg";
+import heroBg from "@/assets/hero-bg.webp";
 
 export default function About() {
   const { elementRef, isVisible } = useScrollReveal();
