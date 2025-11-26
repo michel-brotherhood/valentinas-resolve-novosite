@@ -53,6 +53,35 @@ const handler = async (req: Request): Promise<Response> => {
 
     console.log("Sending hire service email:", data.serviceType);
 
+    // Rate limiting check - max 3 attempts per email in 15 minutes
+    const fifteenMinutesAgo = new Date(Date.now() - 15 * 60 * 1000).toISOString();
+    const { data: attempts, error: rateLimitError } = await supabase
+      .from('rate_limit_attempts')
+      .select('id')
+      .eq('identifier', data.email)
+      .eq('attempt_type', 'hire_service')
+      .gte('created_at', fifteenMinutesAgo);
+
+    if (rateLimitError) {
+      console.error("Rate limit check error:", rateLimitError);
+    }
+
+    if (attempts && attempts.length >= 3) {
+      console.warn("Rate limit exceeded for email:", data.email);
+      return new Response(
+        JSON.stringify({ error: "Muitas tentativas. Por favor, aguarde 15 minutos antes de tentar novamente." }),
+        {
+          status: 429,
+          headers: { "Content-Type": "application/json", ...corsHeaders },
+        }
+      );
+    }
+
+    // Record this attempt
+    await supabase
+      .from('rate_limit_attempts')
+      .insert({ identifier: data.email, attempt_type: 'hire_service' });
+
     const emailResponse = await resend.emails.send({
       from: "Valentina's Resolve <noreply@valentinasresolve.com.br>",
       to: ["atendimentoaocliente@valentinasresolve.com.br"],
