@@ -14,16 +14,200 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      professional_documents: {
+        Row: {
+          created_at: string
+          document_type: Database["public"]["Enums"]["document_type"]
+          file_name: string
+          file_path: string
+          id: string
+          professional_id: string
+        }
+        Insert: {
+          created_at?: string
+          document_type: Database["public"]["Enums"]["document_type"]
+          file_name: string
+          file_path: string
+          id?: string
+          professional_id: string
+        }
+        Update: {
+          created_at?: string
+          document_type?: Database["public"]["Enums"]["document_type"]
+          file_name?: string
+          file_path?: string
+          id?: string
+          professional_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "professional_documents_professional_id_fkey"
+            columns: ["professional_id"]
+            isOneToOne: false
+            referencedRelation: "professionals"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      professionals: {
+        Row: {
+          address: string
+          availability: string
+          birth_date: string
+          cpf: string
+          created_at: string
+          description: string
+          education: string | null
+          email: string
+          experience: string
+          full_name: string
+          home_service: boolean
+          id: string
+          phone: string
+          service_area: string
+          signature: string
+          status: Database["public"]["Enums"]["professional_status"]
+          updated_at: string
+        }
+        Insert: {
+          address: string
+          availability: string
+          birth_date: string
+          cpf: string
+          created_at?: string
+          description: string
+          education?: string | null
+          email: string
+          experience: string
+          full_name: string
+          home_service: boolean
+          id?: string
+          phone: string
+          service_area: string
+          signature: string
+          status?: Database["public"]["Enums"]["professional_status"]
+          updated_at?: string
+        }
+        Update: {
+          address?: string
+          availability?: string
+          birth_date?: string
+          cpf?: string
+          created_at?: string
+          description?: string
+          education?: string | null
+          email?: string
+          experience?: string
+          full_name?: string
+          home_service?: boolean
+          id?: string
+          phone?: string
+          service_area?: string
+          signature?: string
+          status?: Database["public"]["Enums"]["professional_status"]
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      service_requests: {
+        Row: {
+          budget_type: Database["public"]["Enums"]["budget_type"]
+          city_neighborhood: string
+          client_email: string
+          client_name: string
+          client_phone: string
+          contact_preference: string[]
+          created_at: string
+          description: string
+          id: string
+          location: string
+          scheduled_date: string | null
+          service_type: string
+          status: Database["public"]["Enums"]["service_request_status"]
+          updated_at: string
+          urgency: Database["public"]["Enums"]["urgency_type"]
+        }
+        Insert: {
+          budget_type: Database["public"]["Enums"]["budget_type"]
+          city_neighborhood: string
+          client_email: string
+          client_name: string
+          client_phone: string
+          contact_preference: string[]
+          created_at?: string
+          description: string
+          id?: string
+          location: string
+          scheduled_date?: string | null
+          service_type: string
+          status?: Database["public"]["Enums"]["service_request_status"]
+          updated_at?: string
+          urgency: Database["public"]["Enums"]["urgency_type"]
+        }
+        Update: {
+          budget_type?: Database["public"]["Enums"]["budget_type"]
+          city_neighborhood?: string
+          client_email?: string
+          client_name?: string
+          client_phone?: string
+          contact_preference?: string[]
+          created_at?: string
+          description?: string
+          id?: string
+          location?: string
+          scheduled_date?: string | null
+          service_type?: string
+          status?: Database["public"]["Enums"]["service_request_status"]
+          updated_at?: string
+          urgency?: Database["public"]["Enums"]["urgency_type"]
+        }
+        Relationships: []
+      }
+      user_roles: {
+        Row: {
+          created_at: string
+          id: string
+          role: Database["public"]["Enums"]["app_role"]
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          role: Database["public"]["Enums"]["app_role"]
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          role?: Database["public"]["Enums"]["app_role"]
+          user_id?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      has_role: {
+        Args: {
+          _role: Database["public"]["Enums"]["app_role"]
+          _user_id: string
+        }
+        Returns: boolean
+      }
     }
     Enums: {
-      [_ in never]: never
+      app_role: "admin" | "staff"
+      budget_type: "estimate" | "detailed"
+      document_type: "id_document" | "proof_of_address" | "certificate"
+      professional_status: "pending" | "approved" | "rejected"
+      service_request_status:
+        | "pending"
+        | "in_progress"
+        | "completed"
+        | "cancelled"
+      urgency_type: "immediate" | "days" | "scheduled"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -150,6 +334,18 @@ export type CompositeTypes<
 
 export const Constants = {
   public: {
-    Enums: {},
+    Enums: {
+      app_role: ["admin", "staff"],
+      budget_type: ["estimate", "detailed"],
+      document_type: ["id_document", "proof_of_address", "certificate"],
+      professional_status: ["pending", "approved", "rejected"],
+      service_request_status: [
+        "pending",
+        "in_progress",
+        "completed",
+        "cancelled",
+      ],
+      urgency_type: ["immediate", "days", "scheduled"],
+    },
   },
 } as const
