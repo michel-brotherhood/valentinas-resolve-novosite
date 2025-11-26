@@ -9,6 +9,21 @@ const corsHeaders = {
     "authorization, x-client-info, apikey, content-type",
 };
 
+// HTML escape function to prevent HTML injection
+const escapeHtml = (str: string): string => {
+  if (!str) return '';
+  return str.replace(/[&<>"']/g, (char) => {
+    const escapeMap: Record<string, string> = {
+      '&': '&amp;',
+      '<': '&lt;',
+      '>': '&gt;',
+      '"': '&quot;',
+      "'": '&#39;'
+    };
+    return escapeMap[char] || char;
+  });
+};
+
 interface FileAttachment {
   filename: string;
   content: string;
@@ -72,24 +87,24 @@ const handler = async (req: Request): Promise<Response> => {
           
           <div style="background-color: #f5f5f5; padding: 20px; border-radius: 8px; margin: 20px 0;">
             <h2 style="color: #333; margin-top: 0;">Dados Pessoais e de Contato</h2>
-            <p><strong>Nome Completo:</strong> ${data.fullName}</p>
-            <p><strong>CPF/CNPJ:</strong> ${data.cpf}</p>
-            <p><strong>Data de Nascimento:</strong> ${data.birthDate}</p>
-            <p><strong>Telefone/WhatsApp:</strong> ${data.phone}</p>
-            <p><strong>E-mail:</strong> ${data.email}</p>
-            <p><strong>Endereço:</strong> ${data.address}</p>
+            <p><strong>Nome Completo:</strong> ${escapeHtml(data.fullName)}</p>
+            <p><strong>CPF/CNPJ:</strong> ${escapeHtml(data.cpf)}</p>
+            <p><strong>Data de Nascimento:</strong> ${escapeHtml(data.birthDate)}</p>
+            <p><strong>Telefone/WhatsApp:</strong> ${escapeHtml(data.phone)}</p>
+            <p><strong>E-mail:</strong> ${escapeHtml(data.email)}</p>
+            <p><strong>Endereço:</strong> ${escapeHtml(data.address)}</p>
           </div>
           
           <div style="background-color: #fff; padding: 20px; border: 1px solid #ddd; border-radius: 8px; margin: 20px 0;">
             <h2 style="color: #333; margin-top: 0;">Informações Profissionais</h2>
-            <p><strong>Área de Atuação:</strong> ${data.serviceArea}</p>
-            <p><strong>Tempo de Experiência:</strong> ${data.experience}</p>
+            <p><strong>Área de Atuação:</strong> ${escapeHtml(data.serviceArea)}</p>
+            <p><strong>Tempo de Experiência:</strong> ${escapeHtml(data.experience)}</p>
             <p><strong>Formação/Certificações:</strong></p>
-            <p style="white-space: pre-wrap;">${data.education || 'Não informado'}</p>
-            <p><strong>Disponibilidade:</strong> ${data.availability}</p>
-            <p><strong>Atende em Domicílio:</strong> ${data.homeService}</p>
+            <p style="white-space: pre-wrap;">${escapeHtml(data.education || 'Não informado')}</p>
+            <p><strong>Disponibilidade:</strong> ${escapeHtml(data.availability)}</p>
+            <p><strong>Atende em Domicílio:</strong> ${escapeHtml(data.homeService)}</p>
             <p><strong>Descrição dos Serviços:</strong></p>
-            <p style="white-space: pre-wrap;">${data.description}</p>
+            <p style="white-space: pre-wrap;">${escapeHtml(data.description)}</p>
           </div>
           
           <div style="background-color: #f5f5f5; padding: 20px; border-radius: 8px; margin: 20px 0;">
@@ -97,7 +112,7 @@ const handler = async (req: Request): Promise<Response> => {
             <p><strong>Documento de Identificação:</strong> ${data.idDocuments.length} arquivo(s) anexado(s)</p>
             <p><strong>Comprovante de Residência:</strong> ${data.addressProofs.length} arquivo(s) anexado(s)</p>
             <p><strong>Certificados:</strong> ${data.certificates.length} arquivo(s) anexado(s)</p>
-            <p><strong>Assinatura:</strong> ${data.signature}</p>
+            <p><strong>Assinatura:</strong> ${escapeHtml(data.signature)}</p>
           </div>
           
           <p style="color: #666; font-size: 12px; margin-top: 30px;">

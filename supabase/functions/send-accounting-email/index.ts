@@ -9,6 +9,21 @@ const corsHeaders = {
     "authorization, x-client-info, apikey, content-type",
 };
 
+// HTML escape function to prevent HTML injection
+const escapeHtml = (str: string): string => {
+  if (!str) return '';
+  return str.replace(/[&<>"']/g, (char) => {
+    const escapeMap: Record<string, string> = {
+      '&': '&amp;',
+      '<': '&lt;',
+      '>': '&gt;',
+      '"': '&quot;',
+      "'": '&#39;'
+    };
+    return escapeMap[char] || char;
+  });
+};
+
 interface AccountingEmailRequest {
   fullName: string;
   email: string;
@@ -46,10 +61,10 @@ const handler = async (req: Request): Promise<Response> => {
           
           <div style="background-color: #f5f5f5; padding: 20px; border-radius: 8px; margin: 20px 0;">
             <h2 style="color: #333; margin-top: 0;">Informações do Solicitante</h2>
-            <p><strong>Nome Completo:</strong> ${fullName}</p>
-            <p><strong>Email:</strong> ${email}</p>
-            <p><strong>Telefone:</strong> ${phone}</p>
-            <p><strong>Tipo:</strong> ${userTypeLabels[userType] || userType}</p>
+            <p><strong>Nome Completo:</strong> ${escapeHtml(fullName)}</p>
+            <p><strong>Email:</strong> ${escapeHtml(email)}</p>
+            <p><strong>Telefone:</strong> ${escapeHtml(phone)}</p>
+            <p><strong>Tipo:</strong> ${escapeHtml(userTypeLabels[userType] || userType)}</p>
           </div>
           
           <p style="color: #666; font-size: 12px; margin-top: 30px;">
