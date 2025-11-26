@@ -1,7 +1,12 @@
 import { serve } from "https://deno.land/std@0.190.0/http/server.ts";
 import { Resend } from "https://esm.sh/resend@2.0.0";
+import { createClient } from "https://esm.sh/@supabase/supabase-js@2.81.1";
 
 const resend = new Resend(Deno.env.get("RESEND_API_KEY"));
+
+const supabaseUrl = Deno.env.get("SUPABASE_URL")!;
+const supabaseServiceKey = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!;
+const supabase = createClient(supabaseUrl, supabaseServiceKey);
 
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
@@ -90,6 +95,53 @@ const handler = async (req: Request): Promise<Response> => {
     });
 
     console.log("Email sent successfully:", emailResponse);
+
+    // Save service request to database
+    try {
+      // Parse urgency type
+      let urgencyType: 'immediate' | 'days' | 'scheduled' = 'immediate';
+      if (data.urgency.includes('dias')) {
+        urgencyType = 'days';
+      } else if (data.urgency.includes('agendado') || data.scheduledDate) {
+        urgencyType = 'scheduled';
+      }
+
+      // Parse contact preferences into array
+      const contactPreferences = data.contactPreference.split(',').map(p => p.trim());
+
+      // Parse budget type
+      const budgetType = data.budgetType.toLowerCase().includes('detalhado') ? 'detailed' : 'estimate';
+
+      const { data: serviceRequestData, error: serviceRequestError } = await supabase
+        .from('service_requests')
+        .insert({
+          client_name: data.name,
+          client_phone: data.phone,
+          client_email: data.email,
+          city_neighborhood: data.cityNeighborhood,
+          service_type: data.serviceType,
+          description: data.description,
+          location: data.location,
+          urgency: urgencyType,
+          scheduled_date: data.scheduledDate || null,
+          contact_preference: contactPreferences,
+          budget_type: budgetType,
+          status: 'pending'
+        })
+        .select()
+        .single();
+
+      if (serviceRequestError) {
+        console.error("Error saving service request:", serviceRequestError);
+        throw serviceRequestError;
+      }
+
+      console.log("Service request saved successfully:", serviceRequestData.id);
+
+    } catch (dbError: any) {
+      console.error("Error saving to database:", dbError);
+      // Continue even if database save fails - email was sent successfully
+    }
 
     return new Response(JSON.stringify(emailResponse), {
       status: 200,
