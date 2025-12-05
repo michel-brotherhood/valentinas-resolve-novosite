@@ -1,4 +1,3 @@
-import { Button } from "@/components/ui/button";
 import { useState, useEffect, useRef } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import logo from "@/assets/logo-renovado.svg";
@@ -64,53 +63,41 @@ export const Header = () => {
 
             {/* Desktop Navigation */}
             <nav className="hidden lg:flex items-center gap-1 ml-8">
-              <Link to="/">
-                <Button 
-                  variant="ghost" 
-                  className={`hover:text-primary hover:bg-primary/10 transition-all duration-300 text-sm ${isHomePage ? 'text-primary lg:text-primary' : 'text-white/90'}`}
-                >
-                  Início
-                </Button>
+              <Link 
+                to="/"
+                className={`px-4 py-2 rounded-md hover:text-primary hover:bg-primary/10 transition-all duration-300 text-sm font-medium ${isHomePage ? 'text-primary' : 'text-white/90'}`}
+              >
+                Início
               </Link>
-              <Link to="/sobre">
-                <Button 
-                  variant="ghost" 
-                  className={`hover:text-primary hover:bg-primary/10 transition-all duration-300 text-sm ${isHomePage ? 'text-primary lg:text-primary' : 'text-white/90'}`}
-                >
-                  Sobre
-                </Button>
+              <Link 
+                to="/sobre"
+                className={`px-4 py-2 rounded-md hover:text-primary hover:bg-primary/10 transition-all duration-300 text-sm font-medium ${isHomePage ? 'text-primary' : 'text-white/90'}`}
+              >
+                Sobre
               </Link>
-              <Link to="/servicos">
-                <Button 
-                  variant="ghost" 
-                  className={`hover:text-primary hover:bg-primary/10 transition-all duration-300 text-sm ${isHomePage ? 'text-primary lg:text-primary' : 'text-white/90'}`}
-                >
-                  Serviços
-                </Button>
+              <Link 
+                to="/servicos"
+                className={`px-4 py-2 rounded-md hover:text-primary hover:bg-primary/10 transition-all duration-300 text-sm font-medium ${isHomePage ? 'text-primary' : 'text-white/90'}`}
+              >
+                Serviços
               </Link>
-              <Link to="/contabilidade">
-                <Button 
-                  variant="ghost" 
-                  className={`hover:text-primary hover:bg-primary/10 transition-all duration-300 text-sm ${isHomePage ? 'text-primary lg:text-primary' : 'text-white/90'}`}
-                >
-                  Contabilidade Integrada
-                </Button>
+              <Link 
+                to="/contabilidade"
+                className={`px-4 py-2 rounded-md hover:text-primary hover:bg-primary/10 transition-all duration-300 text-sm font-medium ${isHomePage ? 'text-primary' : 'text-white/90'}`}
+              >
+                Contabilidade Integrada
               </Link>
-              <Link to="/equipe">
-                <Button 
-                  variant="ghost" 
-                  className={`hover:text-primary hover:bg-primary/10 transition-all duration-300 text-sm ${isHomePage ? 'text-primary lg:text-primary' : 'text-white/90'}`}
-                >
-                  Equipe
-                </Button>
+              <Link 
+                to="/equipe"
+                className={`px-4 py-2 rounded-md hover:text-primary hover:bg-primary/10 transition-all duration-300 text-sm font-medium ${isHomePage ? 'text-primary' : 'text-white/90'}`}
+              >
+                Equipe
               </Link>
-              <Link to="/contato">
-                <Button 
-                  variant="ghost" 
-                  className={`hover:text-primary hover:bg-primary/10 transition-all duration-300 text-sm ${isHomePage ? 'text-primary lg:text-primary' : 'text-white/90'}`}
-                >
-                  Contato
-                </Button>
+              <Link 
+                to="/contato"
+                className={`px-4 py-2 rounded-md hover:text-primary hover:bg-primary/10 transition-all duration-300 text-sm font-medium ${isHomePage ? 'text-primary' : 'text-white/90'}`}
+              >
+                Contato
               </Link>
               <button 
                 className="button-3d ml-2"
