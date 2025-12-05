@@ -72,7 +72,7 @@ export const Hero = () => {
       {/* Gradient Overlay */}
       <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/50 to-black/80" />
       
-      <div className="container mx-auto px-4 pt-28 pb-20 md:pt-32 md:pb-28 relative z-10">
+      <div className="container mx-auto px-4 pt-28 pb-20 md:pt-32 md:pb-28 relative z-10 min-h-[600px] md:min-h-[700px] flex items-center">
         <div className="max-w-3xl">
           <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">
             Encontre <span className="text-primary">novos clientes</span> e expanda suas <span className="text-primary">oportunidades</span>
