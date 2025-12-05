@@ -1,11 +1,13 @@
 import { Button } from "@/components/ui/button";
 import { useState, useEffect, useRef } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import logo from "@/assets/logo-renovado.svg";
 
 export const Header = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const navigate = useNavigate();
+  const location = useLocation();
+  const isHomePage = location.pathname === '/';
   const menuRef = useRef<HTMLDivElement>(null);
   const touchStartY = useRef<number>(0);
   const touchEndY = useRef<number>(0);
@@ -47,7 +49,7 @@ export const Header = () => {
 
   return (
     <>
-      <header className="bg-gradient-to-b from-black to-black/95 backdrop-blur-sm sticky top-0 z-50 shadow-lg shadow-primary/5">
+      <header className={`backdrop-blur-sm sticky top-0 z-50 ${isHomePage ? 'bg-gradient-to-b from-black to-black/95 lg:bg-transparent lg:shadow-none shadow-lg shadow-primary/5' : 'bg-gradient-to-b from-black to-black/95 shadow-lg shadow-primary/5'}`}>
         <div className="container mx-auto px-4 py-3">
           <div className="flex items-center justify-between">
             <div className="flex items-center">
@@ -65,7 +67,7 @@ export const Header = () => {
               <Link to="/">
                 <Button 
                   variant="ghost" 
-                  className="text-white/90 hover:text-primary hover:bg-primary/10 transition-all duration-300 text-sm"
+                  className={`hover:text-primary hover:bg-primary/10 transition-all duration-300 text-sm ${isHomePage ? 'text-primary lg:text-primary' : 'text-white/90'}`}
                 >
                   Início
                 </Button>
@@ -73,7 +75,7 @@ export const Header = () => {
               <Link to="/sobre">
                 <Button 
                   variant="ghost" 
-                  className="text-white/90 hover:text-primary hover:bg-primary/10 transition-all duration-300 text-sm"
+                  className={`hover:text-primary hover:bg-primary/10 transition-all duration-300 text-sm ${isHomePage ? 'text-primary lg:text-primary' : 'text-white/90'}`}
                 >
                   Sobre
                 </Button>
@@ -81,7 +83,7 @@ export const Header = () => {
               <Link to="/servicos">
                 <Button 
                   variant="ghost" 
-                  className="text-white/90 hover:text-primary hover:bg-primary/10 transition-all duration-300 text-sm"
+                  className={`hover:text-primary hover:bg-primary/10 transition-all duration-300 text-sm ${isHomePage ? 'text-primary lg:text-primary' : 'text-white/90'}`}
                 >
                   Serviços
                 </Button>
@@ -89,7 +91,7 @@ export const Header = () => {
               <Link to="/contabilidade">
                 <Button 
                   variant="ghost" 
-                  className="text-white/90 hover:text-primary hover:bg-primary/10 transition-all duration-300 text-sm"
+                  className={`hover:text-primary hover:bg-primary/10 transition-all duration-300 text-sm ${isHomePage ? 'text-primary lg:text-primary' : 'text-white/90'}`}
                 >
                   Contabilidade Integrada
                 </Button>
@@ -97,7 +99,7 @@ export const Header = () => {
               <Link to="/equipe">
                 <Button 
                   variant="ghost" 
-                  className="text-white/90 hover:text-primary hover:bg-primary/10 transition-all duration-300 text-sm"
+                  className={`hover:text-primary hover:bg-primary/10 transition-all duration-300 text-sm ${isHomePage ? 'text-primary lg:text-primary' : 'text-white/90'}`}
                 >
                   Equipe
                 </Button>
@@ -105,7 +107,7 @@ export const Header = () => {
               <Link to="/contato">
                 <Button 
                   variant="ghost" 
-                  className="text-white/90 hover:text-primary hover:bg-primary/10 transition-all duration-300 text-sm"
+                  className={`hover:text-primary hover:bg-primary/10 transition-all duration-300 text-sm ${isHomePage ? 'text-primary lg:text-primary' : 'text-white/90'}`}
                 >
                   Contato
                 </Button>
