@@ -63,7 +63,7 @@ export const Hero = () => {
           loop 
           muted 
           playsInline
-          className="w-full h-full object-cover"
+          className="w-full h-full object-cover lg:object-[center_30%]"
         >
           <source src="/videos/hero-video.mp4" type="video/mp4" />
         </video>
