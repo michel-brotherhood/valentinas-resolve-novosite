@@ -29,6 +29,29 @@ const escapeHtml = (str: string): string => {
   });
 };
 
+// Validation helpers
+const isValidEmail = (email: string): boolean => {
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  return emailRegex.test(email) && email.length <= 255;
+};
+
+const isValidPhone = (phone: string): boolean => {
+  // Brazilian phone format: (XX) XXXXX-XXXX or (XX) XXXX-XXXX
+  const phoneRegex = /^\(\d{2}\)\s?\d{4,5}-?\d{4}$/;
+  return phoneRegex.test(phone) || phone.replace(/\D/g, '').length >= 10;
+};
+
+const isValidString = (str: string, minLen: number, maxLen: number): boolean => {
+  return typeof str === 'string' && str.trim().length >= minLen && str.length <= maxLen;
+};
+
+const VALID_USER_TYPES = ['profissional', 'autonomo', 'empresa', 'pessoa_fisica'];
+
+interface ValidationError {
+  field: string;
+  message: string;
+}
+
 interface AccountingEmailRequest {
   fullName: string;
   email: string;
@@ -36,13 +59,50 @@ interface AccountingEmailRequest {
   userType: string;
 }
 
+const validateAccountingRequest = (data: AccountingEmailRequest): ValidationError[] => {
+  const errors: ValidationError[] = [];
+
+  if (!isValidString(data.fullName, 2, 200)) {
+    errors.push({ field: 'fullName', message: 'Nome deve ter entre 2 e 200 caracteres' });
+  }
+
+  if (!isValidEmail(data.email)) {
+    errors.push({ field: 'email', message: 'Email inválido' });
+  }
+
+  if (!isValidPhone(data.phone)) {
+    errors.push({ field: 'phone', message: 'Telefone inválido. Use o formato (XX) XXXXX-XXXX' });
+  }
+
+  if (!VALID_USER_TYPES.includes(data.userType)) {
+    errors.push({ field: 'userType', message: 'Tipo de usuário inválido' });
+  }
+
+  return errors;
+};
+
 const handler = async (req: Request): Promise<Response> => {
   if (req.method === "OPTIONS") {
     return new Response(null, { headers: corsHeaders });
   }
 
   try {
-    const { fullName, email, phone, userType }: AccountingEmailRequest = await req.json();
+    const data: AccountingEmailRequest = await req.json();
+
+    // Server-side validation
+    const validationErrors = validateAccountingRequest(data);
+    if (validationErrors.length > 0) {
+      console.warn("Validation errors:", validationErrors);
+      return new Response(
+        JSON.stringify({ error: "Dados inválidos", details: validationErrors }),
+        {
+          status: 400,
+          headers: { "Content-Type": "application/json", ...corsHeaders },
+        }
+      );
+    }
+
+    const { fullName, email, phone, userType } = data;
 
     console.log("Sending accounting email:", { fullName, email, phone, userType });
 

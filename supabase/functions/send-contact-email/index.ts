@@ -29,6 +29,27 @@ const escapeHtml = (str: string): string => {
   });
 };
 
+// Validation helpers
+const isValidEmail = (email: string): boolean => {
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  return emailRegex.test(email) && email.length <= 255;
+};
+
+const isValidPhone = (phone: string): boolean => {
+  // Brazilian phone format: (XX) XXXXX-XXXX or (XX) XXXX-XXXX
+  const phoneRegex = /^\(\d{2}\)\s?\d{4,5}-?\d{4}$/;
+  return phoneRegex.test(phone) || phone.replace(/\D/g, '').length >= 10;
+};
+
+const isValidString = (str: string, minLen: number, maxLen: number): boolean => {
+  return typeof str === 'string' && str.trim().length >= minLen && str.length <= maxLen;
+};
+
+interface ValidationError {
+  field: string;
+  message: string;
+}
+
 interface ContactEmailRequest {
   name: string;
   email: string;
@@ -37,13 +58,54 @@ interface ContactEmailRequest {
   message: string;
 }
 
+const validateContactRequest = (data: ContactEmailRequest): ValidationError[] => {
+  const errors: ValidationError[] = [];
+
+  if (!isValidString(data.name, 2, 100)) {
+    errors.push({ field: 'name', message: 'Nome deve ter entre 2 e 100 caracteres' });
+  }
+
+  if (!isValidEmail(data.email)) {
+    errors.push({ field: 'email', message: 'Email inválido' });
+  }
+
+  if (!isValidPhone(data.phone)) {
+    errors.push({ field: 'phone', message: 'Telefone inválido. Use o formato (XX) XXXXX-XXXX' });
+  }
+
+  if (!isValidString(data.service, 1, 200)) {
+    errors.push({ field: 'service', message: 'Assunto deve ter entre 1 e 200 caracteres' });
+  }
+
+  if (!isValidString(data.message, 10, 2000)) {
+    errors.push({ field: 'message', message: 'Mensagem deve ter entre 10 e 2000 caracteres' });
+  }
+
+  return errors;
+};
+
 const handler = async (req: Request): Promise<Response> => {
   if (req.method === "OPTIONS") {
     return new Response(null, { headers: corsHeaders });
   }
 
   try {
-    const { name, email, phone, service, message }: ContactEmailRequest = await req.json();
+    const data: ContactEmailRequest = await req.json();
+
+    // Server-side validation
+    const validationErrors = validateContactRequest(data);
+    if (validationErrors.length > 0) {
+      console.warn("Validation errors:", validationErrors);
+      return new Response(
+        JSON.stringify({ error: "Dados inválidos", details: validationErrors }),
+        {
+          status: 400,
+          headers: { "Content-Type": "application/json", ...corsHeaders },
+        }
+      );
+    }
+
+    const { name, email, phone, service, message } = data;
 
     console.log("Sending contact email:", { name, email, phone, service });
 
