@@ -29,6 +29,67 @@ const escapeHtml = (str: string): string => {
   });
 };
 
+// Validation helpers
+const isValidEmail = (email: string): boolean => {
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  return emailRegex.test(email) && email.length <= 255;
+};
+
+const isValidPhone = (phone: string): boolean => {
+  // Brazilian phone format: (XX) XXXXX-XXXX or (XX) XXXX-XXXX
+  const phoneRegex = /^\(\d{2}\)\s?\d{4,5}-?\d{4}$/;
+  return phoneRegex.test(phone) || phone.replace(/\D/g, '').length >= 10;
+};
+
+const isValidCPF = (cpf: string): boolean => {
+  // Remove non-digits
+  const cleanCPF = cpf.replace(/\D/g, '');
+  
+  // Must have 11 or 14 digits (CPF or CNPJ)
+  if (cleanCPF.length !== 11 && cleanCPF.length !== 14) {
+    return false;
+  }
+  
+  // Check for repeated digits
+  if (/^(\d)\1+$/.test(cleanCPF)) {
+    return false;
+  }
+  
+  return true;
+};
+
+const isValidDate = (dateStr: string): boolean => {
+  // Accept formats: YYYY-MM-DD or DD/MM/YYYY
+  const isoRegex = /^\d{4}-\d{2}-\d{2}$/;
+  const brRegex = /^\d{2}\/\d{2}\/\d{4}$/;
+  
+  if (!isoRegex.test(dateStr) && !brRegex.test(dateStr)) {
+    return false;
+  }
+  
+  const date = new Date(dateStr);
+  return !isNaN(date.getTime());
+};
+
+const isValidString = (str: string, minLen: number, maxLen: number): boolean => {
+  return typeof str === 'string' && str.trim().length >= minLen && str.length <= maxLen;
+};
+
+const isValidFileAttachment = (file: any): boolean => {
+  if (!file || typeof file !== 'object') return false;
+  if (!file.filename || typeof file.filename !== 'string') return false;
+  if (!file.content || typeof file.content !== 'string') return false;
+  if (file.filename.length > 255) return false;
+  // Max 5MB in base64 (roughly 6.8MB encoded)
+  if (file.content.length > 7 * 1024 * 1024) return false;
+  return true;
+};
+
+interface ValidationError {
+  field: string;
+  message: string;
+}
+
 interface FileAttachment {
   filename: string;
   content: string;
@@ -54,6 +115,100 @@ interface ProfessionalEmailRequest {
   certificates: FileAttachment[];
 }
 
+const validateProfessionalRequest = (data: ProfessionalEmailRequest): ValidationError[] => {
+  const errors: ValidationError[] = [];
+
+  if (!isValidString(data.fullName, 2, 200)) {
+    errors.push({ field: 'fullName', message: 'Nome deve ter entre 2 e 200 caracteres' });
+  }
+
+  if (!isValidCPF(data.cpf)) {
+    errors.push({ field: 'cpf', message: 'CPF/CNPJ inválido' });
+  }
+
+  if (!isValidDate(data.birthDate)) {
+    errors.push({ field: 'birthDate', message: 'Data de nascimento inválida' });
+  }
+
+  if (!isValidPhone(data.phone)) {
+    errors.push({ field: 'phone', message: 'Telefone inválido. Use o formato (XX) XXXXX-XXXX' });
+  }
+
+  if (!isValidEmail(data.email)) {
+    errors.push({ field: 'email', message: 'Email inválido' });
+  }
+
+  if (!isValidString(data.address, 5, 500)) {
+    errors.push({ field: 'address', message: 'Endereço deve ter entre 5 e 500 caracteres' });
+  }
+
+  if (!isValidString(data.serviceArea, 2, 200)) {
+    errors.push({ field: 'serviceArea', message: 'Área de atuação deve ter entre 2 e 200 caracteres' });
+  }
+
+  if (!isValidString(data.experience, 1, 100)) {
+    errors.push({ field: 'experience', message: 'Experiência é obrigatória' });
+  }
+
+  if (!isValidString(data.availability, 1, 200)) {
+    errors.push({ field: 'availability', message: 'Disponibilidade é obrigatória' });
+  }
+
+  if (!isValidString(data.homeService, 1, 10)) {
+    errors.push({ field: 'homeService', message: 'Atendimento em domicílio é obrigatório' });
+  }
+
+  if (!isValidString(data.description, 20, 2000)) {
+    errors.push({ field: 'description', message: 'Descrição deve ter entre 20 e 2000 caracteres' });
+  }
+
+  if (!isValidString(data.signature, 2, 200)) {
+    errors.push({ field: 'signature', message: 'Assinatura é obrigatória' });
+  }
+
+  // Validate files
+  if (!Array.isArray(data.idDocuments) || data.idDocuments.length === 0) {
+    errors.push({ field: 'idDocuments', message: 'Documento de identificação é obrigatório' });
+  } else if (data.idDocuments.length > 5) {
+    errors.push({ field: 'idDocuments', message: 'Máximo de 5 documentos de identificação' });
+  } else {
+    for (const doc of data.idDocuments) {
+      if (!isValidFileAttachment(doc)) {
+        errors.push({ field: 'idDocuments', message: 'Arquivo de identificação inválido' });
+        break;
+      }
+    }
+  }
+
+  if (!Array.isArray(data.addressProofs) || data.addressProofs.length === 0) {
+    errors.push({ field: 'addressProofs', message: 'Comprovante de endereço é obrigatório' });
+  } else if (data.addressProofs.length > 3) {
+    errors.push({ field: 'addressProofs', message: 'Máximo de 3 comprovantes de endereço' });
+  } else {
+    for (const doc of data.addressProofs) {
+      if (!isValidFileAttachment(doc)) {
+        errors.push({ field: 'addressProofs', message: 'Arquivo de comprovante inválido' });
+        break;
+      }
+    }
+  }
+
+  if (data.certificates && Array.isArray(data.certificates)) {
+    if (data.certificates.length > 10) {
+      errors.push({ field: 'certificates', message: 'Máximo de 10 certificados' });
+    } else {
+      for (const doc of data.certificates) {
+        if (!isValidFileAttachment(doc)) {
+          errors.push({ field: 'certificates', message: 'Arquivo de certificado inválido' });
+          break;
+        }
+      }
+    }
+  }
+
+  return errors;
+};
+
 const handler = async (req: Request): Promise<Response> => {
   if (req.method === "OPTIONS") {
     return new Response(null, { headers: corsHeaders });
@@ -61,6 +216,19 @@ const handler = async (req: Request): Promise<Response> => {
 
   try {
     const data: ProfessionalEmailRequest = await req.json();
+
+    // Server-side validation
+    const validationErrors = validateProfessionalRequest(data);
+    if (validationErrors.length > 0) {
+      console.warn("Validation errors:", validationErrors);
+      return new Response(
+        JSON.stringify({ error: "Dados inválidos", details: validationErrors }),
+        {
+          status: 400,
+          headers: { "Content-Type": "application/json", ...corsHeaders },
+        }
+      );
+    }
 
     console.log("Sending professional registration email:", data.fullName);
 
@@ -102,7 +270,7 @@ const handler = async (req: Request): Promise<Response> => {
         filename: file.filename,
         content: file.content,
       })),
-      ...data.certificates.map(file => ({
+      ...(data.certificates || []).map(file => ({
         filename: file.filename,
         content: file.content,
       })),
@@ -145,7 +313,7 @@ const handler = async (req: Request): Promise<Response> => {
             <h2 style="color: #333; margin-top: 0;">Documentação</h2>
             <p><strong>Documento de Identificação:</strong> ${data.idDocuments.length} arquivo(s) anexado(s)</p>
             <p><strong>Comprovante de Residência:</strong> ${data.addressProofs.length} arquivo(s) anexado(s)</p>
-            <p><strong>Certificados:</strong> ${data.certificates.length} arquivo(s) anexado(s)</p>
+            <p><strong>Certificados:</strong> ${(data.certificates || []).length} arquivo(s) anexado(s)</p>
             <p><strong>Assinatura:</strong> ${escapeHtml(data.signature)}</p>
           </div>
           
@@ -244,7 +412,7 @@ const handler = async (req: Request): Promise<Response> => {
         );
       }
 
-      for (const doc of data.certificates) {
+      for (const doc of (data.certificates || [])) {
         const fileName = `${professionalData.id}/certificates/${doc.filename}`;
         const fileData = Uint8Array.from(atob(doc.content.split(',')[1]), c => c.charCodeAt(0));
         
