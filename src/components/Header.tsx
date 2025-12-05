@@ -65,37 +65,37 @@ export const Header = () => {
             <nav className="hidden lg:flex items-center gap-1 ml-8">
               <Link 
                 to="/"
-                className={`px-4 py-2 rounded-md hover:text-primary hover:bg-primary/10 transition-all duration-300 text-sm font-medium ${isHomePage ? 'text-white' : 'text-white/90'}`}
+                className={`px-4 py-2 rounded-md hover:text-primary hover:bg-primary/10 transition-all duration-300 text-sm font-medium ${isHomePage ? 'text-white [text-shadow:0_2px_4px_rgba(0,0,0,0.5)]' : 'text-white/90'}`}
               >
                 Início
               </Link>
               <Link 
                 to="/sobre"
-                className={`px-4 py-2 rounded-md hover:text-primary hover:bg-primary/10 transition-all duration-300 text-sm font-medium ${isHomePage ? 'text-white' : 'text-white/90'}`}
+                className={`px-4 py-2 rounded-md hover:text-primary hover:bg-primary/10 transition-all duration-300 text-sm font-medium ${isHomePage ? 'text-white [text-shadow:0_2px_4px_rgba(0,0,0,0.5)]' : 'text-white/90'}`}
               >
                 Sobre
               </Link>
               <Link 
                 to="/servicos"
-                className={`px-4 py-2 rounded-md hover:text-primary hover:bg-primary/10 transition-all duration-300 text-sm font-medium ${isHomePage ? 'text-white' : 'text-white/90'}`}
+                className={`px-4 py-2 rounded-md hover:text-primary hover:bg-primary/10 transition-all duration-300 text-sm font-medium ${isHomePage ? 'text-white [text-shadow:0_2px_4px_rgba(0,0,0,0.5)]' : 'text-white/90'}`}
               >
                 Serviços
               </Link>
               <Link 
                 to="/contabilidade"
-                className={`px-4 py-2 rounded-md hover:text-primary hover:bg-primary/10 transition-all duration-300 text-sm font-medium ${isHomePage ? 'text-white' : 'text-white/90'}`}
+                className={`px-4 py-2 rounded-md hover:text-primary hover:bg-primary/10 transition-all duration-300 text-sm font-medium ${isHomePage ? 'text-white [text-shadow:0_2px_4px_rgba(0,0,0,0.5)]' : 'text-white/90'}`}
               >
                 Contabilidade Integrada
               </Link>
               <Link 
                 to="/equipe"
-                className={`px-4 py-2 rounded-md hover:text-primary hover:bg-primary/10 transition-all duration-300 text-sm font-medium ${isHomePage ? 'text-white' : 'text-white/90'}`}
+                className={`px-4 py-2 rounded-md hover:text-primary hover:bg-primary/10 transition-all duration-300 text-sm font-medium ${isHomePage ? 'text-white [text-shadow:0_2px_4px_rgba(0,0,0,0.5)]' : 'text-white/90'}`}
               >
                 Equipe
               </Link>
               <Link 
                 to="/contato"
-                className={`px-4 py-2 rounded-md hover:text-primary hover:bg-primary/10 transition-all duration-300 text-sm font-medium ${isHomePage ? 'text-white' : 'text-white/90'}`}
+                className={`px-4 py-2 rounded-md hover:text-primary hover:bg-primary/10 transition-all duration-300 text-sm font-medium ${isHomePage ? 'text-white [text-shadow:0_2px_4px_rgba(0,0,0,0.5)]' : 'text-white/90'}`}
               >
                 Contato
               </Link>
