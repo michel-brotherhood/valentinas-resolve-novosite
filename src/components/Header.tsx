@@ -49,7 +49,7 @@ export const Header = () => {
 
   return (
     <>
-      <header className={`backdrop-blur-sm sticky top-0 z-50 ${isHomePage ? 'bg-gradient-to-b from-black to-black/95 lg:bg-transparent lg:shadow-none shadow-lg shadow-primary/5' : 'bg-gradient-to-b from-black to-black/95 shadow-lg shadow-primary/5'}`}>
+      <header className={`sticky top-0 z-50 ${isHomePage ? 'bg-gradient-to-b from-black to-black/95 lg:bg-none lg:bg-transparent backdrop-blur-sm lg:backdrop-blur-none shadow-lg shadow-primary/5 lg:shadow-none' : 'bg-gradient-to-b from-black to-black/95 backdrop-blur-sm shadow-lg shadow-primary/5'}`}>
         <div className="container mx-auto px-4 py-3">
           <div className="flex items-center justify-between">
             <div className="flex items-center">
