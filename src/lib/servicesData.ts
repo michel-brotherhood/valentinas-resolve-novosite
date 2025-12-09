@@ -293,6 +293,7 @@ export const servicesData: Category[] = [
       { name: "Cerimonial", description: "Organização e coordenação" },
       { name: "Música", description: "DJ e música ao vivo" },
       { name: "Recreação", description: "Animação e entretenimento" },
+      { name: "Segurança", description: "Segurança patrimonial e pessoal para eventos" },
     ],
   },
   {
