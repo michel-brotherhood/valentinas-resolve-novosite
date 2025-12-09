@@ -15,6 +15,8 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { maskPhone, maskCPF } from "@/lib/masks";
+import { ServiceAreaAutocomplete } from "@/components/ServiceAreaAutocomplete";
+import { getAllServices } from "@/lib/servicesData";
 
 const personalInfoSchema = z.object({
   fullName: z.string().trim().min(3, "Nome deve ter pelo menos 3 caracteres").max(100),
@@ -25,8 +27,14 @@ const personalInfoSchema = z.object({
   address: z.string().trim().min(5, "Endereço obrigatório").max(200),
 });
 
+// Get all valid service names for validation
+const validServiceNames = getAllServices().map(s => s.name);
+
 const qualificationsSchema = z.object({
-  serviceArea: z.string().trim().min(3, "Área de atuação obrigatória").max(100),
+  serviceArea: z.string().trim().min(1, "Selecione um serviço da lista").refine(
+    (val) => validServiceNames.includes(val),
+    { message: "Selecione um serviço válido da lista" }
+  ),
   experience: z.string().trim().min(1, "Tempo de experiência obrigatório").max(50),
   education: z.string().trim().max(500).optional(),
   availability: z.string().trim().min(3, "Disponibilidade obrigatória").max(200),
@@ -387,10 +395,14 @@ const ProfessionalRegistration = () => {
 
                 <div className="space-y-2">
                   <Label htmlFor="serviceArea">Área de atuação *</Label>
-                  <Input id="serviceArea" placeholder="Ex: Eletricista" {...qualificationsForm.register("serviceArea")} />
-                  {qualificationsForm.formState.errors.serviceArea && (
-                    <p className="text-sm text-destructive">{qualificationsForm.formState.errors.serviceArea.message}</p>
-                  )}
+                  <ServiceAreaAutocomplete
+                    value={qualificationsForm.watch("serviceArea") || ""}
+                    onChange={(value) => {
+                      qualificationsForm.setValue("serviceArea", value, { shouldValidate: true });
+                    }}
+                    error={qualificationsForm.formState.errors.serviceArea?.message}
+                    placeholder="Digite para buscar (ex: Eletricista, Limpeza...)"
+                  />
                 </div>
 
                 <div className="space-y-2">
