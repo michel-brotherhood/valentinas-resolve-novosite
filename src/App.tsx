@@ -2,7 +2,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { FloatingChat } from "@/components/FloatingChat";
 import { CookieConsent } from "@/components/CookieConsent";
 import Index from "./pages/Index";
@@ -35,6 +35,7 @@ const App = () => (
           <Route path="/servicos" element={<Services />} />
           <Route path="/servicos/:categoria" element={<CategoryPage />} />
           <Route path="/contabilidade" element={<Accounting />} />
+          <Route path="/contabilidade-integrada" element={<Navigate to="/contabilidade" replace />} />
           <Route path="/formulario-contabilidade" element={<AccountingForm />} />
           <Route path="/contratar-servico" element={<HireService />} />
           <Route path="/equipe" element={<TeamPage />} />

@@ -68,18 +68,18 @@ export const CookieConsent = () => {
 
   return (
     <>
-      <div className="fixed bottom-0 left-0 right-0 z-50 p-4 bg-background border-t border-border shadow-lg animate-slide-in-bottom">
+      <div className="fixed bottom-0 left-0 right-0 z-50 p-3 sm:p-4 bg-background border-t border-border shadow-lg animate-slide-in-bottom">
         <div className="container mx-auto max-w-6xl">
-          <div className="flex flex-col md:flex-row items-start md:items-center gap-4 justify-between">
-            <div className="flex items-start gap-3 flex-1">
-              <Cookie className="h-6 w-6 text-primary flex-shrink-0 mt-1" />
-              <div className="flex-1">
-                <h3 className="font-semibold text-foreground mb-1">
+          <div className="flex flex-col gap-3 sm:gap-4">
+            {/* Header with close button on mobile */}
+            <div className="flex items-start gap-2 sm:gap-3">
+              <Cookie className="h-5 w-5 sm:h-6 sm:w-6 text-primary flex-shrink-0 mt-0.5" />
+              <div className="flex-1 min-w-0">
+                <h3 className="font-semibold text-foreground text-sm sm:text-base mb-1">
                   Este site utiliza cookies
                 </h3>
-                <p className="text-sm text-muted-foreground">
-                  Utilizamos cookies essenciais para o funcionamento do site e cookies opcionais para análise e marketing.
-                  Ao continuar navegando, você concorda com nossa{" "}
+                <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed">
+                  Utilizamos cookies essenciais e opcionais.{" "}
                   <Link to="/politica-privacidade" className="text-primary hover:underline">
                     Política de Privacidade
                   </Link>
@@ -90,35 +90,51 @@ export const CookieConsent = () => {
                   .
                 </p>
               </div>
-            </div>
-            
-            <div className="flex items-center gap-2 w-full md:w-auto flex-wrap">
-              <Button
-                variant="outline"
-                onClick={() => setShowSettings(true)}
-                className="flex-1 md:flex-none"
-              >
-                <Settings className="h-4 w-4 mr-2" />
-                Preferências
-              </Button>
-              <Button
-                variant="outline"
-                onClick={handleRejectAll}
-                className="flex-1 md:flex-none"
-              >
-                Rejeitar Todos
-              </Button>
-              <Button
-                onClick={handleAcceptAll}
-                className="bg-primary hover:bg-primary/90 text-black font-semibold flex-1 md:flex-none"
-              >
-                Aceitar Todos
-              </Button>
               <Button
                 variant="ghost"
                 size="icon"
                 onClick={handleRejectAll}
-                className="flex-shrink-0"
+                className="flex-shrink-0 h-8 w-8 sm:hidden"
+                aria-label="Fechar"
+              >
+                <X className="h-4 w-4" />
+              </Button>
+            </div>
+            
+            {/* Buttons - stack on mobile, inline on desktop */}
+            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2 sm:justify-end">
+              <Button
+                variant="outline"
+                onClick={() => setShowSettings(true)}
+                size="sm"
+                className="w-full sm:w-auto text-xs sm:text-sm h-9 sm:h-10"
+              >
+                <Settings className="h-3.5 w-3.5 sm:h-4 sm:w-4 mr-1.5 sm:mr-2" />
+                Preferências
+              </Button>
+              <div className="flex gap-2">
+                <Button
+                  variant="outline"
+                  onClick={handleRejectAll}
+                  size="sm"
+                  className="flex-1 sm:flex-none text-xs sm:text-sm h-9 sm:h-10"
+                >
+                  Rejeitar
+                </Button>
+                <Button
+                  onClick={handleAcceptAll}
+                  size="sm"
+                  className="flex-1 sm:flex-none bg-primary hover:bg-primary/90 text-black font-semibold text-xs sm:text-sm h-9 sm:h-10"
+                >
+                  Aceitar Todos
+                </Button>
+              </div>
+              <Button
+                variant="ghost"
+                size="icon"
+                onClick={handleRejectAll}
+                className="hidden sm:flex flex-shrink-0"
+                aria-label="Fechar"
               >
                 <X className="h-4 w-4" />
               </Button>
