@@ -25,6 +25,8 @@ const personalInfoSchema = z.object({
   phone: z.string().trim().min(10, "Telefone inválido").max(20),
   email: z.string().trim().email("Email inválido").max(255),
   address: z.string().trim().min(5, "Endereço obrigatório").max(200),
+  wasReferred: z.enum(["yes", "no"], { required_error: "Selecione uma opção" }),
+  referredBy: z.string().trim().max(100, "Máximo 100 caracteres").optional(),
 });
 
 // Get all valid service names for validation
@@ -256,6 +258,8 @@ const ProfessionalRegistration = () => {
           phone: personalData.phone,
           email: personalData.email,
           address: personalData.address,
+          wasReferred: personalData.wasReferred === "yes",
+          referredBy: personalData.wasReferred === "yes" ? personalData.referredBy : undefined,
           serviceArea: qualificationsData.serviceArea,
           experience: qualificationsData.experience,
           education: qualificationsData.education || "Não informado",
@@ -382,6 +386,37 @@ const ProfessionalRegistration = () => {
                     <p className="text-sm text-destructive">{personalForm.formState.errors.address.message}</p>
                   )}
                 </div>
+
+                <div className="space-y-2">
+                  <Label>Veio por indicação? *</Label>
+                  <RadioGroup
+                    value={personalForm.watch("wasReferred")}
+                    onValueChange={(value) => personalForm.setValue("wasReferred", value as "yes" | "no", { shouldValidate: true })}
+                    className="flex gap-4"
+                  >
+                    <div className="flex items-center space-x-2">
+                      <RadioGroupItem value="yes" id="referred-yes" />
+                      <Label htmlFor="referred-yes" className="cursor-pointer">Sim</Label>
+                    </div>
+                    <div className="flex items-center space-x-2">
+                      <RadioGroupItem value="no" id="referred-no" />
+                      <Label htmlFor="referred-no" className="cursor-pointer">Não</Label>
+                    </div>
+                  </RadioGroup>
+                  {personalForm.formState.errors.wasReferred && (
+                    <p className="text-sm text-destructive">{personalForm.formState.errors.wasReferred.message}</p>
+                  )}
+                </div>
+
+                {personalForm.watch("wasReferred") === "yes" && (
+                  <div className="space-y-2">
+                    <Label htmlFor="referredBy">Quem indicou?</Label>
+                    <Input id="referredBy" placeholder="Ex: Nome do amigo ou conhecido" {...personalForm.register("referredBy")} />
+                    {personalForm.formState.errors.referredBy && (
+                      <p className="text-sm text-destructive">{personalForm.formState.errors.referredBy.message}</p>
+                    )}
+                  </div>
+                )}
 
                 <div className="flex justify-end pt-4">
                   <Button type="submit" size="lg">Próximo <ChevronRight className="ml-2 h-4 w-4" /></Button>
