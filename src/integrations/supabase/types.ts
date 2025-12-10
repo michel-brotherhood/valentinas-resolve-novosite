@@ -64,10 +64,12 @@ export type Database = {
           home_service: boolean
           id: string
           phone: string
+          referred_by: string | null
           service_area: string
           signature: string
           status: Database["public"]["Enums"]["professional_status"]
           updated_at: string
+          was_referred: boolean | null
         }
         Insert: {
           address: string
@@ -83,10 +85,12 @@ export type Database = {
           home_service: boolean
           id?: string
           phone: string
+          referred_by?: string | null
           service_area: string
           signature: string
           status?: Database["public"]["Enums"]["professional_status"]
           updated_at?: string
+          was_referred?: boolean | null
         }
         Update: {
           address?: string
@@ -102,10 +106,12 @@ export type Database = {
           home_service?: boolean
           id?: string
           phone?: string
+          referred_by?: string | null
           service_area?: string
           signature?: string
           status?: Database["public"]["Enums"]["professional_status"]
           updated_at?: string
+          was_referred?: boolean | null
         }
         Relationships: []
       }

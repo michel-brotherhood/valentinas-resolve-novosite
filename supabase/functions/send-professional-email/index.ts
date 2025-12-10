@@ -103,6 +103,8 @@ interface ProfessionalEmailRequest {
   phone: string;
   email: string;
   address: string;
+  wasReferred?: boolean;
+  referredBy?: string;
   serviceArea: string;
   experience: string;
   education?: string;
@@ -140,6 +142,11 @@ const validateProfessionalRequest = (data: ProfessionalEmailRequest): Validation
 
   if (!isValidString(data.address, 5, 500)) {
     errors.push({ field: 'address', message: 'Endereço deve ter entre 5 e 500 caracteres' });
+  }
+
+  // Validate referredBy if wasReferred is true
+  if (data.wasReferred && data.referredBy && data.referredBy.length > 100) {
+    errors.push({ field: 'referredBy', message: 'Nome de quem indicou deve ter no máximo 100 caracteres' });
   }
 
   if (!isValidString(data.serviceArea, 2, 200)) {
@@ -295,6 +302,8 @@ const handler = async (req: Request): Promise<Response> => {
             <p><strong>Telefone/WhatsApp:</strong> ${escapeHtml(data.phone)}</p>
             <p><strong>E-mail:</strong> ${escapeHtml(data.email)}</p>
             <p><strong>Endereço:</strong> ${escapeHtml(data.address)}</p>
+            <p><strong>Veio por Indicação:</strong> ${data.wasReferred ? 'Sim' : 'Não'}</p>
+            ${data.wasReferred && data.referredBy ? `<p><strong>Indicado por:</strong> ${escapeHtml(data.referredBy)}</p>` : ''}
           </div>
           
           <div style="background-color: #fff; padding: 20px; border: 1px solid #ddd; border-radius: 8px; margin: 20px 0;">
@@ -338,6 +347,8 @@ const handler = async (req: Request): Promise<Response> => {
           phone: data.phone,
           email: data.email,
           address: data.address,
+          was_referred: data.wasReferred || false,
+          referred_by: data.referredBy || null,
           service_area: data.serviceArea,
           experience: data.experience,
           education: data.education,
