@@ -27,6 +27,14 @@ const personalInfoSchema = z.object({
   address: z.string().trim().min(5, "Endereço obrigatório").max(200),
   wasReferred: z.enum(["yes", "no"], { required_error: "Selecione uma opção" }),
   referredBy: z.string().trim().max(100, "Máximo 100 caracteres").optional(),
+}).superRefine((data, ctx) => {
+  if (data.wasReferred === "yes" && (!data.referredBy || data.referredBy.trim() === "")) {
+    ctx.addIssue({
+      code: z.ZodIssueCode.custom,
+      message: "Informe quem indicou você",
+      path: ["referredBy"],
+    });
+  }
 });
 
 // Get all valid service names for validation
