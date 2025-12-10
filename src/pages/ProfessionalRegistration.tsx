@@ -411,7 +411,7 @@ const ProfessionalRegistration = () => {
                 {personalForm.watch("wasReferred") === "yes" && (
                   <div className="space-y-2">
                     <Label htmlFor="referredBy">Quem indicou?</Label>
-                    <Input id="referredBy" placeholder="Ex: Nome do amigo ou conhecido" {...personalForm.register("referredBy")} />
+                    <Input id="referredBy" placeholder="Ex: Andressa ou Daiane" {...personalForm.register("referredBy")} />
                     {personalForm.formState.errors.referredBy && (
                       <p className="text-sm text-destructive">{personalForm.formState.errors.referredBy.message}</p>
                     )}
