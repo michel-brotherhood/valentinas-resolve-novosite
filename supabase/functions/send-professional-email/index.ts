@@ -387,7 +387,8 @@ const handler = async (req: Request): Promise<Response> => {
       const documentPromises = [];
 
       for (const doc of data.idDocuments) {
-        const fileName = `${professionalData.id}/id/${doc.filename}`;
+        const safeFilename = sanitizeFilename(doc.filename);
+        const fileName = `${professionalData.id}/id/${safeFilename}`;
         const fileData = Uint8Array.from(atob(doc.content.split(',')[1]), c => c.charCodeAt(0));
         
         const { error: storageError } = await supabase.storage
@@ -407,13 +408,14 @@ const handler = async (req: Request): Promise<Response> => {
             professional_id: professionalData.id,
             document_type: 'id_document',
             file_path: fileName,
-            file_name: doc.filename
+            file_name: safeFilename
           })
         );
       }
 
       for (const doc of data.addressProofs) {
-        const fileName = `${professionalData.id}/address/${doc.filename}`;
+        const safeFilename = sanitizeFilename(doc.filename);
+        const fileName = `${professionalData.id}/address/${safeFilename}`;
         const fileData = Uint8Array.from(atob(doc.content.split(',')[1]), c => c.charCodeAt(0));
         
         const { error: storageError } = await supabase.storage
@@ -433,13 +435,14 @@ const handler = async (req: Request): Promise<Response> => {
             professional_id: professionalData.id,
             document_type: 'proof_of_address',
             file_path: fileName,
-            file_name: doc.filename
+            file_name: safeFilename
           })
         );
       }
 
       for (const doc of (data.certificates || [])) {
-        const fileName = `${professionalData.id}/certificates/${doc.filename}`;
+        const safeFilename = sanitizeFilename(doc.filename);
+        const fileName = `${professionalData.id}/certificates/${safeFilename}`;
         const fileData = Uint8Array.from(atob(doc.content.split(',')[1]), c => c.charCodeAt(0));
         
         const { error: storageError } = await supabase.storage
@@ -459,7 +462,7 @@ const handler = async (req: Request): Promise<Response> => {
             professional_id: professionalData.id,
             document_type: 'certificate',
             file_path: fileName,
-            file_name: doc.filename
+            file_name: safeFilename
           })
         );
       }
