@@ -230,7 +230,25 @@ export const Header = () => {
             >
               Contato
             </button>
-            <div className="mt-6">
+            <div className="mt-6 space-y-3">
+              <button 
+                className="button-3d w-full"
+                onClick={(e) => {
+                  e.preventDefault();
+                  e.stopPropagation();
+                  setMobileMenuOpen(false);
+                  setTimeout(() => {
+                    navigate('/contratar-servico');
+                    setTimeout(() => window.scrollTo({ top: 0, behavior: 'smooth' }), 100);
+                  }, 100);
+                }}
+              >
+                <span className="button-3d-top text-base">
+                  Contratar Serviço
+                </span>
+                <span className="button-3d-bottom"></span>
+                <span className="button-3d-base"></span>
+              </button>
               <button 
                 className="button-3d w-full"
                 onClick={(e) => {

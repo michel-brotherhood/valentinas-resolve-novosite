@@ -45,8 +45,13 @@ export const Footer = () => {
 
           {/* For Clients */}
           <div className="text-center md:text-left">
-            <h4 className="font-semibold text-white mb-4">Serviços</h4>
+            <h4 className="font-semibold text-white mb-4">Para Clientes</h4>
             <ul className="space-y-2 flex flex-col items-center md:items-start">
+              <li>
+                <Link to="/contratar-servico" className="text-sm text-white/70 hover:text-primary transition-colors">
+                  Contratar Serviço
+                </Link>
+              </li>
               <li>
                 <Link to="/servicos" className="text-sm text-white/70 hover:text-primary transition-colors">
                   Catálogo de Serviços
@@ -55,16 +60,6 @@ export const Footer = () => {
               <li>
                 <Link to="/contabilidade" className="text-sm text-white/70 hover:text-primary transition-colors">
                   Contabilidade Integrada
-                </Link>
-              </li>
-              <li>
-                <Link to="/sobre" className="text-sm text-white/70 hover:text-primary transition-colors">
-                  Sobre Nós
-                </Link>
-              </li>
-              <li>
-                <Link to="/equipe" className="text-sm text-white/70 hover:text-primary transition-colors">
-                  Nossa Equipe
                 </Link>
               </li>
             </ul>
@@ -77,6 +72,11 @@ export const Footer = () => {
               <li>
                 <Link to="/trabalhe-conosco" className="text-sm text-white/70 hover:text-primary transition-colors">
                   Trabalhe Conosco
+                </Link>
+              </li>
+              <li>
+                <Link to="/registro-profissional" className="text-sm text-white/70 hover:text-primary transition-colors">
+                  Cadastro Profissional
                 </Link>
               </li>
               <li>
