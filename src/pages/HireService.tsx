@@ -12,8 +12,9 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { ServiceSelect } from "@/components/ServiceSelect";
 import { useToast } from "@/hooks/use-toast";
 import { z } from "zod";
-import { Mail, Check } from "lucide-react";
+import { Mail, Check, MessageCircle } from "lucide-react";
 import { maskPhone } from "@/lib/masks";
+import { WhatsAppBot } from "@/components/WhatsAppBot";
 
 const hireServiceSchema = z.object({
   fullName: z.string().trim().min(3, "Nome deve ter pelo menos 3 caracteres").max(100),
