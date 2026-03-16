@@ -75,11 +75,26 @@ const isValidString = (str: string, minLen: number, maxLen: number): boolean => 
   return typeof str === 'string' && str.trim().length >= minLen && str.length <= maxLen;
 };
 
+const ALLOWED_FILE_TYPES = ['image/jpeg', 'image/png', 'application/pdf'] as const;
+
+const sanitizeFilename = (name: string): string => {
+  const sanitized = name
+    .replace(/[\\/]/g, '_')
+    .replace(/\.\.+/g, '_')
+    .replace(/[^a-zA-Z0-9._-]/g, '_')
+    .replace(/_+/g, '_')
+    .replace(/^_+|_+$/g, '');
+
+  return sanitized.slice(0, 120) || 'arquivo';
+};
+
 const isValidFileAttachment = (file: any): boolean => {
   if (!file || typeof file !== 'object') return false;
   if (!file.filename || typeof file.filename !== 'string') return false;
   if (!file.content || typeof file.content !== 'string') return false;
+  if (!file.type || typeof file.type !== 'string') return false;
   if (file.filename.length > 255) return false;
+  if (!ALLOWED_FILE_TYPES.includes(file.type as (typeof ALLOWED_FILE_TYPES)[number])) return false;
   // Max 5MB in base64 (roughly 6.8MB encoded)
   if (file.content.length > 7 * 1024 * 1024) return false;
   return true;
