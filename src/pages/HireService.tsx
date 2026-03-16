@@ -52,7 +52,7 @@ export default function HireService() {
     scheduledDate: "",
     contactPreference: [] as string[],
     budgetType: "estimate" as "estimate" | "detailed",
-    acceptTerms: false,
+    acceptTerms: true,
   });
   const [showWhatsAppBot, setShowWhatsAppBot] = useState(false);
   const [errors, setErrors] = useState<Record<string, string>>({});
