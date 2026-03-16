@@ -102,6 +102,19 @@ export const Header = () => {
               <button 
                 className="button-3d ml-2"
                 onClick={() => {
+                  navigate('/contratar-servico');
+                  setTimeout(() => window.scrollTo({ top: 0, behavior: 'smooth' }), 100);
+                }}
+              >
+                <span className="button-3d-top text-sm">
+                  Contratar Serviço
+                </span>
+                <span className="button-3d-bottom"></span>
+                <span className="button-3d-base"></span>
+              </button>
+              <button 
+                className="button-3d ml-1"
+                onClick={() => {
                   navigate('/trabalhe-conosco');
                   setTimeout(() => window.scrollTo({ top: 0, behavior: 'smooth' }), 100);
                 }}
