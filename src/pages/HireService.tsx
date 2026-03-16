@@ -437,6 +437,36 @@ export default function HireService() {
               </p>
             </form>
           </Card>
+          {/* WhatsApp Bot Section */}
+          <div className="mt-8">
+            {!showWhatsAppBot ? (
+              <button
+                onClick={() => setShowWhatsAppBot(true)}
+                className="w-full flex items-center justify-center gap-3 rounded-lg border-2 border-dashed border-border bg-card p-6 transition-all hover:border-[hsl(142,70%,40%)] hover:bg-muted/50 group cursor-pointer"
+              >
+                <div className="flex items-center justify-center w-12 h-12 rounded-full bg-[hsl(142,70%,40%)]/10 group-hover:bg-[hsl(142,70%,40%)]/20 transition-colors">
+                  <MessageCircle className="h-6 w-6 text-[hsl(142,70%,40%)]" />
+                </div>
+                <div className="text-left">
+                  <p className="font-bold text-foreground">Prefere contratar pelo WhatsApp?</p>
+                  <p className="text-sm text-muted-foreground">Responda algumas perguntas rápidas e envie direto pelo WhatsApp</p>
+                </div>
+              </button>
+            ) : (
+              <div className="space-y-3">
+                <div className="flex items-center justify-between">
+                  <h2 className="text-lg font-bold text-foreground flex items-center gap-2">
+                    <MessageCircle className="h-5 w-5 text-[hsl(142,70%,40%)]" />
+                    Contratar pelo WhatsApp
+                  </h2>
+                  <Button variant="ghost" size="sm" onClick={() => setShowWhatsAppBot(false)}>
+                    Voltar ao formulário
+                  </Button>
+                </div>
+                <WhatsAppBot />
+              </div>
+            )}
+          </div>
         </div>
       </main>
 
