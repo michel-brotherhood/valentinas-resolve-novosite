@@ -12,8 +12,16 @@ const faqs = [
     answer: "A Valentina's Resolve conecta profissionais qualificados a clientes que precisam de serviços em mais de 200 áreas em 20 nichos diferentes. Nossa plataforma intermedia todo o processo, desde o cadastro até a execução do serviço, de forma digital, segura e transparente."
   },
   {
+    question: "Como contrato um serviço?",
+    answer: "É simples! Acesse 'Contratar Serviço', escolha a categoria desejada, descreva sua necessidade e preencha seus dados. Nossa equipe vai analisar seu pedido e encaminhar para os profissionais mais qualificados da sua região. Você receberá orçamentos e poderá escolher o melhor para você."
+  },
+  {
     question: "Quais serviços estão disponíveis na plataforma?",
     answer: "Oferecemos mais de 200 serviços em 20 nichos: Domésticos, Beleza, Saúde, Jurídicos, Educação, Automotivos, Pets, Eventos, Criativos, Construção, Instalações, Transporte, Agricultura, Personalizados, Turismo, Esportes, Cuidados Humanos, Arquitetura e Engenharia. Desde limpeza residencial até consultoria jurídica e contabilidade integrada."
+  },
+  {
+    question: "Como funciona o orçamento?",
+    answer: "Após enviar sua solicitação, nossos profissionais verificados avaliam a demanda e enviam orçamentos personalizados. Você pode escolher entre orçamento estimado (valor aproximado) ou orçamento detalhado (com descrição completa dos custos). Não há compromisso até você aceitar uma proposta."
   },
   {
     question: "Como os profissionais são verificados?",

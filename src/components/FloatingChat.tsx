@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { useNavigate } from "react-router-dom";
-import { MessageCircle, X, HelpCircle, UserPlus } from "lucide-react";
+import { MessageCircle, X, HelpCircle, UserPlus, Briefcase } from "lucide-react";
 
 interface FloatingChatProps {
   whatsappNumber?: string;
@@ -14,6 +14,12 @@ export const FloatingChat = ({ whatsappNumber = "351961803414" }: FloatingChatPr
 
   const handleWhatsApp = () => {
     window.open(`https://wa.me/${whatsappNumber}?text=Olá! Tenho dúvidas sobre a Valentina's Resolve`, "_blank");
+    setIsOpen(false);
+  };
+
+  const handleHireService = () => {
+    navigate("/contratar-servico");
+    setTimeout(() => window.scrollTo({ top: 0, behavior: 'smooth' }), 100);
     setIsOpen(false);
   };
 
@@ -29,6 +35,20 @@ export const FloatingChat = ({ whatsappNumber = "351961803414" }: FloatingChatPr
       {isOpen && (
         <Card className="absolute bottom-24 right-0 p-5 shadow-2xl w-80 animate-in fade-in slide-in-from-bottom-2 border-primary/20 bg-gradient-to-br from-background via-background to-primary/5">
           <div className="space-y-3">
+            <Button
+              onClick={handleHireService}
+              variant="outline"
+              className="w-full justify-start gap-3 h-auto py-4 px-4 hover:bg-primary/10 hover:text-primary hover:border-primary transition-all duration-300 group border-muted-foreground/20 hover:shadow-lg hover:shadow-primary/20"
+            >
+              <div className="p-2 rounded-lg bg-primary/10 group-hover:bg-primary/20 transition-colors">
+                <Briefcase className="h-5 w-5 flex-shrink-0 text-primary" />
+              </div>
+              <div className="text-left flex-1">
+                <div className="font-semibold text-foreground">Contratar Serviço</div>
+                <div className="text-xs text-muted-foreground">Encontre o profissional ideal</div>
+              </div>
+            </Button>
+
             <Button
               onClick={handleWhatsApp}
               variant="outline"
