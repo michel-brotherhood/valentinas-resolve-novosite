@@ -54,6 +54,7 @@ export default function HireService() {
     budgetType: "estimate" as "estimate" | "detailed",
     acceptTerms: false,
   });
+  const [showWhatsAppBot, setShowWhatsAppBot] = useState(false);
   const [errors, setErrors] = useState<Record<string, string>>({});
 
   // Progress tracking
