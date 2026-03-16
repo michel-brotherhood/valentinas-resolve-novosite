@@ -75,11 +75,26 @@ const isValidString = (str: string, minLen: number, maxLen: number): boolean => 
   return typeof str === 'string' && str.trim().length >= minLen && str.length <= maxLen;
 };
 
+const ALLOWED_FILE_TYPES = ['image/jpeg', 'image/png', 'application/pdf'] as const;
+
+const sanitizeFilename = (name: string): string => {
+  const sanitized = name
+    .replace(/[\\/]/g, '_')
+    .replace(/\.\.+/g, '_')
+    .replace(/[^a-zA-Z0-9._-]/g, '_')
+    .replace(/_+/g, '_')
+    .replace(/^_+|_+$/g, '');
+
+  return sanitized.slice(0, 120) || 'arquivo';
+};
+
 const isValidFileAttachment = (file: any): boolean => {
   if (!file || typeof file !== 'object') return false;
   if (!file.filename || typeof file.filename !== 'string') return false;
   if (!file.content || typeof file.content !== 'string') return false;
+  if (!file.type || typeof file.type !== 'string') return false;
   if (file.filename.length > 255) return false;
+  if (!ALLOWED_FILE_TYPES.includes(file.type as (typeof ALLOWED_FILE_TYPES)[number])) return false;
   // Max 5MB in base64 (roughly 6.8MB encoded)
   if (file.content.length > 7 * 1024 * 1024) return false;
   return true;
@@ -372,7 +387,8 @@ const handler = async (req: Request): Promise<Response> => {
       const documentPromises = [];
 
       for (const doc of data.idDocuments) {
-        const fileName = `${professionalData.id}/id/${doc.filename}`;
+        const safeFilename = sanitizeFilename(doc.filename);
+        const fileName = `${professionalData.id}/id/${safeFilename}`;
         const fileData = Uint8Array.from(atob(doc.content.split(',')[1]), c => c.charCodeAt(0));
         
         const { error: storageError } = await supabase.storage
@@ -392,13 +408,14 @@ const handler = async (req: Request): Promise<Response> => {
             professional_id: professionalData.id,
             document_type: 'id_document',
             file_path: fileName,
-            file_name: doc.filename
+            file_name: safeFilename
           })
         );
       }
 
       for (const doc of data.addressProofs) {
-        const fileName = `${professionalData.id}/address/${doc.filename}`;
+        const safeFilename = sanitizeFilename(doc.filename);
+        const fileName = `${professionalData.id}/address/${safeFilename}`;
         const fileData = Uint8Array.from(atob(doc.content.split(',')[1]), c => c.charCodeAt(0));
         
         const { error: storageError } = await supabase.storage
@@ -418,13 +435,14 @@ const handler = async (req: Request): Promise<Response> => {
             professional_id: professionalData.id,
             document_type: 'proof_of_address',
             file_path: fileName,
-            file_name: doc.filename
+            file_name: safeFilename
           })
         );
       }
 
       for (const doc of (data.certificates || [])) {
-        const fileName = `${professionalData.id}/certificates/${doc.filename}`;
+        const safeFilename = sanitizeFilename(doc.filename);
+        const fileName = `${professionalData.id}/certificates/${safeFilename}`;
         const fileData = Uint8Array.from(atob(doc.content.split(',')[1]), c => c.charCodeAt(0));
         
         const { error: storageError } = await supabase.storage
@@ -444,7 +462,7 @@ const handler = async (req: Request): Promise<Response> => {
             professional_id: professionalData.id,
             document_type: 'certificate',
             file_path: fileName,
-            file_name: doc.filename
+            file_name: safeFilename
           })
         );
       }
@@ -467,7 +485,7 @@ const handler = async (req: Request): Promise<Response> => {
   } catch (error: any) {
     console.error("Error in send-professional-email function:", error);
     return new Response(
-      JSON.stringify({ error: error.message }),
+      JSON.stringify({ error: "Erro interno. Tente novamente mais tarde." }),
       {
         status: 500,
         headers: { "Content-Type": "application/json", ...corsHeaders },
