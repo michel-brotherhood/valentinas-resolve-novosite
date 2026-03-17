@@ -20,10 +20,10 @@ export const ServiceAreaMap = () => {
         >
           {/* Header */}
           <div className="text-center mb-8 md:mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-3">
+            <h2 className="text-3xl md:text-4xl font-bold text-white mb-3">
               📍 Onde Atuamos
             </h2>
-            <p className="text-base md:text-lg text-muted-foreground max-w-2xl mx-auto">
+            <p className="text-base md:text-lg text-white/70 max-w-2xl mx-auto">
               Atendemos todo o estado de Rondônia com profissionais qualificados
               e prontos para atender você
             </p>
