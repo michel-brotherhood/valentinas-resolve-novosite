@@ -7,6 +7,7 @@ import { HowItWorks } from "@/components/HowItWorks";
 import { Testimonials } from "@/components/Testimonials";
 import { FAQ } from "@/components/FAQ";
 import { Team } from "@/components/Team";
+import { ServiceAreaMap } from "@/components/ServiceAreaMap";
 import { ProfessionalCallout } from "@/components/ProfessionalCallout";
 import { Newsletter } from "@/components/Newsletter";
 import { Footer } from "@/components/Footer";
