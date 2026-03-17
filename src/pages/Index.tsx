@@ -22,6 +22,7 @@ const Index = () => {
       <PopularServices />
       <AccountingServices />
       <HowItWorks />
+      <ServiceAreaMap />
       <ProfessionalCallout />
       <Testimonials />
       <FAQ />
