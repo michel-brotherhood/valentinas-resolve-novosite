@@ -12,7 +12,7 @@ export const ServiceAreaMap = () => {
   const { elementRef, isVisible } = useScrollReveal();
 
   return (
-    <section className="py-12 md:py-24 bg-background overflow-hidden">
+    <section className="py-12 md:py-24 bg-[hsl(0,0%,5%)] overflow-hidden">
       <div className="container mx-auto px-4">
         <div
           ref={elementRef}
