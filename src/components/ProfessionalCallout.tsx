@@ -13,7 +13,7 @@ export const ProfessionalCallout = () => {
           {/* Header */}
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-              🌟 Mais do que vender produtos, o Valentinas Resolve transforma profissionais
+              Mais do que vender produtos, o Valentinas Resolve transforma profissionais
             </h2>
           </div>
 
