@@ -138,16 +138,11 @@ export const Testimonials = () => {
     <section className="py-16 bg-background">
       <div className="container mx-auto px-4">
         {/* Header */}
-        <div className="text-center mb-4">
-          <div className="flex justify-center gap-1 mb-4">
-            {[...Array(5)].map((_, i) => (
-              <Star key={i} className="h-8 w-8 fill-primary text-primary" />
-            ))}
-          </div>
-          <h2 className="text-3xl md:text-4xl font-bold mb-2">
+        <div className="text-center mb-10">
+          <h2 className="text-3xl md:text-4xl font-bold mb-3">
             O Que Nossos <span className="text-primary">Clientes Dizem</span>
           </h2>
-          <p className="text-lg text-muted-foreground mb-8">
+          <p className="text-base md:text-lg text-muted-foreground max-w-xl mx-auto">
             Avaliações reais de clientes satisfeitos com nossos serviços
           </p>
         </div>
