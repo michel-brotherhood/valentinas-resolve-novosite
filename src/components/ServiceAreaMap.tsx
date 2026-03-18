@@ -5,7 +5,7 @@ export const ServiceAreaMap = () => {
   const { elementRef, isVisible } = useScrollReveal();
 
   return (
-    <section className="py-8 md:py-16 bg-[hsl(0,0%,5%)] overflow-hidden">
+    <section className="py-6 md:py-10 bg-[hsl(0,0%,5%)] overflow-hidden">
       <div className="container mx-auto px-4">
         <div
           ref={elementRef}
@@ -23,7 +23,7 @@ export const ServiceAreaMap = () => {
           </div>
 
           {/* Map */}
-          <div className="max-w-xs sm:max-w-md md:max-w-xl mx-auto">
+          <div className="max-w-[200px] sm:max-w-xs md:max-w-sm mx-auto">
             <img
               src={mapaRondonia}
               alt="Mapa de atuação em Rondônia — Porto Velho, Ariquemes, Ji-Paraná e Cacoal"
