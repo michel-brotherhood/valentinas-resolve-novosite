@@ -23,7 +23,7 @@ export const ServiceAreaMap = () => {
           </div>
 
           {/* Map */}
-          <div className="max-w-xs sm:max-w-md md:max-w-xl mx-auto">
+          <div className="max-w-[200px] sm:max-w-xs md:max-w-sm mx-auto">
             <img
               src={mapaRondonia}
               alt="Mapa de atuação em Rondônia — Porto Velho, Ariquemes, Ji-Paraná e Cacoal"
