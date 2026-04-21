@@ -15,6 +15,7 @@ import { z } from "zod";
 import { Mail, Check, MessageCircle } from "lucide-react";
 import { maskPhone } from "@/lib/masks";
 import { WhatsAppBot } from "@/components/WhatsAppBot";
+import { useAntiBot } from "@/hooks/use-anti-bot";
 
 const hireServiceSchema = z.object({
   fullName: z.string().trim().min(3, "Nome deve ter pelo menos 3 caracteres").max(100),
@@ -56,6 +57,7 @@ export default function HireService() {
   });
   const [showWhatsAppBot, setShowWhatsAppBot] = useState(false);
   const [errors, setErrors] = useState<Record<string, string>>({});
+  const { HoneypotField, getAntiBotPayload } = useAntiBot();
 
   // Progress tracking
   const [completedSteps, setCompletedSteps] = useState<number[]>([]);
@@ -116,6 +118,7 @@ export default function HireService() {
           scheduledDate: formData.scheduledDate,
           contactPreference: formData.contactPreference.join(", "),
           budgetType: formData.budgetType === "estimate" ? "Estimativa" : "Detalhado com visita",
+          ...getAntiBotPayload(),
         }),
       });
 
@@ -244,6 +247,7 @@ export default function HireService() {
 
           <Card className="p-4 md:p-6 lg:p-8 w-full overflow-hidden">
             <form onSubmit={handleSubmit} className="space-y-6 w-full">
+              <HoneypotField />
               {/* Dados do Cliente */}
               <div className="space-y-4 w-full">
                 <h2 className="text-xl md:text-2xl font-bold text-foreground break-words">Dados do Cliente</h2>

@@ -17,6 +17,7 @@ import { z } from "zod";
 import { maskPhone, maskCPF } from "@/lib/masks";
 import { ServiceAreaAutocomplete } from "@/components/ServiceAreaAutocomplete";
 import { getAllServices } from "@/lib/servicesData";
+import { useAntiBot } from "@/hooks/use-anti-bot";
 
 const personalInfoSchema = z.object({
   fullName: z.string().trim().min(3, "Nome deve ter pelo menos 3 caracteres").max(100),
@@ -73,6 +74,7 @@ const ProfessionalRegistration = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const { toast } = useToast();
   const navigate = useNavigate();
+  const { HoneypotField, getAntiBotPayload } = useAntiBot();
 
   const ALLOWED_FILE_TYPES = ['image/jpeg', 'image/jpg', 'image/png', 'application/pdf'];
   const MAX_FILE_SIZE = 5 * 1024 * 1024; // 5MB
@@ -278,6 +280,7 @@ const ProfessionalRegistration = () => {
           idDocuments,
           addressProofs,
           certificates,
+          ...getAntiBotPayload(),
         }),
       });
 
@@ -333,6 +336,7 @@ const ProfessionalRegistration = () => {
           </div>
 
           <Card className="p-6 md:p-8">
+            <HoneypotField />
             {currentStep === 1 && (
               <form onSubmit={personalForm.handleSubmit(onSubmitStep1)} className="space-y-6">
                 <h2 className="text-2xl font-semibold mb-6">Dados Pessoais e de Contato</h2>

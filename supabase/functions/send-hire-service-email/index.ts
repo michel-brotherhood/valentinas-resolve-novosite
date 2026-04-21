@@ -1,42 +1,28 @@
 import { serve } from "https://deno.land/std@0.190.0/http/server.ts";
 import { Resend } from "https://esm.sh/resend@2.0.0";
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2.81.1";
+import {
+  buildCorsHeaders,
+  getClientIp,
+  validateAntiBot,
+  checkRateLimit,
+  sanitizeEmailHeader,
+  maskEmail,
+  jsonResponse,
+} from "../_shared/security.ts";
 
 const resend = new Resend(Deno.env.get("RESEND_API_KEY"));
+const supabase = createClient(
+  Deno.env.get("SUPABASE_URL")!,
+  Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!
+);
 
-const supabaseUrl = Deno.env.get("SUPABASE_URL")!;
-const supabaseServiceKey = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!;
-const supabase = createClient(supabaseUrl, supabaseServiceKey);
-
-const corsHeaders = {
-  "Access-Control-Allow-Origin": "*",
-  "Access-Control-Allow-Headers":
-    "authorization, x-client-info, apikey, content-type",
-};
-
-// HTML escape function to prevent HTML injection
 const escapeHtml = (str: string): string => {
   if (!str) return '';
-  return str.replace(/[&<>"']/g, (char) => {
-    const escapeMap: Record<string, string> = {
-      '&': '&amp;',
-      '<': '&lt;',
-      '>': '&gt;',
-      '"': '&quot;',
-      "'": '&#39;'
-    };
-    return escapeMap[char] || char;
-  });
-};
-
-// Validation helpers
-const isValidEmail = (email: string): boolean => {
-  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  return emailRegex.test(email) && email.length <= 255;
+  return str.replace(/[&<>"']/g, (c) => ({ '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;' }[c] || c));
 };
 
 const isValidPhone = (phone: string): boolean => {
-  // Brazilian phone format: (XX) XXXXX-XXXX or (XX) XXXX-XXXX
   const phoneRegex = /^\(\d{2}\)\s?\d{4,5}-?\d{4}$/;
   return phoneRegex.test(phone) || phone.replace(/\D/g, '').length >= 10;
 };
@@ -44,11 +30,6 @@ const isValidPhone = (phone: string): boolean => {
 const isValidString = (str: string, minLen: number, maxLen: number): boolean => {
   return typeof str === 'string' && str.trim().length >= minLen && str.length <= maxLen;
 };
-
-interface ValidationError {
-  field: string;
-  message: string;
-}
 
 interface HireServiceEmailRequest {
   name: string;
@@ -62,125 +43,68 @@ interface HireServiceEmailRequest {
   scheduledDate?: string;
   contactPreference: string;
   budgetType: string;
+  _hp?: string;
+  _t?: number;
 }
 
-const validateHireServiceRequest = (data: HireServiceEmailRequest): ValidationError[] => {
-  const errors: ValidationError[] = [];
-
-  if (!isValidString(data.name, 2, 100)) {
-    errors.push({ field: 'name', message: 'Nome deve ter entre 2 e 100 caracteres' });
-  }
-
-  if (!isValidEmail(data.email)) {
-    errors.push({ field: 'email', message: 'Email inválido' });
-  }
-
-  if (!isValidPhone(data.phone)) {
-    errors.push({ field: 'phone', message: 'Telefone inválido. Use o formato (XX) XXXXX-XXXX' });
-  }
-
-  if (!isValidString(data.cityNeighborhood, 2, 200)) {
-    errors.push({ field: 'cityNeighborhood', message: 'Cidade/Bairro deve ter entre 2 e 200 caracteres' });
-  }
-
-  if (!isValidString(data.serviceType, 2, 200)) {
-    errors.push({ field: 'serviceType', message: 'Tipo de serviço deve ter entre 2 e 200 caracteres' });
-  }
-
-  if (!isValidString(data.description, 10, 2000)) {
-    errors.push({ field: 'description', message: 'Descrição deve ter entre 10 e 2000 caracteres' });
-  }
-
-  if (!isValidString(data.location, 2, 200)) {
-    errors.push({ field: 'location', message: 'Local deve ter entre 2 e 200 caracteres' });
-  }
-
-  if (!isValidString(data.urgency, 1, 100)) {
-    errors.push({ field: 'urgency', message: 'Urgência é obrigatória' });
-  }
-
-  if (!isValidString(data.contactPreference, 1, 200)) {
-    errors.push({ field: 'contactPreference', message: 'Preferência de contato é obrigatória' });
-  }
-
-  if (!isValidString(data.budgetType, 1, 100)) {
-    errors.push({ field: 'budgetType', message: 'Tipo de orçamento é obrigatório' });
-  }
-
+const validate = (data: HireServiceEmailRequest): { field: string; message: string }[] => {
+  const errors: { field: string; message: string }[] = [];
+  if (!isValidString(data.name, 2, 100)) errors.push({ field: 'name', message: 'Nome inválido' });
+  if (!sanitizeEmailHeader(data.email)) errors.push({ field: 'email', message: 'Email inválido' });
+  if (!isValidPhone(data.phone)) errors.push({ field: 'phone', message: 'Telefone inválido' });
+  if (!isValidString(data.cityNeighborhood, 2, 200)) errors.push({ field: 'cityNeighborhood', message: 'Cidade/Bairro inválido' });
+  if (!isValidString(data.serviceType, 2, 200)) errors.push({ field: 'serviceType', message: 'Serviço inválido' });
+  if (!isValidString(data.description, 10, 2000)) errors.push({ field: 'description', message: 'Descrição inválida' });
+  if (!isValidString(data.location, 2, 200)) errors.push({ field: 'location', message: 'Local inválido' });
+  if (!isValidString(data.urgency, 1, 100)) errors.push({ field: 'urgency', message: 'Urgência obrigatória' });
+  if (!isValidString(data.contactPreference, 1, 200)) errors.push({ field: 'contactPreference', message: 'Preferência inválida' });
+  if (!isValidString(data.budgetType, 1, 100)) errors.push({ field: 'budgetType', message: 'Orçamento inválido' });
   return errors;
 };
 
 const handler = async (req: Request): Promise<Response> => {
-  if (req.method === "OPTIONS") {
-    return new Response(null, { headers: corsHeaders });
-  }
+  const corsHeaders = buildCorsHeaders(req);
+  if (req.method === "OPTIONS") return new Response(null, { headers: corsHeaders });
 
   try {
     const data: HireServiceEmailRequest = await req.json();
 
-    // Server-side validation
-    const validationErrors = validateHireServiceRequest(data);
-    if (validationErrors.length > 0) {
-      console.warn("Validation errors:", validationErrors);
-      return new Response(
-        JSON.stringify({ error: "Dados inválidos", details: validationErrors }),
-        {
-          status: 400,
-          headers: { "Content-Type": "application/json", ...corsHeaders },
-        }
-      );
+    const bot = validateAntiBot({ honeypot: data._hp, renderedAt: data._t });
+    if (!bot.ok) {
+      console.warn("anti-bot reject", { reason: bot.reason });
+      return jsonResponse({ error: "Requisição inválida." }, 400, corsHeaders);
     }
 
-    console.log("Sending hire service email:", data.serviceType);
-
-    // Rate limiting check - max 3 attempts per email in 15 minutes
-    const fifteenMinutesAgo = new Date(Date.now() - 15 * 60 * 1000).toISOString();
-    const { data: attempts, error: rateLimitError } = await supabase
-      .from('rate_limit_attempts')
-      .select('id')
-      .eq('identifier', data.email)
-      .eq('attempt_type', 'hire_service')
-      .gte('created_at', fifteenMinutesAgo);
-
-    if (rateLimitError) {
-      console.error("Rate limit check error:", rateLimitError);
+    const errors = validate(data);
+    if (errors.length > 0) {
+      return jsonResponse({ error: "Dados inválidos", details: errors }, 400, corsHeaders);
     }
 
-    if (attempts && attempts.length >= 3) {
-      console.warn("Rate limit exceeded for email:", data.email);
-      return new Response(
-        JSON.stringify({ error: "Muitas tentativas. Por favor, aguarde 15 minutos antes de tentar novamente." }),
-        {
-          status: 429,
-          headers: { "Content-Type": "application/json", ...corsHeaders },
-        }
-      );
+    const safeEmail = sanitizeEmailHeader(data.email)!;
+    const ip = getClientIp(req);
+
+    const rl = await checkRateLimit(supabase, { email: safeEmail, ip, type: "hire_service" });
+    if (!rl.ok) {
+      return jsonResponse({ error: "Muitas tentativas. Aguarde 15 minutos." }, 429, corsHeaders);
     }
 
-    // Record this attempt
-    await supabase
-      .from('rate_limit_attempts')
-      .insert({ identifier: data.email, attempt_type: 'hire_service' });
+    console.log("hire-service submission ok", { masked: maskEmail(safeEmail), service: data.serviceType.slice(0, 40) });
 
     const emailResponse = await resend.emails.send({
       from: "Valentina's Resolve <noreply@valentinasresolve.com.br>",
       to: ["atendimentoaocliente@valentinasresolve.com.br"],
-      reply_to: data.email,
-      subject: `Nova Solicitação de Orçamento - ${data.serviceType}`,
+      reply_to: safeEmail,
+      subject: `Nova Solicitação de Orçamento - ${escapeHtml(data.serviceType).slice(0, 100)}`,
       html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
-          <h1 style="color: #FF0080; border-bottom: 2px solid #FF0080; padding-bottom: 10px;">
-            Nova Solicitação de Orçamento
-          </h1>
-          
+          <h1 style="color: #FF0080; border-bottom: 2px solid #FF0080; padding-bottom: 10px;">Nova Solicitação de Orçamento</h1>
           <div style="background-color: #f5f5f5; padding: 20px; border-radius: 8px; margin: 20px 0;">
             <h2 style="color: #333; margin-top: 0;">Dados do Cliente</h2>
             <p><strong>Nome Completo:</strong> ${escapeHtml(data.name)}</p>
             <p><strong>Telefone/WhatsApp:</strong> ${escapeHtml(data.phone)}</p>
-            <p><strong>E-mail:</strong> ${escapeHtml(data.email)}</p>
+            <p><strong>E-mail:</strong> ${escapeHtml(safeEmail)}</p>
             <p><strong>Cidade/Bairro:</strong> ${escapeHtml(data.cityNeighborhood)}</p>
           </div>
-          
           <div style="background-color: #fff; padding: 20px; border: 1px solid #ddd; border-radius: 8px; margin: 20px 0;">
             <h2 style="color: #333; margin-top: 0;">Detalhes do Serviço</h2>
             <p><strong>Tipo de serviço desejado:</strong> ${escapeHtml(data.serviceType)}</p>
@@ -189,44 +113,30 @@ const handler = async (req: Request): Promise<Response> => {
             <p><strong>Local de execução:</strong> ${escapeHtml(data.location)}</p>
             <p><strong>Urgência:</strong> ${escapeHtml(data.urgency)}${data.scheduledDate ? ` - ${escapeHtml(data.scheduledDate)}` : ''}</p>
           </div>
-          
           <div style="background-color: #f5f5f5; padding: 20px; border-radius: 8px; margin: 20px 0;">
             <h2 style="color: #333; margin-top: 0;">Preferências do Cliente</h2>
             <p><strong>Deseja receber contato por:</strong> ${escapeHtml(data.contactPreference)}</p>
             <p><strong>Orçamento desejado:</strong> ${escapeHtml(data.budgetType)}</p>
           </div>
-          
-          <p style="color: #666; font-size: 12px; margin-top: 30px;">
-            Solicitação enviada através do formulário de orçamento do site Valentina's Resolve
-          </p>
         </div>
       `,
     });
 
-    console.log("Email sent successfully:", emailResponse);
-
     // Save service request to database
     try {
-      // Parse urgency type
       let urgencyType: 'immediate' | 'days' | 'scheduled' = 'immediate';
-      if (data.urgency.includes('dias')) {
-        urgencyType = 'days';
-      } else if (data.urgency.includes('agendado') || data.scheduledDate) {
-        urgencyType = 'scheduled';
-      }
+      if (data.urgency.includes('dias')) urgencyType = 'days';
+      else if (data.urgency.includes('agendado') || data.scheduledDate) urgencyType = 'scheduled';
 
-      // Parse contact preferences into array
-      const contactPreferences = data.contactPreference.split(',').map(p => p.trim());
-
-      // Parse budget type
+      const contactPreferences = data.contactPreference.split(',').map(p => p.trim()).filter(Boolean);
       const budgetType = data.budgetType.toLowerCase().includes('detalhado') ? 'detailed' : 'estimate';
 
-      const { data: serviceRequestData, error: serviceRequestError } = await supabase
+      const { error: serviceRequestError } = await supabase
         .from('service_requests')
         .insert({
           client_name: data.name,
           client_phone: data.phone,
-          client_email: data.email,
+          client_email: safeEmail,
           city_neighborhood: data.cityNeighborhood,
           service_type: data.serviceType,
           description: data.description,
@@ -236,38 +146,17 @@ const handler = async (req: Request): Promise<Response> => {
           contact_preference: contactPreferences,
           budget_type: budgetType,
           status: 'pending'
-        })
-        .select()
-        .single();
+        });
 
-      if (serviceRequestError) {
-        console.error("Error saving service request:", serviceRequestError);
-        throw serviceRequestError;
-      }
-
-      console.log("Service request saved successfully:", serviceRequestData.id);
-
+      if (serviceRequestError) console.error("DB insert error:", serviceRequestError.message);
     } catch (dbError: any) {
-      console.error("Error saving to database:", dbError);
-      // Continue even if database save fails - email was sent successfully
+      console.error("DB error:", dbError?.message ?? "unknown");
     }
 
-    return new Response(JSON.stringify(emailResponse), {
-      status: 200,
-      headers: {
-        "Content-Type": "application/json",
-        ...corsHeaders,
-      },
-    });
+    return jsonResponse(emailResponse, 200, corsHeaders);
   } catch (error: any) {
-    console.error("Error in send-hire-service-email function:", error);
-    return new Response(
-      JSON.stringify({ error: "Erro interno. Tente novamente mais tarde." }),
-      {
-        status: 500,
-        headers: { "Content-Type": "application/json", ...corsHeaders },
-      }
-    );
+    console.error("send-hire-service-email error:", error?.message ?? "unknown");
+    return jsonResponse({ error: "Erro interno. Tente novamente mais tarde." }, 500, corsHeaders);
   }
 };
 

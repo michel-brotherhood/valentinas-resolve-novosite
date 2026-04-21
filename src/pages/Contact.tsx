@@ -12,6 +12,7 @@ import { useToast } from "@/hooks/use-toast";
 import { z } from "zod";
 import { maskPhone } from "@/lib/masks";
 import { ContactTopicSelect } from "@/components/ContactTopicSelect";
+import { useAntiBot } from "@/hooks/use-anti-bot";
 import contactHeroBg from "@/assets/contact-hero-bg.webp";
 
 const contactSchema = z.object({
@@ -35,6 +36,7 @@ export default function Contact() {
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [scrollY, setScrollY] = useState(0);
+  const { HoneypotField, getAntiBotPayload } = useAntiBot();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -66,6 +68,7 @@ export default function Contact() {
           phone: formData.phone,
           service: formData.service,
           message: formData.message,
+          ...getAntiBotPayload(),
         }),
       });
 
@@ -142,6 +145,7 @@ export default function Contact() {
                   Profissional, em caso de dúvidas preencha abaixo.
                 </p>
                 <form onSubmit={handleSubmit} className="space-y-4 md:space-y-6">
+                  <HoneypotField />
                   <div className="w-full">
                     <Label htmlFor="name">Nome Completo *</Label>
                     <Input
