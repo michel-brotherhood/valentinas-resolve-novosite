@@ -10,6 +10,7 @@ import { useToast } from "@/hooks/use-toast";
 import { z } from "zod";
 import { CheckCircle2 } from "lucide-react";
 import { maskPhone } from "@/lib/masks";
+import { useAntiBot } from "@/hooks/use-anti-bot";
 
 const accountingFormSchema = z.object({
   fullName: z.string().trim().min(3, "Nome deve ter pelo menos 3 caracteres").max(100),
@@ -41,6 +42,7 @@ export default function AccountingForm() {
   });
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const { HoneypotField, getAntiBotPayload } = useAntiBot();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -76,6 +78,7 @@ Solicitação enviada através do formulário de Contabilidade Integrada Valenti
           email: formData.email,
           phone: formData.phone,
           userType: formData.userType,
+          ...getAntiBotPayload(),
         }),
       });
 
@@ -143,6 +146,7 @@ Solicitação enviada através do formulário de Contabilidade Integrada Valenti
             </div>
 
             <form onSubmit={handleSubmit} className="space-y-6">
+              <HoneypotField />
               {/* Dados Básicos */}
               <div className="space-y-4">
                 <h3 className="text-xl font-bold text-foreground flex items-center gap-2">
