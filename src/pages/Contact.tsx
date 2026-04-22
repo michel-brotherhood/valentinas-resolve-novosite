@@ -13,6 +13,8 @@ import { z } from "zod";
 import { maskPhone } from "@/lib/masks";
 import { ContactTopicSelect } from "@/components/ContactTopicSelect";
 import { useAntiBot } from "@/hooks/use-anti-bot";
+import { useTurnstile } from "@/hooks/use-turnstile";
+import { TurnstileWidget } from "@/components/TurnstileWidget";
 import contactHeroBg from "@/assets/contact-hero-bg.webp";
 
 const contactSchema = z.object({
@@ -37,6 +39,7 @@ export default function Contact() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [scrollY, setScrollY] = useState(0);
   const { HoneypotField, getAntiBotPayload } = useAntiBot();
+  const { token: cfToken, setToken: setCfToken, reset: resetCfToken, getTurnstilePayload } = useTurnstile();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -53,6 +56,14 @@ export default function Contact() {
     
     try {
       contactSchema.parse(formData);
+      if (!cfToken) {
+        toast({
+          title: "Verificação anti-spam",
+          description: "Aguarde a verificação de segurança ser concluída.",
+          variant: "destructive",
+        });
+        return;
+      }
       setIsSubmitting(true);
       
       // Send email via edge function
@@ -69,10 +80,14 @@ export default function Contact() {
           service: formData.service,
           message: formData.message,
           ...getAntiBotPayload(),
+          ...getTurnstilePayload(),
         }),
       });
 
-      if (!response.ok) throw new Error('Erro ao enviar mensagem');
+      if (!response.ok) {
+        resetCfToken();
+        throw new Error('Erro ao enviar mensagem');
+      }
       
       toast({
         title: "Mensagem enviada!",
@@ -223,10 +238,17 @@ export default function Contact() {
                     </p>
                   </div>
 
+                  <div className="w-full">
+                    <TurnstileWidget
+                      onVerify={setCfToken}
+                      onExpire={resetCfToken}
+                    />
+                  </div>
+
                   <Button
                     type="submit"
                     className="w-full bg-primary hover:bg-primary/90 text-black font-bold"
-                    disabled={isSubmitting}
+                    disabled={isSubmitting || !cfToken}
                   >
                     {isSubmitting ? "Enviando..." : "Enviar Solicitação"}
                   </Button>
