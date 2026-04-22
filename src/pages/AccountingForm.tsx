@@ -11,6 +11,8 @@ import { z } from "zod";
 import { CheckCircle2 } from "lucide-react";
 import { maskPhone } from "@/lib/masks";
 import { useAntiBot } from "@/hooks/use-anti-bot";
+import { useTurnstile } from "@/hooks/use-turnstile";
+import { TurnstileWidget } from "@/components/TurnstileWidget";
 
 const accountingFormSchema = z.object({
   fullName: z.string().trim().min(3, "Nome deve ter pelo menos 3 caracteres").max(100),
@@ -43,14 +45,25 @@ export default function AccountingForm() {
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const { HoneypotField, getAntiBotPayload } = useAntiBot();
+  const { token: cfToken, setToken: setCfToken, reset: resetCfToken, getTurnstilePayload } = useTurnstile();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setIsSubmitting(true);
 
     try {
       accountingFormSchema.parse(formData);
       setErrors({});
+
+      if (!cfToken) {
+        toast({
+          title: "Verificação anti-spam",
+          description: "Aguarde a verificação de segurança ser concluída.",
+          variant: "destructive",
+        });
+        return;
+      }
+
+      setIsSubmitting(true);
 
       // Prepare WhatsApp message
       const userTypeLabel = userTypeOptions.find(opt => opt.value === formData.userType)?.label || formData.userType;
@@ -79,10 +92,14 @@ Solicitação enviada através do formulário de Contabilidade Integrada Valenti
           phone: formData.phone,
           userType: formData.userType,
           ...getAntiBotPayload(),
+          ...getTurnstilePayload(),
         }),
       });
 
-      if (!response.ok) throw new Error('Erro ao enviar solicitação');
+      if (!response.ok) {
+        resetCfToken();
+        throw new Error('Erro ao enviar solicitação');
+      }
 
       toast({
         title: "Solicitação enviada!",
@@ -247,11 +264,12 @@ Solicitação enviada através do formulário de Contabilidade Integrada Valenti
               </div>
 
               {/* Submit Button */}
-              <div className="pt-4">
+              <div className="pt-4 space-y-4">
+                <TurnstileWidget onVerify={setCfToken} onExpire={resetCfToken} />
                 <Button
                   type="submit"
                   size="lg"
-                  disabled={isSubmitting}
+                  disabled={isSubmitting || !cfToken}
                   className="w-full bg-primary hover:bg-primary/90 text-black font-bold text-lg py-6 shadow-[0_0_20px_rgba(255,204,0,0.3)] hover:shadow-[0_0_30px_rgba(255,204,0,0.5)] transition-all"
                 >
                   {isSubmitting ? "Enviando..." : "Solicitar Proposta"}
