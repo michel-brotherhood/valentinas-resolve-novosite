@@ -5,6 +5,7 @@ import {
   buildCorsHeaders,
   getClientIp,
   validateAntiBot,
+  validateTurnstile,
   checkRateLimit,
   sanitizeEmailHeader,
   maskEmail,
@@ -84,6 +85,7 @@ interface ProfessionalEmailRequest {
   certificates: FileAttachment[];
   _hp?: string;
   _t?: number;
+  _cf?: string;
 }
 
 const validate = (data: ProfessionalEmailRequest): { field: string; message: string }[] => {
@@ -143,13 +145,20 @@ const handler = async (req: Request): Promise<Response> => {
       return jsonResponse({ error: "Requisição inválida." }, 400, corsHeaders);
     }
 
+    const ip = getClientIp(req);
+
+    const cf = await validateTurnstile(data._cf, ip);
+    if (!cf.ok) {
+      console.warn("captcha reject", { reason: cf.reason });
+      return jsonResponse({ error: "Verificação anti-spam falhou. Atualize a página e tente novamente." }, 403, corsHeaders);
+    }
+
     const errors = validate(data);
     if (errors.length > 0) {
       return jsonResponse({ error: "Dados inválidos", details: errors }, 400, corsHeaders);
     }
 
     const safeEmail = sanitizeEmailHeader(data.email)!;
-    const ip = getClientIp(req);
 
     const rl = await checkRateLimit(supabase, { email: safeEmail, ip, type: "professional" });
     if (!rl.ok) {
