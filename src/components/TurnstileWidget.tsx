@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
 declare global {
   interface Window {
@@ -22,11 +22,36 @@ declare global {
   }
 }
 
-const SITE_KEY = import.meta.env.VITE_TURNSTILE_SITE_KEY as string | undefined;
 const SCRIPT_SRC =
   "https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit";
 
 let scriptPromise: Promise<void> | null = null;
+let cachedSiteKey: string | null = null;
+let configPromise: Promise<string> | null = null;
+
+const fetchSiteKey = async (): Promise<string> => {
+  if (cachedSiteKey !== null) return cachedSiteKey;
+  if (configPromise) return configPromise;
+
+  const url = `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/get-public-config`;
+  configPromise = fetch(url, {
+    headers: {
+      Authorization: `Bearer ${import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY}`,
+    },
+  })
+    .then(async (r) => {
+      if (!r.ok) throw new Error(`config_${r.status}`);
+      const json = (await r.json()) as { turnstileSiteKey?: string };
+      cachedSiteKey = json.turnstileSiteKey ?? "";
+      return cachedSiteKey;
+    })
+    .catch((err) => {
+      configPromise = null;
+      throw err;
+    });
+
+  return configPromise;
+};
 
 const loadTurnstileScript = (): Promise<void> => {
   if (typeof window === "undefined") return Promise.resolve();
@@ -62,13 +87,14 @@ interface Props {
 
 /**
  * Cloudflare Turnstile widget (managed mode).
- * Reads VITE_TURNSTILE_SITE_KEY at build time. Renders nothing if absent.
+ * Site key is fetched from the get-public-config edge function (cached in-memory).
  */
 export const TurnstileWidget = ({ onVerify, onExpire, className }: Props) => {
   const containerRef = useRef<HTMLDivElement | null>(null);
   const widgetIdRef = useRef<string | null>(null);
   const onVerifyRef = useRef(onVerify);
   const onExpireRef = useRef(onExpire);
+  const [siteKey, setSiteKey] = useState<string>(cachedSiteKey ?? "");
 
   useEffect(() => {
     onVerifyRef.current = onVerify;
@@ -76,17 +102,28 @@ export const TurnstileWidget = ({ onVerify, onExpire, className }: Props) => {
   }, [onVerify, onExpire]);
 
   useEffect(() => {
-    if (!SITE_KEY) {
-      console.warn("VITE_TURNSTILE_SITE_KEY not set — captcha disabled");
-      return;
+    let cancelled = false;
+    if (!siteKey) {
+      fetchSiteKey()
+        .then((key) => {
+          if (!cancelled) setSiteKey(key);
+        })
+        .catch((err) => console.error("turnstile config:", err?.message));
     }
+    return () => {
+      cancelled = true;
+    };
+  }, [siteKey]);
+
+  useEffect(() => {
+    if (!siteKey) return;
     let cancelled = false;
 
     loadTurnstileScript()
       .then(() => {
         if (cancelled || !containerRef.current || !window.turnstile) return;
         widgetIdRef.current = window.turnstile.render(containerRef.current, {
-          sitekey: SITE_KEY,
+          sitekey: siteKey,
           theme: "auto",
           size: "flexible",
           appearance: "always",
@@ -108,8 +145,7 @@ export const TurnstileWidget = ({ onVerify, onExpire, className }: Props) => {
         }
       }
     };
-  }, []);
+  }, [siteKey]);
 
-  if (!SITE_KEY) return null;
   return <div ref={containerRef} className={className} />;
 };
