@@ -18,6 +18,8 @@ import { maskPhone, maskCPF } from "@/lib/masks";
 import { ServiceAreaAutocomplete } from "@/components/ServiceAreaAutocomplete";
 import { getAllServices } from "@/lib/servicesData";
 import { useAntiBot } from "@/hooks/use-anti-bot";
+import { useTurnstile } from "@/hooks/use-turnstile";
+import { TurnstileWidget } from "@/components/TurnstileWidget";
 
 const personalInfoSchema = z.object({
   fullName: z.string().trim().min(3, "Nome deve ter pelo menos 3 caracteres").max(100),
@@ -75,6 +77,7 @@ const ProfessionalRegistration = () => {
   const { toast } = useToast();
   const navigate = useNavigate();
   const { HoneypotField, getAntiBotPayload } = useAntiBot();
+  const { token: cfToken, setToken: setCfToken, reset: resetCfToken, getTurnstilePayload } = useTurnstile();
 
   const ALLOWED_FILE_TYPES = ['image/jpeg', 'image/jpg', 'image/png', 'application/pdf'];
   const MAX_FILE_SIZE = 5 * 1024 * 1024; // 5MB
@@ -234,6 +237,14 @@ const ProfessionalRegistration = () => {
   };
 
   const onSubmitStep3 = async (data: Documents) => {
+    if (!cfToken) {
+      toast({
+        title: "Verificação anti-spam",
+        description: "Aguarde a verificação de segurança ser concluída.",
+        variant: "destructive",
+      });
+      return;
+    }
     setIsSubmitting(true);
     
     try {
@@ -281,10 +292,14 @@ const ProfessionalRegistration = () => {
           addressProofs,
           certificates,
           ...getAntiBotPayload(),
+          ...getTurnstilePayload(),
         }),
       });
 
-      if (!response.ok) throw new Error('Erro ao enviar cadastro');
+      if (!response.ok) {
+        resetCfToken();
+        throw new Error('Erro ao enviar cadastro');
+      }
 
       toast({
         title: "Cadastro enviado com sucesso!",
@@ -651,11 +666,15 @@ const ProfessionalRegistration = () => {
                   </div>
                 </div>
 
+                <div className="pt-4">
+                  <TurnstileWidget onVerify={setCfToken} onExpire={resetCfToken} />
+                </div>
+
                 <div className="flex justify-between pt-4">
                   <Button type="button" variant="outline" onClick={() => setCurrentStep(2)} disabled={isSubmitting}>
                     <ChevronLeft className="mr-2 h-4 w-4" /> Voltar
                   </Button>
-                  <Button type="submit" size="lg" disabled={isSubmitting}>
+                  <Button type="submit" size="lg" disabled={isSubmitting || !cfToken}>
                     {isSubmitting ? (
                       <>
                         <Loader2 className="mr-2 h-4 w-4 animate-spin" />

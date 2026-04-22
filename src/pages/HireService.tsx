@@ -16,6 +16,8 @@ import { Mail, Check, MessageCircle } from "lucide-react";
 import { maskPhone } from "@/lib/masks";
 import { WhatsAppBot } from "@/components/WhatsAppBot";
 import { useAntiBot } from "@/hooks/use-anti-bot";
+import { useTurnstile } from "@/hooks/use-turnstile";
+import { TurnstileWidget } from "@/components/TurnstileWidget";
 
 const hireServiceSchema = z.object({
   fullName: z.string().trim().min(3, "Nome deve ter pelo menos 3 caracteres").max(100),
@@ -58,6 +60,7 @@ export default function HireService() {
   const [showWhatsAppBot, setShowWhatsAppBot] = useState(false);
   const [errors, setErrors] = useState<Record<string, string>>({});
   const { HoneypotField, getAntiBotPayload } = useAntiBot();
+  const { token: cfToken, setToken: setCfToken, reset: resetCfToken, getTurnstilePayload } = useTurnstile();
 
   // Progress tracking
   const [completedSteps, setCompletedSteps] = useState<number[]>([]);
@@ -99,6 +102,15 @@ export default function HireService() {
       hireServiceSchema.parse(formData);
       setErrors({});
 
+      if (!cfToken) {
+        toast({
+          title: "Verificação anti-spam",
+          description: "Aguarde a verificação de segurança ser concluída.",
+          variant: "destructive",
+        });
+        return;
+      }
+
       // Send email via edge function
       const response = await fetch(`${import.meta.env.VITE_SUPABASE_URL}/functions/v1/send-hire-service-email`, {
         method: 'POST',
@@ -119,10 +131,14 @@ export default function HireService() {
           contactPreference: formData.contactPreference.join(", "),
           budgetType: formData.budgetType === "estimate" ? "Estimativa" : "Detalhado com visita",
           ...getAntiBotPayload(),
+          ...getTurnstilePayload(),
         }),
       });
 
-      if (!response.ok) throw new Error('Erro ao enviar solicitação');
+      if (!response.ok) {
+        resetCfToken();
+        throw new Error('Erro ao enviar solicitação');
+      }
 
       toast({
         title: "Solicitação enviada!",
@@ -431,7 +447,15 @@ export default function HireService() {
                 {errors.acceptTerms && <p className="text-sm text-destructive mt-1 break-words">{errors.acceptTerms}</p>}
               </div>
 
-              <Button type="submit" className="w-full bg-primary hover:bg-primary/90 text-black font-bold text-sm md:text-base">
+              <div className="w-full">
+                <TurnstileWidget onVerify={setCfToken} onExpire={resetCfToken} />
+              </div>
+
+              <Button
+                type="submit"
+                className="w-full bg-primary hover:bg-primary/90 text-black font-bold text-sm md:text-base"
+                disabled={!cfToken}
+              >
                 <Mail className="mr-2 h-4 w-4 md:h-5 md:w-5" />
                 ENVIAR SOLICITAÇÃO
               </Button>

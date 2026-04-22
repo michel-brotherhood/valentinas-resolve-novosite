@@ -171,3 +171,47 @@ export const jsonResponse = (
     status,
     headers: { "Content-Type": "application/json", ...corsHeaders },
   });
+
+// ────────────────────────────────────────────────────────────────────
+// Cloudflare Turnstile validation
+// Verifies the token issued client-side against Cloudflare's siteverify API.
+// Fails closed: any network/secret/issue rejects the request.
+// ────────────────────────────────────────────────────────────────────
+export const validateTurnstile = async (
+  token: unknown,
+  remoteIp: string,
+): Promise<{ ok: true } | { ok: false; reason: string }> => {
+  const secret = Deno.env.get("TURNSTILE_SECRET_KEY");
+  if (!secret) {
+    console.error("turnstile secret missing");
+    return { ok: false, reason: "server_misconfigured" };
+  }
+  if (typeof token !== "string" || token.length < 10 || token.length > 4096) {
+    return { ok: false, reason: "missing_token" };
+  }
+
+  try {
+    const form = new FormData();
+    form.append("secret", secret);
+    form.append("response", token);
+    if (remoteIp && remoteIp !== "unknown") form.append("remoteip", remoteIp);
+
+    const res = await fetch(
+      "https://challenges.cloudflare.com/turnstile/v0/siteverify",
+      { method: "POST", body: form },
+    );
+    if (!res.ok) {
+      console.warn("turnstile http", { status: res.status });
+      return { ok: false, reason: "verify_http_error" };
+    }
+    const json = await res.json() as { success?: boolean; ["error-codes"]?: string[] };
+    if (!json.success) {
+      console.warn("turnstile fail", { codes: json["error-codes"] });
+      return { ok: false, reason: "captcha_failed" };
+    }
+    return { ok: true };
+  } catch (err) {
+    console.error("turnstile error", { msg: (err as Error)?.message });
+    return { ok: false, reason: "verify_exception" };
+  }
+};

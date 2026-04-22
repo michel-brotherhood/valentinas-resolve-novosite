@@ -1,1 +1,4 @@
 project_id = "apbzalyjlexjbhrqlxzk"
+
+[functions.get-public-config]
+verify_jwt = false
